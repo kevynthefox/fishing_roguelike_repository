@@ -49,14 +49,14 @@ private Coroutine recharge;
 			stamina -= SprintCost * Time.deltaTime;
 			if (recharge != null) StopCoroutine(recharge);
 			recharge = StartCoroutine(RechargeStamina());
-			player.GetComponent<movement>().sprintspeed = 2;
+			player.GetComponent<movement>().speed *= 2;
             staminaText.text = "stamina : " + stamina;
             StaminaBar.fillAmount = stamina / stamina_max;
 
         } 
 		else
 		{
-			player.GetComponent<movement>().sprintspeed = 1;
+			player.GetComponent<movement>().speed *= 1;
 		}
 
     }

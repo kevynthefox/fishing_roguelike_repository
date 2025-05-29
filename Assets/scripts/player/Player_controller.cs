@@ -20,7 +20,7 @@ public class Player_controller : MonoBehaviour
         input = GetComponent<PlayerInputsManager>();
         controller = GetComponent<CharacterController>();
         speed = GetComponent<movement>().speed;
-        sprintspeed = GetComponent<movement>().sprintspeed;
+        //sprintspeed = GetComponent<movement>().sprintspeed;
     }
 
     // Update is called once per frame

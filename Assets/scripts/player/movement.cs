@@ -7,11 +7,11 @@ using UnityEngine.InputSystem;
 public class movement : MonoBehaviour
 {
 
-public float speed = 20.0f;
+public float speed = 20f;
 //private float turnSpeed = 45.0f;
 public float horizontalInput;
 public float forwardInput;
-public float sprintspeed;
+//public float sprintspeed;
 	//jump related things
 	public float jumpForce = 10;
 	private float gravityModifier;
@@ -20,6 +20,10 @@ public float sprintspeed;
 public Camera Camera;
 
 private Rigidbody Rb;
+
+public Vector3 cameraRelativeMovement;
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -41,7 +45,7 @@ private Rigidbody Rb;
 		//rotates the object based on horizontal input
 		//transform.Translate(Vector3.forward * Time.deltaTime* speed * sprintspeed *horizontalInput );
 		
-		MovePlayerRelativeToCamera();
+		//MovePlayerRelativeToCamera();
 
 		//Quaternion rotation = Quaternion.Euler(0,Camera.main.transform.rotation.eulerAngles.y,0);
 		//Vector3 moveDirection = (rotation*Input).normalized;
@@ -54,16 +58,17 @@ private Rigidbody Rb;
 			Rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
 			isOnGround = false;
 		}
-
-       
+	    cameraRelativeMovement = GetComponent<move_relative_to_camera>().cameraRelativeMovement;
+        //transform.Translate(cameraRelativeMovement * Time.deltaTime * speed * sprintspeed);
+        transform.Translate(cameraRelativeMovement * Time.deltaTime * speed);
     }
     private void OnCollisionEnter(Collision collision)
     {
         isOnGround = true;
     }
 
-
-	void MovePlayerRelativeToCamera()
+/*
+	public void MovePlayerRelativeToCamera()
 	{
 		// get player input
 		float playerVerticalInput =
@@ -95,9 +100,9 @@ private Rigidbody Rb;
 			RightRelativeMovementVector;
 
 		// move in world space
-		transform.Translate(cameraRelativeMovement * Time.deltaTime * speed * sprintspeed);
+		
 		
 
 	}
-
+	*/
 }
