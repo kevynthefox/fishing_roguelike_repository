@@ -35,6 +35,7 @@ public class bobber_launch : MonoBehaviour
             //GetComponent<Rigidbody>().AddForce(new Vector3(0, 0, Mathf.Abs(factor)), ForceMode.Impulse);
             launch();
         StartCoroutine(launch());
+        StopCoroutine(launch());
         //direction = player.GetComponent<movement>(MovePlayerRelativeToCamera).cameraRelativeMovement;
         //durection = player.getcomponen
 

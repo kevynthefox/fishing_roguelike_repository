@@ -1,11 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class bobber_impact : MonoBehaviour
 {
     [SerializeField] Animator animator;
     public GameObject fishing_rod_1;
+
+    public GameObject fishing_system;
+    public Scrollbar fishing_bar;
+    public Scrollbar distance_bar;
+    public GameObject bone_master;
 
     public float fishing_time;
     public float fishing_time_cool;
@@ -16,14 +22,18 @@ public class bobber_impact : MonoBehaviour
     {
         fishing_time = fishing_rod_1.GetComponent<fishing_rod_movement>().fishing_time;
         fishing_time_cool = fishing_rod_1.GetComponent<fishing_rod_movement>().fishing_time_cool;
+        fishing_system.SetActive(false);
     }
 
     IEnumerator OnTriggerEnter(Collider other)
     {
+        
         if (returned == false)
         {
             if (other.gameObject.tag == "water")
             {
+                fishing_system.SetActive(true);
+                fishing_bar.value = 0.5f;
                 Debug.Log("water");
                 yield return new WaitForSeconds(.5f);
                 animator.SetBool("is_waiting", true);
@@ -32,8 +42,27 @@ public class bobber_impact : MonoBehaviour
                 yield return new WaitForSeconds(fishing_time);
 
                 animator.SetBool("is_hooked", true);
-                yield return new WaitForSeconds(fishing_time); //placeholder for finishing the fishing game
-                animator.SetBool("is_hooked", false);
+                if (fishing_bar.GetComponent<fishing_bar>().success == true)
+                {
+                    animator.SetBool("is_hooked", false); //spawn a fish here
+                    Debug.Log("success");
+                    yield return new WaitForSeconds(2f);
+                    fishing_bar.GetComponent<fishing_bar>().success = false;
+                    fishing_bar.GetComponent<fishing_bar>().failure = false;
+                    fishing_bar.value = 0.5f;
+                    Debug.Log("reset");
+                }
+                else
+                {
+                    animator.SetBool("is_hooked", false);
+                    Debug.Log("failure");
+                    yield return new WaitForSeconds(2f);
+                    fishing_bar.GetComponent<fishing_bar>().success = false;
+                    fishing_bar.GetComponent<fishing_bar>().failure = false;
+                    bone_master.GetComponent<variable_length>().enabled_fishing = true;
+                    fishing_bar.value = 0.5f;
+                    Debug.Log("reset. E has been pressed to try again");
+                }
             }
             else
             {
@@ -58,7 +87,9 @@ public class bobber_impact : MonoBehaviour
         else
         {
             StartCoroutine(reset_animations());
+            fishing_system.SetActive(false);
             yield return new WaitForSeconds(10f);
+            StopCoroutine(reset_animations());
             //fishing_rod_1.GetComponent<fishing_rod_movement>().reel_able = false;
         }
         /*

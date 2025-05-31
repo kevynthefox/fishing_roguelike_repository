@@ -10,14 +10,17 @@ public class variable_length : MonoBehaviour
 
     public GameObject bobber;
 
+    public GameObject master;
+
     public bool bobber_returned;
+    
 
     // Start is called before the first frame update
     void Start()
     {
         enabled_fishing = false;
         //GetComponent<Rigidbody>().isKinematic = !enabled_fishing;
-        
+        master = GameObject.Find("Bone.002");
     }
 
     // Update is called once per frame
@@ -28,8 +31,9 @@ public class variable_length : MonoBehaviour
         velocity = GetComponent<Rigidbody>().velocity;
         GetComponent<SpringJoint>().spring = 1000 - distance * 10;
         GetComponent<SpringJoint>().damper = 1000 + distance * 10;
-        
-        
+
+        enabled_fishing = master.GetComponent<variable_length>().enabled_fishing;
+
         if (enabled_fishing == true)
         {
             if (Input.GetMouseButton(0)) //(Input.GetAxis("Mouse ScrollWheel") > 0f)
@@ -46,11 +50,17 @@ public class variable_length : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E))
         {
             enabled_fishing = !enabled_fishing;
-            GetComponent<Rigidbody>().velocity = Vector3.zero;
-            GetComponent<return_to_start>().enabled = !enabled_fishing;
-            distance = 0;
+            
             //GetComponent<Rigidbody>().isKinematic = !enabled_fishing;
         }
+
+        if (enabled_fishing == false)
+        {
+            //GetComponent<Rigidbody>().velocity = Vector3.zero;
+            distance = 0;
+        }
+        
+        GetComponent<return_to_start>().enabled = !enabled_fishing;
 
         bobber_returned = bobber.GetComponent<bobber_impact>().returned;
         
