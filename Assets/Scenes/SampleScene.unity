@@ -469,9 +469,18 @@ MonoBehaviour:
   fishing_bar: {fileID: 1561192821}
   distance_bar: {fileID: 591887315}
   bone_master: {fileID: 1156337917}
+  fish:
+  - {fileID: 782317847269395987, guid: 71cc39398398ea34ba48a1429a14f6c8, type: 3}
+  self: {fileID: 134174156}
   fishing_time: 0
   fishing_time_cool: 0
   returned: 0
+  fish_quantity: 0
+  fish_quantity_original: 0
+  fish_quality: 0
+  fish_counted: 0
+  fish_all_spawned: 0
+  resetting: 0
 --- !u!114 &134174166
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4196,7 +4205,7 @@ MonoBehaviour:
   fish_num: 0
   fish_quality: 0
   bar_pos: 0.5
-  fish_num_max: 2
+  fish_num_max: 10
   fish_quality_min: 2
   effort: 0.3
   resistance: 0
@@ -4210,6 +4219,7 @@ MonoBehaviour:
   eff: {fileID: 1873641602}
   distance_bar: {fileID: 591887315}
   bone_master: {fileID: 1156337917}
+  bobber: {fileID: 134174156}
   failure: 0
   success: 0
   distance: 0
@@ -4803,6 +4813,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: cba1697431aba344980f1cb06feb7359, type: 3}
       propertyPath: m_Name
       value: pier (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: cba1697431aba344980f1cb06feb7359, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cba1697431aba344980f1cb06feb7359, type: 3}

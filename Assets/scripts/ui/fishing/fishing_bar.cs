@@ -34,10 +34,13 @@ public class fishing_bar : MonoBehaviour
 
     public GameObject bone_master;
 
+    public GameObject bobber;
+
     public bool failure;
     public bool success;
 
     public float distance;
+
 
     public void Start()
     {
@@ -75,28 +78,27 @@ public class fishing_bar : MonoBehaviour
 
         distance = distance_bar.GetComponent<distance_bar>().current_distance;
 
-
-        if (bar_pos <= 0 + (resistance * Time.deltaTime) || bar_pos >= 1 - (effort * Time.deltaTime))
+        if (bobber.GetComponent<bobber_impact>().resetting == false)
         {
-            failure = true;
-            success = false;
-        }
-        else
-        {
-            if (distance <= 0)
+            if (bar_pos <= 0 + (resistance * Time.deltaTime) || bar_pos >= 1 - (effort * Time.deltaTime))
             {
-                failure = false;
-                success = true;
-                StartCoroutine(bar_reset());
-                //StopCoroutine(bar_reset());
+                failure = true;
+                success = false;
+                Debug.Log("failure");
+            }
+            else
+            {
+                if (distance <= 0)
+                {
+                    failure = false;
+                    success = true;
+                    Debug.Log("success");
+                }
             }
         }
-
         if (failure == true)
         {
             bone_master.GetComponent<variable_length>().enabled_fishing = false;
-            StartCoroutine(bar_reset());
-            //StopCoroutine(bar_reset());
         }
     }
     
@@ -129,11 +131,5 @@ public class fishing_bar : MonoBehaviour
         yield return new WaitForSeconds(100f);
 
         
-    }
-
-    public IEnumerator bar_reset()
-    {
-        yield return new WaitForSeconds(5f);
-        bar_pos = 0.5f;
     }
 }
