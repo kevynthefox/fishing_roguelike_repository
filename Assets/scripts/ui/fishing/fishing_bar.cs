@@ -13,7 +13,10 @@ public class fishing_bar : MonoBehaviour
     public float bar_pos;
 
     public float fish_num_max; //maximum number of fish you can catch
-    public float fish_quality_min; //maximum level of quality(minumum level of tiredness on the fish)
+    public float fish_quality_max; //maximum level of quality(minumum level of tiredness on the fish)
+
+    public float fish_num_min;
+    public float fish_quality_min;
 
     public float effort;
     public float resistance;
@@ -62,8 +65,8 @@ public class fishing_bar : MonoBehaviour
 
        
         //floors the numbers to be at minumum of 1
-        if (fish_num <= 0.5) fish_num = 0.5f;
-        if (fish_quality <= 0.5) fish_quality = 0.5f;
+        if (fish_num <= fish_num_min) fish_num = fish_num_min;
+        if (fish_quality <= fish_quality_min) fish_quality = fish_quality_min;
         
         
 
@@ -73,8 +76,8 @@ public class fishing_bar : MonoBehaviour
         
         StopCoroutine(catch_mechanic());
 
-        quality.text = "quality:" + fish_quality.ToString("0.0") + "     max:" + fish_quality_min;
-        quantity.text = "quanity:" + fish_num.ToString("0.0") + "     max:" + fish_num_max;
+        quality.text = "quality:" + fish_quality.ToString("0.0") + "     max:" + fish_quality_max + "     min:" + fish_quality_min;
+        quantity.text = "quanity:" + fish_num.ToString("0.0") + "     max:" + fish_num_max + "     min:" + fish_num_min;
 
         distance = distance_bar.GetComponent<distance_bar>().current_distance;
 

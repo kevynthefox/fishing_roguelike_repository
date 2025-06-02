@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text.RegularExpressions;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -31,11 +33,14 @@ public class bobber_impact : MonoBehaviour
 
     public bool resetting;
 
-    public float quantity_holder_1;
+    /*public float quantity_holder_1;
     public float quantity_holder_2;
 
+    public List<GameObject> fish_exist;
+    public List<GameObject> ghost_fish_exist;
 
-
+    public GameObject fish_that_exists;
+    */
     private void Start()
     {
         fishing_time = fishing_rod_1.GetComponent<fishing_rod_movement>().fishing_time;
@@ -71,7 +76,7 @@ public class bobber_impact : MonoBehaviour
                     fish_quantity_original = fishing_bar.GetComponent<fishing_bar>().fish_num;
 
                     StartCoroutine(spawn_fish());
-                    StartCoroutine(timemachine());
+                    //StartCoroutine(timemachine());
 
                     fishing_bar.GetComponent<fishing_bar>().bar_pos = 0.5f;
 
@@ -87,7 +92,7 @@ public class bobber_impact : MonoBehaviour
                         //Debug.Log("reset");
                         yield return new WaitForSeconds(0.1f);
                         StopCoroutine(spawn_fish());
-                        StopCoroutine(timemachine());
+                        //StopCoroutine(timemachine());
                         fish_counted = 0;
                         fish_all_spawned = false;
                         resetting = false;
@@ -174,11 +179,22 @@ public class bobber_impact : MonoBehaviour
             else
             {
                 Vector3 SpawnPosition_2 = new Vector3(fish_quantity + fish_counted, fish_quantity, fish_quantity);
-                transform.position = SpawnPosition_2;
-                Instantiate(fish[randomIndex], SpawnPosition_2, Quaternion.identity);
+                transform.position = SpawnPosition;
+                Instantiate(fish[randomIndex], SpawnPosition, Quaternion.identity);
                 fish_counted += 1;
 
-                if (fish_quantity <= quantity_holder_1 || fish_quantity <= quantity_holder_2)
+                /*var fish_quantities = new List<string>();
+
+
+                Debug.Log(fish[randomIndex].name);
+
+                fish_quantities.Add(fish[fish_counted].name);*/
+
+                //checks if it equals a state that was a few seconds ago. replace with if it equals a state at all using a list.
+
+                fish[randomIndex].GetComponent<fish_variable_holder>().duplicate = false;
+
+                /*if (fish_quantity <= quantity_holder_1 || fish_quantity <= quantity_holder_2)
                 {
                     Debug.Log("original");
                     fish[randomIndex].GetComponent<fish_variable_holder>().duplicate = false;
@@ -190,7 +206,7 @@ public class bobber_impact : MonoBehaviour
                     Debug.Log("duplicate");
                     fish[randomIndex].GetComponent<fish_variable_holder>().duplicate = true;
 
-                }
+                }*/
 
                 /*if (fish[randomIndex].GetComponent<fish_variable_holder>().duplicate == true)
                 {
@@ -216,7 +232,7 @@ public class bobber_impact : MonoBehaviour
                 {
 
                     fish[randomIndex].GetComponent<Transform>().localScale = new Vector3(fish_quality, fish_quality, fish_quality);
-                    fish[randomIndex].name = "big fish" + fish_counted + "   quantity:" + fish_quantity.ToString() + "     fish remaining:" + fish_quantity + " out of: " + fish_quantity_original;
+                    fish[randomIndex].name = "   quantity:" + fish_quantity.ToString() + "     fish remaining:" + fish_quantity + " out of: " + fish_quantity_original;
 
                     fish[randomIndex].GetComponent<fish_variable_holder>().fish_quantity = fish_quantity;
                     fish[randomIndex].GetComponent<fish_variable_holder>().fish_quality = fish_quality;
@@ -230,7 +246,7 @@ public class bobber_impact : MonoBehaviour
                 {
 
                     fish[randomIndex].GetComponent<Transform>().localScale = new Vector3(fish_quantity, fish_quantity, fish_quantity);
-                    fish[randomIndex].name = "small fish" + fish_counted + "   quantity:" + fish_quantity.ToString() + "     fish remaining:" + fish_quantity + " out of: " + fish_quantity_original;
+                    fish[randomIndex].name = "   quantity:" + fish_quantity.ToString() + "     fish remaining:" + fish_quantity + " out of: " + fish_quantity_original;
 
                     fish[randomIndex].GetComponent<fish_variable_holder>().fish_quantity = fish_quantity;
                     fish[randomIndex].GetComponent<fish_variable_holder>().fish_quality = fish_quality;
@@ -239,6 +255,61 @@ public class bobber_impact : MonoBehaviour
                     //fish_quantities.Add(fish[randomIndex].name);
 
                     //Debug.Log("small fish spawned");
+                    /*
+                    foreach (GameObject f in GameObject.FindGameObjectsWithTag("fish"))
+                    {
+                        //Debug.Log(f.name);
+                        
+                        fish_exist.Add(f);
+                    }
+
+                    //foreach(GameObject f in fish_exist)
+                    //{
+                        /*if (f.name == f.name)
+                        {
+                            Debug.Log("duplicate");
+                            f.GetComponent<fish_variable_holder>().duplicate = true;
+                        }
+
+                    var groups = fish_exist.GroupBy(f => f.name);
+                    foreach (var group in groups)
+                    {
+                        if (group.Count() > 1)
+                        {
+                            Debug.Log(group.Key + ": " + group.Count());
+                                
+                            int group_count_minus_one = group.Count() - 1;
+
+                            for (int i = 0; i < group.Key.Count() ; i++)
+                            {
+                                //Debug.Log(group.Key + ": " + group.Count());
+                                //fish_exist.Remove(GameObject.Find(group.Key));
+                                //ghost_fish_exist.Add(GameObject.Find(group.Key));
+
+                                //Destroy(GameObject.Find(group.Key));
+
+                                Debug.Log(group.Key + ": " + group.Count());
+                                GameObject.Find(group.Key).GetComponent<fish_variable_holder>().duplicate = true;
+                                //GameObject.Find(group.Key).GetComponent<Color>().Equals(Color.red);
+
+                                //Debug.Log("i:" + i);
+
+                                
+
+                                    i++;
+                            }
+
+                        }
+                    }    
+                        
+                    //}*/
+                    var names = new HashSet<string>();
+                    foreach (var f in GameObject.FindGameObjectsWithTag("fish"))
+                    {
+                        if (names.Contains(f.name)) Destroy(f);
+                        else names.Add(f.name);
+                    }
+
 
                     fish_all_spawned = true;
                     Debug.Log("fish all spawned");
@@ -258,12 +329,7 @@ public class bobber_impact : MonoBehaviour
                 yield return new WaitForSeconds(1f);
             }
 
-            var fish_quantities = new List<string>();
 
-
-            Debug.Log(fish_quantities.Count);
-
-            fish_quantities.Add(fish[randomIndex].name);
             /*if (fish_quantities[fish_counted] == fish_quantities[fish_counted -= 1] && fish_counted - 1 > 0)
             {
                 yield return new WaitForSeconds(fish_quantity);
@@ -273,9 +339,23 @@ public class bobber_impact : MonoBehaviour
                 Debug.Log("identical");
                 fish[randomIndex].transform.position = new Vector3(0, 10, 0);
             }*/
+
+            //fish_that_exists = GameObject.FindGameObjectsWithTag("fish");
+
+            //fish_exist = GameObject.FindGameObjectsWithTag("fish");
+            //Debug.Log(fish_exist.Count);
             yield return new WaitForSeconds(1);
         }
 
+        while (resetting == true && fish_all_spawned == false)
+        {
+            
+        }
+        
+
+       
+        
+        
 
         /*fish[randomIndex].GetComponent<attach_to_object>().Object_b = self;
         fish[randomIndex].GetComponent<attach_to_object>().attachment = true;
@@ -289,8 +369,12 @@ public class bobber_impact : MonoBehaviour
 
     }
 
-    public IEnumerator timemachine()
+    /*public IEnumerator timemachine()
     {
+
+        
+
+
         while (resetting == true && fish_all_spawned == false)
         {
             quantity_holder_1 = fish_quantity;
@@ -302,5 +386,5 @@ public class bobber_impact : MonoBehaviour
             quantity_holder_2 = fish_quantity;
             yield return new WaitForSeconds(6f);
         }
-    }
+    }*/
 }

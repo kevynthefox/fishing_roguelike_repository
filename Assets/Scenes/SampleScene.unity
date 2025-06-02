@@ -4205,8 +4205,10 @@ MonoBehaviour:
   fish_num: 0
   fish_quality: 0
   bar_pos: 0.5
-  fish_num_max: 10
-  fish_quality_min: 2
+  fish_num_max: 2
+  fish_quality_max: 2
+  fish_num_min: 1
+  fish_quality_min: 1
   effort: 0.3
   resistance: 0
   stopping_factor: 1.5
@@ -4816,7 +4818,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: cba1697431aba344980f1cb06feb7359, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cba1697431aba344980f1cb06feb7359, type: 3}
