@@ -14,20 +14,31 @@ public class distance_bar : MonoBehaviour
     public float current_distance;
     public float percent_distance;
 
+    public bool distance_set;
+
     // Start is called before the first frame update
     void Start()
     {
         dist_text.text = "distance:" + bone.GetComponent<variable_length>().distance;
+
+        current_distance = bone.GetComponent<variable_length>().distance;
+        initial_distance = bone.GetComponent<variable_length>().distance;
+        percent_distance = current_distance / initial_distance;
+        dist_bar.value = (percent_distance);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if ((Input.GetMouseButton(0)))
+        if (Input.GetMouseButtonDown(0) && distance_set == false )
         {
             initial_distance = bone.GetComponent<variable_length>().distance;
         }
 
+        if (Input.GetMouseButtonUp(0) && distance_set == false)
+        {
+            distance_set = true;
+        }
 
         current_distance = bone.GetComponent<variable_length>().distance;
         if (current_distance / initial_distance > 0)
@@ -36,6 +47,10 @@ public class distance_bar : MonoBehaviour
 
             dist_bar.value = (percent_distance);
             dist_text.text = "distance:" + bone.GetComponent<variable_length>().distance;// + (dist_bar.value / 100) + "%";
+        }
+        else
+        {
+            distance_set = false;
         }
     }
 }

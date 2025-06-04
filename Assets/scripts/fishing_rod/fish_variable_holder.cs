@@ -7,14 +7,14 @@ public class fish_variable_holder : MonoBehaviour
     public float fish_quantity;
     public float fish_quality;
     public float fish_counted;
-    public bool duplicate;
+    //public bool duplicate;
 
     public void Update()
     {
-        if (duplicate == true)
+        /*if (duplicate == true)
         {
             transform.position= Vector3.zero;
-        }    
+        } */   
     }
 
 }

@@ -107,6 +107,9 @@ MonoBehaviour:
   distance: 0
   enabled_fishing: 0
   velocity: {x: 0, y: 0, z: 0}
+  bobber: {fileID: 0}
+  master: {fileID: 0}
+  bobber_returned: 0
 --- !u!114 &7023808024375010778
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -373,6 +376,9 @@ MonoBehaviour:
   distance: 0
   enabled_fishing: 0
   velocity: {x: 0, y: 0, z: 0}
+  bobber: {fileID: 0}
+  master: {fileID: 0}
+  bobber_returned: 0
 --- !u!114 &6639063850114114032
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -508,6 +514,9 @@ MonoBehaviour:
   distance: 0
   enabled_fishing: 0
   velocity: {x: 0, y: 0, z: 0}
+  bobber: {fileID: 0}
+  master: {fileID: 0}
+  bobber_returned: 0
 --- !u!114 &1252877035564451617
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -599,7 +608,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -6478536213147159724, guid: e313e585f2191ae4ebe8b7c66d771439, type: 3}
+  - {fileID: 2100000, guid: f4c2eddd76dd15246915bb3600729821, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -889,6 +898,9 @@ MonoBehaviour:
   distance: 0
   enabled_fishing: 0
   velocity: {x: 0, y: 0, z: 0}
+  bobber: {fileID: 0}
+  master: {fileID: 0}
+  bobber_returned: 0
 --- !u!114 &4698556487587043645
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1221,7 +1233,7 @@ GameObject:
   - component: {fileID: 7867119895971114029}
   m_Layer: 0
   m_Name: bobber (1)
-  m_TagString: fishing_rod
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1269,8 +1281,8 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -8274133419916619345, guid: e313e585f2191ae4ebe8b7c66d771439, type: 3}
-  - {fileID: -2813467912831258332, guid: e313e585f2191ae4ebe8b7c66d771439, type: 3}
+  - {fileID: 2100000, guid: f4c2eddd76dd15246915bb3600729821, type: 2}
+  - {fileID: 2100000, guid: f4c2eddd76dd15246915bb3600729821, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1363,8 +1375,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdcb9f1c544d90b4498a520ad562bf23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  factor: 0
   bone: {fileID: 4175417186925768351}
+  player: {fileID: 0}
+  factor: 0
+  direction: {x: 0, y: 0, z: 0}
+  direction_modified: {x: 0, y: 0, z: 0}
+  cam: {fileID: 0}
 --- !u!1 &3725368859737239547
 GameObject:
   m_ObjectHideFlags: 0
@@ -1504,6 +1520,7 @@ MonoBehaviour:
   bone: {fileID: 0}
   bobber: {fileID: 0}
   fishing_time: 10
+  fishing_time_cool: 0
   reel_able: 0
   fishable: 0
 --- !u!1 &3928647605923234054
@@ -1613,6 +1630,9 @@ MonoBehaviour:
   distance: 0
   enabled_fishing: 0
   velocity: {x: 0, y: 0, z: 0}
+  bobber: {fileID: 0}
+  master: {fileID: 0}
+  bobber_returned: 0
 --- !u!114 &5252183269409491672
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1878,6 +1898,9 @@ MonoBehaviour:
   distance: 0
   enabled_fishing: 0
   velocity: {x: 0, y: 0, z: 0}
+  bobber: {fileID: 0}
+  master: {fileID: 0}
+  bobber_returned: 0
 --- !u!114 &1372605705721862705
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2144,6 +2167,9 @@ MonoBehaviour:
   distance: 0
   enabled_fishing: 0
   velocity: {x: 0, y: 0, z: 0}
+  bobber: {fileID: 0}
+  master: {fileID: 0}
+  bobber_returned: 0
 --- !u!114 &3200806710532272321
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2279,6 +2305,9 @@ MonoBehaviour:
   distance: 0
   enabled_fishing: 0
   velocity: {x: 0, y: 0, z: 0}
+  bobber: {fileID: 0}
+  master: {fileID: 0}
+  bobber_returned: 0
 --- !u!114 &3681749885621276712
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2502,7 +2531,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -3846018093981099296, guid: e313e585f2191ae4ebe8b7c66d771439, type: 3}
+  - {fileID: 2100000, guid: f4c2eddd76dd15246915bb3600729821, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3557,6 +3586,9 @@ MonoBehaviour:
   distance: 0
   enabled_fishing: 0
   velocity: {x: 0, y: 0, z: 0}
+  bobber: {fileID: 0}
+  master: {fileID: 0}
+  bobber_returned: 0
 --- !u!114 &4896812381099720730
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 1421325010732033949}
   - component: {fileID: 1421325010732033938}
   - component: {fileID: 5484494548262440547}
-  - component: {fileID: -4567937891857160966}
   m_Layer: 0
   m_Name: fish 2
   m_TagString: fish
@@ -31,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 1421325010732033939}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 10, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.8560791, y: 0.8560791, z: 0.8560791}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -132,23 +131,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb94337762f1922479d16ba4f99ed155, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fish_quantity: 1.7305897
+  fish_quantity: 0.8560791
   fish_quality: 1
-  fish_counted: 6
-  duplicate: 0
---- !u!54 &-4567937891857160966
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1421325010732033939}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  fish_counted: 2163
