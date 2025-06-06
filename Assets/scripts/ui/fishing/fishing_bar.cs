@@ -94,19 +94,23 @@ public class fishing_bar : MonoBehaviour
 
         if (bobber.GetComponent<bobber_impact>().resetting == false)
         {
-            if (bar_pos <= 0 + (resistance * Time.deltaTime * direction) || bar_pos >= 1 - (effort * Time.deltaTime * direction))
+            if (bone_master.GetComponent<variable_length>().enabled_fishing == true)
             {
-                failure = true;
-                success = false;
-                Debug.Log("failure");
-            }
-            else
-            {
-                if (distance <= 0)
+                if (bar_pos <= 0 + (resistance * Time.deltaTime * direction) || bar_pos >= 1 - (effort * Time.deltaTime * direction))
                 {
-                    failure = false;
-                    success = true;
-                    Debug.Log("success");
+                    failure = true;
+                    success = false;
+                    Debug.Log("failure");
+                }
+                else
+                {
+                    if (distance <= 0)
+                    {
+                        failure = false;
+                        success = true;
+                        Debug.Log("success");
+                    }
+
                 }
             }
         }

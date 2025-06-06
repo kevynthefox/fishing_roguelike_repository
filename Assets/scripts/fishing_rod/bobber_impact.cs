@@ -27,11 +27,6 @@ public class bobber_impact : MonoBehaviour
     public float fish_quantity_original;
     public float fish_quality;
 
-
-    public float[] fish_quantity_queue;
-    public float[] fish_quantity_original_queue;
-    public float[] fish_quality_queue;
-
     public int fish_counted;
     public int fish_removed;
 
@@ -51,6 +46,8 @@ public class bobber_impact : MonoBehaviour
     public bool spawning_fish;
     public GameObject already_fishing;
 
+    public GameObject fish_spawner;
+
     private void Start()
     {
         fishing_time = fishing_rod_1.GetComponent<fishing_rod_movement>().fishing_time;
@@ -62,6 +59,8 @@ public class bobber_impact : MonoBehaviour
 
     IEnumerator OnTriggerEnter(Collider other)
     {
+
+        //Debug.Log("is success true:" + success);
         //Debug.Log(other.name);
 
         //while (starter == true)
@@ -88,136 +87,153 @@ public class bobber_impact : MonoBehaviour
 
             spawning_fish = false;
         }
+
+        
+
         yield return new WaitForSeconds(0.1f);
-            if (returned == false)
+        if (returned == false)
+        {
+            if (water_already == false)
             {
-                if (water_already == false)
-                {
-                    if (spawning_fish == false)
-                    { 
-                        already_fishing.SetActive(false);
+                if (spawning_fish == false)
+                { 
+                    already_fishing.SetActive(false);
 
-                        if (other.gameObject.tag == "water")
-                        {
-                            water_already = true;
-                            //Debug.Log(water_already);
-
-                            fish_quantity = 0;
-                            fish_quantity_original = 0;
-                            fishing_system.SetActive(true);
-                            fishing_bar.value = 0.5f;
-
-                            //Debug.Log("water");
-                            yield return new WaitForSeconds(.5f);
-                            animator.SetBool("is_waiting", true);
-                            animator.SetBool("is_hooked", false);
-
-                            yield return new WaitForSeconds(fishing_time);
-                            //possibly just remove the hooked animation and all that to make the game more fast and fun
-                            animator.SetBool("is_hooked", true);
-
-                            success = fishing_bar.GetComponent<fishing_bar>().success;
-                            failure = fishing_bar.GetComponent<fishing_bar>().failure;
-                            
-                            Debug.Log("progressing 1");
-
-                            if (success == true)
-                            {
-                                resetting = true;
-                                spawning_fish = true;
-
-                                //animator.SetBool("is_hooked", false); //spawn a fish here
-                                fish_quality = fishing_bar.GetComponent<fishing_bar>().fish_quality;
-                                fish_quantity = fishing_bar.GetComponent<fishing_bar>().fish_num;
-                                fish_quantity_original = fishing_bar.GetComponent<fishing_bar>().fish_num;
-
-                                //this part is supposed to queue up the fish to be spawned to reduce wait time.
-
-                                var fish_quantity_queue = new List<float>();
-                                foreach (var f in fish_quantity_queue)
-                                {
-                                    fish_quantity_queue.Add(fish_quantity_original);
-                                    //Debug.Log(fish_quantity_queue.Count);
-                                }
-
-
-                                Debug.Log("progressing 2");
-
-                                StartCoroutine(spawn_fish());
-
-
-                                fishing_bar.GetComponent<fishing_bar>().bar_pos = 0.5f;
-
-
-                            
-
-                            
-                            }
-                            else
-                            {
-                                if (failure == true)
-                                {
-                                    resetting = true;
-
-                                    animator.SetBool("is_hooked", false);
-
-                                    yield return new WaitForSeconds(2f);
-                                    fishing_bar.GetComponent<fishing_bar>().success = false;
-                                    fishing_bar.GetComponent<fishing_bar>().failure = false;
-                                    bone_master.GetComponent<variable_length>().enabled_fishing = true;
-                                    fishing_bar.GetComponent<fishing_bar>().bar_pos = 0.5f;
-                                    //Debug.Log("reset. E has been pressed to try again");
-                                    resetting = false;
-                                }
-                            }
-                        }
-                    }
-                    else
+                    if (other.gameObject.tag == "water")
                     {
-                        if (other.gameObject.tag == "water")
+                        water_already = true;
+                        //Debug.Log(water_already);
+
+                        fish_quantity = 0;
+                        fish_quantity_original = 0;
+                        fishing_system.SetActive(true);
+                        fishing_bar.value = 0.5f;
+
+                        //Debug.Log("water");
+                        yield return new WaitForSeconds(.5f);
+                        animator.SetBool("is_waiting", true);
+                        animator.SetBool("is_hooked", false);
+
+                        yield return new WaitForSeconds(fishing_time);
+                        //possibly just remove the hooked animation and all that to make the game more fast and fun
+                        animator.SetBool("is_hooked", true);
+
+                        success = fishing_bar.GetComponent<fishing_bar>().success;
+                        failure = fishing_bar.GetComponent<fishing_bar>().failure;
+                            
+                        Debug.Log("progressing 1");
+
+                        if (success == true && failure == false)
                         {
-                            already_fishing.SetActive(true);
+                            resetting = true;
+                            spawning_fish = true;
+
+                            //animator.SetBool("is_hooked", false); //spawn a fish here
+                            fish_quality = fishing_bar.GetComponent<fishing_bar>().fish_quality;
+                            fish_quantity = fishing_bar.GetComponent<fishing_bar>().fish_num;
+                            fish_quantity_original = fishing_bar.GetComponent<fishing_bar>().fish_num;
+
+                                
+
+
+                            Debug.Log("progressing 2");
+
+                            StartCoroutine(spawn_fish());
+
+
+                            fishing_bar.GetComponent<fishing_bar>().bar_pos = 0.5f;
+
+
+                            
+
+                            
                         }
+                        else
+                        {
+                            Debug.Log("progressing 3");
+
+                            //if (failure == true)
+                            //{
+
+                                Debug.Log("progressing 4");
+
+                                resetting = true;
+
+                                animator.SetBool("is_hooked", false);
+
+
+                                if (returned == true)
+                                {
+                                    
+                                }
+                            //}
+
+                            if (failure == true && success == true)
+                            {
+                                Debug.Log("progressing 5");
+                            }
+                        }    
+                                
+                        
+                            
                     }
                 }
                 else
                 {
-                    if (other.gameObject.tag == "fishing_rod")
+                    if (other.gameObject.tag == "water")
                     {
-                        //Debug.Log(other.name);
-                        var rods = new HashSet<string>();
-                        
-                        //Debug.Log("rod");
-                        yield return new WaitForSeconds(.5f);
-                        fishing_rod_1.GetComponent<fishing_rod_movement>().reel_able = false;
-                        reset_animations();
-                        returned = true;
-                        water_already = false;
-                        if (success == false)
-                        {
-                            fish_all_spawned = false;
-                        }
-                    }
-                    else
-                    {
-                        yield return new WaitForSeconds(100f);
-                        //Debug.Log("air");
-                        animator.SetBool("is_waiting", false);
-                        animator.SetBool("is_hooked", false);
+                        already_fishing.SetActive(true);
                     }
                 }
-
-
             }
             else
             {
-                StartCoroutine(reset_animations());
-                fishing_system.SetActive(false);
-                yield return new WaitForSeconds(10f);
-                StopCoroutine(reset_animations());
-                //fish_all_spawned = false;
+                if (other.gameObject.tag == "fishing_rod")
+                {
+                    //Debug.Log(other.name);
+                    var rods = new HashSet<string>();
+                        
+                    //Debug.Log("rod");
+                    yield return new WaitForSeconds(.5f);
+                    fishing_rod_1.GetComponent<fishing_rod_movement>().reel_able = false;
+                    reset_animations();
+                    returned = true;
+                    water_already = false;
+                    if (success == false)
+                    {
+                        fish_all_spawned = false;
+
+                        yield return new WaitForSeconds(3f);
+
+                        fishing_bar.GetComponent<fishing_bar>().success = false;
+                        fishing_bar.GetComponent<fishing_bar>().failure = false;
+                        bone_master.GetComponent<variable_length>().enabled_fishing = true;
+                        fishing_bar.GetComponent<fishing_bar>().bar_pos = 0.5f;
+                        //Debug.Log("reset. E has been pressed to try again");
+                        resetting = false;
+                        Debug.Log("progressing 4.5");
+                    }
+                }
+                else
+                {
+                    yield return new WaitForSeconds(100f);
+                    //Debug.Log("air");
+                    animator.SetBool("is_waiting", false);
+                    animator.SetBool("is_hooked", false);
+                }
             }
-        //}
+
+
+        }
+        else
+        {
+            StartCoroutine(reset_animations());
+            fishing_system.SetActive(false);
+            yield return new WaitForSeconds(10f);
+            StopCoroutine(reset_animations());
+            //fish_all_spawned = false;
+        }
+    //}
     }
 
 
@@ -255,10 +271,11 @@ public class bobber_impact : MonoBehaviour
 
                 Vector3 SpawnPosition_2 = new Vector3(fish_quantity + fish_counted, fish_quantity, fish_quantity);
 
+                Vector3 SpawnPosition_3 = new Vector3(fish_spawner.transform.position.x, fish_spawner.transform.position.y, fish_spawner.transform.position.z);
 
                 //transform.position = SpawnPosition_2;
                 
-                var fish_object = Instantiate(fish[randomIndex], SpawnPosition_2, Quaternion.identity);
+                var fish_object = Instantiate(fish[randomIndex], SpawnPosition_3, Quaternion.identity);
                 
                 fish_counted += 1;
 
@@ -269,7 +286,7 @@ public class bobber_impact : MonoBehaviour
                 {
 
                     fish_object.GetComponent<Transform>().localScale = new Vector3(fish_quality, fish_quality, fish_quality);
-                    fish_object.name = "big fish"  + "     fish remaining:" + fish_quantity + " out of: " + fish_quantity_original + "  quality:" + fish_quality;
+                    fish_object.name = "big fish";//  + "     fish remaining:" + fish_quantity + " out of: " + fish_quantity_original + "  quality:" + fish_quality;
 
                 }
                 else
@@ -277,7 +294,7 @@ public class bobber_impact : MonoBehaviour
                     if (fish_quantity > 0)
                     {
                         fish_object.GetComponent<Transform>().localScale = new Vector3(fish_quantity, fish_quantity, fish_quantity);
-                        fish_object.name = "small fish"  + "     fish remaining:" + fish_quantity + " out of: " + fish_quantity_original + "  quality:" + fish_quality;
+                        fish_object.name = "small fish";//  + "     fish remaining:" + fish_quantity + " out of: " + fish_quantity_original + "  quality:" + fish_quality;
                     }
 
 
@@ -287,8 +304,10 @@ public class bobber_impact : MonoBehaviour
                 fish_object.GetComponent<fish_variable_holder>().fish_quality = fish_quality;
                 fish_object.GetComponent<fish_variable_holder>().fish_counted = fish_counted;
 
-                FISHDESTROYAAA();
                 
+
+                FISHDESTROYAAA();
+
             }
 
             fish_quantity -= Mathf.Min(fish_quantity, 1);
@@ -305,10 +324,14 @@ public class bobber_impact : MonoBehaviour
         foreach (var f in GameObject.FindGameObjectsWithTag("fish"))
         {
             if (names.Contains(f.name))
-            { 
+            {
                 //Destroy(f);
 
-                f.GetComponent<MeshRenderer>().material.color = Color.red;
+                //f.GetComponent<MeshRenderer>().material.color = Color.red;
+
+                Color32 fish_color = new Color(f.GetComponent<Transform>().position.x, f.GetComponent<Transform>().position.y, f.GetComponent<Transform>().position.z, fish_counted);
+
+                f.GetComponent<MeshRenderer>().material.color = fish_color;
 
                 fish_removed += 1;
             }
