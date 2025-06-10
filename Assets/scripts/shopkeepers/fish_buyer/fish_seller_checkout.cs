@@ -13,13 +13,15 @@ public class fish_seller_checkout : MonoBehaviour
 
     public GameObject spawn_area;
 
-    public GameObject absorb_area;
+    //public GameObject absorb_area;
 
     public float money_owed;
 
     public bool starter;
 
     public bool collectible;
+
+    public float wait;
 
     private void Start()
     {
@@ -54,30 +56,36 @@ public class fish_seller_checkout : MonoBehaviour
                 {
                     if (money_owed > 0)
                     {
-                        absorb_area.SetActive(true);
+                        //absorb_area.SetActive(true);
                         collectible = false;
 
                         if (money_owed >= 10)
                         {
-                            Instantiate(money[0], spawnpos, rotation(spawn_area.transform.rotation.x, spawn_area.transform.rotation.y, spawn_area.transform.rotation.z));
+                            var money_object =Instantiate(money[0], spawnpos, rotation(spawn_area.transform.rotation.x, spawn_area.transform.rotation.y, spawn_area.transform.rotation.z));
+                            money_object.GetComponent<heat_seeking_money>().home = GameObject.Find("bone_pile");
                             seller.GetComponent<fish_seller>().money_owed -= 10;
+                            yield return new WaitForSeconds(wait);
+                            
                         }
                         else
                         {
                             if (money_owed >= 1)
                             {
-                                Instantiate(money[1], spawnpos, Quaternion.identity);
+                                var money_object = Instantiate(money[1], spawnpos, Quaternion.identity);
+                                money_object.GetComponent<heat_seeking_money>().home = GameObject.Find("bone_pile");
                                 seller.GetComponent<fish_seller>().money_owed -= 1;
+                                yield return new WaitForSeconds(wait);
+                                
                             }
                             else
                             {
                                 if (money_owed < 1)
                                 {
                                     var money_object = Instantiate(money[1], spawnpos, Quaternion.identity);
-
+                                    money_object.GetComponent<heat_seeking_money>().home = GameObject.Find("bone_pile");
                                     money_object.GetComponent<money_value_holder>().value = money_owed;
                                     money_object.GetComponent<Transform>().localPosition = new Vector3(money_owed, money_owed, money_owed);
-
+                                    
                                     seller.GetComponent<fish_seller>().money_owed -= money_owed;
                                 }
                             }
@@ -87,11 +95,11 @@ public class fish_seller_checkout : MonoBehaviour
                     {
                         collectible = true;
                         yield return new WaitForSeconds(5f);
-                        absorb_area.SetActive(false);
+                        //absorb_area.SetActive(false);
                     }
                 }
-
-                yield return new WaitForSeconds(1 / bobber.GetComponent<bobber_impact>().fish_quantity_original);
+                wait = 1 / bobber.GetComponent<bobber_impact>().fish_quantity_original;
+                yield return new WaitForSeconds(wait);
             }
         }
     }

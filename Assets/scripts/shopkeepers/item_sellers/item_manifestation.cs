@@ -1,13 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class item_manifestation : MonoBehaviour
 {
     public GameObject[] items;
 
     public GameObject[] item_positions;
+
+    public Text total_owed;
+
+    public List<GameObject> items_owed;
+
+    public GameObject checkout;
+
+    public GameObject player;
+
+    public GameObject wallet;
+
+    public GameObject money_spawner_island;
 
     /*public GameObject item_pos_1;
     public GameObject item_pos_2;
@@ -16,6 +30,14 @@ public class item_manifestation : MonoBehaviour
     public string specialty;
 
     public bool un_make;
+    public bool checking_out;
+
+    public float money_owed;
+
+    //public float other_value;
+    public float others_value_divider;
+    public float others_value_2;
+
 
     public void Start()
     {
@@ -24,9 +46,34 @@ public class item_manifestation : MonoBehaviour
 
     public void Update()
     {
+        //other_value = wallet.GetComponent<money_collector>().others_value;
+        others_value_divider = wallet.GetComponent<money_collector>().others_value_divider;
+        others_value_2 = wallet.GetComponent<money_collector>().others_value_2;
+
         if (un_make == true)
         {
             item_unmaker();
+        }
+
+        total_owed.text = "bill: " + money_owed;
+
+        //Debug.Log(checking_out);
+
+        if (checkout.GetComponent<object_click_detector>().left_clicked == true && checking_out == false)
+        {
+            foreach(var item in items_owed)
+            {
+                player.GetComponent<item_display>().items.Add(item);
+                items_owed.Remove(item);
+            }
+            if (money_owed >= 0)
+            {
+                wallet.GetComponent<money_collector>().money_value -= money_owed;
+                checking_out = true;
+            }
+            /*wallet.GetComponent<Transform>().localScale -= new Vector3(others_value_2 / others_value_divider, others_value_2 / others_value_divider, others_value_2);
+            wallet.GetComponent<Transform>().position -= new Vector3(0f, others_value_2, 0f);
+            money_spawner_island.GetComponent<Transform>().position -= new Vector3(0, others_value_2 * 2, 0f);*/
         }
     }
 
@@ -64,5 +111,17 @@ public class item_manifestation : MonoBehaviour
         {
             Destroy(i);
         }
-    }    
+    }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        //Debug.Log("impact");
+        if (other.tag == "currency_transit")
+        {
+            //Debug.Log("impact");
+            money_owed -= other.GetComponent<money_value_holder>().value;
+            Destroy(other.gameObject);
+        }
+        //yield return new WaitForSeconds(0.1f);
+    }
 }

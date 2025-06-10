@@ -50,7 +50,7 @@ public class money_value_holder : MonoBehaviour
         }
         */
 
-        self.GetComponent<heat_seeking_money>().enabled = false;
+        //self.GetComponent<heat_seeking_money>().enabled = false;
 
         //GetComponent<Rigidbody>().isKinematic = !collectible;
 

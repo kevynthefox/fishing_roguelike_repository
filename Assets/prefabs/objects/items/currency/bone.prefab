@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 2089926709945275336}
   - component: {fileID: -1213155376605105022}
   - component: {fileID: -5188609624287983599}
+  - component: {fileID: -6359461545276662169}
   m_Layer: 0
   m_Name: bone
   m_TagString: currency
@@ -96,7 +97,7 @@ MeshCollider:
   m_GameObject: {fileID: 1279445146326291433}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_Convex: 1
   m_CookingOptions: 30
@@ -147,4 +148,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   home: {fileID: 0}
-  factor: 1
+  factor: 2
+--- !u!65 &-6359461545276662169
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1279445146326291433}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5.1749697, y: 16.955143, z: 2.2737703}
+  m_Center: {x: -0.19149578, y: -6.996322, z: -0.00006598233}

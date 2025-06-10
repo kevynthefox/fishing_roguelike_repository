@@ -10,6 +10,11 @@ public class money_collector : MonoBehaviour
 {
     public Text money;
     public float money_value;
+    public float others_value;
+
+    public float others_value_2;
+    public float others_value_divider;
+
     public GameObject self;
 
     //public bool collectible;
@@ -25,93 +30,33 @@ public class money_collector : MonoBehaviour
         money_spawner = GameObject.Find("money_touch_spawner");
         money_spawner_island = GameObject.Find("money_island_spawner");
         bobber = GameObject.Find("bobber (1)");
-
-        MeshFilter[] meshFilters = GetComponentsInChildren<MeshFilter>();
-        CombineInstance[] combine = new CombineInstance[meshFilters.Length];
-
-        int i = 0;
-        while (i < meshFilters.Length)
-        {
-            combine[i].mesh = meshFilters[i].sharedMesh;
-            combine[i].transform = meshFilters[i].transform.localToWorldMatrix;
-            meshFilters[i].gameObject.SetActive(false);
-
-            i++;
-        }
-
-        Mesh mesh = new Mesh();
-        mesh.CombineMeshes(combine);
-        transform.GetComponent<MeshFilter>().sharedMesh = mesh;
-        transform.gameObject.SetActive(true);
     }
 
     public void Update()
     {
         money.text = ":" + money_value;
+        wait = 1 / bobber.GetComponent<bobber_impact>().fish_quantity_original;
+        others_value_2 = money_value / others_value_divider;
 
-        //collectible = money_spawner.GetComponent<fish_seller_checkout>().collectible;
+        self.GetComponent<Transform>().localScale = new Vector3(1f,1f,1f) + new Vector3(others_value_2 / others_value_divider, others_value_2 / others_value_divider, others_value_2);
+        self.GetComponent<Transform>().position = new Vector3(106.85f, 11.942f, -324.53f) + new Vector3(0f, others_value_2, 0f);
+        money_spawner_island.GetComponent<Transform>().position = new Vector3(106.85f, 300f, -324.53f) + new Vector3(0, others_value_2 * 2, 0f);
     }
 
     public IEnumerator OnTriggerEnter(Collider other)
     {
-        //if (collectible == true)
-        //{
-
         if (other.gameObject.tag == "currency")
         {
-            money_value += other.GetComponent<money_value_holder>().value;
-            money.text = ":" + money_value;
-
-            //Debug.Log(money_spawner_island.transform.position.y);
-
-            //Destroy(other.gameObject);
-            wait = (money_spawner_island.transform.position.y / 25);
-            //yield return new WaitForSeconds(1/money_spawner.GetComponent<fish_seller_checkout>().money_owed);
-            yield return new WaitForSeconds(wait);
-
-            if (other.attachedRigidbody != null)
-            {
-                Destroy(other.attachedRigidbody);
-            }
             if (other != null)
             {
-                Destroy(other);
+                others_value = other.GetComponent<money_value_holder>().value;
+                money_value += others_value;                
+                Destroy(other.gameObject);
             }
-
-
-            other.transform.parent = transform;
-
-            //other.gameObject.isStatic = true;
-
-            MeshFilter[] meshFilters = GetComponentsInChildren<MeshFilter>();
-            CombineInstance[] combine = new CombineInstance[meshFilters.Length];
-
-            int i = 0;
-            while (i < meshFilters.Length)
-            {
-                combine[i].mesh = meshFilters[i].sharedMesh;
-                combine[i].transform = meshFilters[i].transform.localToWorldMatrix;
-                //meshFilters[i].gameObject.SetActive(false);
-                yield return new WaitForSeconds(1 / bobber.GetComponent<bobber_impact>().fish_quantity_original);
-                i++;
-            }
-
-            Mesh mesh = new Mesh();
-            mesh.indexFormat = UnityEngine.Rendering.IndexFormat.UInt32;
-            mesh.CombineMeshes(combine);
-            transform.GetComponent<MeshFilter>().sharedMesh = mesh;
-            transform.gameObject.SetActive(true);
-            
-            other.GetComponent<money_value_holder>().enabled = false;
-            //yield return new WaitForSeconds(1f);
-            //yield return new WaitForSeconds(100 / money_spawner.GetComponent<fish_seller_checkout>().money_owed);
+            /*self.GetComponent<Transform>().localScale += new Vector3(others_value_2 / others_value_divider, others_value_2 / others_value_divider, others_value_2);
+            self.GetComponent<Transform>().position += new Vector3(0f, others_value_2, 0f);
+            money_spawner_island.GetComponent<Transform>().position += new Vector3(0, others_value_2 * 2, 0f);*/
+            yield return new WaitForSeconds(wait);
         }
-
-        //}
     }
-
-    /*public static void CombineInstance(GameObject staticBatchRoot);
-    {
-       staticBatchRoot.combine
-    }*/
 }

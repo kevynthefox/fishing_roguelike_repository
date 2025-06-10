@@ -116,12 +116,15 @@ MonoBehaviour:
   self: {fileID: 3573648674384999498}
   self_item: {fileID: 3573648674384999498, guid: 8b41149a2bdda0749beadc583fa383e0, type: 3}
   player: {fileID: 0}
+  player_model: {fileID: 0}
   item_cost: 0
   item_original_cost: 3
   cost_percent: 0
   Canvas: {fileID: 295702763920532306}
   cost_text: {fileID: 1466390637703456224}
   gamesettings: {fileID: 0}
+  shop: {fileID: 0}
+  group: debug_items
 --- !u!1 &5575234776878097823
 GameObject:
   m_ObjectHideFlags: 0

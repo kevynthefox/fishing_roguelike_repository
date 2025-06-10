@@ -23,10 +23,14 @@ public class item_buying : MonoBehaviour
 
     public GameObject gamesettings;
 
+    public GameObject shop;
+    public string group;
+
     private void Start()
     {
         player = GameObject.Find("player");
-        player_model = GameObject.Find("money_island_tallyier");
+        player_model = GameObject.Find("bone_pile");
+        shop = GameObject.Find(group);
 
         Canvas.GetComponent<Canvas>().worldCamera = Camera.main;
     }
@@ -48,9 +52,9 @@ public class item_buying : MonoBehaviour
         {
             if (player_model.GetComponent<money_collector>().money_value >= item_cost)
             {
-                player_model.GetComponent<money_collector>().money_value -= item_cost;
+                shop.GetComponent<item_manifestation>().money_owed += item_cost;
 
-                player.GetComponent<item_display>().items.Add(self_item);
+                shop.GetComponent<item_manifestation>().items_owed.Add(self_item);
                 Destroy(self);
             }
         }
