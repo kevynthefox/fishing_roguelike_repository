@@ -7,6 +7,8 @@ public class object_click_detector : MonoBehaviour
 {
     public bool left_clicked;
     public bool right_clicked;
+
+    public bool click_override;
     
 
     // Update is called once per frame
@@ -17,21 +19,31 @@ public class object_click_detector : MonoBehaviour
 
     public IEnumerator OnMouseOver()
     {
-        if (Input.GetMouseButton(0))
+        if (click_override == false)
         {
-            left_clicked = true;
-        }
-        else
-        {
-            left_clicked= false;
-        }
 
-        if (Input.GetMouseButton(1))
-        {
-            right_clicked = true;
+            if (Input.GetMouseButton(0))
+            {
+                left_clicked = true;
+            }
+            else
+            {
+                left_clicked = false;
+            }
+
+            if (Input.GetMouseButton(1))
+            {
+                right_clicked = true;
+            }
+            else
+            {
+                right_clicked = false;
+            }
+            
         }
         else
         {
+            left_clicked = false;
             right_clicked = false;
         }
         yield return null;

@@ -49,6 +49,7 @@ public class rerolling : MonoBehaviour
 
                 if (self.GetComponent<object_click_detector>().left_clicked == true)
                 {
+                    //self.GetComponent<object_click_detector>().click_override = true;
                     player.GetComponent<money_collector>().money_value -= item_cost;
 
                     Debug.Log("recieved 2");
@@ -58,13 +59,24 @@ public class rerolling : MonoBehaviour
                     animator.SetBool("reroll", false);
                     yield return new WaitForSeconds(1f);
                     whole_shop.GetComponent<item_manifestation>().item_maker();
+                    //self.GetComponent<object_click_detector>().click_override = false;
                 }
             }
             yield return new WaitForSeconds(1f);
         }
-    }    
+    }
 
-    
+    public void OnTriggerEnter(Collider other)
+    {
+        //Debug.Log("impact");
+        if (other.tag == "currency_transit")
+        {
+            //Debug.Log("impact");
+            //money_owed -= other.GetComponent<money_value_holder>().value;
+            Destroy(other.gameObject);
+        }
+        //yield return new WaitForSeconds(0.1f);
+    }
 
-    
+
 }

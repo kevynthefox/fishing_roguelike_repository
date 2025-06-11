@@ -31,6 +31,7 @@ public class item_manifestation : MonoBehaviour
 
     public bool un_make;
     public bool checking_out;
+    public bool starter = false;
 
     public float money_owed;
 
@@ -59,21 +60,19 @@ public class item_manifestation : MonoBehaviour
 
         //Debug.Log(checking_out);
 
-        if (checkout.GetComponent<object_click_detector>().left_clicked == true && checking_out == false)
+        if (checkout.GetComponent<object_click_detector>().left_clicked == true || checkout.GetComponent<object_click_detector>().click_override == true)// && checking_out == false)
         {
-            foreach(var item in items_owed)
-            {
-                player.GetComponent<item_display>().items.Add(item);
-                items_owed.Remove(item);
-            }
-            if (money_owed >= 0)
-            {
-                wallet.GetComponent<money_collector>().money_value -= money_owed;
-                checking_out = true;
-            }
+            //Debug.Log("checking_out");
+            starter = true;
+            StartCoroutine(checkout_part());
             /*wallet.GetComponent<Transform>().localScale -= new Vector3(others_value_2 / others_value_divider, others_value_2 / others_value_divider, others_value_2);
             wallet.GetComponent<Transform>().position -= new Vector3(0f, others_value_2, 0f);
             money_spawner_island.GetComponent<Transform>().position -= new Vector3(0, others_value_2 * 2, 0f);*/
+        }
+
+        if (checking_out == true)
+        {
+            starter = false;
         }
     }
 
@@ -123,5 +122,28 @@ public class item_manifestation : MonoBehaviour
             Destroy(other.gameObject);
         }
         //yield return new WaitForSeconds(0.1f);
+    }
+
+    public IEnumerator checkout_part()
+    {
+        while (starter == true)
+        {
+            //Debug.Log(money_owed);
+            foreach (var item in items_owed)
+            {
+                //Debug.Log("adding_items");
+                player.GetComponent<item_display>().items.Add(item);
+                items_owed.Remove(item);
+                //yield return new WaitForSeconds(0.1f);
+            }
+            //Debug.Log("second part");
+            if (money_owed >= 0 && checking_out == false)
+            {
+                //Debug.Log("subtracting money");
+                wallet.GetComponent<money_collector>().money_value -= money_owed;
+                checking_out = true;
+            }
+            yield return new WaitForSeconds(1f);
+        }
     }
 }
