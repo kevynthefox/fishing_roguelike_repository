@@ -8,7 +8,7 @@ public class item_buying : MonoBehaviour
     public bool left_clicked;
 
     public GameObject self;
-    public GameObject self_item;
+    public InventoryItemData self_item;
 
     public GameObject player;
     public GameObject player_model;

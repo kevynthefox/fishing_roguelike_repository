@@ -13,7 +13,7 @@ public class item_manifestation : MonoBehaviour
 
     public Text total_owed;
 
-    public List<GameObject> items_owed;
+    public List<InventoryItemData> items_owed;
 
     public GameObject checkout;
 
@@ -38,6 +38,8 @@ public class item_manifestation : MonoBehaviour
     //public float other_value;
     public float others_value_divider;
     public float others_value_2;
+
+    public static InventorySystem current;
 
 
     public void Start()
@@ -129,10 +131,11 @@ public class item_manifestation : MonoBehaviour
         while (starter == true)
         {
             //Debug.Log(money_owed);
-            foreach (var item in items_owed)
+            foreach (InventoryItemData item in items_owed)
             {
                 //Debug.Log("adding_items");
-                player.GetComponent<item_display>().items.Add(item);
+                //player.GetComponent<InventorySystem>().current.Add_item(item);
+                InventorySystem.current.Add(item);
                 items_owed.Remove(item);
                 //yield return new WaitForSeconds(0.1f);
             }

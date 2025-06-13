@@ -65,44 +65,51 @@ public Vector3 cameraRelativeMovement;
     private void OnCollisionEnter(Collision collision)
     {
         isOnGround = true;
+        //Debug.Log("collision: " + collision.gameObject.name);
     }
 
-/*
-	public void MovePlayerRelativeToCamera()
-	{
-		// get player input
-		float playerVerticalInput =
-			Input.GetAxis("Vertical");
-		float playerHorizontalInput =
-			Input.GetAxis("Horizontal");
+    /*
+        public void MovePlayerRelativeToCamera()
+        {
+            // get player input
+            float playerVerticalInput =
+                Input.GetAxis("Vertical");
+            float playerHorizontalInput =
+                Input.GetAxis("Horizontal");
 
-		// get camera vectors
-		Vector3 cameraForward = 
-			Camera.main.transform.forward;
-		Vector3 cameraRight = 
-			Camera.main.transform.right;
+            // get camera vectors
+            Vector3 cameraForward = 
+                Camera.main.transform.forward;
+            Vector3 cameraRight = 
+                Camera.main.transform.right;
 
-		// remove y and normalize
-		cameraForward.y = 0;
-		cameraRight.y = 0;
-		cameraForward = cameraForward.normalized;
-		cameraRight = cameraRight.normalized;
+            // remove y and normalize
+            cameraForward.y = 0;
+            cameraRight.y = 0;
+            cameraForward = cameraForward.normalized;
+            cameraRight = cameraRight.normalized;
 
-		// rotate the input vectors
-		Vector3 forwardRelativeMovementVector =
-			playerVerticalInput * cameraForward;
-		Vector3 RightRelativeMovementVector =
-			playerHorizontalInput * cameraRight;
+            // rotate the input vectors
+            Vector3 forwardRelativeMovementVector =
+                playerVerticalInput * cameraForward;
+            Vector3 RightRelativeMovementVector =
+                playerHorizontalInput * cameraRight;
 
-		// create camera-relative moevement vector
-		Vector3 cameraRelativeMovement =
-			forwardRelativeMovementVector +
-			RightRelativeMovementVector;
+            // create camera-relative moevement vector
+            Vector3 cameraRelativeMovement =
+                forwardRelativeMovementVector +
+                RightRelativeMovementVector;
 
-		// move in world space
-		
-		
+            // move in world space
 
-	}
-	*/
+
+
+        }
+        */
+
+    public IEnumerator OnTriggerEnter(Collider other)
+    {
+        //Debug.Log("trigger: " + other.name);
+        yield return null;
+    }
 }

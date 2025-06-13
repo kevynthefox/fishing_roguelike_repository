@@ -24,11 +24,15 @@ public bool recharging;
 
 private Coroutine recharge;
 
+private float sprint_speed;
+public float sprint_speed_mult = 2;
+
     // Start is called before the first frame update
     public void Start()
     {
         staminaText.text = "stamina : " + stamina;
         StaminaBar.fillAmount = stamina / stamina_max;
+		sprint_speed = sprint_speed_mult * player.GetComponent<movement>().speed;
     }
 
     // Update is called once per frame
@@ -49,7 +53,7 @@ private Coroutine recharge;
 			stamina -= SprintCost * Time.deltaTime;
 			if (recharge != null) StopCoroutine(recharge);
 			recharge = StartCoroutine(RechargeStamina());
-			player.GetComponent<movement>().speed *= 2;
+			player.GetComponent<movement>().speed = sprint_speed;
             staminaText.text = "stamina : " + stamina;
             StaminaBar.fillAmount = stamina / stamina_max;
 

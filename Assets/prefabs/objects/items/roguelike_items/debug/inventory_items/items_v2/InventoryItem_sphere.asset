@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f48e8ec3ead38684ba37ff79f3b270e7, type: 3}
+  m_Name: InventoryItem_sphere
+  m_EditorClassIdentifier: 
+  id: InventoryItem_sphere
+  displayName: sphere
+  icon: {fileID: 21300000, guid: ec4d360a9568c484db6535cb1d66f839, type: 3}
+  prefab: {fileID: 6020825224858073573, guid: 54f32274e14a44440af99e788e0dc362, type: 3}
