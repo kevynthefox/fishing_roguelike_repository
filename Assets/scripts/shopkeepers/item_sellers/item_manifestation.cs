@@ -67,9 +67,7 @@ public class item_manifestation : MonoBehaviour
             //Debug.Log("checking_out");
             starter = true;
             StartCoroutine(checkout_part());
-            /*wallet.GetComponent<Transform>().localScale -= new Vector3(others_value_2 / others_value_divider, others_value_2 / others_value_divider, others_value_2);
-            wallet.GetComponent<Transform>().position -= new Vector3(0f, others_value_2, 0f);
-            money_spawner_island.GetComponent<Transform>().position -= new Vector3(0, others_value_2 * 2, 0f);*/
+            
         }
 
         if (checking_out == true)
@@ -80,19 +78,7 @@ public class item_manifestation : MonoBehaviour
 
     public void item_maker()
     {
-        /*
-        int randomIndex_1 = Random.Range(0, items.Length);
-        int randomIndex_2 = Random.Range(0, items.Length);
-        int randomIndex_3 = Random.Range(0, items.Length);
-
-        Vector3 item_position_1 = new Vector3(item_pos_1.transform.position.x, item_pos_1.transform.position.y, item_pos_1.transform.position.z);
-        Vector3 item_position_2 = new Vector3(item_pos_2.transform.position.x, item_pos_2.transform.position.y, item_pos_2.transform.position.z);
-        Vector3 item_position_3 = new Vector3(item_pos_3.transform.position.x, item_pos_3.transform.position.y, item_pos_3.transform.position.z);
-
-        var item_1 = Instantiate(items[randomIndex_1], item_position_1, Quaternion.identity);
-        var item_2 = Instantiate(items[randomIndex_2], item_position_2, Quaternion.identity);
-        var item_3 = Instantiate(items[randomIndex_3], item_position_3, Quaternion.identity);
-        */
+        
 
         if (un_make == false)
         {
@@ -133,11 +119,10 @@ public class item_manifestation : MonoBehaviour
             //Debug.Log(money_owed);
             foreach (InventoryItemData item in items_owed)
             {
-                //Debug.Log("adding_items");
-                //player.GetComponent<InventorySystem>().current.Add_item(item);
+                
                 InventorySystem.current.Add(item);
                 items_owed.Remove(item);
-                //yield return new WaitForSeconds(0.1f);
+                
             }
             //Debug.Log("second part");
             if (money_owed >= 0 && checking_out == false)

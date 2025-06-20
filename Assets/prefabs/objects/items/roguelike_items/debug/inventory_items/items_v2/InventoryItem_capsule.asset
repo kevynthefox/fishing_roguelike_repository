@@ -16,3 +16,17 @@ MonoBehaviour:
   displayName: Capsule
   icon: {fileID: 21300000, guid: f2c13e4504af25f4a8f27912ef3a288c, type: 3}
   prefab: {fileID: 3573648674384999498, guid: 5d829e122446d0d43a6bfd788d6ba2f9, type: 3}
+  in_inventory: 0
+  inventory: {fileID: 0}
+  trigger_type: 1
+  action_type: 1
+  action_object: {fileID: 919132149155446097, guid: cba1697431aba344980f1cb06feb7359, type: 3}
+  action_effect: 
+  duration: 0
+  delay: 0
+  strength: 0
+  target: fish_spawn_point
+  target_transform: {fileID: 0}
+  enemy_or_player: 0
+  player: {fileID: 0}
+  triggered: 0

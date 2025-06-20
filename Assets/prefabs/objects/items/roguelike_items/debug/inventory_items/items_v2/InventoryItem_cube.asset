@@ -16,3 +16,17 @@ MonoBehaviour:
   displayName: cube
   icon: {fileID: 21300000, guid: 6e49cd6cabda18c449360d9ba7a46134, type: 3}
   prefab: {fileID: 8341551117226465539, guid: 160bfb38ac85f8b4f95b5c7aeb7375b0, type: 3}
+  in_inventory: 0
+  inventory: {fileID: 0}
+  trigger_type: 1
+  action_type: 1
+  action_object: {fileID: 919132149155446097, guid: 6f42e6e2e4dcfdd4f8f20d6029f1c4af, type: 3}
+  action_effect: 
+  duration: 0
+  delay: 0
+  strength: 0
+  target: boat
+  target_transform: {fileID: 0}
+  enemy_or_player: 0
+  player: {fileID: 0}
+  triggered: 0

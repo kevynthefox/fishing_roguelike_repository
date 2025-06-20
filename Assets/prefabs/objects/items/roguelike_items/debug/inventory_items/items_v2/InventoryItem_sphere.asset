@@ -16,3 +16,17 @@ MonoBehaviour:
   displayName: sphere
   icon: {fileID: 21300000, guid: ec4d360a9568c484db6535cb1d66f839, type: 3}
   prefab: {fileID: 6020825224858073573, guid: 54f32274e14a44440af99e788e0dc362, type: 3}
+  in_inventory: 0
+  inventory: {fileID: 0}
+  trigger_type: 1
+  action_type: 1
+  action_object: {fileID: 919132149155446097, guid: cba1697431aba344980f1cb06feb7359, type: 3}
+  action_effect: 
+  duration: 0
+  delay: 0
+  strength: 0
+  target: bone_pile
+  target_transform: {fileID: 0}
+  enemy_or_player: 0
+  player: {fileID: 0}
+  triggered: 0
