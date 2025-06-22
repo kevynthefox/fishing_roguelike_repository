@@ -9,18 +9,19 @@ public class heat_seeking_fishles : MonoBehaviour
     //public GameObject master;
 
     public float factor = 1;
+    public float speed;
 
     void Start()
     {
         //master = GameObject.Find("home_points");
-        home = GameObject.Find("sell guy");
+        //home = GameObject.Find("sell guy");
     }
 
     void Update()
     {
         //factor = master.GetComponent<factor_holder>().factor;
         //Debug.Log("active");
-
+        /*
         if (transform.position.x > home.transform.position.x)
         {
             GetComponent<Rigidbody>().AddForce(new Vector3(-Mathf.Abs(factor), 0, 0), ForceMode.Impulse);
@@ -54,7 +55,12 @@ public class heat_seeking_fishles : MonoBehaviour
         }
 
         factor -= 0.001f;
+        */
+        //makes the object move faster the further away it is from the other one
+        speed = Vector3.Distance(home.transform.position, transform.position);
 
+        //moves this object towards the other object, at this speed per second
+        transform.position = Vector3.MoveTowards(transform.position, home.transform.position, speed * Time.deltaTime);
 
     }
 

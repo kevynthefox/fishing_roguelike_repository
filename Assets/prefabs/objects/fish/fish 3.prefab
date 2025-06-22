@@ -138,6 +138,7 @@ MonoBehaviour:
   fish_quantity: 1.8560791
   fish_quality: 1
   fish_counted: 2162
+  fish_type: {fileID: 8450721608604625811, guid: 2fd0585376bc1ec46b8cdc876fc61735, type: 3}
 --- !u!54 &6189741813823654365
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -181,5 +182,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   home: {fileID: 2679988056074713764, guid: c816e89edc5ff1445b97eb82aaa64866, type: 3}
-  master: {fileID: 0}
   factor: 1
+  speed: 0

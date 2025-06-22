@@ -84,56 +84,59 @@ public class funny_money_movement : MonoBehaviour
             Vector3 spawnpos = new Vector3(spawn_area.transform.position.x, spawn_area.transform.position.y * 2, spawn_area.transform.position.z);
             //Quaternion rotation = new Quaterion(spawn_area.transform.rotation.x, spawn_area.transform.rotation.y, spawn_area.transform.rotation.z, 0f);
         } */
-
-        //Debug.Log(money_owed);
-        while (money_owed > 0)
+        while (starter == true)
         {
-            //Debug.Log("active");
-            //absorb_area.SetActive(true);
-                
+            //Debug.Log(money_owed);
+            if (money_owed > 0)
+            {
+                //Debug.Log("active");
+                //absorb_area.SetActive(true);
 
-            if (money_owed >= 10)
-            {
-                    
-                StartCoroutine(spawn(0,10));
-                StopCoroutine(spawn(0,10));
-            }
-            else
-            {
-                if (money_owed >= 1)
+
+                if (money_owed >= 10)
                 {
 
-                    //Debug.Log("instantiated size 1 money");
-                    StartCoroutine(spawn(1, 1));
-                    StopCoroutine(spawn(1, 1));
+                    StartCoroutine(spawn(0, 10));
+                    StopCoroutine(spawn(0, 10));
                 }
                 else
                 {
-                    if (money_owed > 0)
+                    if (money_owed >= 1)
                     {
-                        //money_owed -= money_owed;
-                        StartCoroutine(spawn(1,money_owed));
-                        StopCoroutine(spawn(1, money_owed));
+
+                        //Debug.Log("instantiated size 1 money");
+                        StartCoroutine(spawn(1, 1));
+                        StopCoroutine(spawn(1, 1));
                     }
+                    else
+                    {
+                        if (money_owed > 0)
+                        {
+                            //money_owed -= money_owed;
+                            StartCoroutine(spawn(1, money_owed));
+                            StopCoroutine(spawn(1, money_owed));
+                        }
+                    }
+
                 }
-                    
+                yield return new WaitForSeconds(0.1f);
             }
-            yield return new WaitForSeconds(0.1f);
-        }
-        while (money_owed <= 0)
-        {
-            
-            self.GetComponent<object_click_detector>().click_override = false;
-            reroll.GetComponent<object_click_detector>().click_override = false;
+            if(shopkeeper.GetComponent<item_manifestation>().money_owed <= 0)
+            //else
+            {
+                Debug.Log("debt free");
+                self.GetComponent<object_click_detector>().click_override = false;
+                reroll.GetComponent<object_click_detector>().click_override = false;
 
 
-            shopkeeper.GetComponent<item_manifestation>().checking_out = false;
-            yield return new WaitForSeconds(1f);
-            
-            //yield return new WaitForSeconds(5f);
-            //absorb_area.SetActive(false);
+                shopkeeper.GetComponent<item_manifestation>().checking_out = false;
+                yield return new WaitForSeconds(1f);
+
+                //yield return new WaitForSeconds(5f);
+                //absorb_area.SetActive(false);
+            }
+            yield return new WaitForSeconds(0.001f);
         }
-            
         //wait = 1 / bobber.GetComponent<bobber_impact>().fish_quantity_original;
         //yield return new WaitForSeconds(wait);
         

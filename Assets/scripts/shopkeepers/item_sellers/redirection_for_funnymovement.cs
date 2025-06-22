@@ -29,7 +29,7 @@ public class redirection_for_funnymovement : MonoBehaviour
             if (timer > 0)
             {
                 timer -= 1 * Time.deltaTime;
-                Debug.Log("subtracting");
+                //Debug.Log("subtracting");
                 //yield return new WaitForSeconds(1f);
             }
             else
@@ -44,7 +44,7 @@ public class redirection_for_funnymovement : MonoBehaviour
     {
         if (other.tag == "currency_transit")
         {
-            Debug.Log("adding");
+            //Debug.Log("adding");
             timer += 10 * Time.deltaTime;
             other.GetComponent<heat_seeking_money>().home = places[randomindex];
         }

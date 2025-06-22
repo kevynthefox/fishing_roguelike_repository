@@ -47,6 +47,7 @@ public class bobber_impact : MonoBehaviour
     public GameObject already_fishing;
 
     public GameObject fish_spawner;
+    //public GameObject wave_spawner;
 
     private void Start()
     {
@@ -121,7 +122,7 @@ public class bobber_impact : MonoBehaviour
                         success = fishing_bar.GetComponent<fishing_bar>().success;
                         failure = fishing_bar.GetComponent<fishing_bar>().failure;
                             
-                        Debug.Log("progressing 1");
+                        //Debug.Log("progressing 1");
 
                         if (success == true && failure == false)
                         {
@@ -136,7 +137,7 @@ public class bobber_impact : MonoBehaviour
                                 
 
 
-                            Debug.Log("progressing 2");
+                            //Debug.Log("progressing 2");
 
                             StartCoroutine(spawn_fish());
 
@@ -155,7 +156,7 @@ public class bobber_impact : MonoBehaviour
                             //if (failure == true)
                             //{
 
-                                Debug.Log("progressing 4");
+                                //Debug.Log("progressing 4");
 
                                 resetting = true;
 
@@ -170,7 +171,7 @@ public class bobber_impact : MonoBehaviour
 
                             if (failure == true && success == true)
                             {
-                                Debug.Log("progressing 5");
+                                //Debug.Log("progressing 5");
                             }
                         }    
                                 
@@ -211,7 +212,7 @@ public class bobber_impact : MonoBehaviour
                         fishing_bar.GetComponent<fishing_bar>().bar_pos = 0.5f;
                         //Debug.Log("reset. E has been pressed to try again");
                         resetting = false;
-                        Debug.Log("progressing 4.5");
+                        //Debug.Log("progressing 4.5");
                     }
                 }
                 else
@@ -276,8 +277,12 @@ public class bobber_impact : MonoBehaviour
                 //transform.position = SpawnPosition_2;
                 
                 var fish_object = Instantiate(fish[randomIndex], SpawnPosition_3, Quaternion.identity);
-                
+
+                fish_object.GetComponent<heat_seeking_fishles>().home = GameObject.Find("sell guy");
+
                 fish_counted += 1;
+                //wave_spawner.GetComponent<Wavespawner>().dead_fish.Add(fish_object.GetComponent<fish_variable_holder>().fish_type);
+                Wavespawner.current.Add(fish_object.GetComponent<fish_variable_holder>().fish_type.GetComponent<fish_variable_holder>().fish_type);
 
                 // this part changes the scale of the fish. if there is more than 1 of fish(1.2) then it makes the (.2) its own fish
 
@@ -329,9 +334,9 @@ public class bobber_impact : MonoBehaviour
 
                 //f.GetComponent<MeshRenderer>().material.color = Color.red;
 
-                Color32 fish_color = new Color(f.GetComponent<Transform>().position.x, f.GetComponent<Transform>().position.y, f.GetComponent<Transform>().position.z, fish_counted);
+                //Color32 fish_color = new Color(f.GetComponent<Transform>().position.x, f.GetComponent<Transform>().position.y, f.GetComponent<Transform>().position.z, fish_counted);
 
-                f.GetComponent<MeshRenderer>().material.color = fish_color;
+                //f.GetComponent<MeshRenderer>().material.color = fish_color;
 
                 fish_removed += 1;
             }

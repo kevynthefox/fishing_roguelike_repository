@@ -12,6 +12,8 @@ public class variable_length : MonoBehaviour
 
     public GameObject master;
 
+    public GameObject fishing_bar;
+
     public bool bobber_returned;
     
 
@@ -21,6 +23,7 @@ public class variable_length : MonoBehaviour
         enabled_fishing = false;
         //GetComponent<Rigidbody>().isKinematic = !enabled_fishing;
         master = GameObject.Find("Bone.002");
+        fishing_bar = GameObject.Find("fishing_bar");
     }
 
     // Update is called once per frame
@@ -58,6 +61,8 @@ public class variable_length : MonoBehaviour
         {
             //GetComponent<Rigidbody>().velocity = Vector3.zero;
             distance = 0;
+            fishing_bar.GetComponent<fishing_bar>().success = false;
+            //fishing_bar.GetComponent<fishing_bar>().failure = true;
         }
         
         GetComponent<return_to_start>().enabled = !enabled_fishing;
