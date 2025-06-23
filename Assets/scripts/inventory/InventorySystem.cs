@@ -65,6 +65,8 @@ public class InventorySystem : MonoBehaviour
             }
         }
     }
+
+    
 }
 
 [Serializable]

@@ -113,11 +113,11 @@ public class bobber_impact : MonoBehaviour
                         //Debug.Log("water");
                         yield return new WaitForSeconds(.5f);
                         animator.SetBool("is_waiting", true);
-                        animator.SetBool("is_hooked", false);
+                        //animator.SetBool("is_hooked", false);
 
                         yield return new WaitForSeconds(fishing_time);
                         //possibly just remove the hooked animation and all that to make the game more fast and fun
-                        animator.SetBool("is_hooked", true);
+                        //animator.SetBool("is_hooked", true);
 
                         success = fishing_bar.GetComponent<fishing_bar>().success;
                         failure = fishing_bar.GetComponent<fishing_bar>().failure;
@@ -151,7 +151,7 @@ public class bobber_impact : MonoBehaviour
                         }
                         else
                         {
-                            Debug.Log("progressing 3");
+                            //Debug.Log("progressing 3");
 
                             //if (failure == true)
                             //{
@@ -160,7 +160,7 @@ public class bobber_impact : MonoBehaviour
 
                                 resetting = true;
 
-                                animator.SetBool("is_hooked", false);
+                                //animator.SetBool("is_hooked", false);
 
 
                                 if (returned == true)
@@ -220,7 +220,7 @@ public class bobber_impact : MonoBehaviour
                     yield return new WaitForSeconds(100f);
                     //Debug.Log("air");
                     animator.SetBool("is_waiting", false);
-                    animator.SetBool("is_hooked", false);
+                    //animator.SetBool("is_hooked", false);
                 }
             }
 
@@ -243,7 +243,7 @@ public class bobber_impact : MonoBehaviour
         animator.SetBool("is_in_use", false);
         animator.SetBool("is_in_reel", false);
         animator.SetBool("is_waiting", false);
-        animator.SetBool("is_hooked", false);
+        //animator.SetBool("is_hooked", false);
         yield return new WaitForSeconds(0.1f);
     }
 

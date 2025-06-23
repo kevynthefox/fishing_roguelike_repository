@@ -54,7 +54,7 @@ public class fishing_rod_movement : MonoBehaviour
                 if (Input.GetMouseButtonDown(1))
                 {
                     //animator.SetBool("is_in_use", false);
-                    animator.SetBool("is_in_reel", true);
+                    //animator.SetBool("is_in_reel", true);
                     /*animator.SetBool("is_hooked", false);
                     animator.SetBool("is_waiting", false);
                     */
@@ -63,7 +63,7 @@ public class fishing_rod_movement : MonoBehaviour
             }
             else
             {
-                animator.SetBool("is_in_reel", false);
+                //animator.SetBool("is_in_reel", false);
             }
         }
         else
@@ -71,7 +71,7 @@ public class fishing_rod_movement : MonoBehaviour
             reel_able = false;
             fishable = false;
             animator.SetBool("is_in_use", false);
-            animator.SetBool("is_in_reel", false);
+            //animator.SetBool("is_in_reel", false);
             animator.SetBool("is_hooked", false);
             animator.SetBool("is_waiting", false);
         }

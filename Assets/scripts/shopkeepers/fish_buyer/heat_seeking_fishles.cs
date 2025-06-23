@@ -11,6 +11,8 @@ public class heat_seeking_fishles : MonoBehaviour
     public float factor = 1;
     public float speed;
 
+    public bool disable_water;
+
     void Start()
     {
         //master = GameObject.Find("home_points");
@@ -19,6 +21,15 @@ public class heat_seeking_fishles : MonoBehaviour
 
     void Update()
     {
+        if (disable_water == true)
+        {
+            GameObject.Find("water").tag = "Untagged";
+        }
+        else
+        {
+            GameObject.Find("water").tag = "water";
+        }    
+
         //factor = master.GetComponent<factor_holder>().factor;
         //Debug.Log("active");
         /*

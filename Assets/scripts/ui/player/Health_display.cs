@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem.EnhancedTouch;
 using UnityEngine.UI;
 
 public class Health_display : MonoBehaviour
@@ -9,12 +11,10 @@ public class Health_display : MonoBehaviour
 
 public float health,health_max;
 
-public float FatigueCost;
-public float ChargeRate;
 
 public Image HealthBar;
 public Text healthText;
-public GameObject hunger;
+
 public GameObject player;
 public GameObject respawn_point;
 
@@ -26,31 +26,33 @@ private Coroutine recharge;
     }
 
     // Update is called once per frame
-//    void Update()
-//    {
-//
-//        FatigueCost = hunger.GetComponent<Hunger_display>().HungerCost;
-//
-//
-//        healthText.text = "health : " + health;
-//        HealthBar.fillAmount = health / health_max;
-//
-//        if (health <= 0) 
-//        {
-//            health = 0;
-//            player.transform.position = respawn_point.transform.position;
-//            health = health_max;
-//        }
+    void Update()
+    {
 
-//		if (hunger.GetComponent<Hunger_display>().hunger <= 0)
-//		{
-//            health -= FatigueCost;
-//            hunger.GetComponent<Hunger_display>().hunger += hunger.GetComponent<Hunger_display>().hunger_max;	
-//		}
-		
 
-//    }
-//
+        if (health <= 0) 
+        {
+            health = 0;
+            player.transform.position = respawn_point.transform.position;
+            health = health_max;
+            //put something here to restart the whole scene
+        }
+        healthText.text = "health : " + health;
+        HealthBar.fillAmount = health / health_max;
+
+
+    }
+
+    public IEnumerator OnTriggerEnter(Collider other)
+    {
+        Debug.Log("triggered");
+        if (other.tag == "fish")
+        {
+            health -= 1;
+            yield return new WaitForSeconds(1f);
+        }
+    }
+    //
 
 
 }

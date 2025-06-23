@@ -10,8 +10,8 @@ public class fish_variable_holder : MonoBehaviour
     public float fish_counted;
 
     public GameObject fish_type;
-    //public bool duplicate;
- 
+
+    public float potentcy;
 
     public void Update()
     {

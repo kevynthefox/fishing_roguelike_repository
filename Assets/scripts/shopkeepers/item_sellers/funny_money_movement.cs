@@ -124,7 +124,7 @@ public class funny_money_movement : MonoBehaviour
             if(shopkeeper.GetComponent<item_manifestation>().money_owed <= 0)
             //else
             {
-                Debug.Log("debt free");
+                //Debug.Log("debt free");
                 self.GetComponent<object_click_detector>().click_override = false;
                 reroll.GetComponent<object_click_detector>().click_override = false;
 

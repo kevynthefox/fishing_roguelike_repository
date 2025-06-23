@@ -654,6 +654,7 @@ MonoBehaviour:
   fish_quality: 1
   fish_counted: 2163
   fish_type: {fileID: 1421325010732033939, guid: b6ed109e2c4d6fa46bf5878b6018f969, type: 3}
+  potentcy: 1
 --- !u!54 &5774218304985107084
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -698,6 +699,7 @@ MonoBehaviour:
   home: {fileID: 2679988056074713764, guid: c816e89edc5ff1445b97eb82aaa64866, type: 3}
   factor: 1
   speed: 0
+  disable_water: 0
 --- !u!1 &9147638324643706190
 GameObject:
   m_ObjectHideFlags: 0
