@@ -21,7 +21,7 @@ public Quaternion rotation;
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
 	//sets the position of the first object to the position of the second object, plus offset, or not.
         if (attachment == true)
@@ -35,21 +35,21 @@ public Quaternion rotation;
 			{
 				transform.position = Object_b.transform.position;
 			}
- 	 }
-	//rotates the first object with the second object or not
-	if (rotate_with_Object_b == true)
-	{
+ 		}
+		//rotates the first object with the second object or not
+		if (rotate_with_Object_b == true)
+		{
 		
-		if (offset_rotation == true)
-		{
-                transform.rotation =  rotation;
+			if (offset_rotation == true)
+			{
+					transform.rotation =  rotation;
 			
+			}
+			else
+			{
+					transform.rotation = Object_b.transform.rotation;
+			}
 		}
-		else
-		{
-               transform.rotation = Object_b.transform.rotation;
-        }
-	}
 	
     }
 }

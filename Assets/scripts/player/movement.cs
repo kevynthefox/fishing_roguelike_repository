@@ -33,7 +33,7 @@ public Vector3 cameraRelativeMovement;
     }
 
 	// Update is called once per frame
-	void Update()
+	void FixedUpdate()
 	{
 
         horizontalInput = Input.GetAxis("Horizontal");
@@ -53,15 +53,21 @@ public Vector3 cameraRelativeMovement;
 		//transform.rotation  = Camera.transform.rotation;
 
 		//jump controls
-        if (Input.GetKeyDown(KeyCode.Space) && isOnGround)
-		{
-			Rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-			isOnGround = false;
-		}
+        
 	    cameraRelativeMovement = GetComponent<move_relative_to_camera>().cameraRelativeMovement;
         //transform.Translate(cameraRelativeMovement * Time.deltaTime * speed * sprintspeed);
         transform.Translate(cameraRelativeMovement * Time.deltaTime * speed);
     }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space) && isOnGround)
+        {
+            Rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            isOnGround = false;
+        }
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         isOnGround = true;

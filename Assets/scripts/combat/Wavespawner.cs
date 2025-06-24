@@ -43,17 +43,21 @@ public class Wavespawner : MonoBehaviour
         family_size = UnityEngine.Random.Range(0, 10);
         if (spawning_time == true)
         {
-            foreach (fish_dead f in dead_fish)
+            if (dead_fish != null)
             {
-                //fish_left += f.stackSize;
-                for (int i = 0; i < family_size; i++)
+                foreach (fish_dead f in dead_fish)
                 {
-                    var fish_object = Instantiate(f.data, new Vector3(spawn_left_right, 0, spawn_forward_back), Quaternion.identity);
-                    fish_object.GetComponent<heat_seeking_fishles>().home = GameObject.Find("player");
-                    fish_object.GetComponent<heat_seeking_fishles>().disable_water = true;
+                    //fish_left += f.stackSize;
+                    for (int i = 0; i < family_size; i++)
+                    {
+                        var fish_object = Instantiate(f.data, new Vector3(spawn_left_right, 0, spawn_forward_back), Quaternion.identity);
+                        fish_object.GetComponent<heat_seeking_fishles>().home = GameObject.Find("player");
+                        fish_object.GetComponent<heat_seeking_fishles>().disable_water = true;
+                        fish_object.GetComponent<move_relative_to_camera>().Camera = Camera.main;
+                    }
+
+                    Remove(f.data);
                 }
-                
-                Remove(f.data);
             }
         }
 

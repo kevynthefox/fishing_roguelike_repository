@@ -654,7 +654,7 @@ MonoBehaviour:
   fish_quality: 1
   fish_counted: 2163
   fish_type: {fileID: 1421325010732033939, guid: b6ed109e2c4d6fa46bf5878b6018f969, type: 3}
-  potentcy: 1
+  potentcy: 0.5
 --- !u!54 &5774218304985107084
 Rigidbody:
   m_ObjectHideFlags: 0

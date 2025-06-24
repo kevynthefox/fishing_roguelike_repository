@@ -32,8 +32,9 @@ public class variable_length : MonoBehaviour
         GetComponent<SpringJoint>().maxDistance = distance / 10;
         GetComponent<Rigidbody>().useGravity = enabled_fishing;
         velocity = GetComponent<Rigidbody>().velocity;
-        GetComponent<SpringJoint>().spring = 1000 - distance * 10;
-        GetComponent<SpringJoint>().damper = 1000 + distance * 10;
+        GetComponent<SpringJoint>().spring = 10000 - (distance * 1);
+        GetComponent<SpringJoint>().damper = 10 + (distance * 1);
+        GetComponent<BoxCollider>().enabled = enabled_fishing;
 
         enabled_fishing = master.GetComponent<variable_length>().enabled_fishing;
 
@@ -63,6 +64,7 @@ public class variable_length : MonoBehaviour
             distance = 0;
             fishing_bar.GetComponent<fishing_bar>().success = false;
             //fishing_bar.GetComponent<fishing_bar>().failure = true;
+            
         }
         
         GetComponent<return_to_start>().enabled = !enabled_fishing;

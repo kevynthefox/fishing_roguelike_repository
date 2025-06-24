@@ -15,10 +15,7 @@ public class fish_variable_holder : MonoBehaviour
 
     public void Update()
     {
-        /*if (duplicate == true)
-        {
-            transform.position= Vector3.zero;
-        } */   
+        
     }
 
     

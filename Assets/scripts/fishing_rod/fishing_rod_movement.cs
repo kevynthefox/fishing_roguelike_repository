@@ -15,6 +15,13 @@ public class fishing_rod_movement : MonoBehaviour
     public bool reel_able;
     public bool fishable;
 
+    public int fight_animation;
+    public bool loop_animation;
+
+    public float loop_time_start;
+
+    public bool blocking;
+
 	
       void Start()
     {
@@ -25,9 +32,12 @@ public class fishing_rod_movement : MonoBehaviour
 	void Update()
 	{
         fishable = bone.GetComponent<variable_length>().enabled_fishing;
+        //Debug.Log("blocking_state: " + blocking);
 
         if (fishable == true)
         {
+
+            reset_animations();
             bobber.GetComponent<bobber_launch>().factor = bone.GetComponent<variable_length>().distance;
 
             if (Input.GetMouseButtonDown(0))
@@ -37,7 +47,7 @@ public class fishing_rod_movement : MonoBehaviour
                 bobber.GetComponent<bobber_launch>().factor = bone.GetComponent<variable_length>().distance;
                 bobber.GetComponent<bobber_launch>().enabled = true;
                 bobber.GetComponent<bobber_impact>().returned = false;
-                animator.SetBool("is_hoooked", false);
+                //animator.SetBool("is_hoooked", false);
                 animator.SetBool("is_waiting", false);
             }
             if (Input.GetMouseButtonUp(0))
@@ -72,31 +82,91 @@ public class fishing_rod_movement : MonoBehaviour
             fishable = false;
             animator.SetBool("is_in_use", false);
             //animator.SetBool("is_in_reel", false);
-            animator.SetBool("is_hooked", false);
+            //animator.SetBool("is_hooked", false);
             animator.SetBool("is_waiting", false);
+
+            
+
+            if (Input.GetMouseButtonDown(0))
+            {
+                fight_animation = Random.Range(0, 2);
+                if (fight_animation == 0)
+                {
+                    animator.SetBool("fighting_1", true);
+                }
+                if (fight_animation == 1)
+                {
+                    animator.SetBool("fighting_2", true);
+                }
+            }
+            if (Input.GetMouseButtonDown(1))
+            {
+                blocking = true;
+                loop_animation = true;
+                fight_animation = Random.Range(0, 2);
+                
+                if (fight_animation == 0)
+                {
+                    animator.SetBool("blocking_1", true);
+                }
+                if (fight_animation == 1)
+                {
+                    animator.SetBool("blocking_2", true);
+                }
+                
+            }
+            if (Input.GetMouseButtonUp(0))
+            {
+                animator.SetBool("fighting_1", false);
+                animator.SetBool("fighting_2", false);
+            }
+            if (Input.GetMouseButtonUp(1))
+            {
+                loop_animation = false;
+                blocking = false;
+                animator.SetBool("blocking_1", false);
+                animator.SetBool("blocking_2", false);
+            }
         }
 
     }
 
-    //IEnumerator OnTriggerEnter(Collider other)
-    //{
-    //    if (other.gameObject.tag == "water")
-    //    {
-    //        Debug.Log("water");
-    //        yield return new WaitForSeconds(.5f);
-    //        animator.SetBool("is_waiting", true);
-
-    //        yield return new WaitForSeconds(fishing_time);
-
-    //        animator.SetBool("is_hooked", true);
-    //        yield return new WaitForSeconds(fishing_time); //placeholder for finishing the fishing game
-    //        animator.SetBool("is_hooked", false);
-    //    }
-    //}
+    public void reset_animations()
+    {
+        animator.SetBool("fighting_1", false);
+        animator.SetBool("fighting_2", false);
+        loop_animation = false;
+        blocking = false;
+        animator.SetBool("blocking_1", false);
+        animator.SetBool("blocking_2", false);
+    }
 
 
+    /*public void rewind_animation()
+    {
+        if (loop_animation == true)
+        {
+            
+            animator.playbackTime = loop_time_start;
+            //Debug.Log("playbacktime now: " + animator.playbackTime);
+        }
+    }
 
-   
+    public void get_time_animation()
+    {
+        loop_time_start = animator.playbackTime;
+
+        //Debug.Log("playbacktime loop start: " + animator.playbackTime);
+    }   */
+    
+    public void broadcast()
+    {
+        Debug.Log("this position has been reached");
+    }
+
+    
+
+
 }
     
 
