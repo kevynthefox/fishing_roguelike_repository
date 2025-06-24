@@ -8,16 +8,23 @@ TagManager:
   - player_ui
   - fishing_rod
   - water
+  - fish
+  - npc
+  - currency
+  - debug_items
+  - currency_transit
+  - food_items
+  - super_food_items
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - invisible_objects
   - Water
   - UI
-  - 
-  - 
-  - 
+  - fishing_rod
+  - player
+  - partially invisible objects
   - 
   - 
   - 

@@ -31,7 +31,7 @@ public class variable_length : MonoBehaviour
     {
         GetComponent<SpringJoint>().maxDistance = distance / 10;
         GetComponent<Rigidbody>().useGravity = enabled_fishing;
-        velocity = GetComponent<Rigidbody>().velocity;
+        velocity = GetComponent<Rigidbody>().linearVelocity;
         GetComponent<SpringJoint>().spring = 10000 - (distance * 1);
         GetComponent<SpringJoint>().damper = 10 + (distance * 1);
         GetComponent<BoxCollider>().enabled = enabled_fishing;

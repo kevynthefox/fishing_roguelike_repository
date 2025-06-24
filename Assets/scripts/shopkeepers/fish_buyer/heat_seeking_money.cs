@@ -87,7 +87,7 @@ public class heat_seeking_money : MonoBehaviour
         if (other == home)
         {
             //Debug.Log("triggering");
-            GetComponent<Rigidbody>().velocity = Vector3.zero;
+            GetComponent<Rigidbody>().linearVelocity = Vector3.zero;
             factor = 0;
         }
     }

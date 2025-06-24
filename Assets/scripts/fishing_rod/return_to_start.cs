@@ -74,7 +74,7 @@ public class return_to_start : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         //Debug.Log("triggering");
-        GetComponent<Rigidbody>().velocity = Vector3.zero;
+        GetComponent<Rigidbody>().linearVelocity = Vector3.zero;
         factor = 0;
     }
 }
