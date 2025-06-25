@@ -32,8 +32,8 @@ public class camera_controls : MonoBehaviour
         first_person_target = GameObject.Find("1st_person_follow_target").transform;
         third_person_target = GameObject.Find("3rd_person_follow_target").transform;
 
-        /*cam1.enabled = true;
-    	cam2.enabled = false;*/
+        cam1.enabled = true;
+    	cam2.enabled = false;
     }
 
     // Update is called once per frame
