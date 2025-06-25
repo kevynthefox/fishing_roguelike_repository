@@ -53,7 +53,6 @@ public class Wavespawner : MonoBehaviour
                         var fish_object = Instantiate(f.data, new Vector3(spawn_left_right, 0, spawn_forward_back), Quaternion.identity);
                         fish_object.GetComponent<heat_seeking_fishles>().home = GameObject.Find("player");
                         fish_object.GetComponent<heat_seeking_fishles>().disable_water = true;
-                        fish_object.GetComponent<move_relative_to_camera>().Camera = Camera.main;
                     }
 
                     Remove(f.data);

@@ -67,7 +67,6 @@ public class item_manifestation : MonoBehaviour
             //Debug.Log("checking_out");
             starter = true;
             StartCoroutine(checkout_part());
-            
         }
 
         if (checking_out == true)
@@ -116,13 +115,15 @@ public class item_manifestation : MonoBehaviour
     {
         while (starter == true)
         {
+            
             //Debug.Log(money_owed);
             foreach (InventoryItemData item in items_owed)
             {
-                
-                InventorySystem.current.Add(item);
-                items_owed.Remove(item);
-                
+                if (items_owed != null)
+                {
+                    InventorySystem.current.Add(item);
+                    items_owed.Remove(item);
+                }
             }
             //Debug.Log("second part");
             if (money_owed >= 0 && checking_out == false)
@@ -131,6 +132,7 @@ public class item_manifestation : MonoBehaviour
                 wallet.GetComponent<money_collector>().money_value -= money_owed;
                 checking_out = true;
             }
+            
             yield return new WaitForSeconds(1f);
         }
     }

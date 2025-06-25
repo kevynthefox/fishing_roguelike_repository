@@ -21,6 +21,8 @@ public class fishing_rod_movement : MonoBehaviour
     public float loop_time_start;
 
     public bool blocking;
+    public bool attacking;
+    //public bool fishing;
 
 	
       void Start()
@@ -89,6 +91,7 @@ public class fishing_rod_movement : MonoBehaviour
 
             if (Input.GetMouseButtonDown(0))
             {
+                attacking = true;
                 fight_animation = Random.Range(0, 2);
                 if (fight_animation == 0)
                 {
@@ -117,6 +120,7 @@ public class fishing_rod_movement : MonoBehaviour
             }
             if (Input.GetMouseButtonUp(0))
             {
+                attacking = false;
                 animator.SetBool("fighting_1", false);
                 animator.SetBool("fighting_2", false);
             }
@@ -137,6 +141,7 @@ public class fishing_rod_movement : MonoBehaviour
         animator.SetBool("fighting_2", false);
         loop_animation = false;
         blocking = false;
+        attacking = false;
         animator.SetBool("blocking_1", false);
         animator.SetBool("blocking_2", false);
     }

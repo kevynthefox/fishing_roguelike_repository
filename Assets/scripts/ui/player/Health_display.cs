@@ -30,13 +30,19 @@ private Coroutine recharge;
     {
 
 
-        if (health <= 0) 
+        if (health <= 0)
         {
             health = 0;
             player.transform.position = respawn_point.transform.position;
             health = health_max;
             //put something here to restart the whole scene
         }
+
+        if (health >= health_max)
+        {
+            health = health_max;
+        }
+
         healthText.text = "health : " + health;
         HealthBar.fillAmount = health / health_max;
 

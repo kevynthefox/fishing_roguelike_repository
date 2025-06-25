@@ -11,8 +11,8 @@ public class bobber_launch : MonoBehaviour
     public float factor;
         public Vector3 direction;
         public Vector3 direction_modified;
-    
 
+    public GameObject camera_holder;
     public Camera cam;
 
     //void Update()
@@ -23,9 +23,13 @@ public class bobber_launch : MonoBehaviour
     public void Start()
     {
         StartCoroutine(launch());
+
+        camera_holder = GameObject.Find("camera system");
+
+        cam = camera_holder.GetComponent<camera_holder>().first_person;
     }
 
-    public void LateUpdate()
+    public void Update()
     {
         //factor = bone.GetComponent<variable_length>().distance;
         //if (Input.GetMouseButtonDown(0))

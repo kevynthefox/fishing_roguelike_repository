@@ -1,14 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Cinemachine;
 using UnityEngine;
 
 public class move_relative_to_camera : MonoBehaviour
 {
-
-    public Camera Camera;
+    public GameObject camera_holder;
+    public CinemachineCamera Camera;
     public Vector3 cameraRelativeMovement;
 
-    void Update()
+    public void Start()
+    {
+        camera_holder = GameObject.Find("camera system");
+
+        Camera = camera_holder.GetComponent<camera_holder>().CinemachineCamera;
+    }
+
+    void FixedUpdate()
     {
         // get player input
         float playerVerticalInput =
@@ -18,9 +26,9 @@ public class move_relative_to_camera : MonoBehaviour
 
         // get camera vectors
         Vector3 cameraForward =
-            Camera.main.transform.forward;
+            Camera.transform.forward;
         Vector3 cameraRight =
-            Camera.main.transform.right;
+            Camera.transform.right;
 
         // remove y and normalize
         cameraForward.y = 0;

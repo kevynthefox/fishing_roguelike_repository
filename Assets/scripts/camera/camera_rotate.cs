@@ -15,7 +15,7 @@ public class camera_rotate : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         //camera rotation!
         y = Input.GetAxis("Mouse X");

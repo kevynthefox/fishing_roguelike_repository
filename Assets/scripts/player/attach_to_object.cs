@@ -5,14 +5,14 @@ using UnityEngine;
 public class attach_to_object : MonoBehaviour
 {
 
-public GameObject Object_b;
-public Vector3 offset;
-public bool attachment;
-public bool offset_attachment;
-public bool rotate_with_Object_b;
-public bool tidally_lock_with_Object_b;
-public bool offset_rotation;
-public Quaternion rotation;
+	public GameObject Object_b;
+	public Vector3 offset;
+	public bool attachment;
+	public bool offset_attachment;
+	public bool rotate_with_Object_b;
+	public bool tidally_lock_with_Object_b;
+	public bool offset_rotation;
+	public Quaternion rotation;
 
     // Start is called before the first frame update
     void Start()
@@ -21,7 +21,7 @@ public Quaternion rotation;
     }
 
     // Update is called once per frame
-    void LateUpdate()
+    void FixedUpdate()
     {
 	//sets the position of the first object to the position of the second object, plus offset, or not.
         if (attachment == true)

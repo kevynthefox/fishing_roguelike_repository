@@ -113,7 +113,7 @@ public class heat_seeking_fishles : MonoBehaviour
             {
                 Debug.Log("touching the fishing rod. state: " + other.gameObject.GetComponent<fishing_rod_movement>().blocking);
 
-                if (other.gameObject.GetComponent<fishing_rod_movement>().blocking == false)
+                if (other.gameObject.GetComponent<fishing_rod_movement>().blocking == false && other.gameObject.GetComponent<fishing_rod_movement>().attacking == true)
                 {
                     Debug.Log("touched the rod. not blocking");
                     this.tag = "super_food_items";

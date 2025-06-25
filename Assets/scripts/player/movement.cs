@@ -7,21 +7,24 @@ using UnityEngine.InputSystem;
 public class movement : MonoBehaviour
 {
 
-public float speed = 20f;
-//private float turnSpeed = 45.0f;
-public float horizontalInput;
-public float forwardInput;
-//public float sprintspeed;
+    public float speed = 20f;
+    //private float turnSpeed = 45.0f;
+    public float horizontalInput;
+    public float forwardInput;
+    //public float sprintspeed;
+
 	//jump related things
 	public float jumpForce = 10;
 	private float gravityModifier;
 	public bool isOnGround = true;
 
-public Camera Camera;
+    public GameObject camera_holder;
 
-private Rigidbody Rb;
+    public Camera Camera;
 
-public Vector3 cameraRelativeMovement;
+    private Rigidbody Rb;
+
+    public Vector3 cameraRelativeMovement;
 
 
 
@@ -29,7 +32,10 @@ public Vector3 cameraRelativeMovement;
     void Start()
     {
         Rb = GetComponent<Rigidbody>();
-		
+
+        camera_holder = GameObject.Find("camera system");
+
+        Camera = camera_holder.GetComponent<camera_holder>().first_person;
     }
 
 	// Update is called once per frame
