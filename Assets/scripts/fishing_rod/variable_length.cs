@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class variable_length : MonoBehaviour
 {
@@ -23,7 +24,7 @@ public class variable_length : MonoBehaviour
         enabled_fishing = false;
         //GetComponent<Rigidbody>().isKinematic = !enabled_fishing;
         master = GameObject.Find("Bone.002");
-        fishing_bar = GameObject.Find("fishing_bar");
+        //fishing_bar = GameObject.Find("fishing_bar");
     }
 
     // Update is called once per frame
