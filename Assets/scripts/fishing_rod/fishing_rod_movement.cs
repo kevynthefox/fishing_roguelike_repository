@@ -147,28 +147,7 @@ public class fishing_rod_movement : MonoBehaviour
     }
 
 
-    /*public void rewind_animation()
-    {
-        if (loop_animation == true)
-        {
-            
-            animator.playbackTime = loop_time_start;
-            //Debug.Log("playbacktime now: " + animator.playbackTime);
-        }
-    }
-
-    public void get_time_animation()
-    {
-        loop_time_start = animator.playbackTime;
-
-        //Debug.Log("playbacktime loop start: " + animator.playbackTime);
-    }   */
     
-    public void broadcast()
-    {
-        Debug.Log("this position has been reached");
-    }
-
     
 
 

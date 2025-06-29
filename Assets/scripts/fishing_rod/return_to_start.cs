@@ -18,7 +18,7 @@ public class return_to_start : MonoBehaviour
         master = GameObject.Find("Bone.002");
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if (mode == false)
         {

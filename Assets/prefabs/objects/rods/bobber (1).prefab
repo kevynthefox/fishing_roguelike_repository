@@ -11,13 +11,15 @@ GameObject:
   - component: {fileID: 1104524930733268564}
   - component: {fileID: 7160074381533331239}
   - component: {fileID: 8335199459514411616}
-  - component: {fileID: 3043517846562537276}
   - component: {fileID: 4057074853789559830}
   - component: {fileID: 4666394159460927992}
   - component: {fileID: 7293609221965439260}
   - component: {fileID: 8080049796473642723}
   - component: {fileID: 1226322734185159758}
   - component: {fileID: 7459851163736890697}
+  - component: {fileID: 3007730463697766819}
+  - component: {fileID: 3220851619442043366}
+  - component: {fileID: 2770030340324045143}
   m_Layer: 6
   m_Name: bobber (1)
   m_TagString: Untagged
@@ -94,28 +96,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &3043517846562537276
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1526560815456469809}
-  m_Material: {fileID: 13400000, guid: 50a7b69d547625440b7abd7c4e382bd5, type: 2}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 8570997524451076693, guid: e313e585f2191ae4ebe8b7c66d771439, type: 3}
 --- !u!54 &4057074853789559830
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -169,7 +149,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1526560815456469809}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 96abe586281c4484dbf43cb203d7607d, type: 3}
   m_Name: 
@@ -275,3 +255,119 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Object_b: {fileID: 0}
+--- !u!65 &3007730463697766819
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1526560815456469809}
+  m_Material: {fileID: 13400000, guid: 50a7b69d547625440b7abd7c4e382bd5, type: 2}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.9021157, y: 2, z: 2}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &3220851619442043366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1526560815456469809}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64770cf14d2d75f4e9da39e72455d02b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  string_on: 0
+  bobber_on: 1
+  fishing_rod: {fileID: 0}
+  left_clicked_down: 0
+  right_clicked_down: 0
+  left_clicked_hold: 0
+  right_clicked_hold: 0
+  left_clicked_up: 0
+  right_clicked_up: 0
+  actively_fishing: 0
+  won_failed_already: 0
+  distance: 0
+  enabled_fishing: 0
+  velocity: {x: 0, y: 0, z: 0}
+  bone_master: {fileID: 0}
+  fishing_bar: {fileID: 0}
+  bobber_returned: 0
+  fish_quantity: 1
+  fish_quality: 1
+  bar_pos: 0.5
+  fish_quantity_max: 2
+  fish_quality_max: 2
+  fish_quantity_min: 1
+  fish_quality_min: 1
+  effort: 0.1
+  resistance: 0
+  stopping_factor: 1.5
+  area_difficulty: 0.3
+  quality: {fileID: 0}
+  quantity: {fileID: 0}
+  res: {fileID: 0}
+  res_2: {fileID: 0}
+  eff: {fileID: 0}
+  distance_bar: {fileID: 0}
+  win_state: 0
+  direction: 0
+  direction_max: 5
+  direction_min: -7
+  fishing_time: 0
+  fishing_time_cool: 0
+  reel_able: 0
+  fight_animation: 0
+  loop_time_start: 0
+  blocking: 0
+  attacking: 0
+  dist_text: {fileID: 0}
+  initial_distance: 100
+  percent_distance: 0
+  distance_set: 0
+  rod_animator: {fileID: 0}
+  fishing_system: {fileID: 0}
+  fish:
+  - {fileID: 4352744995305304399, guid: 039ca76c7f7236c45b22209da4a25fbb, type: 3}
+  - {fileID: 8773006348585286267, guid: 8a230a9bc1c68af44b9d09a191fd6f39, type: 3}
+  - {fileID: 8450721608604625811, guid: 2fd0585376bc1ec46b8cdc876fc61735, type: 3}
+  bobber: {fileID: 1526560815456469809}
+  fish_quantity_original: 0
+  fish_counted: 0
+  fish_removed: 0
+  fish_all_spawned: 0
+  resetting: 0
+  water_already: 0
+  starter: 0
+  spawning_fish: 0
+  already_fishing: {fileID: 0}
+  fish_spawner: {fileID: 0}
+--- !u!114 &2770030340324045143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1526560815456469809}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03a867a0eefd5614d8ce69eb55d26383, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  home: {fileID: 0}
+  master: {fileID: 0}
+  factor: 1
+  speed: 0
+  mode: 0

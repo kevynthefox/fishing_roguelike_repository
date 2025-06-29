@@ -26,26 +26,13 @@ public class heat_seeking_fishles : MonoBehaviour
     {
         //master = GameObject.Find("home_points");
         //home = GameObject.Find("sell guy");
-        water = GameObject.Find("water");
+        
         cam = Camera.main;
     }
 
     void Update()
     {
-        if (disable_water == true)
-        {
-            if (water.tag != "Untagged")
-            {
-                water.tag = "Untagged";
-            }
-        }
-        else
-        {
-            if (water.tag != "water")
-            {
-                water.tag = "water";
-            }
-        }
+        
 
         if (home != null)
         {
@@ -107,22 +94,22 @@ public class heat_seeking_fishles : MonoBehaviour
 
         if (this.GetComponent<Collider>() != null)
         {
-            Debug.Log("i exist and am touching something");
+            //Debug.Log("i exist and am touching something");
 
-            if (other.gameObject.tag == "fishing_rod")
+            if (other.gameObject.CompareTag("fishing_rod"))
             {
-                Debug.Log("touching the fishing rod. state: " + other.gameObject.GetComponent<fishing_rod_movement>().blocking);
+                //Debug.Log("touching the fishing rod. block state: " + other.gameObject.GetComponent<fishing_rod_movement>().blocking + " attack state: " + other.gameObject.GetComponent<fishing_rod_movement>().attacking);
 
-                if (other.gameObject.GetComponent<fishing_rod_movement>().blocking == false && other.gameObject.GetComponent<fishing_rod_movement>().attacking == true)
+                if (other.gameObject.GetComponent<fishing_script>().blocking == false && other.gameObject.GetComponent<fishing_script>().attacking == true)
                 {
-                    Debug.Log("touched the rod. not blocking");
+                    //Debug.Log("touched the rod. not blocking");
                     this.tag = "super_food_items";
-                    disable_water = false;
+                    Wavespawner.current.Remove_alive(this.gameObject);
                     home = null;
                 }
-                else
+                if (other.gameObject.GetComponent<fishing_script>().blocking == true && other.gameObject.GetComponent<fishing_script>().attacking == false)
                 {
-                    Debug.Log("fling");
+                    //Debug.Log("fling");
                     direction = cam.GetComponent<Transform>().forward;
                     direction_modified = direction * Time.deltaTime * 5000;
 
@@ -133,26 +120,26 @@ public class heat_seeking_fishles : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    /*private void OnCollisionEnter(Collision collision)
     {
         if (this.GetComponent<Collider>() != null)
         {
-            Debug.Log("i exist and am touching something");
+            //Debug.Log("i exist and am touching something");
 
             if (collision.gameObject.tag == "fishing_rod")
             {
-                Debug.Log("touching the fishing rod. state: " + collision.gameObject.GetComponent<fishing_rod_movement>().blocking);
+                //Debug.Log("touching the fishing rod. state: " + collision.gameObject.GetComponent<fishing_rod_movement>().blocking);
 
                 if (collision.gameObject.GetComponent<fishing_rod_movement>().blocking == false)
                 {
-                    Debug.Log("touched the rod. not blocking");
+                    //Debug.Log("touched the rod. not blocking");
                     this.tag = "super_food_items";
                     disable_water = false;
                     home = null;
                 }
                 else
                 {
-                    Debug.Log("fling");
+                    //Debug.Log("fling");
                     direction = cam.GetComponent<Transform>().forward;
                     direction_modified = direction * Time.deltaTime * 500;
 
@@ -161,5 +148,5 @@ public class heat_seeking_fishles : MonoBehaviour
             }
             
         }
-    }
+    }*/
 }

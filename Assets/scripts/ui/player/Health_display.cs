@@ -4,6 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem.EnhancedTouch;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Health_display : MonoBehaviour
 {
@@ -35,6 +36,8 @@ private Coroutine recharge;
             health = 0;
             player.transform.position = respawn_point.transform.position;
             health = health_max;
+            //StartCoroutine(get_rid_of_these_fish());
+            RestartScene();
             //put something here to restart the whole scene
         }
 
@@ -58,7 +61,22 @@ private Coroutine recharge;
             yield return new WaitForSeconds(1f);
         }
     }
-    //
 
+    public IEnumerator get_rid_of_these_fish()
+    {
+        foreach (GameObject fish in GameObject.FindGameObjectsWithTag("fish"))
+        {
+            fish.GetComponent<heat_seeking_fishles>().disable_water = false;
+            Debug.Log("destroying 1 fish");
+            Wavespawner.current.Remove_alive(fish);
+            Destroy(fish);
+            yield return new WaitForSeconds(0.000000000000000000000001f);
+        }
+    }
+    //
+    public void RestartScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
 
 }

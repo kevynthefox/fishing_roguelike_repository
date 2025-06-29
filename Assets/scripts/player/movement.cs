@@ -78,6 +78,11 @@ public class movement : MonoBehaviour
     {
         isOnGround = true;
         //Debug.Log("collision: " + collision.gameObject.name);
+
+        if (collision.gameObject.name != "pier")
+        {
+            //Debug.Log(collision.gameObject.name);
+        }
     }
 
     /*

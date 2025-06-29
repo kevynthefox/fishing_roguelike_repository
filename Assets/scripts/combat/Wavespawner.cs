@@ -20,7 +20,16 @@ public class Wavespawner : MonoBehaviour
 
     public int time_left;
 
-    public int fish_left;
+    public int fish_total;
+
+    public int fish_alive;
+
+    public bool fish_have_been_alive;
+
+    public GameObject water;
+    public GameObject sell_guy;
+
+    public int family_max;
 
     public void Start()
     {
@@ -29,22 +38,16 @@ public class Wavespawner : MonoBehaviour
 
     public void Update()
     {
-        /*var objects = new HashSet<GameObject>();
-        foreach (var f in dead_fish)
-        {
-            if (f.name == "fish 1")
-            {
-                //f.GetComponent<fish_variable_holder>().fish_type = fish_actual[0];
-            }
-        } 
-        */
+        
         spawn_left_right = UnityEngine.Random.Range(-1000, 1001);
         spawn_forward_back = UnityEngine.Random.Range(30, 2001);
-        family_size = UnityEngine.Random.Range(0, 10);
+        family_size = UnityEngine.Random.Range(0, family_max);
         if (spawning_time == true)
         {
+            
             if (dead_fish != null)
             {
+                
                 foreach (fish_dead f in dead_fish)
                 {
                     //fish_left += f.stackSize;
@@ -53,16 +56,37 @@ public class Wavespawner : MonoBehaviour
                         var fish_object = Instantiate(f.data, new Vector3(spawn_left_right, 0, spawn_forward_back), Quaternion.identity);
                         fish_object.GetComponent<heat_seeking_fishles>().home = GameObject.Find("player");
                         fish_object.GetComponent<heat_seeking_fishles>().disable_water = true;
+                        Add_alive(fish_object);
+                        fish_have_been_alive = true;
                     }
 
-                    Remove(f.data);
+                    Remove_dead(f.data);
                 }
+
+                
             }
         }
+        
 
-        foreach (fish_dead f in dead_fish)
+        if (alive_fish.Count != 0)
         {
-            //fish_left += f.stackSize;
+
+            sell_guy.SetActive(false);
+            
+            if (water.tag != "Untagged" && fish_have_been_alive == true)
+            {
+                water.tag = "Untagged";
+            }
+        }
+        else
+        {
+            sell_guy.SetActive(true);
+            //Debug.Log("no more fish alive");
+            if (water.tag != "water")
+            {
+                water.tag = "water";
+                fish_have_been_alive = false;
+            }
         }
     }
 
@@ -97,10 +121,12 @@ public class Wavespawner : MonoBehaviour
     public static Wavespawner current;
     public Dictionary<GameObject, fish_dead> m_itemDictionary;
     public List<fish_dead> dead_fish;//{ get; private set; }
+    public List<fish_dead> alive_fish;
     private void Awake()
     {
         current = this;
         dead_fish = new List<fish_dead>();
+        alive_fish = new List<fish_dead>();
         m_itemDictionary = new Dictionary<GameObject, fish_dead>();
 
     }
@@ -124,7 +150,7 @@ public class Wavespawner : MonoBehaviour
         return null;
     }
 
-    public void Add(GameObject referenceData)
+    public void Add_dead(GameObject referenceData)
     {
         if (m_itemDictionary.TryGetValue(referenceData, out fish_dead value))
         {
@@ -139,7 +165,7 @@ public class Wavespawner : MonoBehaviour
         InventoryChanged();
     }
 
-    public void Remove(GameObject referenceData)
+    public void Remove_dead(GameObject referenceData)
     {
         if (m_itemDictionary.TryGetValue(referenceData, out fish_dead value))
         {
@@ -148,6 +174,35 @@ public class Wavespawner : MonoBehaviour
             if (value.stackSize == 0)
             {
                 dead_fish.Remove(value);
+                m_itemDictionary.Remove(referenceData);
+            }
+        }
+    }
+
+    public void Add_alive(GameObject referenceData)
+    {
+        if (m_itemDictionary.TryGetValue(referenceData, out fish_dead value))
+        {
+            value.AddToStack();
+        }
+        else
+        {
+            fish_dead newItem = new fish_dead(referenceData);
+            alive_fish.Add(newItem);
+            m_itemDictionary.Add(referenceData, newItem);
+        }
+        InventoryChanged();
+    }
+
+    public void Remove_alive(GameObject referenceData)
+    {
+        if (m_itemDictionary.TryGetValue(referenceData, out fish_dead value))
+        {
+            value.RemoveFromStack();
+
+            if (value.stackSize == 0)
+            {
+                alive_fish.Remove(value);
                 m_itemDictionary.Remove(referenceData);
             }
         }

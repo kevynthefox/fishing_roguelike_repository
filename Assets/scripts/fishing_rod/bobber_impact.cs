@@ -282,7 +282,7 @@ public class bobber_impact : MonoBehaviour
 
                 fish_counted += 1;
                 //wave_spawner.GetComponent<Wavespawner>().dead_fish.Add(fish_object.GetComponent<fish_variable_holder>().fish_type);
-                Wavespawner.current.Add(fish_object.GetComponent<fish_variable_holder>().fish_type.GetComponent<fish_variable_holder>().fish_type);
+                Wavespawner.current.Add_dead(fish_object.GetComponent<fish_variable_holder>().fish_type.GetComponent<fish_variable_holder>().fish_type);
 
                 // this part changes the scale of the fish. if there is more than 1 of fish(1.2) then it makes the (.2) its own fish
 

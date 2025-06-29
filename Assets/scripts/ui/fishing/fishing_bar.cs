@@ -100,7 +100,7 @@ public class fishing_bar : MonoBehaviour
                 {
                     failure = true;
                     success = false;
-                    //Debug.Log("failure");
+                    Debug.Log("failure");
                 }
                 else
                 {
@@ -108,7 +108,7 @@ public class fishing_bar : MonoBehaviour
                     {
                         failure = false;
                         success = true;
-                        //Debug.Log("success");
+                        Debug.Log("success");
                     }
 
                 }

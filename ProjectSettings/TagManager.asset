@@ -2,7 +2,7 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!78 &1
 TagManager:
-  serializedVersion: 2
+  serializedVersion: 3
   tags:
   - player
   - player_ui
@@ -25,9 +25,9 @@ TagManager:
   - fishing_rod
   - player
   - partially invisible objects
-  - 
-  - 
-  - 
+  - fishing_rod_string
+  - fish
+  - ground
   - 
   - 
   - 
@@ -52,3 +52,5 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  m_RenderingLayers:
+  - Default

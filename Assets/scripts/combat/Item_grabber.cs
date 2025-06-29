@@ -18,17 +18,23 @@ public class Item_grabber : MonoBehaviour
     {
         if (Input.GetMouseButton(2))
         {
-            if (collision.gameObject.name != "Terrain"  || collision.gameObject.name == "ground") //was gonna add in a "|| collision.gameObject.name != "water"" but raising the sea level is funny af
+            if (collision.gameObject.name != "Terrain" || collision.gameObject.name == "ground") //was gonna add in a "|| collision.gameObject.name != "water"" but raising the sea level is funny af
+            {
                 Object_b = collision.gameObject;
+            }
+
+            if (collision.gameObject.tag == "fish")
+            {
+                collision.gameObject.tag = "food_items";
+                //collision.gameObject.GetComponent<heat_seeking_fishles>().home = null;
+                Wavespawner.current.Remove_alive(collision.gameObject);
+            }
         }
         else
         {
             Object_b = null;
         }
         
-        if (collision.gameObject.tag == "fish")
-        {
-            collision.gameObject.tag = "food_items";
-        }
+        
     }
 }

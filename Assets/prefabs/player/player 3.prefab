@@ -566,7 +566,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 591887312}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 270407c05cd61834bbe5946367e56834, type: 3}
   m_Name: 
@@ -1812,7 +1812,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1561192819}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d23f011eb1b8bc64a85c9ba84d1c8221, type: 3}
   m_Name: 
@@ -3196,6 +3196,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: right_hand
       objectReference: {fileID: 0}
+    - target: {fileID: -6733177361254619370, guid: 27416f8cd2927104aab9bbdfceb46071, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -5894863403822994359, guid: 27416f8cd2927104aab9bbdfceb46071, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.3843564
@@ -3255,6 +3259,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 27416f8cd2927104aab9bbdfceb46071, type: 3}
       propertyPath: m_Name
       value: player_idea_2
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 27416f8cd2927104aab9bbdfceb46071, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 2800250516343163423, guid: 27416f8cd2927104aab9bbdfceb46071, type: 3}
       propertyPath: m_Name
@@ -3539,7 +3547,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 259240568828154330, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 383935094737667319, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
       propertyPath: m_TagString
@@ -3565,17 +3573,29 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 973596407610564058, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: 5a4ac3eed96860640935f836988d20c9, type: 2}
     - target: {fileID: 1188416235030166116, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 1252877035564451617, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
+      propertyPath: home
+      value: 
+      objectReference: {fileID: 506653212900554140}
     - target: {fileID: 1285603969824788780, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
       propertyPath: m_IsTrigger
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1372605705721862705, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
+      propertyPath: home
+      value: 
+      objectReference: {fileID: 2511929142332310420}
     - target: {fileID: 1372670208295128379, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 1421176413722752440, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
       propertyPath: m_TagString
@@ -3614,6 +3634,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 2197866627227245228, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2197866627227245228, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
+      propertyPath: fishing_bar
+      value: 
+      objectReference: {fileID: 1561192819}
+    - target: {fileID: 2197866627227245228, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
       propertyPath: fishing_system
       value: 
       objectReference: {fileID: 1143351733}
@@ -3622,12 +3650,24 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 2204336454862730919, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2204336454862730919, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
+      propertyPath: fishing_bar
+      value: 
+      objectReference: {fileID: 1561192819}
+    - target: {fileID: 2204336454862730919, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
       propertyPath: fishing_system
       value: 
       objectReference: {fileID: 1143351733}
+    - target: {fileID: 2254037547807972714, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: 5a4ac3eed96860640935f836988d20c9, type: 2}
     - target: {fileID: 2306417926435356915, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 2585085342459441689, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
       propertyPath: m_Drag
@@ -3661,6 +3701,14 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3129405447856202365, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: 5a4ac3eed96860640935f836988d20c9, type: 2}
+    - target: {fileID: 3200806710532272321, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
+      propertyPath: home
+      value: 
+      objectReference: {fileID: 5500109868646954739}
     - target: {fileID: 3216242799177137903, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
       propertyPath: m_Drag
       value: 3
@@ -3669,6 +3717,10 @@ PrefabInstance:
       propertyPath: m_Mass
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3238445498513951092, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: 5a4ac3eed96860640935f836988d20c9, type: 2}
     - target: {fileID: 3327986503898319860, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
       propertyPath: m_ConnectedAnchor.x
       value: 0.0000014722777
@@ -3693,6 +3745,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3681749885621276712, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
+      propertyPath: home
+      value: 
+      objectReference: {fileID: 8337984636848354903}
     - target: {fileID: 3725368859737239547, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
       propertyPath: m_Name
       value: fishing_rod_1
@@ -3714,6 +3770,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 3753727891038992846, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3753727891038992846, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
+      propertyPath: fishing_bar
+      value: 
+      objectReference: {fileID: 1561192819}
+    - target: {fileID: 3753727891038992846, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
       propertyPath: fishing_system
       value: 
       objectReference: {fileID: 1143351733}
@@ -3721,9 +3785,13 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3855973457244761088, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: 5a4ac3eed96860640935f836988d20c9, type: 2}
     - target: {fileID: 3928647605923234054, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 3949588688303562543, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
       propertyPath: m_ConnectedAnchor.x
@@ -3737,6 +3805,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Untagged
       objectReference: {fileID: 0}
+    - target: {fileID: 4088127505899266458, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: 5a4ac3eed96860640935f836988d20c9, type: 2}
     - target: {fileID: 4105307664551048513, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -3795,7 +3867,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4175417186925768351, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 4183657744523334191, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
       propertyPath: m_Enabled
@@ -3809,6 +3881,14 @@ PrefabInstance:
       propertyPath: bobber
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 4271980069623567827, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4271980069623567827, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
+      propertyPath: fishing_bar
+      value: 
+      objectReference: {fileID: 1561192819}
     - target: {fileID: 4271980069623567827, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
       propertyPath: fishing_system
       value: 
@@ -3847,7 +3927,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4531546020936397070, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 4565934474298887431, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
       propertyPath: m_RootOrder
@@ -3941,6 +4021,10 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4698556487587043645, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
+      propertyPath: home
+      value: 
+      objectReference: {fileID: 267819184995887396}
     - target: {fileID: 4716607188495001117, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -3951,7 +4035,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4838449060039462677, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 4947878181589432630, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
       propertyPath: m_IsTrigger
@@ -3961,6 +4045,14 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: -6478536213147159724, guid: e313e585f2191ae4ebe8b7c66d771439, type: 3}
+    - target: {fileID: 5204320407062311767, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5252183269409491672, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
+      propertyPath: home
+      value: 
+      objectReference: {fileID: 6751075669931924492}
     - target: {fileID: 5324719448515562451, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
       propertyPath: m_Drag
       value: 1
@@ -3997,14 +4089,30 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 5868717348379332396, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: 5a4ac3eed96860640935f836988d20c9, type: 2}
     - target: {fileID: 5917439552907764000, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5954968451090940561, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: 5a4ac3eed96860640935f836988d20c9, type: 2}
     - target: {fileID: 5975893719459699644, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
       propertyPath: bobber
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 5975893719459699644, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5975893719459699644, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
+      propertyPath: fishing_bar
+      value: 
+      objectReference: {fileID: 1561192819}
     - target: {fileID: 5975893719459699644, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
       propertyPath: fishing_system
       value: 
@@ -4013,6 +4121,14 @@ PrefabInstance:
       propertyPath: bobber
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 6028033362782709366, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6028033362782709366, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
+      propertyPath: fishing_bar
+      value: 
+      objectReference: {fileID: 1561192819}
     - target: {fileID: 6028033362782709366, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
       propertyPath: fishing_system
       value: 
@@ -4021,10 +4137,22 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6203206712677525446, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: 5a4ac3eed96860640935f836988d20c9, type: 2}
     - target: {fileID: 6340383469296697494, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
       propertyPath: bobber
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 6340383469296697494, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6340383469296697494, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
+      propertyPath: fishing_bar
+      value: 
+      objectReference: {fileID: 1561192819}
     - target: {fileID: 6340383469296697494, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
       propertyPath: fishing_system
       value: 
@@ -4041,6 +4169,10 @@ PrefabInstance:
       propertyPath: m_Mass
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6446303159411268142, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: 5a4ac3eed96860640935f836988d20c9, type: 2}
     - target: {fileID: 6529209555722883184, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
       propertyPath: m_ConnectedAnchor.x
       value: 0.000002693691
@@ -4057,6 +4189,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Untagged
       objectReference: {fileID: 0}
+    - target: {fileID: 6639063850114114032, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
+      propertyPath: home
+      value: 
+      objectReference: {fileID: 7255155797786596560}
     - target: {fileID: 6641115221200764285, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
       propertyPath: m_ConnectedBody
       value: 
@@ -4067,7 +4203,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6717458602798460668, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 6784214576134230488, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
@@ -4097,6 +4233,10 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 7023808024375010778, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
+      propertyPath: home
+      value: 
+      objectReference: {fileID: 4190106887833097973}
     - target: {fileID: 7023808024375010778, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
       propertyPath: mode
       value: 0
@@ -4135,7 +4275,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7599855097222458091, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 7621006919219636832, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
       propertyPath: m_Drag
@@ -4173,6 +4313,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7916950115483509728, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 7969339430238151601, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
       propertyPath: m_ConnectedAnchor.x
       value: -0.0000007665578
@@ -4194,6 +4338,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8037618781300348850, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8037618781300348850, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
+      propertyPath: fishing_bar
+      value: 
+      objectReference: {fileID: 1561192819}
+    - target: {fileID: 8037618781300348850, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
       propertyPath: fishing_system
       value: 
       objectReference: {fileID: 1143351733}
@@ -4205,6 +4357,14 @@ PrefabInstance:
       propertyPath: bobber
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 8088175537706027264, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8088175537706027264, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
+      propertyPath: fishing_bar
+      value: 
+      objectReference: {fileID: 1561192819}
     - target: {fileID: 8088175537706027264, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
       propertyPath: fishing_system
       value: 
@@ -4219,7 +4379,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8332477634500928947, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 8382396974222809416, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
       propertyPath: m_RootOrder
@@ -4267,7 +4427,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9156075749550192332, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 9222740443356387088, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
       propertyPath: m_Convex
@@ -4324,36 +4484,90 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 259240568828154330, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1156337925}
+    - targetCorrespondingSourceObject: {fileID: 259240568828154330, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3011917314229889500}
+    - targetCorrespondingSourceObject: {fileID: 259240568828154330, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 334946325506459598}
     - targetCorrespondingSourceObject: {fileID: 1188416235030166116, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1478322784}
+    - targetCorrespondingSourceObject: {fileID: 1188416235030166116, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1837366691890465964}
+    - targetCorrespondingSourceObject: {fileID: 1188416235030166116, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2296070042066447199}
     - targetCorrespondingSourceObject: {fileID: 2306417926435356915, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
       insertIndex: -1
       addedObject: {fileID: 984416824}
+    - targetCorrespondingSourceObject: {fileID: 2306417926435356915, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5374145348263708607}
+    - targetCorrespondingSourceObject: {fileID: 2306417926435356915, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8068443483125229663}
     - targetCorrespondingSourceObject: {fileID: 9156075749550192332, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2046122119}
+    - targetCorrespondingSourceObject: {fileID: 9156075749550192332, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7066844509548787745}
+    - targetCorrespondingSourceObject: {fileID: 9156075749550192332, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 29915952862087335}
     - targetCorrespondingSourceObject: {fileID: 4531546020936397070, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
       insertIndex: -1
       addedObject: {fileID: 730732511}
+    - targetCorrespondingSourceObject: {fileID: 4531546020936397070, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3354862620082047446}
+    - targetCorrespondingSourceObject: {fileID: 4531546020936397070, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2761625514835688195}
     - targetCorrespondingSourceObject: {fileID: 4838449060039462677, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1970153483}
+    - targetCorrespondingSourceObject: {fileID: 4838449060039462677, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4977798735722302240}
+    - targetCorrespondingSourceObject: {fileID: 4838449060039462677, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8364572986280944517}
     - targetCorrespondingSourceObject: {fileID: 3928647605923234054, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
       insertIndex: -1
       addedObject: {fileID: 524367851}
+    - targetCorrespondingSourceObject: {fileID: 3928647605923234054, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5054549240885643370}
+    - targetCorrespondingSourceObject: {fileID: 3928647605923234054, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8461019135051533854}
     - targetCorrespondingSourceObject: {fileID: 1372670208295128379, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2118692613}
     - targetCorrespondingSourceObject: {fileID: 1372670208295128379, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2118692605}
+    - targetCorrespondingSourceObject: {fileID: 1372670208295128379, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4777542426291714596}
+    - targetCorrespondingSourceObject: {fileID: 1372670208295128379, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 9022547820228122072}
     - targetCorrespondingSourceObject: {fileID: 4175417186925768351, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1015207375}
     - targetCorrespondingSourceObject: {fileID: 4175417186925768351, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1015207382}
+    - targetCorrespondingSourceObject: {fileID: 4175417186925768351, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6799910967332706182}
+    - targetCorrespondingSourceObject: {fileID: 4175417186925768351, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5210346951398874779}
   m_SourcePrefab: {fileID: 100100000, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
 --- !u!54 &108810906 stripped
 Rigidbody:
@@ -4386,6 +4600,105 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &3354862620082047446
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 112884609799103244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64770cf14d2d75f4e9da39e72455d02b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  string_on: 1
+  bobber_on: 0
+  fishing_rod: {fileID: 0}
+  left_clicked_down: 0
+  right_clicked_down: 0
+  left_clicked_hold: 0
+  right_clicked_hold: 0
+  left_clicked_up: 0
+  right_clicked_up: 0
+  actively_fishing: 0
+  won_failed_already: 0
+  distance: 0
+  enabled_fishing: 0
+  velocity: {x: 0, y: 0, z: 0}
+  bone_master: {fileID: 4389675929464456152}
+  fishing_bar: {fileID: 0}
+  bobber_returned: 0
+  fish_quantity: 0
+  fish_quality: 0
+  bar_pos: 0
+  fish_quantity_max: 0
+  fish_quality_max: 0
+  fish_quantity_min: 0
+  fish_quality_min: 0
+  effort: 0
+  resistance: 0
+  stopping_factor: 0
+  area_difficulty: 0
+  quality: {fileID: 0}
+  quantity: {fileID: 0}
+  res: {fileID: 0}
+  res_2: {fileID: 0}
+  eff: {fileID: 0}
+  distance_bar: {fileID: 0}
+  win_state: 0
+  direction: 0
+  direction_max: 0
+  direction_min: 0
+  dist_text: {fileID: 0}
+  initial_distance: 0
+  percent_distance: 0
+  distance_set: 0
+  rod_animator: {fileID: 0}
+  fishing_system: {fileID: 0}
+  fish: []
+  bobber: {fileID: 0}
+  fishing_time: 0
+  fishing_time_cool: 0
+  reel_able: 0
+  fight_animation: 0
+  loop_time_start: 0
+  blocking: 0
+  attacking: 0
+  fish_quantity_original: 0
+  fish_counted: 0
+  fish_removed: 0
+  fish_all_spawned: 0
+  resetting: 0
+  water_already: 0
+  starter: 0
+  spawning_fish: 0
+  already_fishing: {fileID: 0}
+  fish_spawner: {fileID: 0}
+--- !u!114 &2761625514835688195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 112884609799103244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdcb9f1c544d90b4498a520ad562bf23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bone: {fileID: 4389675929464456152}
+  player: {fileID: 5505522600369943033}
+  factor: 0
+  direction: {x: 0, y: 0, z: 0}
+  direction_modified: {x: 0, y: 0, z: 0}
+  camera_holder: {fileID: 0}
+  cam: {fileID: 0}
+--- !u!1 &267819184995887396 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4378975265815427878, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
+  m_PrefabInstance: {fileID: 4571790155640246786}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &468459176940928157 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4175417186925768351, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
@@ -4428,6 +4741,105 @@ FixedJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &6799910967332706182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 468459176940928157}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64770cf14d2d75f4e9da39e72455d02b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  string_on: 1
+  bobber_on: 0
+  fishing_rod: {fileID: 0}
+  left_clicked_down: 0
+  right_clicked_down: 0
+  left_clicked_hold: 0
+  right_clicked_hold: 0
+  left_clicked_up: 0
+  right_clicked_up: 0
+  actively_fishing: 0
+  won_failed_already: 0
+  distance: 0
+  enabled_fishing: 0
+  velocity: {x: 0, y: 0, z: 0}
+  bone_master: {fileID: 4389675929464456152}
+  fishing_bar: {fileID: 0}
+  bobber_returned: 0
+  fish_quantity: 0
+  fish_quality: 0
+  bar_pos: 0
+  fish_quantity_max: 0
+  fish_quality_max: 0
+  fish_quantity_min: 0
+  fish_quality_min: 0
+  effort: 0
+  resistance: 0
+  stopping_factor: 0
+  area_difficulty: 0
+  quality: {fileID: 0}
+  quantity: {fileID: 0}
+  res: {fileID: 0}
+  res_2: {fileID: 0}
+  eff: {fileID: 0}
+  distance_bar: {fileID: 0}
+  win_state: 0
+  direction: 0
+  direction_max: 0
+  direction_min: 0
+  dist_text: {fileID: 0}
+  initial_distance: 0
+  percent_distance: 0
+  distance_set: 0
+  rod_animator: {fileID: 0}
+  fishing_system: {fileID: 0}
+  fish: []
+  bobber: {fileID: 0}
+  fishing_time: 0
+  fishing_time_cool: 0
+  reel_able: 0
+  fight_animation: 0
+  loop_time_start: 0
+  blocking: 0
+  attacking: 0
+  fish_quantity_original: 0
+  fish_counted: 0
+  fish_removed: 0
+  fish_all_spawned: 0
+  resetting: 0
+  water_already: 0
+  starter: 0
+  spawning_fish: 0
+  already_fishing: {fileID: 0}
+  fish_spawner: {fileID: 0}
+--- !u!114 &5210346951398874779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 468459176940928157}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdcb9f1c544d90b4498a520ad562bf23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bone: {fileID: 4389675929464456152}
+  player: {fileID: 5505522600369943033}
+  factor: 0
+  direction: {x: 0, y: 0, z: 0}
+  direction_modified: {x: 0, y: 0, z: 0}
+  camera_holder: {fileID: 0}
+  cam: {fileID: 0}
+--- !u!1 &506653212900554140 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4068365118850721694, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
+  m_PrefabInstance: {fileID: 4571790155640246786}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &543450653617317699 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4105307664551048513, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
@@ -4459,6 +4871,100 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &5054549240885643370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 718076485506618116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64770cf14d2d75f4e9da39e72455d02b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  string_on: 1
+  bobber_on: 0
+  fishing_rod: {fileID: 0}
+  left_clicked_down: 0
+  right_clicked_down: 0
+  left_clicked_hold: 0
+  right_clicked_hold: 0
+  left_clicked_up: 0
+  right_clicked_up: 0
+  actively_fishing: 0
+  won_failed_already: 0
+  distance: 0
+  enabled_fishing: 0
+  velocity: {x: 0, y: 0, z: 0}
+  bone_master: {fileID: 4389675929464456152}
+  fishing_bar: {fileID: 0}
+  bobber_returned: 0
+  fish_quantity: 0
+  fish_quality: 0
+  bar_pos: 0
+  fish_quantity_max: 0
+  fish_quality_max: 0
+  fish_quantity_min: 0
+  fish_quality_min: 0
+  effort: 0
+  resistance: 0
+  stopping_factor: 0
+  area_difficulty: 0
+  quality: {fileID: 0}
+  quantity: {fileID: 0}
+  res: {fileID: 0}
+  res_2: {fileID: 0}
+  eff: {fileID: 0}
+  distance_bar: {fileID: 0}
+  win_state: 0
+  direction: 0
+  direction_max: 0
+  direction_min: 0
+  dist_text: {fileID: 0}
+  initial_distance: 0
+  percent_distance: 0
+  distance_set: 0
+  rod_animator: {fileID: 0}
+  fishing_system: {fileID: 0}
+  fish: []
+  bobber: {fileID: 0}
+  fishing_time: 0
+  fishing_time_cool: 0
+  reel_able: 0
+  fight_animation: 0
+  loop_time_start: 0
+  blocking: 0
+  attacking: 0
+  fish_quantity_original: 0
+  fish_counted: 0
+  fish_removed: 0
+  fish_all_spawned: 0
+  resetting: 0
+  water_already: 0
+  starter: 0
+  spawning_fish: 0
+  already_fishing: {fileID: 0}
+  fish_spawner: {fileID: 0}
+--- !u!114 &8461019135051533854
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 718076485506618116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdcb9f1c544d90b4498a520ad562bf23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bone: {fileID: 4389675929464456152}
+  player: {fileID: 5505522600369943033}
+  factor: 0
+  direction: {x: 0, y: 0, z: 0}
+  direction_modified: {x: 0, y: 0, z: 0}
+  camera_holder: {fileID: 0}
+  cam: {fileID: 0}
 --- !u!1 &919132149144108537 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3725368859737239547, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
@@ -4484,7 +4990,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 6.9853067, y: 22.64, z: 12.000023}
-  m_Center: {x: -2.507365, y: 0, z: 0}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &2058799791999918107 stripped
 Rigidbody:
   m_CorrespondingSourceObject: {fileID: 2585085342459441689, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
@@ -4521,6 +5027,105 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &5374145348263708607
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2265389840995799793}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64770cf14d2d75f4e9da39e72455d02b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  string_on: 1
+  bobber_on: 0
+  fishing_rod: {fileID: 0}
+  left_clicked_down: 0
+  right_clicked_down: 0
+  left_clicked_hold: 0
+  right_clicked_hold: 0
+  left_clicked_up: 0
+  right_clicked_up: 0
+  actively_fishing: 0
+  won_failed_already: 0
+  distance: 0
+  enabled_fishing: 0
+  velocity: {x: 0, y: 0, z: 0}
+  bone_master: {fileID: 4389675929464456152}
+  fishing_bar: {fileID: 0}
+  bobber_returned: 0
+  fish_quantity: 0
+  fish_quality: 0
+  bar_pos: 0
+  fish_quantity_max: 0
+  fish_quality_max: 0
+  fish_quantity_min: 0
+  fish_quality_min: 0
+  effort: 0
+  resistance: 0
+  stopping_factor: 0
+  area_difficulty: 0
+  quality: {fileID: 0}
+  quantity: {fileID: 0}
+  res: {fileID: 0}
+  res_2: {fileID: 0}
+  eff: {fileID: 0}
+  distance_bar: {fileID: 0}
+  win_state: 0
+  direction: 0
+  direction_max: 0
+  direction_min: 0
+  dist_text: {fileID: 0}
+  initial_distance: 0
+  percent_distance: 0
+  distance_set: 0
+  rod_animator: {fileID: 0}
+  fishing_system: {fileID: 0}
+  fish: []
+  bobber: {fileID: 0}
+  fishing_time: 0
+  fishing_time_cool: 0
+  reel_able: 0
+  fight_animation: 0
+  loop_time_start: 0
+  blocking: 0
+  attacking: 0
+  fish_quantity_original: 0
+  fish_counted: 0
+  fish_removed: 0
+  fish_all_spawned: 0
+  resetting: 0
+  water_already: 0
+  starter: 0
+  spawning_fish: 0
+  already_fishing: {fileID: 0}
+  fish_spawner: {fileID: 0}
+--- !u!114 &8068443483125229663
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2265389840995799793}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdcb9f1c544d90b4498a520ad562bf23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bone: {fileID: 4389675929464456152}
+  player: {fileID: 5505522600369943033}
+  factor: 0
+  direction: {x: 0, y: 0, z: 0}
+  direction_modified: {x: 0, y: 0, z: 0}
+  camera_holder: {fileID: 0}
+  cam: {fileID: 0}
+--- !u!1 &2511929142332310420 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2138762130965123478, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
+  m_PrefabInstance: {fileID: 4571790155640246786}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2681248891411335877 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1893754047151413447, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
@@ -4603,6 +5208,100 @@ SpringJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &4777542426291714596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3206271171278528313}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64770cf14d2d75f4e9da39e72455d02b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  string_on: 1
+  bobber_on: 0
+  fishing_rod: {fileID: 0}
+  left_clicked_down: 0
+  right_clicked_down: 0
+  left_clicked_hold: 0
+  right_clicked_hold: 0
+  left_clicked_up: 0
+  right_clicked_up: 0
+  actively_fishing: 0
+  won_failed_already: 0
+  distance: 0
+  enabled_fishing: 0
+  velocity: {x: 0, y: 0, z: 0}
+  bone_master: {fileID: 4389675929464456152}
+  fishing_bar: {fileID: 0}
+  bobber_returned: 0
+  fish_quantity: 0
+  fish_quality: 0
+  bar_pos: 0
+  fish_quantity_max: 0
+  fish_quality_max: 0
+  fish_quantity_min: 0
+  fish_quality_min: 0
+  effort: 0
+  resistance: 0
+  stopping_factor: 0
+  area_difficulty: 0
+  quality: {fileID: 0}
+  quantity: {fileID: 0}
+  res: {fileID: 0}
+  res_2: {fileID: 0}
+  eff: {fileID: 0}
+  distance_bar: {fileID: 0}
+  win_state: 0
+  direction: 0
+  direction_max: 0
+  direction_min: 0
+  dist_text: {fileID: 0}
+  initial_distance: 0
+  percent_distance: 0
+  distance_set: 0
+  rod_animator: {fileID: 0}
+  fishing_system: {fileID: 0}
+  fish: []
+  bobber: {fileID: 0}
+  fishing_time: 0
+  fishing_time_cool: 0
+  reel_able: 0
+  fight_animation: 0
+  loop_time_start: 0
+  blocking: 0
+  attacking: 0
+  fish_quantity_original: 0
+  fish_counted: 0
+  fish_removed: 0
+  fish_all_spawned: 0
+  resetting: 0
+  water_already: 0
+  starter: 0
+  spawning_fish: 0
+  already_fishing: {fileID: 0}
+  fish_spawner: {fileID: 0}
+--- !u!114 &9022547820228122072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3206271171278528313}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdcb9f1c544d90b4498a520ad562bf23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bone: {fileID: 4389675929464456152}
+  player: {fileID: 5505522600369943033}
+  factor: 0
+  direction: {x: 0, y: 0, z: 0}
+  direction_modified: {x: 0, y: 0, z: 0}
+  camera_holder: {fileID: 0}
+  cam: {fileID: 0}
 --- !u!1 &3390182100108257382 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1188416235030166116, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
@@ -4629,6 +5328,105 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1837366691890465964
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3390182100108257382}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64770cf14d2d75f4e9da39e72455d02b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  string_on: 1
+  bobber_on: 0
+  fishing_rod: {fileID: 0}
+  left_clicked_down: 0
+  right_clicked_down: 0
+  left_clicked_hold: 0
+  right_clicked_hold: 0
+  left_clicked_up: 0
+  right_clicked_up: 0
+  actively_fishing: 0
+  won_failed_already: 0
+  distance: 0
+  enabled_fishing: 0
+  velocity: {x: 0, y: 0, z: 0}
+  bone_master: {fileID: 4389675929464456152}
+  fishing_bar: {fileID: 0}
+  bobber_returned: 0
+  fish_quantity: 0
+  fish_quality: 0
+  bar_pos: 0
+  fish_quantity_max: 0
+  fish_quality_max: 0
+  fish_quantity_min: 0
+  fish_quality_min: 0
+  effort: 0
+  resistance: 0
+  stopping_factor: 0
+  area_difficulty: 0
+  quality: {fileID: 0}
+  quantity: {fileID: 0}
+  res: {fileID: 0}
+  res_2: {fileID: 0}
+  eff: {fileID: 0}
+  distance_bar: {fileID: 0}
+  win_state: 0
+  direction: 0
+  direction_max: 0
+  direction_min: 0
+  dist_text: {fileID: 0}
+  initial_distance: 0
+  percent_distance: 0
+  distance_set: 0
+  rod_animator: {fileID: 0}
+  fishing_system: {fileID: 0}
+  fish: []
+  bobber: {fileID: 0}
+  fishing_time: 0
+  fishing_time_cool: 0
+  reel_able: 0
+  fight_animation: 0
+  loop_time_start: 0
+  blocking: 0
+  attacking: 0
+  fish_quantity_original: 0
+  fish_counted: 0
+  fish_removed: 0
+  fish_all_spawned: 0
+  resetting: 0
+  water_already: 0
+  starter: 0
+  spawning_fish: 0
+  already_fishing: {fileID: 0}
+  fish_spawner: {fileID: 0}
+--- !u!114 &2296070042066447199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3390182100108257382}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdcb9f1c544d90b4498a520ad562bf23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bone: {fileID: 4389675929464456152}
+  player: {fileID: 5505522600369943033}
+  factor: 0
+  direction: {x: 0, y: 0, z: 0}
+  direction_modified: {x: 0, y: 0, z: 0}
+  camera_holder: {fileID: 0}
+  cam: {fileID: 0}
+--- !u!1 &4190106887833097973 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 383935094737667319, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
+  m_PrefabInstance: {fileID: 4571790155640246786}
+  m_PrefabAsset: {fileID: 0}
 --- !u!54 &4231553681740123676 stripped
 Rigidbody:
   m_CorrespondingSourceObject: {fileID: 417494786930203678, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
@@ -4660,6 +5458,100 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &3011917314229889500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4389675929464456152}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64770cf14d2d75f4e9da39e72455d02b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  string_on: 1
+  bobber_on: 0
+  fishing_rod: {fileID: 0}
+  left_clicked_down: 0
+  right_clicked_down: 0
+  left_clicked_hold: 0
+  right_clicked_hold: 0
+  left_clicked_up: 0
+  right_clicked_up: 0
+  actively_fishing: 0
+  won_failed_already: 0
+  distance: 0
+  enabled_fishing: 0
+  velocity: {x: 0, y: 0, z: 0}
+  bone_master: {fileID: 4389675929464456152}
+  fishing_bar: {fileID: 0}
+  bobber_returned: 0
+  fish_quantity: 0
+  fish_quality: 0
+  bar_pos: 0
+  fish_quantity_max: 0
+  fish_quality_max: 0
+  fish_quantity_min: 0
+  fish_quality_min: 0
+  effort: 0
+  resistance: 0
+  stopping_factor: 0
+  area_difficulty: 0
+  quality: {fileID: 0}
+  quantity: {fileID: 0}
+  res: {fileID: 0}
+  res_2: {fileID: 0}
+  eff: {fileID: 0}
+  distance_bar: {fileID: 0}
+  win_state: 0
+  direction: 0
+  direction_max: 0
+  direction_min: 0
+  dist_text: {fileID: 0}
+  initial_distance: 0
+  percent_distance: 0
+  distance_set: 0
+  rod_animator: {fileID: 0}
+  fishing_system: {fileID: 0}
+  fish: []
+  bobber: {fileID: 0}
+  fishing_time: 0
+  fishing_time_cool: 0
+  reel_able: 0
+  fight_animation: 0
+  loop_time_start: 0
+  blocking: 0
+  attacking: 0
+  fish_quantity_original: 0
+  fish_counted: 0
+  fish_removed: 0
+  fish_all_spawned: 0
+  resetting: 0
+  water_already: 0
+  starter: 0
+  spawning_fish: 0
+  already_fishing: {fileID: 0}
+  fish_spawner: {fileID: 0}
+--- !u!114 &334946325506459598
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4389675929464456152}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdcb9f1c544d90b4498a520ad562bf23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bone: {fileID: 4389675929464456152}
+  player: {fileID: 5505522600369943033}
+  factor: 0
+  direction: {x: 0, y: 0, z: 0}
+  direction_modified: {x: 0, y: 0, z: 0}
+  camera_holder: {fileID: 0}
+  cam: {fileID: 0}
 --- !u!1 &4639455896300250318 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 9156075749550192332, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
@@ -4686,6 +5578,105 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7066844509548787745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4639455896300250318}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64770cf14d2d75f4e9da39e72455d02b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  string_on: 1
+  bobber_on: 0
+  fishing_rod: {fileID: 0}
+  left_clicked_down: 0
+  right_clicked_down: 0
+  left_clicked_hold: 0
+  right_clicked_hold: 0
+  left_clicked_up: 0
+  right_clicked_up: 0
+  actively_fishing: 0
+  won_failed_already: 0
+  distance: 0
+  enabled_fishing: 0
+  velocity: {x: 0, y: 0, z: 0}
+  bone_master: {fileID: 4389675929464456152}
+  fishing_bar: {fileID: 0}
+  bobber_returned: 0
+  fish_quantity: 0
+  fish_quality: 0
+  bar_pos: 0
+  fish_quantity_max: 0
+  fish_quality_max: 0
+  fish_quantity_min: 0
+  fish_quality_min: 0
+  effort: 0
+  resistance: 0
+  stopping_factor: 0
+  area_difficulty: 0
+  quality: {fileID: 0}
+  quantity: {fileID: 0}
+  res: {fileID: 0}
+  res_2: {fileID: 0}
+  eff: {fileID: 0}
+  distance_bar: {fileID: 0}
+  win_state: 0
+  direction: 0
+  direction_max: 0
+  direction_min: 0
+  dist_text: {fileID: 0}
+  initial_distance: 0
+  percent_distance: 0
+  distance_set: 0
+  rod_animator: {fileID: 0}
+  fishing_system: {fileID: 0}
+  fish: []
+  bobber: {fileID: 0}
+  fishing_time: 0
+  fishing_time_cool: 0
+  reel_able: 0
+  fight_animation: 0
+  loop_time_start: 0
+  blocking: 0
+  attacking: 0
+  fish_quantity_original: 0
+  fish_counted: 0
+  fish_removed: 0
+  fish_all_spawned: 0
+  resetting: 0
+  water_already: 0
+  starter: 0
+  spawning_fish: 0
+  already_fishing: {fileID: 0}
+  fish_spawner: {fileID: 0}
+--- !u!114 &29915952862087335
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4639455896300250318}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdcb9f1c544d90b4498a520ad562bf23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bone: {fileID: 4389675929464456152}
+  player: {fileID: 5505522600369943033}
+  factor: 0
+  direction: {x: 0, y: 0, z: 0}
+  direction_modified: {x: 0, y: 0, z: 0}
+  camera_holder: {fileID: 0}
+  cam: {fileID: 0}
+--- !u!1 &5500109868646954739 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8297339311263769841, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
+  m_PrefabInstance: {fileID: 4571790155640246786}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &6199865819744336105 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7599855097222458091, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
@@ -4730,6 +5721,11 @@ HingeJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!1 &6751075669931924492 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7116498167935503886, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
+  m_PrefabInstance: {fileID: 4571790155640246786}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &7082886705801411838 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6717458602798460668, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
@@ -4756,6 +5752,16 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &7255155797786596560 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6619516496852747986, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
+  m_PrefabInstance: {fileID: 4571790155640246786}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8337984636848354903 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5531610242977244245, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
+  m_PrefabInstance: {fileID: 4571790155640246786}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &8959873132410772759 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4838449060039462677, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
@@ -4782,3 +5788,97 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &4977798735722302240
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8959873132410772759}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64770cf14d2d75f4e9da39e72455d02b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  string_on: 1
+  bobber_on: 0
+  fishing_rod: {fileID: 0}
+  left_clicked_down: 0
+  right_clicked_down: 0
+  left_clicked_hold: 0
+  right_clicked_hold: 0
+  left_clicked_up: 0
+  right_clicked_up: 0
+  actively_fishing: 0
+  won_failed_already: 0
+  distance: 0
+  enabled_fishing: 0
+  velocity: {x: 0, y: 0, z: 0}
+  bone_master: {fileID: 4389675929464456152}
+  fishing_bar: {fileID: 0}
+  bobber_returned: 0
+  fish_quantity: 0
+  fish_quality: 0
+  bar_pos: 0
+  fish_quantity_max: 0
+  fish_quality_max: 0
+  fish_quantity_min: 0
+  fish_quality_min: 0
+  effort: 0
+  resistance: 0
+  stopping_factor: 0
+  area_difficulty: 0
+  quality: {fileID: 0}
+  quantity: {fileID: 0}
+  res: {fileID: 0}
+  res_2: {fileID: 0}
+  eff: {fileID: 0}
+  distance_bar: {fileID: 0}
+  win_state: 0
+  direction: 0
+  direction_max: 0
+  direction_min: 0
+  dist_text: {fileID: 0}
+  initial_distance: 0
+  percent_distance: 0
+  distance_set: 0
+  rod_animator: {fileID: 0}
+  fishing_system: {fileID: 0}
+  fish: []
+  bobber: {fileID: 0}
+  fishing_time: 0
+  fishing_time_cool: 0
+  reel_able: 0
+  fight_animation: 0
+  loop_time_start: 0
+  blocking: 0
+  attacking: 0
+  fish_quantity_original: 0
+  fish_counted: 0
+  fish_removed: 0
+  fish_all_spawned: 0
+  resetting: 0
+  water_already: 0
+  starter: 0
+  spawning_fish: 0
+  already_fishing: {fileID: 0}
+  fish_spawner: {fileID: 0}
+--- !u!114 &8364572986280944517
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8959873132410772759}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdcb9f1c544d90b4498a520ad562bf23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bone: {fileID: 4389675929464456152}
+  player: {fileID: 5505522600369943033}
+  factor: 0
+  direction: {x: 0, y: 0, z: 0}
+  direction_modified: {x: 0, y: 0, z: 0}
+  camera_holder: {fileID: 0}
+  cam: {fileID: 0}
