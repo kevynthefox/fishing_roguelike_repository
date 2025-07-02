@@ -12,6 +12,8 @@ public class day_cycle : MonoBehaviour
 
     public bool starter = true;
 
+    public bool day_night; //day is false night is true
+
     public void Start()
     {
         StartCoroutine(time_keeper());
@@ -37,7 +39,23 @@ public class day_cycle : MonoBehaviour
     {
         while (starter == true)
         {
-            time += 1;
+            if (time >= cycle_length)
+            {
+                time = 0;
+            }
+            else
+            {
+                time += 1;
+            }
+
+            if (time >= 0.5 * cycle_length)
+            {
+                day_night = true;
+            }
+            else
+            {
+                day_night = false;
+            }
             yield return new WaitForSeconds(1);
         }
     }

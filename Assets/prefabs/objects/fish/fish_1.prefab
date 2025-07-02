@@ -54,7 +54,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 8b4c1431c1f239c4e82ef62763567d92, type: 3}
       propertyPath: m_Name
-      value: fish_1 1
+      value: fish_1
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 8b4c1431c1f239c4e82ef62763567d92, type: 3}
       propertyPath: m_Layer
@@ -155,7 +155,7 @@ MonoBehaviour:
   fish_quality: 1
   fish_counted: 2157
   fish_type: {fileID: 782317847269395987, guid: 71cc39398398ea34ba48a1429a14f6c8, type: 3}
-  potentcy: 5
+  potentcy: 10
 --- !u!114 &823295933960772934
 MonoBehaviour:
   m_ObjectHideFlags: 0

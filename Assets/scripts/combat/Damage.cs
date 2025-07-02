@@ -18,13 +18,13 @@ public class Damage : MonoBehaviour
             //Debug.Log("triggered");
             if (other.tag == "fish")
             {
-                health_object.GetComponent<Health_display>().health -= other.GetComponent<fish_variable_holder>().potentcy;
+                health_object.GetComponent<Health_display>().health -= other.GetComponent<fish_variable_holder>().potentcy / 2;
                 yield return new WaitForSeconds(1f);
             }
 
             if (other.tag == "food_items")
             {
-                health_object.GetComponent<Health_display>().health += other.GetComponent<fish_variable_holder>().potentcy;
+                health_object.GetComponent<Health_display>().health += other.GetComponent<fish_variable_holder>().potentcy / 2;
                 
                 Wavespawner.current.Remove_alive(other.gameObject);
                 Destroy(other.gameObject);
@@ -33,11 +33,16 @@ public class Damage : MonoBehaviour
 
             if (other.tag == "super_food_items")
             {
-                health_object.GetComponent<Health_display>().health += (2 * other.GetComponent<fish_variable_holder>().potentcy);
+                health_object.GetComponent<Health_display>().health += (2 * other.GetComponent<fish_variable_holder>().potentcy) / 2;
                 
                 Wavespawner.current.Remove_alive(other.gameObject);
                 Destroy(other.gameObject);
                 yield return new WaitForSeconds(1f);
+            }
+
+            if (other.tag == "projectile")
+            {
+                health_object.GetComponent<Health_display>().health -= other.GetComponent<projectile_controller>().damage / 2;
             }
         }
     }

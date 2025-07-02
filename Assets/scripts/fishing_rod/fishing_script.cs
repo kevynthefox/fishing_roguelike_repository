@@ -815,6 +815,7 @@ public class fishing_script : MonoBehaviour
                         fish_object.GetComponent<Transform>().localScale = new Vector3(fish_quality, fish_quality, fish_quality);
                         fish_object.name = "big fish";//  + "     fish remaining:" + fish_quantity + " out of: " + fish_quantity_original + "  quality:" + fish_quality;
 
+                        fish_object.GetComponent<fish_variable_holder>().fish_quantity = 1;
                     }
                     else
                     {
@@ -822,12 +823,13 @@ public class fishing_script : MonoBehaviour
                         {
                             fish_object.GetComponent<Transform>().localScale = new Vector3(fish_quantity, fish_quantity, fish_quantity);
                             fish_object.name = "small fish";//  + "     fish remaining:" + fish_quantity + " out of: " + fish_quantity_original + "  quality:" + fish_quality;
+                            fish_object.GetComponent<fish_variable_holder>().fish_quantity = fish_quantity;
                         }
 
 
                     }
 
-                    fish_object.GetComponent<fish_variable_holder>().fish_quantity = fish_quantity;
+                    
                     fish_object.GetComponent<fish_variable_holder>().fish_quality = fish_quality;
                     fish_object.GetComponent<fish_variable_holder>().fish_counted = fish_counted;
 

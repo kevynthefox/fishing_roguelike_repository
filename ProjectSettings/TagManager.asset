@@ -15,6 +15,7 @@ TagManager:
   - currency_transit
   - food_items
   - super_food_items
+  - projectile
   layers:
   - Default
   - TransparentFX
@@ -28,8 +29,8 @@ TagManager:
   - fishing_rod_string
   - fish
   - ground
-  - 
-  - 
+  - invisible_wall_for_cod
+  - cod
   - 
   - 
   - 

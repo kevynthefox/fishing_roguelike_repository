@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,44 +10,98 @@ public class COD : MonoBehaviour
 
     public Vector3 scale;
 
-    public bool growing_complete;
+    public bool day_night;
 
-    public GameObject bobber;
+    public GameObject sun;
+
+    public GameObject home;
 
     private bool starter = true;
+
+    public float speed;
+
+    public GameObject wavespawner;
+
+    public bool collided_with_wall;
 
     void Start()
     {
         scale = new Vector3(size, size * 0.3663297f, size * 0.2306069f);
         GetComponent<Transform>().localScale += scale;
 
-        bobber = GameObject.Find("bobber (1)");
-
         StartCoroutine(counter());
+        StartCoroutine(counter_stopper());
     }
 
 
     void Update()
     {
         
-        
-        if (growing_complete == true)
+        day_night = sun.GetComponent<day_cycle>().day_night;
+
+
+        if (day_night == true)
         {
+            //size control section
             scale = new Vector3(size, size * 0.3663297f, size * 0.2306069f);
             GetComponent<Transform>().localScale = scale;
-            growing_complete = false;
+            //movement control section
+            if (collided_with_wall == false)
+            {
+                speed = Vector3.Distance(home.transform.position, transform.position);
+                this.transform.position = Vector3.MoveTowards(transform.position, home.transform.position, speed * Time.deltaTime);
+            }
+            else
+            {
+                speed = 0;
+            }    
+            this.GetComponent<MeshRenderer>().enabled = true;
+            this.GetComponent<CapsuleCollider>().enabled = true;
+            this.GetComponent<Rigidbody>().isKinematic = false;
+
+        }
+          
+        //escape section
+        if (size <= 1)
+        {
+            transform.position = new Vector3(2000, 10, 2000);
+            this.GetComponent<MeshRenderer>().enabled = false;
+            this.GetComponent<CapsuleCollider>().enabled = false;
+            this.GetComponent<Rigidbody>().isKinematic = true;
+
         }
 
+        this.GetComponent<fish_variable_holder>().potentcy = size;
+       
         
+    }
 
+    public IEnumerator counter_stopper()
+    {
+        while (starter == true)
+        {
+            if (day_night == true)
+            {
+                StopCoroutine(counter());
+                wavespawner.GetComponent<Wavespawner>().Add_alive(this.gameObject);
+                this.gameObject.tag = "fish";
+            }
+            else
+            {
+                StartCoroutine(counter());
+                wavespawner.GetComponent<Wavespawner>().Remove_alive(this.gameObject);
+                this.gameObject.tag = "Untagged";
+            }
+            yield return new WaitForSeconds(1);
+        }
     }
 
 
     public IEnumerator counter()
     {
         var feesh = new HashSet<GameObject>();
-        while (starter == true)
-        {
+        //while (starter == true)
+        //{
             
             foreach (var fish in GameObject.FindGameObjectsWithTag("fish"))
             {
@@ -58,10 +113,30 @@ public class COD : MonoBehaviour
                 {
                     Debug.Log(fish.name);
                     feesh.Add(fish);
-                    size += fish.gameObject.GetComponent<fish_variable_holder>().fish_quality;
+                    size += (fish.gameObject.GetComponent<fish_variable_holder>().fish_quality * fish.gameObject.GetComponent<fish_variable_holder>().fish_quantity);
                 }
             }
             yield return new WaitForSeconds(1f);
+            
+        //}
+    }
+
+    public IEnumerator OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.name == "safety_wall")
+        {
+            speed = -speed;
+            collided_with_wall = true;
         }
+        yield return new WaitForSeconds(1);
+    }
+
+    public IEnumerator OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.name == "safety_wall")
+        {
+            collided_with_wall = false;
+        }
+        yield return new WaitForSeconds(1);
     }
 }

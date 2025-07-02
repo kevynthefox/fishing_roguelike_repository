@@ -22,15 +22,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 54773ef125b10eb4aa22bbb8e142fcca, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 24.586
+      value: 2000
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 54773ef125b10eb4aa22bbb8e142fcca, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 35.877
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 54773ef125b10eb4aa22bbb8e142fcca, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -100.97
+      value: 2000
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 54773ef125b10eb4aa22bbb8e142fcca, type: 3}
       propertyPath: m_LocalRotation.w
@@ -104,6 +104,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cod
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 54773ef125b10eb4aa22bbb8e142fcca, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -120,6 +124,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 54773ef125b10eb4aa22bbb8e142fcca, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3195198234479306594}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 54773ef125b10eb4aa22bbb8e142fcca, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7827209186751223715}
   m_SourcePrefab: {fileID: 100100000, guid: 54773ef125b10eb4aa22bbb8e142fcca, type: 3}
 --- !u!1 &5703107486078205038 stripped
 GameObject:
@@ -167,8 +174,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   size: 1
   scale: {x: 0, y: 0, z: 0}
-  growing_complete: 0
-  bobber: {fileID: 0}
+  day_night: 0
+  sun: {fileID: 0}
+  home: {fileID: 0}
+  speed: 0
+  wavespawner: {fileID: 0}
+  collided_with_wall: 0
 --- !u!136 &8185763325086700735
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -215,3 +226,20 @@ CapsuleCollider:
   m_Height: 2.25
   m_Direction: 0
   m_Center: {x: -0.13561293, y: 0, z: 0.29080543}
+--- !u!114 &7827209186751223715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5703107486078205038}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb94337762f1922479d16ba4f99ed155, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fish_quantity: 0
+  fish_quality: 0
+  fish_counted: 0
+  fish_type: {fileID: 0}
+  potentcy: 10

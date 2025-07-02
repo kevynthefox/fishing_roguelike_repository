@@ -40,11 +40,14 @@ public class Item_grabber : MonoBehaviour
 
             if (collision.gameObject.name == "COD")
             {
-                Vector3 spawn_pos = new Vector3 (transform.position.x, transform.position.y, transform.position.z);
-                int randomIndex = Random.Range(0, GetComponent<fishing_script>().fish.Length);
-                var fish_object = Instantiate(this.GetComponent<fishing_script>().fish[randomIndex], spawn_pos, Quaternion.identity);
-                collision.gameObject.GetComponent<COD>().size -= fish_object.GetComponent<fish_variable_holder>().fish_quality;
-                
+                if (collision.gameObject.GetComponent<COD>().collided_with_wall == false)
+                {
+                    Vector3 spawn_pos = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+                    int randomIndex = Random.Range(0, GetComponent<fishing_script>().fish.Length);
+                    var fish_object = Instantiate(this.GetComponent<fishing_script>().fish[randomIndex], spawn_pos, Quaternion.identity);
+                    collision.gameObject.GetComponent<COD>().size -= fish_object.GetComponent<fish_variable_holder>().fish_quality;
+                    fish_object.GetComponent<heat_seeking_fishles>().home = GameObject.Find("sell guy");
+                }
             }
         }
         else
