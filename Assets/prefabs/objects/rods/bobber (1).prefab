@@ -255,6 +255,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Object_b: {fileID: 0}
+  blacklisted:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!65 &3007730463697766819
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -299,6 +303,8 @@ MonoBehaviour:
   right_clicked_up: 0
   actively_fishing: 0
   won_failed_already: 0
+  object_holder: {fileID: 0}
+  COD: {fileID: 0}
   distance: 0
   enabled_fishing: 0
   velocity: {x: 0, y: 0, z: 0}
@@ -326,13 +332,6 @@ MonoBehaviour:
   direction: 0
   direction_max: 5
   direction_min: -7
-  fishing_time: 0
-  fishing_time_cool: 0
-  reel_able: 0
-  fight_animation: 0
-  loop_time_start: 0
-  blocking: 0
-  attacking: 0
   dist_text: {fileID: 0}
   initial_distance: 100
   percent_distance: 0
@@ -340,10 +339,18 @@ MonoBehaviour:
   rod_animator: {fileID: 0}
   fishing_system: {fileID: 0}
   fish:
-  - {fileID: 4352744995305304399, guid: 039ca76c7f7236c45b22209da4a25fbb, type: 3}
-  - {fileID: 8773006348585286267, guid: 8a230a9bc1c68af44b9d09a191fd6f39, type: 3}
-  - {fileID: 8450721608604625811, guid: 2fd0585376bc1ec46b8cdc876fc61735, type: 3}
+  - {fileID: 1386562341083301453, guid: 9568f3ddb3d69e44bbac028d7cbac54b, type: 3}
+  - {fileID: 2118407236459578664, guid: 6fb26421602dee9468588a0e9bbbeba5, type: 3}
+  - {fileID: 1392038528542621144, guid: 35bdd298a8e30c6408d84f91d683d699, type: 3}
   bobber: {fileID: 1526560815456469809}
+  randomIndex: 0
+  fishing_time: 0
+  fishing_time_cool: 0
+  reel_able: 0
+  fight_animation: 0
+  loop_time_start: 0
+  blocking: 0
+  attacking: 0
   fish_quantity_original: 0
   fish_counted: 0
   fish_removed: 0

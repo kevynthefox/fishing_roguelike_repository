@@ -11,6 +11,8 @@ public class fish_seller_checkout : MonoBehaviour
 
     public GameObject bobber;
 
+    public GameObject object_holder;
+
     public GameObject spawn_area;
 
     //public GameObject absorb_area;
@@ -22,6 +24,12 @@ public class fish_seller_checkout : MonoBehaviour
     public bool collectible;
 
     public float wait;
+
+    public void Awake()
+    {
+        object_holder = GameObject.Find("object_holder_object");
+        bobber = object_holder.GetComponent<object_holder>().bobber;
+    }
 
     private void Start()
     {

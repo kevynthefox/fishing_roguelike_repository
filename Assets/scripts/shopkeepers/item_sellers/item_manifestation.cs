@@ -39,7 +39,7 @@ public class item_manifestation : MonoBehaviour
     public float others_value_divider;
     public float others_value_2;
 
-    public static InventorySystem current;
+    
 
 
     public void Start()

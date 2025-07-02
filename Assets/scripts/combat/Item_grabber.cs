@@ -5,12 +5,17 @@ using UnityEngine;
 public class Item_grabber : MonoBehaviour
 {
     public GameObject Object_b;
+    public List<GameObject> blacklisted;
+
+    public float speed;
 
     public void Update()
     {
         if (Object_b != null)
         {
-            Object_b.transform.position = this.transform.position;
+            //Object_b.transform.position = this.transform.position;
+            speed = Vector3.Distance(this.transform.position, transform.position);
+            Object_b.transform.position = Vector3.MoveTowards(transform.position, this.transform.position, speed * Time.deltaTime);
         }
     }
 
@@ -18,16 +23,28 @@ public class Item_grabber : MonoBehaviour
     {
         if (Input.GetMouseButton(2))
         {
-            if (collision.gameObject.name != "Terrain" || collision.gameObject.name == "ground") //was gonna add in a "|| collision.gameObject.name != "water"" but raising the sea level is funny af
+            
+            //Debug.Log("current blacklist: " + b.name);
+            if (collision.gameObject != blacklisted[0] && collision.gameObject != blacklisted[1] && collision.gameObject != blacklisted[2]) //was gonna make water unable to be done this to, but raising the sea level is funny af
             {
+                //Debug.Log("dragged: " + b.name + " actual: " + collision.gameObject.name);
                 Object_b = collision.gameObject;
             }
-
+            
             if (collision.gameObject.tag == "fish")
             {
                 collision.gameObject.tag = "food_items";
                 //collision.gameObject.GetComponent<heat_seeking_fishles>().home = null;
                 Wavespawner.current.Remove_alive(collision.gameObject);
+            }
+
+            if (collision.gameObject.name == "COD")
+            {
+                Vector3 spawn_pos = new Vector3 (transform.position.x, transform.position.y, transform.position.z);
+                int randomIndex = Random.Range(0, GetComponent<fishing_script>().fish.Length);
+                var fish_object = Instantiate(this.GetComponent<fishing_script>().fish[randomIndex], spawn_pos, Quaternion.identity);
+                collision.gameObject.GetComponent<COD>().size -= fish_object.GetComponent<fish_variable_holder>().fish_quality;
+                
             }
         }
         else

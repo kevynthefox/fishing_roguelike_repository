@@ -9,6 +9,9 @@ using UnityEngine.UI;
 
 public class fishing_script : MonoBehaviour
 {
+    
+    
+
     [Header("fishing_script variables")]
     public bool string_on;
     public bool bobber_on;
@@ -24,6 +27,10 @@ public class fishing_script : MonoBehaviour
     public bool actively_fishing;
 
     public bool won_failed_already;
+
+    public GameObject object_holder;
+
+    public GameObject COD;
 
     [Header("string variables")]
     public float distance;
@@ -97,6 +104,8 @@ public class fishing_script : MonoBehaviour
     public GameObject[] fish;
     public GameObject bobber;
 
+    public int randomIndex;
+
     [Header("fishing_rod_movement variables")]
     
     
@@ -137,7 +146,11 @@ public class fishing_script : MonoBehaviour
 
     public GameObject fish_spawner;
 
-
+    public void Awake()
+    {
+        object_holder = GameObject.Find("object_holder_object");
+        bobber = object_holder.GetComponent<object_holder>().bobber;
+    }
 
     void Start()
     {
@@ -753,7 +766,7 @@ public class fishing_script : MonoBehaviour
     {
         if (bobber_on == true)
         {
-            int randomIndex = Random.Range(0, fish.Length);
+            randomIndex = Random.Range(0, fish.Length);
             Vector3 SpawnPosition = new Vector3(transform.position.x, transform.position.y, transform.position.z);
 
 
@@ -768,6 +781,7 @@ public class fishing_script : MonoBehaviour
                 if (fish_quantity <= 0)
                 {
                     Debug.Log("out of fish");
+                    //COD.GetComponent<COD>().size += fish_counted;
                     fish_all_spawned = true;
                 }
                 else
@@ -781,11 +795,13 @@ public class fishing_script : MonoBehaviour
 
                     //transform.position = SpawnPosition_2;
 
+
                     var fish_object = Instantiate(fish[randomIndex], SpawnPosition_3, Quaternion.identity);
 
                     fish_object.GetComponent<heat_seeking_fishles>().home = GameObject.Find("sell guy");
 
                     fish_counted += 1;
+                    
                     //wave_spawner.GetComponent<Wavespawner>().dead_fish.Add(fish_object.GetComponent<fish_variable_holder>().fish_type);
                     Wavespawner.current.Add_dead(fish_object.GetComponent<fish_variable_holder>().fish_type.GetComponent<fish_variable_holder>().fish_type);
                     Wavespawner.current.fish_total = fish_counted;

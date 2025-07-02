@@ -4623,6 +4623,8 @@ MonoBehaviour:
   right_clicked_up: 0
   actively_fishing: 0
   won_failed_already: 0
+  object_holder: {fileID: 0}
+  COD: {fileID: 0}
   distance: 0
   enabled_fishing: 0
   velocity: {x: 0, y: 0, z: 0}
@@ -4658,6 +4660,7 @@ MonoBehaviour:
   fishing_system: {fileID: 0}
   fish: []
   bobber: {fileID: 0}
+  randomIndex: 0
   fishing_time: 0
   fishing_time_cool: 0
   reel_able: 0
@@ -4764,6 +4767,8 @@ MonoBehaviour:
   right_clicked_up: 0
   actively_fishing: 0
   won_failed_already: 0
+  object_holder: {fileID: 0}
+  COD: {fileID: 0}
   distance: 0
   enabled_fishing: 0
   velocity: {x: 0, y: 0, z: 0}
@@ -4799,6 +4804,7 @@ MonoBehaviour:
   fishing_system: {fileID: 0}
   fish: []
   bobber: {fileID: 0}
+  randomIndex: 0
   fishing_time: 0
   fishing_time_cool: 0
   reel_able: 0
@@ -4894,6 +4900,8 @@ MonoBehaviour:
   right_clicked_up: 0
   actively_fishing: 0
   won_failed_already: 0
+  object_holder: {fileID: 0}
+  COD: {fileID: 0}
   distance: 0
   enabled_fishing: 0
   velocity: {x: 0, y: 0, z: 0}
@@ -4929,6 +4937,7 @@ MonoBehaviour:
   fishing_system: {fileID: 0}
   fish: []
   bobber: {fileID: 0}
+  randomIndex: 0
   fishing_time: 0
   fishing_time_cool: 0
   reel_able: 0
@@ -5050,6 +5059,8 @@ MonoBehaviour:
   right_clicked_up: 0
   actively_fishing: 0
   won_failed_already: 0
+  object_holder: {fileID: 0}
+  COD: {fileID: 0}
   distance: 0
   enabled_fishing: 0
   velocity: {x: 0, y: 0, z: 0}
@@ -5085,6 +5096,7 @@ MonoBehaviour:
   fishing_system: {fileID: 0}
   fish: []
   bobber: {fileID: 0}
+  randomIndex: 0
   fishing_time: 0
   fishing_time_cool: 0
   reel_able: 0
@@ -5231,6 +5243,8 @@ MonoBehaviour:
   right_clicked_up: 0
   actively_fishing: 0
   won_failed_already: 0
+  object_holder: {fileID: 0}
+  COD: {fileID: 0}
   distance: 0
   enabled_fishing: 0
   velocity: {x: 0, y: 0, z: 0}
@@ -5266,6 +5280,7 @@ MonoBehaviour:
   fishing_system: {fileID: 0}
   fish: []
   bobber: {fileID: 0}
+  randomIndex: 0
   fishing_time: 0
   fishing_time_cool: 0
   reel_able: 0
@@ -5351,6 +5366,8 @@ MonoBehaviour:
   right_clicked_up: 0
   actively_fishing: 0
   won_failed_already: 0
+  object_holder: {fileID: 0}
+  COD: {fileID: 0}
   distance: 0
   enabled_fishing: 0
   velocity: {x: 0, y: 0, z: 0}
@@ -5386,6 +5403,7 @@ MonoBehaviour:
   fishing_system: {fileID: 0}
   fish: []
   bobber: {fileID: 0}
+  randomIndex: 0
   fishing_time: 0
   fishing_time_cool: 0
   reel_able: 0
@@ -5481,6 +5499,8 @@ MonoBehaviour:
   right_clicked_up: 0
   actively_fishing: 0
   won_failed_already: 0
+  object_holder: {fileID: 0}
+  COD: {fileID: 0}
   distance: 0
   enabled_fishing: 0
   velocity: {x: 0, y: 0, z: 0}
@@ -5516,6 +5536,7 @@ MonoBehaviour:
   fishing_system: {fileID: 0}
   fish: []
   bobber: {fileID: 0}
+  randomIndex: 0
   fishing_time: 0
   fishing_time_cool: 0
   reel_able: 0
@@ -5601,6 +5622,8 @@ MonoBehaviour:
   right_clicked_up: 0
   actively_fishing: 0
   won_failed_already: 0
+  object_holder: {fileID: 0}
+  COD: {fileID: 0}
   distance: 0
   enabled_fishing: 0
   velocity: {x: 0, y: 0, z: 0}
@@ -5636,6 +5659,7 @@ MonoBehaviour:
   fishing_system: {fileID: 0}
   fish: []
   bobber: {fileID: 0}
+  randomIndex: 0
   fishing_time: 0
   fishing_time_cool: 0
   reel_able: 0
@@ -5811,6 +5835,8 @@ MonoBehaviour:
   right_clicked_up: 0
   actively_fishing: 0
   won_failed_already: 0
+  object_holder: {fileID: 0}
+  COD: {fileID: 0}
   distance: 0
   enabled_fishing: 0
   velocity: {x: 0, y: 0, z: 0}
@@ -5846,6 +5872,7 @@ MonoBehaviour:
   fishing_system: {fileID: 0}
   fish: []
   bobber: {fileID: 0}
+  randomIndex: 0
   fishing_time: 0
   fishing_time_cool: 0
   reel_able: 0

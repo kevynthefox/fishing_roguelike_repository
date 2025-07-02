@@ -9,6 +9,14 @@ public class fish_seller : MonoBehaviour
 
     public GameObject bobber;
 
+    public GameObject object_holder;
+
+    public void Awake()
+    {
+        object_holder = GameObject.Find("object_holder_object");
+        bobber = object_holder.GetComponent<object_holder>().bobber;
+    }
+
     public IEnumerator OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "fish")
