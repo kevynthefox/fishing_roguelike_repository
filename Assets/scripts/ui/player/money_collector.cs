@@ -35,7 +35,7 @@ public class money_collector : MonoBehaviour
     public void Update()
     {
         money.text = ":" + money_value;
-        wait = 1 / bobber.GetComponent<bobber_impact>().fish_quantity_original;
+        wait = 1 / bobber.GetComponent<fishing_script>().fish_quantity_original;
         others_value_2 = money_value / others_value_divider;
 
         self.GetComponent<Transform>().localScale = new Vector3(1f,1f,1f) + new Vector3(others_value_2 / others_value_divider, others_value_2 / others_value_divider, others_value_2);

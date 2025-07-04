@@ -106,7 +106,7 @@ public class fish_seller_checkout : MonoBehaviour
                         //absorb_area.SetActive(false);
                     }
                 }
-                wait = 1 / bobber.GetComponent<bobber_impact>().fish_quantity_original;
+                wait = 1 / bobber.GetComponent<fishing_script>().fish_quantity_original;
                 yield return new WaitForSeconds(wait);
             }
         }

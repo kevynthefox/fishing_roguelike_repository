@@ -26,11 +26,14 @@ public class movement : MonoBehaviour
 
     public Vector3 cameraRelativeMovement;
 
+    public GameObject movement_target;
 
 
     // Start is called before the first frame update
     void Start()
     {
+        movement_target = this.gameObject;
+
         Rb = GetComponent<Rigidbody>();
 
         camera_holder = GameObject.Find("camera system");
@@ -62,7 +65,7 @@ public class movement : MonoBehaviour
         
 	    cameraRelativeMovement = GetComponent<move_relative_to_camera>().cameraRelativeMovement;
         //transform.Translate(cameraRelativeMovement * Time.deltaTime * speed * sprintspeed);
-        transform.Translate(cameraRelativeMovement * Time.deltaTime * speed);
+        movement_target.transform.Translate(cameraRelativeMovement * Time.deltaTime * speed);
     }
 
     private void Update()

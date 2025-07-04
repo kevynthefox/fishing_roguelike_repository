@@ -30,7 +30,7 @@ public class fish_seller : MonoBehaviour
                 money_owed += (other.GetComponent<fish_variable_holder>().fish_quality * other.GetComponent<fish_variable_holder>().fish_quantity);
             }
             Destroy(other.gameObject);
-            yield return new WaitForSeconds(1 / (bobber.GetComponent<bobber_impact>().fish_quantity_original * bobber.GetComponent<bobber_impact>().fish_quantity_original));
+            yield return new WaitForSeconds(1 / (bobber.GetComponent<fishing_script>().fish_quantity_original * bobber.GetComponent<fishing_script>().fish_quantity_original));
         }
         
     }

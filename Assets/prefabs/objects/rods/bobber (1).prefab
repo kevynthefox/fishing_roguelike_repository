@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 8335199459514411616}
   - component: {fileID: 4057074853789559830}
   - component: {fileID: 4666394159460927992}
-  - component: {fileID: 7293609221965439260}
   - component: {fileID: 8080049796473642723}
   - component: {fileID: 1226322734185159758}
   - component: {fileID: 7459851163736890697}
@@ -142,46 +141,6 @@ MonoBehaviour:
   direction_modified: {x: 0, y: 0, z: 0}
   camera_holder: {fileID: 0}
   cam: {fileID: 0}
---- !u!114 &7293609221965439260
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1526560815456469809}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 96abe586281c4484dbf43cb203d7607d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animator: {fileID: 0}
-  fishing_rod_1: {fileID: 0}
-  fishing_system: {fileID: 0}
-  fishing_bar: {fileID: 0}
-  distance_bar: {fileID: 0}
-  bone_master: {fileID: 0}
-  fish:
-  - {fileID: 4352744995305304399, guid: 039ca76c7f7236c45b22209da4a25fbb, type: 3}
-  - {fileID: 8773006348585286267, guid: 8a230a9bc1c68af44b9d09a191fd6f39, type: 3}
-  - {fileID: 8450721608604625811, guid: 2fd0585376bc1ec46b8cdc876fc61735, type: 3}
-  self: {fileID: 1526560815456469809}
-  fishing_time: 0
-  fishing_time_cool: 0
-  returned: 0
-  fish_quantity: 0
-  fish_quantity_original: 10000
-  fish_quality: 0
-  fish_counted: 0
-  fish_removed: 0
-  fish_all_spawned: 0
-  resetting: 0
-  water_already: 0
-  success: 0
-  failure: 0
-  starter: 0
-  spawning_fish: 0
-  already_fishing: {fileID: 0}
-  fish_spawner: {fileID: 0}
 --- !u!59 &8080049796473642723
 HingeJoint:
   m_ObjectHideFlags: 0
@@ -259,6 +218,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  speed: 0
 --- !u!65 &3007730463697766819
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -314,7 +274,7 @@ MonoBehaviour:
   fish_quantity: 1
   fish_quality: 1
   bar_pos: 0.5
-  fish_quantity_max: 2
+  fish_quantity_max: 8
   fish_quality_max: 2
   fish_quantity_min: 1
   fish_quality_min: 1
@@ -351,7 +311,7 @@ MonoBehaviour:
   loop_time_start: 0
   blocking: 0
   attacking: 0
-  fish_quantity_original: 0
+  fish_quantity_original: 10000
   fish_counted: 0
   fish_removed: 0
   fish_all_spawned: 0

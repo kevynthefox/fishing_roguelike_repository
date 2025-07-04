@@ -20,10 +20,12 @@ public class logbook_interaction : MonoBehaviour
         if (book_open == false)
         {
             Cursor.lockState = CursorLockMode.Locked;
+            Time.timeScale = 1;
         }
         else
         {
             Cursor.lockState = CursorLockMode.None;
+            Time.timeScale = 0;
         }
     }
 }

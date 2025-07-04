@@ -11,10 +11,12 @@ GameObject:
   - component: {fileID: 2339939945281364783}
   - component: {fileID: 6441210579520101778}
   - component: {fileID: 7969339430238151601}
-  - component: {fileID: 4271980069623567827}
   - component: {fileID: 7023808024375010778}
   - component: {fileID: 3238445498513951092}
-  m_Layer: 0
+  - component: {fileID: 2073740015575877514}
+  - component: {fileID: 8353237158886895298}
+  - component: {fileID: 7770692716166661309}
+  m_Layer: 9
   m_Name: Bone.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -76,7 +78,7 @@ SpringJoint:
   m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.00000018710222, y: 1.1903188, z: 0.00000023841858}
+  m_ConnectedAnchor: {x: -0.0000007665578, y: 1.1903174, z: 0.00000023841858}
   m_Spring: 100
   m_Damper: 10
   m_MinDistance: 0
@@ -88,25 +90,6 @@ SpringJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!114 &4271980069623567827
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 259240568828154330}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86127358eee6ab841908c22e72f8ae47, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  distance: 0
-  enabled_fishing: 0
-  velocity: {x: 0, y: 0, z: 0}
-  bobber: {fileID: 0}
-  master: {fileID: 0}
-  fishing_bar: {fileID: 0}
-  bobber_returned: 0
 --- !u!114 &7023808024375010778
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -119,12 +102,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03a867a0eefd5614d8ce69eb55d26383, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  home: {fileID: 6619516496852747986}
+  home: {fileID: 383935094737667319}
   master: {fileID: 0}
   factor: 1
   speed: 0
   mode: 0
 --- !u!65 &3238445498513951092
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 259240568828154330}
+  m_Material: {fileID: 13400000, guid: 5a4ac3eed96860640935f836988d20c9, type: 2}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &2073740015575877514
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -139,12 +143,109 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &8353237158886895298
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 259240568828154330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64770cf14d2d75f4e9da39e72455d02b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  string_on: 1
+  bobber_on: 0
+  fishing_rod: {fileID: 0}
+  left_clicked_down: 0
+  right_clicked_down: 0
+  left_clicked_hold: 0
+  right_clicked_hold: 0
+  left_clicked_up: 0
+  right_clicked_up: 0
+  actively_fishing: 0
+  won_failed_already: 0
+  object_holder: {fileID: 0}
+  COD: {fileID: 0}
+  distance: 0
+  enabled_fishing: 0
+  velocity: {x: 0, y: 0, z: 0}
+  bone_master: {fileID: 259240568828154330}
+  fishing_bar: {fileID: 0}
+  bobber_returned: 0
+  fish_quantity: 0
+  fish_quality: 0
+  bar_pos: 0
+  fish_quantity_max: 0
+  fish_quality_max: 0
+  fish_quantity_min: 0
+  fish_quality_min: 0
+  effort: 0
+  resistance: 0
+  stopping_factor: 0
+  area_difficulty: 0
+  quality: {fileID: 0}
+  quantity: {fileID: 0}
+  res: {fileID: 0}
+  res_2: {fileID: 0}
+  eff: {fileID: 0}
+  distance_bar: {fileID: 0}
+  win_state: 0
+  direction: 0
+  direction_max: 0
+  direction_min: 0
+  dist_text: {fileID: 0}
+  initial_distance: 0
+  percent_distance: 0
+  distance_set: 0
+  rod_animator: {fileID: 0}
+  fishing_system: {fileID: 0}
+  fish: []
+  bobber: {fileID: 0}
+  randomIndex: 0
+  fishing_time: 0
+  fishing_time_cool: 0
+  reel_able: 0
+  fight_animation: 0
+  loop_time_start: 0
+  blocking: 0
+  attacking: 0
+  fish_quantity_original: 0
+  fish_counted: 0
+  fish_removed: 0
+  fish_all_spawned: 0
+  resetting: 0
+  water_already: 0
+  starter: 0
+  spawning_fish: 0
+  already_fishing: {fileID: 0}
+  fish_spawner: {fileID: 0}
+--- !u!114 &7770692716166661309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 259240568828154330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdcb9f1c544d90b4498a520ad562bf23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bone: {fileID: 259240568828154330}
+  player: {fileID: 0}
+  factor: 0
+  direction: {x: 0, y: 0, z: 0}
+  direction_modified: {x: 0, y: 0, z: 0}
+  camera_holder: {fileID: 0}
+  cam: {fileID: 0}
 --- !u!1 &383935094737667319
 GameObject:
   m_ObjectHideFlags: 0
@@ -291,7 +392,7 @@ FixedJoint:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 383935094737667319}
   serializedVersion: 1
-  m_ConnectedBody: {fileID: 0}
+  m_ConnectedBody: {fileID: 162738533393665906}
   m_ConnectedArticulationBody: {fileID: 0}
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
@@ -310,10 +411,12 @@ GameObject:
   - component: {fileID: 8781358317054947929}
   - component: {fileID: 9058963749715633856}
   - component: {fileID: 4497180148453738095}
-  - component: {fileID: 6340383469296697494}
   - component: {fileID: 6639063850114114032}
   - component: {fileID: 2254037547807972714}
-  m_Layer: 0
+  - component: {fileID: 3128261075469289102}
+  - component: {fileID: 7736343649565496309}
+  - component: {fileID: 1277221930101411099}
+  m_Layer: 9
   m_Name: Bone.003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -375,7 +478,7 @@ SpringJoint:
   m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.00000058688687, y: 1.5121565, z: 0}
+  m_ConnectedAnchor: {x: -0.0000013204423, y: 1.5121636, z: 0}
   m_Spring: 100
   m_Damper: 10
   m_MinDistance: 0
@@ -387,25 +490,6 @@ SpringJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!114 &6340383469296697494
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1188416235030166116}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86127358eee6ab841908c22e72f8ae47, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  distance: 0
-  enabled_fishing: 0
-  velocity: {x: 0, y: 0, z: 0}
-  bobber: {fileID: 0}
-  master: {fileID: 0}
-  fishing_bar: {fileID: 0}
-  bobber_returned: 0
 --- !u!114 &6639063850114114032
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -418,12 +502,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03a867a0eefd5614d8ce69eb55d26383, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  home: {fileID: 4378975265815427878}
+  home: {fileID: 6619516496852747986}
   master: {fileID: 0}
   factor: 1
   speed: 0
   mode: 0
 --- !u!65 &2254037547807972714
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1188416235030166116}
+  m_Material: {fileID: 13400000, guid: 5a4ac3eed96860640935f836988d20c9, type: 2}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &3128261075469289102
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -438,12 +543,109 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7736343649565496309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1188416235030166116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64770cf14d2d75f4e9da39e72455d02b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  string_on: 1
+  bobber_on: 0
+  fishing_rod: {fileID: 0}
+  left_clicked_down: 0
+  right_clicked_down: 0
+  left_clicked_hold: 0
+  right_clicked_hold: 0
+  left_clicked_up: 0
+  right_clicked_up: 0
+  actively_fishing: 0
+  won_failed_already: 0
+  object_holder: {fileID: 0}
+  COD: {fileID: 0}
+  distance: 0
+  enabled_fishing: 0
+  velocity: {x: 0, y: 0, z: 0}
+  bone_master: {fileID: 259240568828154330}
+  fishing_bar: {fileID: 0}
+  bobber_returned: 0
+  fish_quantity: 0
+  fish_quality: 0
+  bar_pos: 0
+  fish_quantity_max: 0
+  fish_quality_max: 0
+  fish_quantity_min: 0
+  fish_quality_min: 0
+  effort: 0
+  resistance: 0
+  stopping_factor: 0
+  area_difficulty: 0
+  quality: {fileID: 0}
+  quantity: {fileID: 0}
+  res: {fileID: 0}
+  res_2: {fileID: 0}
+  eff: {fileID: 0}
+  distance_bar: {fileID: 0}
+  win_state: 0
+  direction: 0
+  direction_max: 0
+  direction_min: 0
+  dist_text: {fileID: 0}
+  initial_distance: 0
+  percent_distance: 0
+  distance_set: 0
+  rod_animator: {fileID: 0}
+  fishing_system: {fileID: 0}
+  fish: []
+  bobber: {fileID: 0}
+  randomIndex: 0
+  fishing_time: 0
+  fishing_time_cool: 0
+  reel_able: 0
+  fight_animation: 0
+  loop_time_start: 0
+  blocking: 0
+  attacking: 0
+  fish_quantity_original: 0
+  fish_counted: 0
+  fish_removed: 0
+  fish_all_spawned: 0
+  resetting: 0
+  water_already: 0
+  starter: 0
+  spawning_fish: 0
+  already_fishing: {fileID: 0}
+  fish_spawner: {fileID: 0}
+--- !u!114 &1277221930101411099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1188416235030166116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdcb9f1c544d90b4498a520ad562bf23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bone: {fileID: 259240568828154330}
+  player: {fileID: 0}
+  factor: 0
+  direction: {x: 0, y: 0, z: 0}
+  direction_modified: {x: 0, y: 0, z: 0}
+  camera_holder: {fileID: 0}
+  cam: {fileID: 0}
 --- !u!1 &1372670208295128379
 GameObject:
   m_ObjectHideFlags: 0
@@ -455,10 +657,13 @@ GameObject:
   - component: {fileID: 3837928605880998990}
   - component: {fileID: 7782384711221724551}
   - component: {fileID: 6952800022569147965}
-  - component: {fileID: 5975893719459699644}
   - component: {fileID: 1252877035564451617}
   - component: {fileID: 5954968451090940561}
-  m_Layer: 0
+  - component: {fileID: 6816642936148692571}
+  - component: {fileID: 8049801103274867072}
+  - component: {fileID: 4255976972303120110}
+  - component: {fileID: 912262952114264254}
+  m_Layer: 9
   m_Name: Bone.009
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -520,7 +725,7 @@ SpringJoint:
   m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.00000036729466, y: 0.7251029, z: 0}
+  m_ConnectedAnchor: {x: 0.0000013210106, y: 0.7251048, z: 0}
   m_Spring: 100
   m_Damper: 10
   m_MinDistance: 0
@@ -532,25 +737,6 @@ SpringJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!114 &5975893719459699644
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1372670208295128379}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86127358eee6ab841908c22e72f8ae47, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  distance: 0
-  enabled_fishing: 0
-  velocity: {x: 0, y: 0, z: 0}
-  bobber: {fileID: 0}
-  master: {fileID: 0}
-  fishing_bar: {fileID: 0}
-  bobber_returned: 0
 --- !u!114 &1252877035564451617
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -563,12 +749,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03a867a0eefd5614d8ce69eb55d26383, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  home: {fileID: 2138762130965123478}
+  home: {fileID: 4068365118850721694}
   master: {fileID: 0}
   factor: 1
   speed: 0
   mode: 0
 --- !u!65 &5954968451090940561
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1372670208295128379}
+  m_Material: {fileID: 13400000, guid: 5a4ac3eed96860640935f836988d20c9, type: 2}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &6816642936148692571
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -583,12 +790,133 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!145 &8049801103274867072
+SpringJoint:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1372670208295128379}
+  serializedVersion: 4
+  m_ConnectedBody: {fileID: 6955043874016828650}
+  m_ConnectedArticulationBody: {fileID: 0}
+  m_Anchor: {x: 0, y: 0, z: 0}
+  m_AutoConfigureConnectedAnchor: 1
+  m_ConnectedAnchor: {x: 0.2312672, y: -0.14030908, z: -1.7323915}
+  m_Spring: 10
+  m_Damper: 0.2
+  m_MinDistance: 0
+  m_MaxDistance: 0
+  m_Tolerance: 0.025
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_EnableCollision: 0
+  m_EnablePreprocessing: 1
+  m_MassScale: 1
+  m_ConnectedMassScale: 1
+--- !u!114 &4255976972303120110
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1372670208295128379}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64770cf14d2d75f4e9da39e72455d02b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  string_on: 1
+  bobber_on: 0
+  fishing_rod: {fileID: 0}
+  left_clicked_down: 0
+  right_clicked_down: 0
+  left_clicked_hold: 0
+  right_clicked_hold: 0
+  left_clicked_up: 0
+  right_clicked_up: 0
+  actively_fishing: 0
+  won_failed_already: 0
+  object_holder: {fileID: 0}
+  COD: {fileID: 0}
+  distance: 0
+  enabled_fishing: 0
+  velocity: {x: 0, y: 0, z: 0}
+  bone_master: {fileID: 259240568828154330}
+  fishing_bar: {fileID: 0}
+  bobber_returned: 0
+  fish_quantity: 0
+  fish_quality: 0
+  bar_pos: 0
+  fish_quantity_max: 0
+  fish_quality_max: 0
+  fish_quantity_min: 0
+  fish_quality_min: 0
+  effort: 0
+  resistance: 0
+  stopping_factor: 0
+  area_difficulty: 0
+  quality: {fileID: 0}
+  quantity: {fileID: 0}
+  res: {fileID: 0}
+  res_2: {fileID: 0}
+  eff: {fileID: 0}
+  distance_bar: {fileID: 0}
+  win_state: 0
+  direction: 0
+  direction_max: 0
+  direction_min: 0
+  dist_text: {fileID: 0}
+  initial_distance: 0
+  percent_distance: 0
+  distance_set: 0
+  rod_animator: {fileID: 0}
+  fishing_system: {fileID: 0}
+  fish: []
+  bobber: {fileID: 0}
+  randomIndex: 0
+  fishing_time: 0
+  fishing_time_cool: 0
+  reel_able: 0
+  fight_animation: 0
+  loop_time_start: 0
+  blocking: 0
+  attacking: 0
+  fish_quantity_original: 0
+  fish_counted: 0
+  fish_removed: 0
+  fish_all_spawned: 0
+  resetting: 0
+  water_already: 0
+  starter: 0
+  spawning_fish: 0
+  already_fishing: {fileID: 0}
+  fish_spawner: {fileID: 0}
+--- !u!114 &912262952114264254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1372670208295128379}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdcb9f1c544d90b4498a520ad562bf23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bone: {fileID: 259240568828154330}
+  player: {fileID: 0}
+  factor: 0
+  direction: {x: 0, y: 0, z: 0}
+  direction_modified: {x: 0, y: 0, z: 0}
+  camera_holder: {fileID: 0}
+  cam: {fileID: 0}
 --- !u!1 &1893754047151413447
 GameObject:
   m_ObjectHideFlags: 0
@@ -601,9 +929,10 @@ GameObject:
   - component: {fileID: 5856714027380161967}
   - component: {fileID: 1738663237051779123}
   - component: {fileID: 8970102802277665052}
-  m_Layer: 0
+  - component: {fileID: 162738533393665906}
+  m_Layer: 6
   m_Name: pole top
-  m_TagString: Untagged
+  m_TagString: fishing_rod
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -699,6 +1028,33 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -7778592943751105141, guid: e313e585f2191ae4ebe8b7c66d771439, type: 3}
+--- !u!54 &162738533393665906
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1893754047151413447}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &2138762130965123478
 GameObject:
   m_ObjectHideFlags: 0
@@ -711,8 +1067,6 @@ GameObject:
   - component: {fileID: 2935972177750812867}
   - component: {fileID: 4329835924641011843}
   - component: {fileID: 7082345741801092375}
-  - component: {fileID: 3297940395636441514}
-  - component: {fileID: 2479993757911800121}
   m_Layer: 3
   m_Name: home_points(9)
   m_TagString: Untagged
@@ -810,49 +1164,6 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 7258199618201977751, guid: e313e585f2191ae4ebe8b7c66d771439, type: 3}
---- !u!54 &3297940395636441514
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2138762130965123478}
-  serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!138 &2479993757911800121
-FixedJoint:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2138762130965123478}
-  serializedVersion: 1
-  m_ConnectedBody: {fileID: 0}
-  m_ConnectedArticulationBody: {fileID: 0}
-  m_BreakForce: Infinity
-  m_BreakTorque: Infinity
-  m_EnableCollision: 0
-  m_EnablePreprocessing: 1
-  m_MassScale: 1
-  m_ConnectedMassScale: 1
 --- !u!1 &2306417926435356915
 GameObject:
   m_ObjectHideFlags: 0
@@ -864,10 +1175,12 @@ GameObject:
   - component: {fileID: 7448915382904860013}
   - component: {fileID: 3393991643235184162}
   - component: {fileID: 6529209555722883184}
-  - component: {fileID: 3753727891038992846}
   - component: {fileID: 4698556487587043645}
   - component: {fileID: 3855973457244761088}
-  m_Layer: 0
+  - component: {fileID: 1209979073506865305}
+  - component: {fileID: 2537823428997487071}
+  - component: {fileID: 3579433808490763777}
+  m_Layer: 9
   m_Name: Bone.004
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -929,7 +1242,7 @@ SpringJoint:
   m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.00000030948468, y: 1.329724, z: -2.1990209e-21}
+  m_ConnectedAnchor: {x: 0.000002693691, y: 1.3297268, z: 0.00000047683716}
   m_Spring: 100
   m_Damper: 10
   m_MinDistance: 0
@@ -941,25 +1254,6 @@ SpringJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!114 &3753727891038992846
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2306417926435356915}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86127358eee6ab841908c22e72f8ae47, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  distance: 0
-  enabled_fishing: 0
-  velocity: {x: 0, y: 0, z: 0}
-  bobber: {fileID: 0}
-  master: {fileID: 0}
-  fishing_bar: {fileID: 0}
-  bobber_returned: 0
 --- !u!114 &4698556487587043645
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -972,12 +1266,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03a867a0eefd5614d8ce69eb55d26383, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  home: {fileID: 3098563444325164765}
+  home: {fileID: 4378975265815427878}
   master: {fileID: 0}
   factor: 1
   speed: 0
   mode: 0
 --- !u!65 &3855973457244761088
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2306417926435356915}
+  m_Material: {fileID: 13400000, guid: 5a4ac3eed96860640935f836988d20c9, type: 2}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &1209979073506865305
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -992,12 +1307,109 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2537823428997487071
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2306417926435356915}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64770cf14d2d75f4e9da39e72455d02b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  string_on: 1
+  bobber_on: 0
+  fishing_rod: {fileID: 0}
+  left_clicked_down: 0
+  right_clicked_down: 0
+  left_clicked_hold: 0
+  right_clicked_hold: 0
+  left_clicked_up: 0
+  right_clicked_up: 0
+  actively_fishing: 0
+  won_failed_already: 0
+  object_holder: {fileID: 0}
+  COD: {fileID: 0}
+  distance: 0
+  enabled_fishing: 0
+  velocity: {x: 0, y: 0, z: 0}
+  bone_master: {fileID: 259240568828154330}
+  fishing_bar: {fileID: 0}
+  bobber_returned: 0
+  fish_quantity: 0
+  fish_quality: 0
+  bar_pos: 0
+  fish_quantity_max: 0
+  fish_quality_max: 0
+  fish_quantity_min: 0
+  fish_quality_min: 0
+  effort: 0
+  resistance: 0
+  stopping_factor: 0
+  area_difficulty: 0
+  quality: {fileID: 0}
+  quantity: {fileID: 0}
+  res: {fileID: 0}
+  res_2: {fileID: 0}
+  eff: {fileID: 0}
+  distance_bar: {fileID: 0}
+  win_state: 0
+  direction: 0
+  direction_max: 0
+  direction_min: 0
+  dist_text: {fileID: 0}
+  initial_distance: 0
+  percent_distance: 0
+  distance_set: 0
+  rod_animator: {fileID: 0}
+  fishing_system: {fileID: 0}
+  fish: []
+  bobber: {fileID: 0}
+  randomIndex: 0
+  fishing_time: 0
+  fishing_time_cool: 0
+  reel_able: 0
+  fight_animation: 0
+  loop_time_start: 0
+  blocking: 0
+  attacking: 0
+  fish_quantity_original: 0
+  fish_counted: 0
+  fish_removed: 0
+  fish_all_spawned: 0
+  resetting: 0
+  water_already: 0
+  starter: 0
+  spawning_fish: 0
+  already_fishing: {fileID: 0}
+  fish_spawner: {fileID: 0}
+--- !u!114 &3579433808490763777
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2306417926435356915}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdcb9f1c544d90b4498a520ad562bf23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bone: {fileID: 259240568828154330}
+  player: {fileID: 0}
+  factor: 0
+  direction: {x: 0, y: 0, z: 0}
+  direction_modified: {x: 0, y: 0, z: 0}
+  camera_holder: {fileID: 0}
+  cam: {fileID: 0}
 --- !u!1 &3098563444325164765
 GameObject:
   m_ObjectHideFlags: 0
@@ -1010,8 +1422,6 @@ GameObject:
   - component: {fileID: 3394058892648640612}
   - component: {fileID: 7181296838781543202}
   - component: {fileID: 4730174675541867598}
-  - component: {fileID: 7350394643516640170}
-  - component: {fileID: 1430688202721122222}
   m_Layer: 3
   m_Name: home_points(4)
   m_TagString: Untagged
@@ -1109,49 +1519,6 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 7258199618201977751, guid: e313e585f2191ae4ebe8b7c66d771439, type: 3}
---- !u!54 &7350394643516640170
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3098563444325164765}
-  serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!138 &1430688202721122222
-FixedJoint:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3098563444325164765}
-  serializedVersion: 1
-  m_ConnectedBody: {fileID: 0}
-  m_ConnectedArticulationBody: {fileID: 0}
-  m_BreakForce: Infinity
-  m_BreakTorque: Infinity
-  m_EnableCollision: 0
-  m_EnablePreprocessing: 1
-  m_MassScale: 1
-  m_ConnectedMassScale: 1
 --- !u!1 &3381527689893066298
 GameObject:
   m_ObjectHideFlags: 0
@@ -1309,7 +1676,7 @@ FixedJoint:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3381527689893066298}
   serializedVersion: 1
-  m_ConnectedBody: {fileID: 0}
+  m_ConnectedBody: {fileID: 162738533393665906}
   m_ConnectedArticulationBody: {fileID: 0}
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
@@ -1340,9 +1707,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4105307664551048513}
   - component: {fileID: 4571790155545624728}
-  - component: {fileID: 5204320407062311767}
   - component: {fileID: 4571790155545624729}
-  m_Layer: 0
+  - component: {fileID: 6669188583312539678}
+  m_Layer: 6
   m_Name: fishing_rod_1
   m_TagString: fishing_rod
   m_Icon: {fileID: 0}
@@ -1357,7 +1724,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3725368859737239547}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0.46, y: -0.18099976, z: 1.22}
   m_LocalScale: {x: 0.12228817, y: 0.1222882, z: 0.12228817}
   m_ConstrainProportionsScale: 0
@@ -1366,6 +1733,7 @@ Transform:
   - {fileID: 538649734335454712}
   - {fileID: 5917439552907764000}
   - {fileID: 4565934474298887431}
+  - {fileID: 4555418675589130362}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!54 &4571790155545624728
@@ -1392,33 +1760,9 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 0
   m_IsKinematic: 1
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &5204320407062311767
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3725368859737239547}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 25d1c8b89cf8fdd4dae8c0145a6b0c1b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animator: {fileID: 4571790155545624729}
-  fishing_rod_1: {fileID: 3725368859737239547}
-  bone: {fileID: 259240568828154330}
-  bobber: {fileID: 0}
-  fishing_time: 0
-  fishing_time_cool: 0
-  reel_able: 0
-  fishable: 0
-  fight_animation: 0
-  loop_animation: 0
-  loop_time_start: 0
-  blocking: 0
 --- !u!95 &4571790155545624729
 Animator:
   serializedVersion: 7
@@ -1441,6 +1785,27 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!65 &6669188583312539678
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3725368859737239547}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 6.9853067, y: 22.64, z: 12.000023}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3928647605923234054
 GameObject:
   m_ObjectHideFlags: 0
@@ -1452,10 +1817,12 @@ GameObject:
   - component: {fileID: 5047483336151076880}
   - component: {fileID: 6955043874016828650}
   - component: {fileID: 3327986503898319860}
-  - component: {fileID: 2204336454862730919}
   - component: {fileID: 5252183269409491672}
   - component: {fileID: 5868717348379332396}
-  m_Layer: 0
+  - component: {fileID: 4566639194717369710}
+  - component: {fileID: 2360262923693135580}
+  - component: {fileID: 8642162347613769995}
+  m_Layer: 9
   m_Name: Bone.008
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1517,7 +1884,7 @@ SpringJoint:
   m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.00000051856273, y: 1.5138183, z: 0}
+  m_ConnectedAnchor: {x: 0.0000014722777, y: 1.5138259, z: 0}
   m_Spring: 100
   m_Damper: 10
   m_MinDistance: 0
@@ -1529,25 +1896,6 @@ SpringJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!114 &2204336454862730919
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3928647605923234054}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86127358eee6ab841908c22e72f8ae47, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  distance: 0
-  enabled_fishing: 0
-  velocity: {x: 0, y: 0, z: 0}
-  bobber: {fileID: 0}
-  master: {fileID: 0}
-  fishing_bar: {fileID: 0}
-  bobber_returned: 0
 --- !u!114 &5252183269409491672
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1560,12 +1908,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03a867a0eefd5614d8ce69eb55d26383, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  home: {fileID: 4068365118850721694}
+  home: {fileID: 7116498167935503886}
   master: {fileID: 0}
   factor: 1
   speed: 0
   mode: 0
 --- !u!65 &5868717348379332396
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3928647605923234054}
+  m_Material: {fileID: 13400000, guid: 5a4ac3eed96860640935f836988d20c9, type: 2}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &4566639194717369710
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1580,12 +1949,109 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2360262923693135580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3928647605923234054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64770cf14d2d75f4e9da39e72455d02b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  string_on: 1
+  bobber_on: 0
+  fishing_rod: {fileID: 0}
+  left_clicked_down: 0
+  right_clicked_down: 0
+  left_clicked_hold: 0
+  right_clicked_hold: 0
+  left_clicked_up: 0
+  right_clicked_up: 0
+  actively_fishing: 0
+  won_failed_already: 0
+  object_holder: {fileID: 0}
+  COD: {fileID: 0}
+  distance: 0
+  enabled_fishing: 0
+  velocity: {x: 0, y: 0, z: 0}
+  bone_master: {fileID: 259240568828154330}
+  fishing_bar: {fileID: 0}
+  bobber_returned: 0
+  fish_quantity: 0
+  fish_quality: 0
+  bar_pos: 0
+  fish_quantity_max: 0
+  fish_quality_max: 0
+  fish_quantity_min: 0
+  fish_quality_min: 0
+  effort: 0
+  resistance: 0
+  stopping_factor: 0
+  area_difficulty: 0
+  quality: {fileID: 0}
+  quantity: {fileID: 0}
+  res: {fileID: 0}
+  res_2: {fileID: 0}
+  eff: {fileID: 0}
+  distance_bar: {fileID: 0}
+  win_state: 0
+  direction: 0
+  direction_max: 0
+  direction_min: 0
+  dist_text: {fileID: 0}
+  initial_distance: 0
+  percent_distance: 0
+  distance_set: 0
+  rod_animator: {fileID: 0}
+  fishing_system: {fileID: 0}
+  fish: []
+  bobber: {fileID: 0}
+  randomIndex: 0
+  fishing_time: 0
+  fishing_time_cool: 0
+  reel_able: 0
+  fight_animation: 0
+  loop_time_start: 0
+  blocking: 0
+  attacking: 0
+  fish_quantity_original: 0
+  fish_counted: 0
+  fish_removed: 0
+  fish_all_spawned: 0
+  resetting: 0
+  water_already: 0
+  starter: 0
+  spawning_fish: 0
+  already_fishing: {fileID: 0}
+  fish_spawner: {fileID: 0}
+--- !u!114 &8642162347613769995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3928647605923234054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdcb9f1c544d90b4498a520ad562bf23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bone: {fileID: 259240568828154330}
+  player: {fileID: 0}
+  factor: 0
+  direction: {x: 0, y: 0, z: 0}
+  direction_modified: {x: 0, y: 0, z: 0}
+  camera_holder: {fileID: 0}
+  cam: {fileID: 0}
 --- !u!1 &4068365118850721694
 GameObject:
   m_ObjectHideFlags: 0
@@ -1598,8 +2064,6 @@ GameObject:
   - component: {fileID: 4881827867105566826}
   - component: {fileID: 4133230603140475407}
   - component: {fileID: 906204124051044177}
-  - component: {fileID: 2661865985196505537}
-  - component: {fileID: 3463218917813817070}
   m_Layer: 3
   m_Name: home_points(8)
   m_TagString: Untagged
@@ -1697,49 +2161,6 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 7258199618201977751, guid: e313e585f2191ae4ebe8b7c66d771439, type: 3}
---- !u!54 &2661865985196505537
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4068365118850721694}
-  serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!138 &3463218917813817070
-FixedJoint:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4068365118850721694}
-  serializedVersion: 1
-  m_ConnectedBody: {fileID: 0}
-  m_ConnectedArticulationBody: {fileID: 0}
-  m_BreakForce: Infinity
-  m_BreakTorque: Infinity
-  m_EnableCollision: 0
-  m_EnablePreprocessing: 1
-  m_MassScale: 1
-  m_ConnectedMassScale: 1
 --- !u!1 &4175417186925768351
 GameObject:
   m_ObjectHideFlags: 0
@@ -1751,10 +2172,13 @@ GameObject:
   - component: {fileID: 4611559465249274764}
   - component: {fileID: 2585085342459441689}
   - component: {fileID: 7670368028654679480}
-  - component: {fileID: 8088175537706027264}
   - component: {fileID: 1372605705721862705}
   - component: {fileID: 4088127505899266458}
-  m_Layer: 0
+  - component: {fileID: 7712531063796553834}
+  - component: {fileID: 918005014755524979}
+  - component: {fileID: 6806879614928811614}
+  - component: {fileID: 7184075392397230045}
+  m_Layer: 9
   m_Name: Bone.009_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1815,7 +2239,7 @@ SpringJoint:
   m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.0000007375148, y: 0.72452974, z: 0}
+  m_ConnectedAnchor: {x: 0.00000021618644, y: 0.72453547, z: 0}
   m_Spring: 100
   m_Damper: 10
   m_MinDistance: 0
@@ -1827,25 +2251,6 @@ SpringJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!114 &8088175537706027264
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4175417186925768351}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86127358eee6ab841908c22e72f8ae47, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  distance: 0
-  enabled_fishing: 0
-  velocity: {x: 0, y: 0, z: 0}
-  bobber: {fileID: 0}
-  master: {fileID: 0}
-  fishing_bar: {fileID: 0}
-  bobber_returned: 0
 --- !u!114 &1372605705721862705
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1858,12 +2263,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03a867a0eefd5614d8ce69eb55d26383, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  home: {fileID: 7048750741058712562}
+  home: {fileID: 2138762130965123478}
   master: {fileID: 0}
   factor: 1
   speed: 0
   mode: 0
 --- !u!65 &4088127505899266458
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4175417186925768351}
+  m_Material: {fileID: 13400000, guid: 5a4ac3eed96860640935f836988d20c9, type: 2}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &7712531063796553834
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1878,12 +2304,125 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!138 &918005014755524979
+FixedJoint:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4175417186925768351}
+  serializedVersion: 1
+  m_ConnectedBody: {fileID: 7782384711221724551}
+  m_ConnectedArticulationBody: {fileID: 0}
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_EnableCollision: 0
+  m_EnablePreprocessing: 1
+  m_MassScale: 1
+  m_ConnectedMassScale: 1
+--- !u!114 &6806879614928811614
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4175417186925768351}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64770cf14d2d75f4e9da39e72455d02b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  string_on: 1
+  bobber_on: 0
+  fishing_rod: {fileID: 0}
+  left_clicked_down: 0
+  right_clicked_down: 0
+  left_clicked_hold: 0
+  right_clicked_hold: 0
+  left_clicked_up: 0
+  right_clicked_up: 0
+  actively_fishing: 0
+  won_failed_already: 0
+  object_holder: {fileID: 0}
+  COD: {fileID: 0}
+  distance: 0
+  enabled_fishing: 0
+  velocity: {x: 0, y: 0, z: 0}
+  bone_master: {fileID: 259240568828154330}
+  fishing_bar: {fileID: 0}
+  bobber_returned: 0
+  fish_quantity: 0
+  fish_quality: 0
+  bar_pos: 0
+  fish_quantity_max: 0
+  fish_quality_max: 0
+  fish_quantity_min: 0
+  fish_quality_min: 0
+  effort: 0
+  resistance: 0
+  stopping_factor: 0
+  area_difficulty: 0
+  quality: {fileID: 0}
+  quantity: {fileID: 0}
+  res: {fileID: 0}
+  res_2: {fileID: 0}
+  eff: {fileID: 0}
+  distance_bar: {fileID: 0}
+  win_state: 0
+  direction: 0
+  direction_max: 0
+  direction_min: 0
+  dist_text: {fileID: 0}
+  initial_distance: 0
+  percent_distance: 0
+  distance_set: 0
+  rod_animator: {fileID: 0}
+  fishing_system: {fileID: 0}
+  fish: []
+  bobber: {fileID: 0}
+  randomIndex: 0
+  fishing_time: 0
+  fishing_time_cool: 0
+  reel_able: 0
+  fight_animation: 0
+  loop_time_start: 0
+  blocking: 0
+  attacking: 0
+  fish_quantity_original: 0
+  fish_counted: 0
+  fish_removed: 0
+  fish_all_spawned: 0
+  resetting: 0
+  water_already: 0
+  starter: 0
+  spawning_fish: 0
+  already_fishing: {fileID: 0}
+  fish_spawner: {fileID: 0}
+--- !u!114 &7184075392397230045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4175417186925768351}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdcb9f1c544d90b4498a520ad562bf23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bone: {fileID: 259240568828154330}
+  player: {fileID: 0}
+  factor: 0
+  direction: {x: 0, y: 0, z: 0}
+  direction_modified: {x: 0, y: 0, z: 0}
+  camera_holder: {fileID: 0}
+  cam: {fileID: 0}
 --- !u!1 &4378975265815427878
 GameObject:
   m_ObjectHideFlags: 0
@@ -1896,8 +2435,6 @@ GameObject:
   - component: {fileID: 2404501471341912351}
   - component: {fileID: 8818896719589305420}
   - component: {fileID: 6700054849097733946}
-  - component: {fileID: 7675629468882819397}
-  - component: {fileID: 4015046300394831324}
   m_Layer: 3
   m_Name: home_points(3)
   m_TagString: Untagged
@@ -1995,49 +2532,6 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 7258199618201977751, guid: e313e585f2191ae4ebe8b7c66d771439, type: 3}
---- !u!54 &7675629468882819397
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4378975265815427878}
-  serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!138 &4015046300394831324
-FixedJoint:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4378975265815427878}
-  serializedVersion: 1
-  m_ConnectedBody: {fileID: 0}
-  m_ConnectedArticulationBody: {fileID: 0}
-  m_BreakForce: Infinity
-  m_BreakTorque: Infinity
-  m_EnableCollision: 0
-  m_EnablePreprocessing: 1
-  m_MassScale: 1
-  m_ConnectedMassScale: 1
 --- !u!1 &4531546020936397070
 GameObject:
   m_ObjectHideFlags: 0
@@ -2049,10 +2543,12 @@ GameObject:
   - component: {fileID: 1254899028075354908}
   - component: {fileID: 5324719448515562451}
   - component: {fileID: 7457992684294635301}
-  - component: {fileID: 8037618781300348850}
   - component: {fileID: 3200806710532272321}
   - component: {fileID: 973596407610564058}
-  m_Layer: 0
+  - component: {fileID: 3430844004004081537}
+  - component: {fileID: 1632108801853643029}
+  - component: {fileID: 1216230330321523632}
+  m_Layer: 9
   m_Name: Bone.006
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2114,7 +2610,7 @@ SpringJoint:
   m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.00000017939567, y: 1.4959149, z: 0}
+  m_ConnectedAnchor: {x: 0.0000020867715, y: 1.4959188, z: 0}
   m_Spring: 100
   m_Damper: 10
   m_MinDistance: 0
@@ -2126,25 +2622,6 @@ SpringJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!114 &8037618781300348850
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4531546020936397070}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86127358eee6ab841908c22e72f8ae47, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  distance: 0
-  enabled_fishing: 0
-  velocity: {x: 0, y: 0, z: 0}
-  bobber: {fileID: 0}
-  master: {fileID: 0}
-  fishing_bar: {fileID: 0}
-  bobber_returned: 0
 --- !u!114 &3200806710532272321
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2157,12 +2634,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03a867a0eefd5614d8ce69eb55d26383, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  home: {fileID: 5531610242977244245}
+  home: {fileID: 8297339311263769841}
   master: {fileID: 0}
   factor: 1
   speed: 0
   mode: 0
 --- !u!65 &973596407610564058
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4531546020936397070}
+  m_Material: {fileID: 13400000, guid: 5a4ac3eed96860640935f836988d20c9, type: 2}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &3430844004004081537
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2177,12 +2675,109 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1632108801853643029
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4531546020936397070}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64770cf14d2d75f4e9da39e72455d02b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  string_on: 1
+  bobber_on: 0
+  fishing_rod: {fileID: 0}
+  left_clicked_down: 0
+  right_clicked_down: 0
+  left_clicked_hold: 0
+  right_clicked_hold: 0
+  left_clicked_up: 0
+  right_clicked_up: 0
+  actively_fishing: 0
+  won_failed_already: 0
+  object_holder: {fileID: 0}
+  COD: {fileID: 0}
+  distance: 0
+  enabled_fishing: 0
+  velocity: {x: 0, y: 0, z: 0}
+  bone_master: {fileID: 259240568828154330}
+  fishing_bar: {fileID: 0}
+  bobber_returned: 0
+  fish_quantity: 0
+  fish_quality: 0
+  bar_pos: 0
+  fish_quantity_max: 0
+  fish_quality_max: 0
+  fish_quantity_min: 0
+  fish_quality_min: 0
+  effort: 0
+  resistance: 0
+  stopping_factor: 0
+  area_difficulty: 0
+  quality: {fileID: 0}
+  quantity: {fileID: 0}
+  res: {fileID: 0}
+  res_2: {fileID: 0}
+  eff: {fileID: 0}
+  distance_bar: {fileID: 0}
+  win_state: 0
+  direction: 0
+  direction_max: 0
+  direction_min: 0
+  dist_text: {fileID: 0}
+  initial_distance: 0
+  percent_distance: 0
+  distance_set: 0
+  rod_animator: {fileID: 0}
+  fishing_system: {fileID: 0}
+  fish: []
+  bobber: {fileID: 0}
+  randomIndex: 0
+  fishing_time: 0
+  fishing_time_cool: 0
+  reel_able: 0
+  fight_animation: 0
+  loop_time_start: 0
+  blocking: 0
+  attacking: 0
+  fish_quantity_original: 0
+  fish_counted: 0
+  fish_removed: 0
+  fish_all_spawned: 0
+  resetting: 0
+  water_already: 0
+  starter: 0
+  spawning_fish: 0
+  already_fishing: {fileID: 0}
+  fish_spawner: {fileID: 0}
+--- !u!114 &1216230330321523632
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4531546020936397070}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdcb9f1c544d90b4498a520ad562bf23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bone: {fileID: 259240568828154330}
+  player: {fileID: 0}
+  factor: 0
+  direction: {x: 0, y: 0, z: 0}
+  direction_modified: {x: 0, y: 0, z: 0}
+  camera_holder: {fileID: 0}
+  cam: {fileID: 0}
 --- !u!1 &4838449060039462677
 GameObject:
   m_ObjectHideFlags: 0
@@ -2194,10 +2789,12 @@ GameObject:
   - component: {fileID: 7645770155468215715}
   - component: {fileID: 7621006919219636832}
   - component: {fileID: 3949588688303562543}
-  - component: {fileID: 2197866627227245228}
   - component: {fileID: 3681749885621276712}
   - component: {fileID: 6446303159411268142}
-  m_Layer: 0
+  - component: {fileID: 472642252765288106}
+  - component: {fileID: 8846556921643357981}
+  - component: {fileID: 5795922344061899528}
+  m_Layer: 9
   m_Name: Bone.007
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2259,7 +2856,7 @@ SpringJoint:
   m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.00000011929035, y: 1.431746, z: 8.476089e-22}
+  m_ConnectedAnchor: {x: 0.0000017880855, y: 1.431746, z: -1.2705111e-20}
   m_Spring: 100
   m_Damper: 10
   m_MinDistance: 0
@@ -2271,25 +2868,6 @@ SpringJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!114 &2197866627227245228
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4838449060039462677}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86127358eee6ab841908c22e72f8ae47, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  distance: 0
-  enabled_fishing: 0
-  velocity: {x: 0, y: 0, z: 0}
-  bobber: {fileID: 0}
-  master: {fileID: 0}
-  fishing_bar: {fileID: 0}
-  bobber_returned: 0
 --- !u!114 &3681749885621276712
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2302,12 +2880,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03a867a0eefd5614d8ce69eb55d26383, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  home: {fileID: 7116498167935503886}
+  home: {fileID: 5531610242977244245}
   master: {fileID: 0}
   factor: 1
   speed: 0
   mode: 0
 --- !u!65 &6446303159411268142
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4838449060039462677}
+  m_Material: {fileID: 13400000, guid: 5a4ac3eed96860640935f836988d20c9, type: 2}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &472642252765288106
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2322,12 +2921,109 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &8846556921643357981
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4838449060039462677}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64770cf14d2d75f4e9da39e72455d02b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  string_on: 1
+  bobber_on: 0
+  fishing_rod: {fileID: 0}
+  left_clicked_down: 0
+  right_clicked_down: 0
+  left_clicked_hold: 0
+  right_clicked_hold: 0
+  left_clicked_up: 0
+  right_clicked_up: 0
+  actively_fishing: 0
+  won_failed_already: 0
+  object_holder: {fileID: 0}
+  COD: {fileID: 0}
+  distance: 0
+  enabled_fishing: 0
+  velocity: {x: 0, y: 0, z: 0}
+  bone_master: {fileID: 259240568828154330}
+  fishing_bar: {fileID: 0}
+  bobber_returned: 0
+  fish_quantity: 0
+  fish_quality: 0
+  bar_pos: 0
+  fish_quantity_max: 0
+  fish_quality_max: 0
+  fish_quantity_min: 0
+  fish_quality_min: 0
+  effort: 0
+  resistance: 0
+  stopping_factor: 0
+  area_difficulty: 0
+  quality: {fileID: 0}
+  quantity: {fileID: 0}
+  res: {fileID: 0}
+  res_2: {fileID: 0}
+  eff: {fileID: 0}
+  distance_bar: {fileID: 0}
+  win_state: 0
+  direction: 0
+  direction_max: 0
+  direction_min: 0
+  dist_text: {fileID: 0}
+  initial_distance: 0
+  percent_distance: 0
+  distance_set: 0
+  rod_animator: {fileID: 0}
+  fishing_system: {fileID: 0}
+  fish: []
+  bobber: {fileID: 0}
+  randomIndex: 0
+  fishing_time: 0
+  fishing_time_cool: 0
+  reel_able: 0
+  fight_animation: 0
+  loop_time_start: 0
+  blocking: 0
+  attacking: 0
+  fish_quantity_original: 0
+  fish_counted: 0
+  fish_removed: 0
+  fish_all_spawned: 0
+  resetting: 0
+  water_already: 0
+  starter: 0
+  spawning_fish: 0
+  already_fishing: {fileID: 0}
+  fish_spawner: {fileID: 0}
+--- !u!114 &5795922344061899528
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4838449060039462677}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdcb9f1c544d90b4498a520ad562bf23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bone: {fileID: 259240568828154330}
+  player: {fileID: 0}
+  factor: 0
+  direction: {x: 0, y: 0, z: 0}
+  direction_modified: {x: 0, y: 0, z: 0}
+  camera_holder: {fileID: 0}
+  cam: {fileID: 0}
 --- !u!1 &5531610242977244245
 GameObject:
   m_ObjectHideFlags: 0
@@ -2340,8 +3036,6 @@ GameObject:
   - component: {fileID: 8355773323761977654}
   - component: {fileID: 197318388760502576}
   - component: {fileID: 3120824346131862611}
-  - component: {fileID: 6332961414606551159}
-  - component: {fileID: 3879392804567868374}
   m_Layer: 3
   m_Name: home_points (6)
   m_TagString: Untagged
@@ -2439,49 +3133,6 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 7258199618201977751, guid: e313e585f2191ae4ebe8b7c66d771439, type: 3}
---- !u!54 &6332961414606551159
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5531610242977244245}
-  serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!138 &3879392804567868374
-FixedJoint:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5531610242977244245}
-  serializedVersion: 1
-  m_ConnectedBody: {fileID: 0}
-  m_ConnectedArticulationBody: {fileID: 0}
-  m_BreakForce: Infinity
-  m_BreakTorque: Infinity
-  m_EnableCollision: 0
-  m_EnablePreprocessing: 1
-  m_MassScale: 1
-  m_ConnectedMassScale: 1
 --- !u!1 &6619516496852747986
 GameObject:
   m_ObjectHideFlags: 0
@@ -2494,8 +3145,6 @@ GameObject:
   - component: {fileID: 7590751644464567817}
   - component: {fileID: 7818849203697126086}
   - component: {fileID: 7860211863533695806}
-  - component: {fileID: 886208246784866881}
-  - component: {fileID: 5177690775188354261}
   m_Layer: 3
   m_Name: home_points(2)
   m_TagString: Untagged
@@ -2593,49 +3242,6 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 7258199618201977751, guid: e313e585f2191ae4ebe8b7c66d771439, type: 3}
---- !u!54 &886208246784866881
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6619516496852747986}
-  serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!138 &5177690775188354261
-FixedJoint:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6619516496852747986}
-  serializedVersion: 1
-  m_ConnectedBody: {fileID: 0}
-  m_ConnectedArticulationBody: {fileID: 0}
-  m_BreakForce: Infinity
-  m_BreakTorque: Infinity
-  m_EnableCollision: 0
-  m_EnablePreprocessing: 1
-  m_MassScale: 1
-  m_ConnectedMassScale: 1
 --- !u!1 &6717458602798460668
 GameObject:
   m_ObjectHideFlags: 0
@@ -2648,7 +3254,8 @@ GameObject:
   - component: {fileID: 3216242799177137903}
   - component: {fileID: 4678146341152536763}
   - component: {fileID: 3129405447856202365}
-  m_Layer: 0
+  - component: {fileID: 2466067098336389343}
+  m_Layer: 9
   m_Name: Bone.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2706,16 +3313,16 @@ HingeJoint:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6717458602798460668}
   serializedVersion: 3
-  m_ConnectedBody: {fileID: 417494786930203678}
+  m_ConnectedBody: {fileID: 2440468937450700991}
   m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.00000024370212, y: 0.000000119207535, z: -1.3413287}
+  m_ConnectedAnchor: {x: -1.7053026e-13, y: 0.7099995, z: -0.07133973}
   m_UseSpring: 0
   m_Spring:
-    spring: 0
-    damper: 0
+    spring: 1
+    damper: 1000
     targetPosition: 0
   m_UseMotor: 0
   m_Motor:
@@ -2744,7 +3351,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6717458602798460668}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 5a4ac3eed96860640935f836988d20c9, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -2753,6 +3360,27 @@ BoxCollider:
     m_Bits: 0
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &2466067098336389343
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6717458602798460668}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -2770,8 +3398,6 @@ GameObject:
   - component: {fileID: 4002820432911967769}
   - component: {fileID: 6928786085624608480}
   - component: {fileID: 6913187898729869901}
-  - component: {fileID: 8564579054725325448}
-  - component: {fileID: 3788268404850208270}
   m_Layer: 3
   m_Name: home_points(9) (1)
   m_TagString: Untagged
@@ -2869,49 +3495,6 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 7258199618201977751, guid: e313e585f2191ae4ebe8b7c66d771439, type: 3}
---- !u!54 &8564579054725325448
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7048750741058712562}
-  serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!138 &3788268404850208270
-FixedJoint:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7048750741058712562}
-  serializedVersion: 1
-  m_ConnectedBody: {fileID: 0}
-  m_ConnectedArticulationBody: {fileID: 0}
-  m_BreakForce: Infinity
-  m_BreakTorque: Infinity
-  m_EnableCollision: 0
-  m_EnablePreprocessing: 1
-  m_MassScale: 1
-  m_ConnectedMassScale: 1
 --- !u!1 &7116498167935503886
 GameObject:
   m_ObjectHideFlags: 0
@@ -2924,8 +3507,6 @@ GameObject:
   - component: {fileID: 1555992054360236485}
   - component: {fileID: 6176926818348398873}
   - component: {fileID: 4716607188495001117}
-  - component: {fileID: 2068969344200815510}
-  - component: {fileID: 8888262988566989280}
   m_Layer: 3
   m_Name: home_points(7)
   m_TagString: Untagged
@@ -3023,49 +3604,6 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 7258199618201977751, guid: e313e585f2191ae4ebe8b7c66d771439, type: 3}
---- !u!54 &2068969344200815510
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7116498167935503886}
-  serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!138 &8888262988566989280
-FixedJoint:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7116498167935503886}
-  serializedVersion: 1
-  m_ConnectedBody: {fileID: 0}
-  m_ConnectedArticulationBody: {fileID: 0}
-  m_BreakForce: Infinity
-  m_BreakTorque: Infinity
-  m_EnableCollision: 0
-  m_EnablePreprocessing: 1
-  m_MassScale: 1
-  m_ConnectedMassScale: 1
 --- !u!1 &7599855097222458091
 GameObject:
   m_ObjectHideFlags: 0
@@ -3076,8 +3614,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8842626974451965619}
   - component: {fileID: 2625927879068072105}
-  - component: {fileID: 378819403040344736}
-  m_Layer: 0
+  - component: {fileID: 5418806020952990101}
+  m_Layer: 9
   m_Name: Bone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3127,16 +3665,39 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!138 &378819403040344736
-FixedJoint:
+--- !u!59 &5418806020952990101
+HingeJoint:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7599855097222458091}
-  serializedVersion: 1
+  serializedVersion: 3
   m_ConnectedBody: {fileID: 417494786930203678}
   m_ConnectedArticulationBody: {fileID: 0}
+  m_Anchor: {x: 0, y: 0, z: 0}
+  m_Axis: {x: 1, y: 0, z: 0}
+  m_AutoConfigureConnectedAnchor: 1
+  m_ConnectedAnchor: {x: 0, y: -0.60847867, z: 0.7989059}
+  m_UseSpring: 1
+  m_Spring:
+    spring: 1
+    damper: 1000
+    targetPosition: 0
+  m_UseMotor: 0
+  m_Motor:
+    targetVelocity: 0
+    force: 0
+    freeSpin: 0
+  m_UseLimits: 0
+  m_ExtendedLimits: 0
+  m_UseAcceleration: 0
+  m_Limits:
+    min: 0
+    max: 0
+    bounciness: 0
+    bounceMinVelocity: 0.2
+    contactDistance: 0
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
   m_EnableCollision: 0
@@ -3155,7 +3716,7 @@ GameObject:
   - component: {fileID: 1210575434951220459}
   - component: {fileID: 7076557831293591854}
   - component: {fileID: 4640536500516487231}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: rope_model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3304,8 +3865,6 @@ GameObject:
   - component: {fileID: 3412565128160039313}
   - component: {fileID: 4836861835104585028}
   - component: {fileID: 2614584667453473318}
-  - component: {fileID: 4539047931774461237}
-  - component: {fileID: 7331346483560119339}
   m_Layer: 3
   m_Name: home_points (5)
   m_TagString: Untagged
@@ -3403,49 +3962,6 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 7258199618201977751, guid: e313e585f2191ae4ebe8b7c66d771439, type: 3}
---- !u!54 &4539047931774461237
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8297339311263769841}
-  serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!138 &7331346483560119339
-FixedJoint:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8297339311263769841}
-  serializedVersion: 1
-  m_ConnectedBody: {fileID: 0}
-  m_ConnectedArticulationBody: {fileID: 0}
-  m_BreakForce: Infinity
-  m_BreakTorque: Infinity
-  m_EnableCollision: 0
-  m_EnablePreprocessing: 1
-  m_MassScale: 1
-  m_ConnectedMassScale: 1
 --- !u!1 &8332477634500928947
 GameObject:
   m_ObjectHideFlags: 0
@@ -3457,7 +3973,7 @@ GameObject:
   - component: {fileID: 538649734335454712}
   - component: {fileID: 4424872876420569420}
   - component: {fileID: 3252777309305578619}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: rope
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3473,7 +3989,7 @@ Transform:
   m_GameObject: {fileID: 8332477634500928947}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 9.701083, z: -5.858488}
+  m_LocalPosition: {x: 0, y: 10.5, z: -5.25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3503,7 +4019,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -3540,10 +4056,12 @@ GameObject:
   - component: {fileID: 8746629202131244147}
   - component: {fileID: 1669973485508117430}
   - component: {fileID: 5376001061994138477}
-  - component: {fileID: 6028033362782709366}
   - component: {fileID: 4896812381099720730}
   - component: {fileID: 6203206712677525446}
-  m_Layer: 0
+  - component: {fileID: 7962470709568818434}
+  - component: {fileID: 3933139197083808783}
+  - component: {fileID: 4301756955113784833}
+  m_Layer: 9
   m_Name: Bone.005
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3605,7 +4123,7 @@ SpringJoint:
   m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.0000004621922, y: 1.4133446, z: 0}
+  m_ConnectedAnchor: {x: 0.0000019220086, y: 1.4133399, z: 0}
   m_Spring: 100
   m_Damper: 10
   m_MinDistance: 0
@@ -3617,25 +4135,6 @@ SpringJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!114 &6028033362782709366
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9156075749550192332}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86127358eee6ab841908c22e72f8ae47, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  distance: 0
-  enabled_fishing: 0
-  velocity: {x: 0, y: 0, z: 0}
-  bobber: {fileID: 0}
-  master: {fileID: 0}
-  fishing_bar: {fileID: 0}
-  bobber_returned: 0
 --- !u!114 &4896812381099720730
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3660,7 +4159,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9156075749550192332}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 5a4ac3eed96860640935f836988d20c9, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -3674,3 +4173,227 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &7962470709568818434
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9156075749550192332}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &3933139197083808783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9156075749550192332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64770cf14d2d75f4e9da39e72455d02b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  string_on: 1
+  bobber_on: 0
+  fishing_rod: {fileID: 0}
+  left_clicked_down: 0
+  right_clicked_down: 0
+  left_clicked_hold: 0
+  right_clicked_hold: 0
+  left_clicked_up: 0
+  right_clicked_up: 0
+  actively_fishing: 0
+  won_failed_already: 0
+  object_holder: {fileID: 0}
+  COD: {fileID: 0}
+  distance: 0
+  enabled_fishing: 0
+  velocity: {x: 0, y: 0, z: 0}
+  bone_master: {fileID: 259240568828154330}
+  fishing_bar: {fileID: 0}
+  bobber_returned: 0
+  fish_quantity: 0
+  fish_quality: 0
+  bar_pos: 0
+  fish_quantity_max: 0
+  fish_quality_max: 0
+  fish_quantity_min: 0
+  fish_quality_min: 0
+  effort: 0
+  resistance: 0
+  stopping_factor: 0
+  area_difficulty: 0
+  quality: {fileID: 0}
+  quantity: {fileID: 0}
+  res: {fileID: 0}
+  res_2: {fileID: 0}
+  eff: {fileID: 0}
+  distance_bar: {fileID: 0}
+  win_state: 0
+  direction: 0
+  direction_max: 0
+  direction_min: 0
+  dist_text: {fileID: 0}
+  initial_distance: 0
+  percent_distance: 0
+  distance_set: 0
+  rod_animator: {fileID: 0}
+  fishing_system: {fileID: 0}
+  fish: []
+  bobber: {fileID: 0}
+  randomIndex: 0
+  fishing_time: 0
+  fishing_time_cool: 0
+  reel_able: 0
+  fight_animation: 0
+  loop_time_start: 0
+  blocking: 0
+  attacking: 0
+  fish_quantity_original: 0
+  fish_counted: 0
+  fish_removed: 0
+  fish_all_spawned: 0
+  resetting: 0
+  water_already: 0
+  starter: 0
+  spawning_fish: 0
+  already_fishing: {fileID: 0}
+  fish_spawner: {fileID: 0}
+--- !u!114 &4301756955113784833
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9156075749550192332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdcb9f1c544d90b4498a520ad562bf23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bone: {fileID: 259240568828154330}
+  player: {fileID: 0}
+  factor: 0
+  direction: {x: 0, y: 0, z: 0}
+  direction_modified: {x: 0, y: 0, z: 0}
+  camera_holder: {fileID: 0}
+  cam: {fileID: 0}
+--- !u!1001 &3489188777216243246
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 4105307664551048513}
+    m_Modifications:
+    - target: {fileID: 1104524930733268564, guid: f98563a06440bbd4996432a7254b0c77, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.99003834
+      objectReference: {fileID: 0}
+    - target: {fileID: 1104524930733268564, guid: f98563a06440bbd4996432a7254b0c77, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.99003834
+      objectReference: {fileID: 0}
+    - target: {fileID: 1104524930733268564, guid: f98563a06440bbd4996432a7254b0c77, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.99003834
+      objectReference: {fileID: 0}
+    - target: {fileID: 1104524930733268564, guid: f98563a06440bbd4996432a7254b0c77, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1104524930733268564, guid: f98563a06440bbd4996432a7254b0c77, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.0467092
+      objectReference: {fileID: 0}
+    - target: {fileID: 1104524930733268564, guid: f98563a06440bbd4996432a7254b0c77, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -5.1762953
+      objectReference: {fileID: 0}
+    - target: {fileID: 1104524930733268564, guid: f98563a06440bbd4996432a7254b0c77, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 1104524930733268564, guid: f98563a06440bbd4996432a7254b0c77, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.70710677
+      objectReference: {fileID: 0}
+    - target: {fileID: 1104524930733268564, guid: f98563a06440bbd4996432a7254b0c77, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1104524930733268564, guid: f98563a06440bbd4996432a7254b0c77, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1104524930733268564, guid: f98563a06440bbd4996432a7254b0c77, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1104524930733268564, guid: f98563a06440bbd4996432a7254b0c77, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1104524930733268564, guid: f98563a06440bbd4996432a7254b0c77, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1526560815456469809, guid: f98563a06440bbd4996432a7254b0c77, type: 3}
+      propertyPath: m_Name
+      value: bobber (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1526560815456469809, guid: f98563a06440bbd4996432a7254b0c77, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2770030340324045143, guid: f98563a06440bbd4996432a7254b0c77, type: 3}
+      propertyPath: home
+      value: 
+      objectReference: {fileID: 7048750741058712562}
+    - target: {fileID: 3220851619442043366, guid: f98563a06440bbd4996432a7254b0c77, type: 3}
+      propertyPath: bone_master
+      value: 
+      objectReference: {fileID: 259240568828154330}
+    - target: {fileID: 3220851619442043366, guid: f98563a06440bbd4996432a7254b0c77, type: 3}
+      propertyPath: fishing_rod
+      value: 
+      objectReference: {fileID: 3725368859737239547}
+    - target: {fileID: 3220851619442043366, guid: f98563a06440bbd4996432a7254b0c77, type: 3}
+      propertyPath: rod_animator
+      value: 
+      objectReference: {fileID: 4571790155545624729}
+    - target: {fileID: 4057074853789559830, guid: f98563a06440bbd4996432a7254b0c77, type: 3}
+      propertyPath: m_Interpolate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4666394159460927992, guid: f98563a06440bbd4996432a7254b0c77, type: 3}
+      propertyPath: bone
+      value: 
+      objectReference: {fileID: 4175417186925768351}
+    - target: {fileID: 8080049796473642723, guid: f98563a06440bbd4996432a7254b0c77, type: 3}
+      propertyPath: m_ConnectedBody
+      value: 
+      objectReference: {fileID: 7621006919219636832}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f98563a06440bbd4996432a7254b0c77, type: 3}
+--- !u!4 &4555418675589130362 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1104524930733268564, guid: f98563a06440bbd4996432a7254b0c77, type: 3}
+  m_PrefabInstance: {fileID: 3489188777216243246}
+  m_PrefabAsset: {fileID: 0}
