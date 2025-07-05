@@ -17,9 +17,11 @@ public class camera_controls : MonoBehaviour
     public Transform first_person_target;
     public Transform third_person_target;
 
+    public GameObject player_model;
+
     public bool first_or_third; //false is first, true is third.
 
-    [SerializeField] private CinemachineCamera cam;
+    //[SerializeField] private CinemachineCamera cam;
 
     // Start is called before the first frame update
     void Start()
@@ -43,12 +45,20 @@ public class camera_controls : MonoBehaviour
 	    {
             cam1.enabled = !cam1.enabled;
 		    cam2.enabled = !cam2.enabled;
+            cam2.GetComponent<FreeFlyCamera>().enabled = cam2.enabled;
 
             first_or_third = !first_or_third;
 
             
 
 	    }
+
+        //GetComponent<movement>().enabled = !cam2.enabled;
+        //GetComponent<move_relative_to_camera>().enabled = !cam2.enabled;
+        cam1.GetComponent<camera_rotate>().enabled = !cam2.enabled;
+        player_model.GetComponent<attach_to_object>().enabled = !cam2.enabled;
+        cam2.GetComponent<attach_to_object>().enabled = !cam2.enabled;
+        
 
         /*if (first_or_third == false)
         {

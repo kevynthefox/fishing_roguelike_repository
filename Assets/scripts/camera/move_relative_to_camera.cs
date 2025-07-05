@@ -9,6 +9,8 @@ public class move_relative_to_camera : MonoBehaviour
     public CinemachineCamera Camera;
     public Vector3 cameraRelativeMovement;
 
+    public bool in_boat;
+
     public void Start()
     {
         camera_holder = GameObject.Find("camera system");
@@ -43,7 +45,14 @@ public class move_relative_to_camera : MonoBehaviour
             playerHorizontalInput * cameraRight;
 
         // create camera-relative moevement vector
-         cameraRelativeMovement = (forwardRelativeMovementVector + RightRelativeMovementVector);
+        if (in_boat == true)
+        {
+            cameraRelativeMovement = (forwardRelativeMovementVector);
+        }
+        else
+        {
+            cameraRelativeMovement = (forwardRelativeMovementVector + RightRelativeMovementVector);
+        }
         //transform.Translate(cameraRelativeMovement * Time.deltaTime * speed);
     }
 }

@@ -17,7 +17,7 @@ public class projectile_controller : MonoBehaviour
 
     public void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.name == "water")
+        if (collision.gameObject.tag == "water" || collision.gameObject.tag == "water_off" || collision.gameObject.name == "ground")
         {
             Destroy(this.gameObject);
         }

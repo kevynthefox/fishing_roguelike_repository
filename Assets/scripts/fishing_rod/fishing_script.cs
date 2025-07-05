@@ -161,15 +161,14 @@ public class fishing_script : MonoBehaviour
         if (bobber_on == true)
         {
 
-            resistance = Random.Range(0.1f, area_difficulty);
+            
 
 
 
             quality.text = "quality:" + fish_quality.ToString("0.0") + "     max:" + fish_quality_max + "     min:" + fish_quality_min;
             quantity.text = "quanity:" + fish_quantity.ToString("0.0") + "    max:" + fish_quantity_max + "     min:" + fish_quantity_min;
 
-            res.text = resistance.ToString("0.0");
-            res_2.text = "" + area_difficulty;
+            
             eff.text = "force:" + effort;
 
             direction_max += 1;
@@ -377,7 +376,8 @@ public class fishing_script : MonoBehaviour
             quality.text = "quality:" + fish_quality.ToString("0.0") + "     max:" + fish_quality_max + "     min:" + fish_quality_min;
             quantity.text = "quanity:" + fish_quantity.ToString("0.0") + "    max:" + fish_quantity_max + "     min:" + fish_quantity_min;
 
-            
+            res.text = resistance.ToString("0.0");
+            res_2.text = "" + area_difficulty;
 
             if (resetting == false && enabled_fishing == true && actively_fishing == true)
             {   
@@ -673,6 +673,11 @@ public class fishing_script : MonoBehaviour
                             initial_distance = distance;
 
                             water_already = true;
+
+                            area_difficulty = other.GetComponent<fishing_area_value_holder>().area_difficulty;
+                            fish = other.GetComponent<fishing_area_value_holder>().fish;
+
+                            resistance = Random.Range(0.1f, area_difficulty);
                             //Debug.Log(water_already);
 
                             fish_quantity = 0;

@@ -45,26 +45,12 @@ public class movement : MonoBehaviour
 	void FixedUpdate()
 	{
 
-        horizontalInput = Input.GetAxis("Horizontal");
-		forwardInput = Input.GetAxis("Vertical");
+        //horizontalInput = Input.GetAxis("Horizontal");
+		//forwardInput = Input.GetAxis("Vertical");
 
-		//moves object forward based on veritcal input
-		//transform.Translate(Vector3.left * Time.deltaTime * speed * sprintspeed * forwardInput);
-
-		//rotates the object based on horizontal input
-		//transform.Translate(Vector3.forward * Time.deltaTime* speed * sprintspeed *horizontalInput );
 		
-		//MovePlayerRelativeToCamera();
-
-		//Quaternion rotation = Quaternion.Euler(0,Camera.main.transform.rotation.eulerAngles.y,0);
-		//Vector3 moveDirection = (rotation*Input).normalized;
-
-		//transform.rotation  = Camera.transform.rotation;
-
-		//jump controls
-        
 	    cameraRelativeMovement = GetComponent<move_relative_to_camera>().cameraRelativeMovement;
-        //transform.Translate(cameraRelativeMovement * Time.deltaTime * speed * sprintspeed);
+        
         movement_target.transform.Translate(cameraRelativeMovement * Time.deltaTime * speed);
     }
 
@@ -80,52 +66,10 @@ public class movement : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         isOnGround = true;
-        //Debug.Log("collision: " + collision.gameObject.name);
-
-        if (collision.gameObject.name != "pier")
-        {
-            //Debug.Log(collision.gameObject.name);
-        }
+       
     }
 
-    /*
-        public void MovePlayerRelativeToCamera()
-        {
-            // get player input
-            float playerVerticalInput =
-                Input.GetAxis("Vertical");
-            float playerHorizontalInput =
-                Input.GetAxis("Horizontal");
-
-            // get camera vectors
-            Vector3 cameraForward = 
-                Camera.main.transform.forward;
-            Vector3 cameraRight = 
-                Camera.main.transform.right;
-
-            // remove y and normalize
-            cameraForward.y = 0;
-            cameraRight.y = 0;
-            cameraForward = cameraForward.normalized;
-            cameraRight = cameraRight.normalized;
-
-            // rotate the input vectors
-            Vector3 forwardRelativeMovementVector =
-                playerVerticalInput * cameraForward;
-            Vector3 RightRelativeMovementVector =
-                playerHorizontalInput * cameraRight;
-
-            // create camera-relative moevement vector
-            Vector3 cameraRelativeMovement =
-                forwardRelativeMovementVector +
-                RightRelativeMovementVector;
-
-            // move in world space
-
-
-
-        }
-        */
+    
 
     public IEnumerator OnTriggerEnter(Collider other)
     {

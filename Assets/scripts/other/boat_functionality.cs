@@ -3,6 +3,7 @@ using Unity.Cinemachine;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.UIElements;
+using System;
 
 public class boat_functionality : MonoBehaviour
 {
@@ -35,10 +36,42 @@ public class boat_functionality : MonoBehaviour
         
     }
 
+    public void FixedUpdate()
+    {
+        if (boat_yes == true)
+        {
+            var forcedirection = Vector3.forward;
+            var steer = 0;
+            var move = 0;
+            if (Input.GetKey(KeyCode.A))
+            {
+                steer = -1;
+            }
+
+            if (Input.GetKey(KeyCode.D))
+            {
+                steer = +1;
+            }
+
+            if (Input.GetKey(KeyCode.S))
+            {
+                move = -1;
+            }
+
+            if (Input.GetKey(KeyCode.W))
+            {
+                move = +1;
+            }
+            transform.Rotate(0, steer, 0);
+            transform.Translate(forcedirection * move * boat_speed * Time.deltaTime);
+        }
+    }
+
     public void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.name == "player")
         {
+            player_speed = other.GetComponent<movement>().speed;
         }
     }
 
@@ -53,9 +86,12 @@ public class boat_functionality : MonoBehaviour
             Debug.Log("player exited");
 
             other.GetComponent<movement>().movement_target = other.gameObject;
-            other.GetComponent<movement>().speed = player_speed;
+            //other.GetComponent<movement>().speed = player_speed;
 
-           
+            GetComponent<move_relative_to_camera>().in_boat = boat_yes;
+
+            other.GetComponent<movement>().enabled = !boat_yes;
+            //GetComponent<movement>().enabled = boat_yes;
             other.transform.SetParent(null, true);
         }
     }
@@ -64,9 +100,9 @@ public class boat_functionality : MonoBehaviour
     {
         if (other.gameObject.name == "player")
         {
-            
-            
-            
+
+            GetComponent<move_relative_to_camera>().in_boat = boat_yes;
+            other.GetComponent<movement>().enabled = !boat_yes;
 
             if (Input.GetKey(KeyCode.Tab))
             {
@@ -75,14 +111,15 @@ public class boat_functionality : MonoBehaviour
 
             if (boat_yes == true)
             {
-
+                
 
                 Debug.Log("player entered");
 
-                other.GetComponent<movement>().movement_target = this.gameObject;
-                player_speed = other.GetComponent<movement>().speed;
-                other.GetComponent<movement>().speed = boat_speed;
+                //other.GetComponent<movement>().movement_target = this.gameObject;
 
+                //other.GetComponent<movement>().speed = boat_speed;
+                
+                //GetComponent<movement>().enabled = boat_yes;
                 
 
                 other.transform.SetParent(this.transform, true);
@@ -90,19 +127,7 @@ public class boat_functionality : MonoBehaviour
                 
 
 
-                var forcedirection = Vector3.forward;
-                var steer = 0;
                 
-                if (Input.GetKey(KeyCode.A))
-                {
-                    steer = -1;
-                }
-
-                if (Input.GetKey(KeyCode.D))
-                {
-                    steer = +1;
-                }
-                transform.Rotate(0, steer, 0);
             }
             else
             {
@@ -111,8 +136,8 @@ public class boat_functionality : MonoBehaviour
                 //other.transform.localScale = Vector3.one;
                 Debug.Log("player not in boat");
 
-                other.GetComponent<movement>().movement_target = other.gameObject;
-                other.GetComponent<movement>().speed = player_speed;
+                //other.GetComponent<movement>().movement_target = other.gameObject;
+                //other.GetComponent<movement>().speed = player_speed;
 
                 
                 other.transform.SetParent(null, true);
@@ -123,3 +148,5 @@ public class boat_functionality : MonoBehaviour
     }
 
 }
+
+

@@ -16,6 +16,7 @@ TagManager:
   - food_items
   - super_food_items
   - projectile
+  - water_off
   layers:
   - Default
   - TransparentFX

@@ -72,21 +72,26 @@ public class Wavespawner : MonoBehaviour
         {
 
             sell_guy.SetActive(false);
-            
-            if (water.tag != "Untagged" && fish_have_been_alive == true)
+
+            if (fish_have_been_alive == true)
             {
-                water.tag = "Untagged";
+                foreach (GameObject wat in GameObject.FindGameObjectsWithTag("water"))
+                {
+                    wat.tag = "water_off";
+                }
             }
         }
         else
         {
             sell_guy.SetActive(true);
             //Debug.Log("no more fish alive");
-            if (water.tag != "water")
+            
+            foreach (GameObject wat in GameObject.FindGameObjectsWithTag("water"))
             {
-                water.tag = "water";
+                wat.tag = "water";
                 fish_have_been_alive = false;
             }
+            
         }
     }
 

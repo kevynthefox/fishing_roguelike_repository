@@ -25,7 +25,7 @@ public class Item_grabber : MonoBehaviour
         {
             
             //Debug.Log("current blacklist: " + b.name);
-            if (collision.gameObject != blacklisted[0] && collision.gameObject != blacklisted[1] && collision.gameObject != blacklisted[2]) //was gonna make water unable to be done this to, but raising the sea level is funny af
+            if (collision.gameObject != blacklisted[0] && collision.gameObject != blacklisted[1] && collision.gameObject != blacklisted[2] && collision.gameObject.tag != "water" && collision.gameObject.tag != "water_off")
             {
                 //Debug.Log("dragged: " + b.name + " actual: " + collision.gameObject.name);
                 Object_b = collision.gameObject;
