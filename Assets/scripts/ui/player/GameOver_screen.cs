@@ -10,30 +10,14 @@ using UnityEngine.UI;
 public class GameOver_screen : MonoBehaviour
 {
 
-    public GameObject player;
-    public GameObject respawn_point;
-    
-    public GameObject hunger;
-    public GameObject stamina;
-    private float hunger_val;
-    private float hunger_val_max;
-    
-    public void Start()
+    public void restart()
     {
-        hunger = GameObject.Find("HungerBar");
-        stamina = GameObject.Find("StaminaBar");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
-    public void RestartButton()
+    public void main_menu()
     {
+        SceneManager.LoadScene("main_menu",LoadSceneMode.Single);
+    }
 
-        player.transform.position = respawn_point.transform.position;
-        hunger.GetComponent<Hunger_display>().hunger = hunger.GetComponent<Hunger_display>().hunger_max;
-        stamina.GetComponent<Stamina_display>().stamina = stamina.GetComponent<Stamina_display>().stamina_max;
-        
-    }
-    public void exitButton()
-    {
-    //    SceneManager.LoadScene("MainMenu");
-    }
 }

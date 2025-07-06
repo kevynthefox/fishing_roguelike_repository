@@ -163,6 +163,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   string_on: 1
   bobber_on: 0
+  rod_on: 0
   fishing_rod: {fileID: 0}
   left_clicked_down: 0
   right_clicked_down: 0
@@ -174,6 +175,7 @@ MonoBehaviour:
   won_failed_already: 0
   object_holder: {fileID: 0}
   COD: {fileID: 0}
+  consecutive_wins: 0
   distance: 0
   enabled_fishing: 0
   velocity: {x: 0, y: 0, z: 0}
@@ -563,6 +565,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   string_on: 1
   bobber_on: 0
+  rod_on: 0
   fishing_rod: {fileID: 0}
   left_clicked_down: 0
   right_clicked_down: 0
@@ -574,6 +577,7 @@ MonoBehaviour:
   won_failed_already: 0
   object_holder: {fileID: 0}
   COD: {fileID: 0}
+  consecutive_wins: 0
   distance: 0
   enabled_fishing: 0
   velocity: {x: 0, y: 0, z: 0}
@@ -834,6 +838,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   string_on: 1
   bobber_on: 0
+  rod_on: 0
   fishing_rod: {fileID: 0}
   left_clicked_down: 0
   right_clicked_down: 0
@@ -845,6 +850,7 @@ MonoBehaviour:
   won_failed_already: 0
   object_holder: {fileID: 0}
   COD: {fileID: 0}
+  consecutive_wins: 0
   distance: 0
   enabled_fishing: 0
   velocity: {x: 0, y: 0, z: 0}
@@ -1327,6 +1333,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   string_on: 1
   bobber_on: 0
+  rod_on: 0
   fishing_rod: {fileID: 0}
   left_clicked_down: 0
   right_clicked_down: 0
@@ -1338,6 +1345,7 @@ MonoBehaviour:
   won_failed_already: 0
   object_holder: {fileID: 0}
   COD: {fileID: 0}
+  consecutive_wins: 0
   distance: 0
   enabled_fishing: 0
   velocity: {x: 0, y: 0, z: 0}
@@ -1709,6 +1717,7 @@ GameObject:
   - component: {fileID: 4571790155545624728}
   - component: {fileID: 4571790155545624729}
   - component: {fileID: 6669188583312539678}
+  - component: {fileID: 524056874711674526}
   m_Layer: 6
   m_Name: fishing_rod_1
   m_TagString: fishing_rod
@@ -1806,6 +1815,86 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 6.9853067, y: 22.64, z: 12.000023}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &524056874711674526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3725368859737239547}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64770cf14d2d75f4e9da39e72455d02b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  string_on: 0
+  bobber_on: 0
+  rod_on: 1
+  fishing_rod: {fileID: 0}
+  left_clicked_down: 0
+  right_clicked_down: 0
+  left_clicked_hold: 0
+  right_clicked_hold: 0
+  left_clicked_up: 0
+  right_clicked_up: 0
+  actively_fishing: 0
+  won_failed_already: 0
+  object_holder: {fileID: 0}
+  COD: {fileID: 0}
+  consecutive_wins: 0
+  distance: 0
+  enabled_fishing: 0
+  velocity: {x: 0, y: 0, z: 0}
+  bone_master: {fileID: 0}
+  fishing_bar: {fileID: 0}
+  bobber_returned: 0
+  fish_quantity: 0
+  fish_quality: 0
+  bar_pos: 0
+  fish_quantity_max: 0
+  fish_quality_max: 0
+  fish_quantity_min: 0
+  fish_quality_min: 0
+  effort: 0
+  resistance: 0
+  stopping_factor: 0
+  area_difficulty: 0
+  quality: {fileID: 0}
+  quantity: {fileID: 0}
+  res: {fileID: 0}
+  res_2: {fileID: 0}
+  eff: {fileID: 0}
+  distance_bar: {fileID: 0}
+  win_state: 0
+  direction: 0
+  direction_max: 0
+  direction_min: 0
+  dist_text: {fileID: 0}
+  initial_distance: 0
+  percent_distance: 0
+  distance_set: 0
+  rod_animator: {fileID: 0}
+  fishing_system: {fileID: 0}
+  fish: []
+  bobber: {fileID: 0}
+  randomIndex: 0
+  fishing_time: 0
+  fishing_time_cool: 0
+  reel_able: 0
+  fight_animation: 0
+  loop_time_start: 0
+  blocking: 0
+  attacking: 0
+  fish_quantity_original: 0
+  fish_counted: 0
+  fish_removed: 0
+  fish_all_spawned: 0
+  resetting: 0
+  water_already: 0
+  starter: 0
+  spawning_fish: 0
+  already_fishing: {fileID: 0}
+  fish_spawner: {fileID: 0}
 --- !u!1 &3928647605923234054
 GameObject:
   m_ObjectHideFlags: 0
@@ -1969,6 +2058,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   string_on: 1
   bobber_on: 0
+  rod_on: 0
   fishing_rod: {fileID: 0}
   left_clicked_down: 0
   right_clicked_down: 0
@@ -1980,6 +2070,7 @@ MonoBehaviour:
   won_failed_already: 0
   object_holder: {fileID: 0}
   COD: {fileID: 0}
+  consecutive_wins: 0
   distance: 0
   enabled_fishing: 0
   velocity: {x: 0, y: 0, z: 0}
@@ -2340,6 +2431,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   string_on: 1
   bobber_on: 0
+  rod_on: 0
   fishing_rod: {fileID: 0}
   left_clicked_down: 0
   right_clicked_down: 0
@@ -2351,6 +2443,7 @@ MonoBehaviour:
   won_failed_already: 0
   object_holder: {fileID: 0}
   COD: {fileID: 0}
+  consecutive_wins: 0
   distance: 0
   enabled_fishing: 0
   velocity: {x: 0, y: 0, z: 0}
@@ -2695,6 +2788,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   string_on: 1
   bobber_on: 0
+  rod_on: 0
   fishing_rod: {fileID: 0}
   left_clicked_down: 0
   right_clicked_down: 0
@@ -2706,6 +2800,7 @@ MonoBehaviour:
   won_failed_already: 0
   object_holder: {fileID: 0}
   COD: {fileID: 0}
+  consecutive_wins: 0
   distance: 0
   enabled_fishing: 0
   velocity: {x: 0, y: 0, z: 0}
@@ -2941,6 +3036,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   string_on: 1
   bobber_on: 0
+  rod_on: 0
   fishing_rod: {fileID: 0}
   left_clicked_down: 0
   right_clicked_down: 0
@@ -2952,6 +3048,7 @@ MonoBehaviour:
   won_failed_already: 0
   object_holder: {fileID: 0}
   COD: {fileID: 0}
+  consecutive_wins: 0
   distance: 0
   enabled_fishing: 0
   velocity: {x: 0, y: 0, z: 0}
@@ -4208,6 +4305,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   string_on: 1
   bobber_on: 0
+  rod_on: 0
   fishing_rod: {fileID: 0}
   left_clicked_down: 0
   right_clicked_down: 0
@@ -4219,6 +4317,7 @@ MonoBehaviour:
   won_failed_already: 0
   object_holder: {fileID: 0}
   COD: {fileID: 0}
+  consecutive_wins: 0
   distance: 0
   enabled_fishing: 0
   velocity: {x: 0, y: 0, z: 0}
@@ -4300,18 +4399,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 4105307664551048513}
     m_Modifications:
     - target: {fileID: 1104524930733268564, guid: f98563a06440bbd4996432a7254b0c77, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.99003834
-      objectReference: {fileID: 0}
-    - target: {fileID: 1104524930733268564, guid: f98563a06440bbd4996432a7254b0c77, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.99003834
-      objectReference: {fileID: 0}
-    - target: {fileID: 1104524930733268564, guid: f98563a06440bbd4996432a7254b0c77, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.99003834
-      objectReference: {fileID: 0}
-    - target: {fileID: 1104524930733268564, guid: f98563a06440bbd4996432a7254b0c77, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -4355,10 +4442,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: bobber (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 1526560815456469809, guid: f98563a06440bbd4996432a7254b0c77, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2770030340324045143, guid: f98563a06440bbd4996432a7254b0c77, type: 3}
       propertyPath: home
       value: 
@@ -4375,9 +4458,13 @@ PrefabInstance:
       propertyPath: rod_animator
       value: 
       objectReference: {fileID: 4571790155545624729}
-    - target: {fileID: 4057074853789559830, guid: f98563a06440bbd4996432a7254b0c77, type: 3}
-      propertyPath: m_Interpolate
-      value: 1
+    - target: {fileID: 3220851619442043366, guid: f98563a06440bbd4996432a7254b0c77, type: 3}
+      propertyPath: area_difficulty
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3220851619442043366, guid: f98563a06440bbd4996432a7254b0c77, type: 3}
+      propertyPath: fish.Array.size
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4666394159460927992, guid: f98563a06440bbd4996432a7254b0c77, type: 3}
       propertyPath: bone

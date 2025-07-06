@@ -15,6 +15,7 @@ public class fishing_script : MonoBehaviour
     [Header("fishing_script variables")]
     public bool string_on;
     public bool bobber_on;
+    public bool rod_on;
     public GameObject fishing_rod;
 
     public bool left_clicked_down;
@@ -31,6 +32,8 @@ public class fishing_script : MonoBehaviour
     public GameObject object_holder;
 
     public GameObject COD;
+
+    public int consecutive_wins;
 
     [Header("string variables")]
     public float distance;
@@ -191,319 +194,153 @@ public class fishing_script : MonoBehaviour
 
     public void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (rod_on == false)
         {
-            left_clicked_down = true;
-        }
-        else
-        {
-            left_clicked_down = false;
-        }
-
-        if (Input.GetMouseButtonDown(1))
-        {
-            right_clicked_down = true;
-        }
-        else
-        {
-            right_clicked_down = false;
-        }
-
-        if (Input.GetMouseButton(0))
-        {
-            left_clicked_hold = true;
-        }
-        else
-        {
-            left_clicked_hold = false;
-        }
-
-        if (Input.GetMouseButton(1))
-        {
-            right_clicked_hold = true;
-        }
-        else
-        {
-            right_clicked_hold = false;
-        }
-
-        if (Input.GetMouseButtonUp(0))
-        {
-            left_clicked_up = true;
-        }
-        else
-        {
-            left_clicked_up = false;
-        }
-
-        if (Input.GetMouseButtonUp(1))
-        {
-            right_clicked_up = true;
-        }
-        else
-        {
-            right_clicked_up = false;
-        }
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            enabled_fishing = !enabled_fishing;
-            if (bobber_on == true)
+            if (Input.GetMouseButtonDown(0))
             {
-                StartCoroutine(reset_animations());
-            }
-            //Debug.Log("enabled fishing2: " + enabled_fishing);
-            //GetComponent<Rigidbody>().isKinematic = !enabled_fishing;
-        }
-
-        if (enabled_fishing == true)
-        {
-            if (left_clicked_hold) //(Input.GetAxis("Mouse ScrollWheel") > 0f)
-            {
-                distance += 1;
-            }
-
-            if (right_clicked_hold) //(Input.GetAxis("Mouse ScrollWheel") < 0f)
-            {
-                distance -= 1;
-            }
-
-        }
-        else
-        {
-            distance = 0;
-        }
-        if (bobber_on == true)
-        {
-            if (distance > 0)
-            {
-                actively_fishing = true;
+                left_clicked_down = true;
             }
             else
             {
-                if (bobber_returned == true)
+                left_clicked_down = false;
+            }
+
+            if (Input.GetMouseButtonDown(1))
+            {
+                right_clicked_down = true;
+            }
+            else
+            {
+                right_clicked_down = false;
+            }
+
+            if (Input.GetMouseButton(0))
+            {
+                left_clicked_hold = true;
+            }
+            else
+            {
+                left_clicked_hold = false;
+            }
+
+            if (Input.GetMouseButton(1))
+            {
+                right_clicked_hold = true;
+            }
+            else
+            {
+                right_clicked_hold = false;
+            }
+
+            if (Input.GetMouseButtonUp(0))
+            {
+                left_clicked_up = true;
+            }
+            else
+            {
+                left_clicked_up = false;
+            }
+
+            if (Input.GetMouseButtonUp(1))
+            {
+                right_clicked_up = true;
+            }
+            else
+            {
+                right_clicked_up = false;
+            }
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                enabled_fishing = !enabled_fishing;
+                if (bobber_on == true)
                 {
-                    actively_fishing = false;
+                    StartCoroutine(reset_animations());
                 }
-                
+                //Debug.Log("enabled fishing2: " + enabled_fishing);
+                //GetComponent<Rigidbody>().isKinematic = !enabled_fishing;
             }
-        }
-        
 
-        //bobber_returned = bobber.GetComponent<bobber_impact>().returned;
-
-        if (bobber_returned == true)
-        {
-            StartCoroutine(wait_then_reset());
-        }
-        /*if (TryGetComponent<return_to_start>(out return_to_start start))
-        {
-            start.enabled = !enabled_fishing;
-        }*/
-
-        if (this.GetComponent<fishing_script>().enabled_fishing != bobber.GetComponent<fishing_script>().enabled_fishing)
-        {
-            //Debug.Log("whipped into shape");
-            this.GetComponent<fishing_script>().enabled_fishing = bobber.GetComponent<fishing_script>().enabled_fishing;
-        }
-
-        if (string_on == true)
-        {
-            GetComponent<SpringJoint>().maxDistance = distance / 10;
-            velocity = GetComponent<Rigidbody>().linearVelocity;
-            GetComponent<SpringJoint>().spring = 1000 - (distance * 1);
-            GetComponent<SpringJoint>().damper = 1 + (distance * 1);
-            GetComponent<Rigidbody>().useGravity = enabled_fishing;
-
-        }
-        GetComponent<return_to_start>().enabled = !enabled_fishing;
-        GetComponent<BoxCollider>().enabled = enabled_fishing;
-
-        if (enabled_fishing == true)
-        {
-            //Debug.Log("enabled fishing is true");
-
-            GetComponent<bobber_launch>().factor = distance;
-
-            if (left_clicked_down == true)
+            if (enabled_fishing == true)
             {
-                //Debug.Log("enabled fishing is true");
-                //rod_animator.SetBool("is_in_use", true);
-                reel_able = true;
-                GetComponent<bobber_launch>().factor = distance;
-                GetComponent<bobber_launch>().enabled = true;
-                bobber_returned = false;
-                //animator.SetBool("is_hoooked", false);
-                //rod_animator.SetBool("is_waiting", false);
-            }
-            if (left_clicked_up == true)
-            {
-                //animator.SetBool("is_in_use", false);
-                //reel_able = false;
-                GetComponent<bobber_launch>().factor = 0;
-                GetComponent<bobber_launch>().enabled = false;
-            }
-
-
-        }
-
-
-        if (bobber_on == true)
-        {
-            //Debug.Log(bar_pos);
-            
-
-
-            //floors the numbers to be at minumum of 1
-            if (fish_quantity_original == 0)
-            {
-                fish_quantity = fish_quantity_max * bar_pos; //the more the bar goes up, the more fish are caught
-                fish_quality = fish_quality_max * (1 - bar_pos); // the more the bar goes down, the higher quality of the fish caught.
-
-                if (fish_quantity <= fish_quantity_min) fish_quantity = fish_quantity_min;
-                if (fish_quality <= fish_quality_min) fish_quality = fish_quality_min;
-            }
-
-
-            direction = Random.Range(direction_min, direction_max);
-            //Debug.Log("direction:" + direction);
-
-            StartCoroutine(reel_mechanic());
-
-            fishing_bar.value = bar_pos;
-
-            StopCoroutine(reel_mechanic());
-
-            quality.text = "quality:" + fish_quality.ToString("0.0") + "     max:" + fish_quality_max + "     min:" + fish_quality_min;
-            quantity.text = "quanity:" + fish_quantity.ToString("0.0") + "    max:" + fish_quantity_max + "     min:" + fish_quantity_min;
-
-            res.text = resistance.ToString("0.0");
-            res_2.text = "" + area_difficulty;
-
-            if (resetting == false && enabled_fishing == true && actively_fishing == true)
-            {   
-                if (bar_pos <= 0 + (resistance * Time.deltaTime * direction) || bar_pos >= 1 - (effort * Time.deltaTime * direction))
+                if (left_clicked_hold) //(Input.GetAxis("Mouse ScrollWheel") > 0f)
                 {
-                    if (won_failed_already == false)
-                    {
-                        win_state = -1;
-                        Debug.Log("failure");
-                        won_failed_already = true;
-                        StartCoroutine(waiting_after_win_state());
+                    distance += 1;
+                }
 
-                        resetting = true;
-                        fish_all_spawned = false;
-                        enabled_fishing = false;
-                        Debug.Log("disabled fishing, waiting to re-enable");
-                        StartCoroutine(re_enable_fishing_after_win());
-                        Debug.Log("re-enabled fishing");
-                    }
-                    
-                    //enabled_fishing = false;
+                if (right_clicked_hold) //(Input.GetAxis("Mouse ScrollWheel") < 0f)
+                {
+                    distance -= 1;
+                }
+
+            }
+            else
+            {
+                distance = 0;
+            }
+            if (bobber_on == true)
+            {
+                if (distance > 0)
+                {
+                    actively_fishing = true;
                 }
                 else
                 {
-                    if (distance <= 0)
-                    {   
-                        if (won_failed_already == false)
-                        {
-                            win_state = 1;
-                            Debug.Log("success");
-                            won_failed_already = true;
-                            fish_quantity_original = fish_quantity;
-                            StartCoroutine(waiting_after_win_state());
-
-                            resetting = true;
-                            spawning_fish = true;
-
-                            //Debug.Log("progressing 2");
-
-                            StartCoroutine(spawn_fish());
-
-                            StartCoroutine(disable_reset_after_win());
-                        }
-
+                    if (bobber_returned == true)
+                    {
+                        actively_fishing = false;
                     }
 
                 }
-                
-            }
-
-            if (won_failed_already == true || enabled_fishing == false)
-            {
-                GetComponent<Rigidbody>().isKinematic = false;
-            }
-
-            if (fish_all_spawned == true)
-            {
-
-                //yield return new WaitForSeconds(2f);
-
-
-                //Debug.Log("reset");
-                
-                StopCoroutine(spawn_fish());
-
-
-
-                fish_counted = 0;
-                resetting = false;
-                win_state = 0;
-                
-
-                win_state = 0;
-
-                spawning_fish = false;
-                Debug.Log("set spawning fish to false");
-                fish_all_spawned = false;
-                Debug.Log("set fish_all spawned to false");
             }
 
 
-            if (left_clicked_down && distance_set == false)
-            {
-                initial_distance = distance;
-            }
+            //bobber_returned = bobber.GetComponent<bobber_impact>().returned;
 
-            if (right_clicked_down && distance_set == false)
+            if (bobber_returned == true)
             {
-                distance_set = true;
+                StartCoroutine(wait_then_reset());
+            }
+            /*if (TryGetComponent<return_to_start>(out return_to_start start))
+            {
+                start.enabled = !enabled_fishing;
+            }*/
+
+            if (this.GetComponent<fishing_script>().enabled_fishing != bobber.GetComponent<fishing_script>().enabled_fishing)
+            {
+                //Debug.Log("whipped into shape");
+                this.GetComponent<fishing_script>().enabled_fishing = bobber.GetComponent<fishing_script>().enabled_fishing;
             }
 
             
 
-            //current_distance = distance;
-            if (distance / initial_distance > 0)
+            if (string_on == true)
             {
-                percent_distance = distance / initial_distance;
+                GetComponent<SpringJoint>().maxDistance = distance / 10;
+                velocity = GetComponent<Rigidbody>().linearVelocity;
+                GetComponent<SpringJoint>().spring = 1000 - (distance * 1);
+                GetComponent<SpringJoint>().damper = 1 + (distance * 1);
+                GetComponent<Rigidbody>().useGravity = enabled_fishing;
 
-                distance_bar.value = (percent_distance);
-                dist_text.text = "distance:" + distance;// + (dist_bar.value / 100) + "%";
             }
-            else
-            {
-                distance_set = false;
-            }
-
-            //Debug.Log("enabled fishing: " + enabled_fishing);
-
-            //Debug.Log("blocking_state: " + blocking);
+            GetComponent<return_to_start>().enabled = !enabled_fishing;
+            GetComponent<BoxCollider>().enabled = enabled_fishing;
 
             if (enabled_fishing == true)
             {
                 //Debug.Log("enabled fishing is true");
-                
-                bobber.GetComponent<bobber_launch>().factor = distance;
+
+                GetComponent<bobber_launch>().factor = distance;
 
                 if (left_clicked_down == true)
                 {
                     //Debug.Log("enabled fishing is true");
-                    rod_animator.SetBool("is_in_use", true);
+                    //rod_animator.SetBool("is_in_use", true);
                     reel_able = true;
                     GetComponent<bobber_launch>().factor = distance;
                     GetComponent<bobber_launch>().enabled = true;
                     bobber_returned = false;
                     //animator.SetBool("is_hoooked", false);
-                    rod_animator.SetBool("is_waiting", false);
+                    //rod_animator.SetBool("is_waiting", false);
                 }
                 if (left_clicked_up == true)
                 {
@@ -515,65 +352,250 @@ public class fishing_script : MonoBehaviour
 
 
             }
-            if (enabled_fishing == false)
+
+
+            if (bobber_on == true)
             {
-                //Debug.Log("enabled fishing is false");
-                reel_able = false;
-
-                rod_animator.SetBool("is_in_use", false);
-                rod_animator.SetBool("is_waiting", false);
+                //Debug.Log(bar_pos);
 
 
 
-                if (left_clicked_hold == true)
+                //floors the numbers to be at minumum of 1
+                if (fish_quantity_original == 0)
                 {
-                    
-                    attacking = true;
+                    fish_quantity = fish_quantity_max * bar_pos; //the more the bar goes up, the more fish are caught
+                    fish_quality = fish_quality_max * (1 - bar_pos); // the more the bar goes down, the higher quality of the fish caught.
 
-                    fight_animation = Random.Range(0, 2);
+                    if (fish_quantity <= fish_quantity_min) fish_quantity = fish_quantity_min;
+                    if (fish_quality <= fish_quality_min) fish_quality = fish_quality_min;
+                }
 
-                    if (fight_animation == 0)
+
+                direction = Random.Range(direction_min, direction_max);
+                //Debug.Log("direction:" + direction);
+
+                StartCoroutine(reel_mechanic());
+
+                fishing_bar.value = bar_pos;
+
+                StopCoroutine(reel_mechanic());
+
+                quality.text = "quality:" + fish_quality.ToString("0.0") + "     max:" + fish_quality_max + "     min:" + fish_quality_min;
+                quantity.text = "quanity:" + fish_quantity.ToString("0.0") + "    max:" + fish_quantity_max + "     min:" + fish_quantity_min;
+
+                res.text = resistance.ToString("0.0");
+                res_2.text = "" + area_difficulty;
+
+                if (resetting == false && enabled_fishing == true && actively_fishing == true)
+                {
+                    if (bar_pos <= 0 + (resistance * Time.deltaTime * direction) || bar_pos >= 1 - (effort * Time.deltaTime * direction))
                     {
-                        //Debug.Log("enabled fishing is false");
-                        rod_animator.SetBool("fighting_1", true);
+                        if (won_failed_already == false)
+                        {
+                            win_state = -1;
+                            Debug.Log("failure");
+                            consecutive_wins = 0;
+                            won_failed_already = true;
+                            StartCoroutine(waiting_after_win_state());
+
+                            resetting = true;
+                            fish_all_spawned = false;
+                            enabled_fishing = false;
+                            Debug.Log("disabled fishing, waiting to re-enable");
+                            StartCoroutine(re_enable_fishing_after_win());
+                            Debug.Log("re-enabled fishing");
+                        }
+
+                        //enabled_fishing = false;
                     }
-                    if (fight_animation == 1)
+                    else
                     {
-                        //Debug.Log("enabled fishing is false");
-                        rod_animator.SetBool("fighting_2", true);
+                        if (distance <= 0)
+                        {
+                            if (won_failed_already == false)
+                            {
+                                win_state = 1;
+                                Debug.Log("success");
+                                consecutive_wins += 1;
+                                won_failed_already = true;
+                                fish_quantity_original = fish_quantity;
+                                StartCoroutine(waiting_after_win_state());
+
+                                resetting = true;
+                                spawning_fish = true;
+
+                                //Debug.Log("progressing 2");
+
+                                StartCoroutine(spawn_fish());
+
+                                StartCoroutine(disable_reset_after_win());
+                            }
+
+                        }
+
+                    }
+
+                }
+
+                if (won_failed_already == true || enabled_fishing == false)
+                {
+                    GetComponent<Rigidbody>().isKinematic = false;
+                }
+
+                if (fish_all_spawned == true)
+                {
+
+                    //yield return new WaitForSeconds(2f);
+
+
+                    //Debug.Log("reset");
+
+                    StopCoroutine(spawn_fish());
+
+
+
+                    fish_counted = 0;
+                    resetting = false;
+                    win_state = 0;
+
+
+                    win_state = 0;
+
+                    spawning_fish = false;
+                    Debug.Log("set spawning fish to false");
+                    fish_all_spawned = false;
+                    Debug.Log("set fish_all spawned to false");
+                }
+
+
+                if (left_clicked_down && distance_set == false)
+                {
+                    initial_distance = distance;
+                }
+
+                if (right_clicked_down && distance_set == false)
+                {
+                    distance_set = true;
+                }
+
+
+
+                //current_distance = distance;
+                if (distance / initial_distance > 0)
+                {
+                    percent_distance = distance / initial_distance;
+
+                    distance_bar.value = (percent_distance);
+                    dist_text.text = "distance:" + distance;// + (dist_bar.value / 100) + "%";
+                }
+                else
+                {
+                    distance_set = false;
+                }
+
+                //Debug.Log("enabled fishing: " + enabled_fishing);
+
+                //Debug.Log("blocking_state: " + blocking);
+
+                if (enabled_fishing == true)
+                {
+                    //Debug.Log("enabled fishing is true");
+
+                    bobber.GetComponent<bobber_launch>().factor = distance;
+
+                    if (left_clicked_down == true)
+                    {
+                        //Debug.Log("enabled fishing is true");
+                        rod_animator.SetBool("is_in_use", true);
+                        reel_able = true;
+                        GetComponent<bobber_launch>().factor = distance;
+                        GetComponent<bobber_launch>().enabled = true;
+                        bobber_returned = false;
+                        //animator.SetBool("is_hoooked", false);
+                        rod_animator.SetBool("is_waiting", false);
+                    }
+                    if (left_clicked_up == true)
+                    {
+                        //animator.SetBool("is_in_use", false);
+                        //reel_able = false;
+                        GetComponent<bobber_launch>().factor = 0;
+                        GetComponent<bobber_launch>().enabled = false;
+                    }
+
+
+                }
+                if (enabled_fishing == false)
+                {
+                    //Debug.Log("enabled fishing is false");
+                    reel_able = false;
+
+                    rod_animator.SetBool("is_in_use", false);
+                    rod_animator.SetBool("is_waiting", false);
+
+
+
+                    if (left_clicked_hold == true)
+                    {
+
+                        attacking = true;
+
+                        fight_animation = Random.Range(0, 2);
+
+                        if (fight_animation == 0)
+                        {
+                            //Debug.Log("enabled fishing is false");
+                            rod_animator.SetBool("fighting_1", true);
+                        }
+                        if (fight_animation == 1)
+                        {
+                            //Debug.Log("enabled fishing is false");
+                            rod_animator.SetBool("fighting_2", true);
+                        }
+                    }
+                    if (right_clicked_hold == true)
+                    {
+                        blocking = true;
+
+                        fight_animation = Random.Range(0, 2);
+
+                        if (fight_animation == 0)
+                        {
+                            rod_animator.SetBool("blocking_1", true);
+                        }
+                        if (fight_animation == 1)
+                        {
+                            rod_animator.SetBool("blocking_2", true);
+                        }
+
+                    }
+                    if (left_clicked_up)
+                    {
+                        attacking = false;
+                        rod_animator.SetBool("fighting_1", false);
+                        rod_animator.SetBool("fighting_2", false);
+                    }
+                    if (right_clicked_up)
+                    {
+                        blocking = false;
+                        rod_animator.SetBool("blocking_1", false);
+                        rod_animator.SetBool("blocking_2", false);
                     }
                 }
-                if (right_clicked_hold == true)
-                {
-                    blocking = true;
-                    
-                    fight_animation = Random.Range(0, 2);
 
-                    if (fight_animation == 0)
-                    {
-                        rod_animator.SetBool("blocking_1", true);
-                    }
-                    if (fight_animation == 1)
-                    {
-                        rod_animator.SetBool("blocking_2", true);
-                    }
 
-                }
-                if (left_clicked_up)
-                {
-                    attacking = false;
-                    rod_animator.SetBool("fighting_1", false);
-                    rod_animator.SetBool("fighting_2", false);
-                }
-                if (right_clicked_up)
-                {
-                    blocking = false;
-                    rod_animator.SetBool("blocking_1", false);
-                    rod_animator.SetBool("blocking_2", false);
-                }
             }
-            
+        }
+        else
+        {
+            if (this.GetComponent<fishing_script>().attacking != bobber.GetComponent<fishing_script>().attacking)
+            {
+                this.GetComponent<fishing_script>().attacking = bobber.GetComponent<fishing_script>().attacking;
+            }
 
+            if (this.GetComponent<fishing_script>().blocking != bobber.GetComponent<fishing_script>().blocking)
+            {
+                this.GetComponent<fishing_script>().blocking = bobber.GetComponent<fishing_script>().blocking;
+            }
         }
 
     }

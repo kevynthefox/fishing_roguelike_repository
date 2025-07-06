@@ -38,48 +38,13 @@ public class heat_seeking_fishles : MonoBehaviour
         {
             
 
-            //factor = master.GetComponent<factor_holder>().factor;
-            //Debug.Log("active");
-            /*
-            if (transform.position.x > home.transform.position.x)
-            {
-                GetComponent<Rigidbody>().AddForce(new Vector3(-Mathf.Abs(factor), 0, 0), ForceMode.Impulse);
-            }
-
-            if (transform.position.x < home.transform.position.x)
-            {
-                GetComponent<Rigidbody>().AddForce(new Vector3(Mathf.Abs(factor), 0, 0), ForceMode.Impulse);
-            }
-
-
-            if (transform.position.y > home.transform.position.y)
-            {
-                GetComponent<Rigidbody>().AddForce(new Vector3(0, -Mathf.Abs(factor), 0), ForceMode.Impulse);
-            }
-
-            if (transform.position.y < home.transform.position.y)
-            {
-                GetComponent<Rigidbody>().AddForce(new Vector3(0, Mathf.Abs(factor), 0), ForceMode.Impulse);
-            }
-
-
-            if (transform.position.z > home.transform.position.z)
-            {
-                GetComponent<Rigidbody>().AddForce(new Vector3(0, 0, -Mathf.Abs(factor)), ForceMode.Impulse);
-            }
-
-            if (transform.position.z < home.transform.position.z)
-            {
-                GetComponent<Rigidbody>().AddForce(new Vector3(0, 0, Mathf.Abs(factor)), ForceMode.Impulse);
-            }
-
-            factor -= 0.001f;
-            */
+            
             //makes the object move faster the further away it is from the other one
             speed = Vector3.Distance(home.transform.position, transform.position);
 
             //moves this object towards the other object, at this speed per second
             transform.position = Vector3.MoveTowards(transform.position, home.transform.position, speed * Time.deltaTime);
+            //transform.rotation = Quaternion.LookRotation(Vector3.RotateTowards(transform.position, home.transform.position, 0, 360));
         }
     }
 
@@ -92,28 +57,30 @@ public class heat_seeking_fishles : MonoBehaviour
             factor = 0;
         }
 
-        if (this.GetComponent<Collider>() != null)
+        if (other.GetComponent<Collider>() != null)
         {
             //Debug.Log("i exist and am touching something");
 
             if (other.gameObject.CompareTag("fishing_rod"))
             {
                 //Debug.Log("touching the fishing rod. block state: " + other.gameObject.GetComponent<fishing_rod_movement>().blocking + " attack state: " + other.gameObject.GetComponent<fishing_rod_movement>().attacking);
-
-                if (other.gameObject.GetComponent<fishing_script>().blocking == false && other.gameObject.GetComponent<fishing_script>().attacking == true)
+                if (other.TryGetComponent<fishing_script>(out fishing_script rod))
                 {
-                    //Debug.Log("touched the rod. not blocking");
-                    this.tag = "super_food_items";
-                    Wavespawner.current.Remove_alive(this.gameObject);
-                    home = null;
-                }
-                if (other.gameObject.GetComponent<fishing_script>().blocking == true && other.gameObject.GetComponent<fishing_script>().attacking == false)
-                {
-                    //Debug.Log("fling");
-                    direction = cam.GetComponent<Transform>().forward;
-                    direction_modified = direction * Time.deltaTime * 5000;
+                    if (rod.blocking == false && rod.attacking == true)
+                    {
+                        //Debug.Log("touched the rod. not blocking");
+                        this.tag = "super_food_items";
+                        Wavespawner.current.Remove_alive(this.gameObject);
+                        home = null;
+                    }
+                    if (rod.blocking == true && rod.attacking == false)
+                    {
+                        //Debug.Log("fling");
+                        direction = cam.GetComponent<Transform>().forward;
+                        direction_modified = direction * Time.deltaTime * 5000;
 
-                    GetComponent<Rigidbody>().AddForce(direction_modified, ForceMode.Impulse);
+                        GetComponent<Rigidbody>().AddForce(direction_modified, ForceMode.Impulse);
+                    }
                 }
             }
 

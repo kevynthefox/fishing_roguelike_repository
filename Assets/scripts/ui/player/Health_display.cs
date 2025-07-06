@@ -21,6 +21,11 @@ public GameObject respawn_point;
 
 private Coroutine recharge;
 
+public GameObject death_system;
+
+public bool dead;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -33,11 +38,8 @@ private Coroutine recharge;
 
         if (health <= 0)
         {
-            health = 0;
-            player.transform.position = respawn_point.transform.position;
-            health = health_max;
-            //StartCoroutine(get_rid_of_these_fish());
-            RestartScene();
+            dead = true;
+            death();
             //put something here to restart the whole scene
         }
 
@@ -74,9 +76,13 @@ private Coroutine recharge;
         }
     }
     //
-    public void RestartScene()
+    
+    public void death()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    }
+        death_system.SetActive(true);
 
+        Time.timeScale = 0;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
 }
