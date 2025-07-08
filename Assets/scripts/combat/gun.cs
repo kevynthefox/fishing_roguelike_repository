@@ -27,11 +27,17 @@ public class gun : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            fire();
+        }
+
         if (manual_fire == true)
         {
             fire();
             manual_fire = false;
         }
+ 
     }
 
     public void fire()
@@ -49,7 +55,10 @@ public class gun : MonoBehaviour
 
             projectile.GetComponent<Rigidbody>().AddForce(transform.forward * projectile.GetComponent<projectile_controller>().speed, ForceMode.Impulse);
         }*/
-        transform.LookAt(player);
+        if (player != null)
+        {
+            transform.LookAt(player);
+        }
         GameObject projectile = fish_bullet_pool.Get();
         spawn_point.GetPositionAndRotation(out Vector3 pos, out Quaternion rot);
         projectile.transform.SetPositionAndRotation(pos, rot);

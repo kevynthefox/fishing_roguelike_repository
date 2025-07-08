@@ -26,14 +26,14 @@ TagManager:
   - Water
   - UI
   - fishing_rod
-  - player
+  - player_invisible
   - partially invisible objects
   - fishing_rod_string
   - fish
   - ground
   - invisible_wall_for_cod
   - cod
-  - 
+  - player_visible
   - 
   - 
   - 

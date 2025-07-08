@@ -404,7 +404,7 @@ public class fishing_script : MonoBehaviour
                         if (won_failed_already == false)
                         {
                             win_state = -1;
-                            Debug.Log("failure");
+                            //Debug.Log("failure");
                             consecutive_wins = 0;
                             won_failed_already = true;
                             StartCoroutine(waiting_after_win_state());
@@ -426,7 +426,7 @@ public class fishing_script : MonoBehaviour
                             if (won_failed_already == false)
                             {
                                 win_state = 1;
-                                Debug.Log("success");
+                                //Debug.Log("success");
                                 consecutive_wins += 1;
                                 won_failed_already = true;
                                 fish_quantity_original = fish_quantity;
@@ -473,9 +473,9 @@ public class fishing_script : MonoBehaviour
                     win_state = 0;
 
                     spawning_fish = false;
-                    Debug.Log("set spawning fish to false");
+                    //Debug.Log("set spawning fish to false");
                     fish_all_spawned = false;
-                    Debug.Log("set fish_all spawned to false");
+                    //Debug.Log("set fish_all spawned to false");
                 }
 
 
@@ -846,7 +846,7 @@ public class fishing_script : MonoBehaviour
 
                 if (fish_quantity <= 0)
                 {
-                    Debug.Log("out of fish");
+                    //Debug.Log("out of fish");
                     //COD.GetComponent<COD>().size += fish_counted;
                     fish_all_spawned = true;
                 }

@@ -39,16 +39,18 @@ public class Damage : MonoBehaviour
 
             if (invincibility == false)
             {
-
-                if (other.tag == "fish" || other.tag == "fish_enemy")
+                if (other != null)
                 {
-                    health_object.GetComponent<Health_display>().health -= other.GetComponent<fish_variable_holder>().potentcy / 2;
-                    yield return new WaitForSeconds(1f);
-                }
+                    if (other.tag == "fish" || other.tag == "fish_enemy")
+                    {
+                        health_object.GetComponent<Health_display>().health -= other.GetComponent<fish_variable_holder>().potentcy / 2;
+                        yield return new WaitForSeconds(1f);
+                    }
 
-                if (other.tag == "projectile")
-                {
-                    health_object.GetComponent<Health_display>().health -= other.GetComponent<projectile_controller>().damage / 2;
+                    if (other.tag == "projectile")
+                    {
+                        health_object.GetComponent<Health_display>().health -= other.GetComponent<projectile_controller>().damage / 2;
+                    }
                 }
             }
         }

@@ -4,10 +4,12 @@ using System.Collections.Generic;
 using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEditor.Experimental.AssetDatabaseExperimental.AssetDatabaseCounters;
 using static UnityEditor.Progress;
 
 public class Wavespawner : MonoBehaviour
 {
+    [Header("waves")]
     public bool spawning_time;
     //public List<GameObject> fish_actual;
 
@@ -30,6 +32,14 @@ public class Wavespawner : MonoBehaviour
     public GameObject sell_guy;
 
     public int family_max;
+
+    [Header("encounters")]
+    public List<enemy_encounter_data> encounters;
+    public GameObject rod;
+
+    public List<GameObject> encounter_enemies_alive;
+
+    public GameObject navmesh;
 
     public void Start()
     {
@@ -65,13 +75,34 @@ public class Wavespawner : MonoBehaviour
 
                 
             }
-        }
-        
 
-        if (alive_fish.Count != 0)
+            foreach (enemy_encounter_data encounter in encounters)
+            {
+                
+                var rod_script = rod.GetComponent<fishing_script>();
+                Debug.Log("going through encounters");
+                if (encounter.requirement_type == 1)
+                {
+                    Debug.Log("encounters that equal type 1");
+                    if (rod_script.consecutive_wins >= encounter.requirement_amount)
+                    {
+                        spawn_encounter(encounter);
+                        encounters.Remove(encounter);
+                    }
+                }
+             
+            }
+        }
+
+
+        if (alive_fish.Count != 0 || encounter_enemies_alive.Count != 0)
         {
 
             sell_guy.SetActive(false);
+            if (encounter_enemies_alive.Count > 0)
+            {
+                navmesh.SetActive(true);
+            }
 
             if (fish_have_been_alive == true)
             {
@@ -84,15 +115,19 @@ public class Wavespawner : MonoBehaviour
         else
         {
             sell_guy.SetActive(true);
+            navmesh.SetActive(false);
             //Debug.Log("no more fish alive");
             
-            foreach (GameObject wat in GameObject.FindGameObjectsWithTag("water"))
+            foreach (GameObject wat in GameObject.FindGameObjectsWithTag("water_off"))
             {
                 wat.tag = "water";
                 fish_have_been_alive = false;
             }
             
         }
+
+
+        
     }
 
     public IEnumerator timer()
@@ -120,6 +155,22 @@ public class Wavespawner : MonoBehaviour
             yield return new WaitForSeconds(1f);
         }
         
+    }
+
+    public void spawn_encounter(enemy_encounter_data encounter)
+    {
+        
+        var rod_script = rod.GetComponent<fishing_script>();
+        Debug.Log("started encounter spawn");
+        foreach (GameObject enemy in encounter.enemies)
+        {
+            float spawn_rand = UnityEngine.Random.Range(-encounter.spawn_radius, encounter.spawn_radius);
+
+            Vector3 spawn_position = new Vector3(spawn_rand, 0, 400 + spawn_rand);
+            Instantiate(enemy, spawn_position, quaternion.identity);
+            Debug.Log("spawned enemy");
+            encounter_enemies_alive.Add(enemy);
+        }
     }
     
     #region fish dead list

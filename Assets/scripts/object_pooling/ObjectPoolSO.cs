@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Pool;
 
-namespace GDK
+namespace GDK // tutorial from https://www.youtube.com/watch?v=zV8E59NoWZ8&t=956s
 {
     [CreateAssetMenu(fileName = "ObjectPoolSO", menuName = "Tutorial/Object Pool", order = 0)]
     public class ObjectPoolSO : ScriptableObject

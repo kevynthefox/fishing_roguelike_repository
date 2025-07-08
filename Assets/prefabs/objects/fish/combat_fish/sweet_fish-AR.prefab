@@ -415,15 +415,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 2e0c48f598180e648857bce8ac27de85, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -79.72104
+      value: -55.23499
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2e0c48f598180e648857bce8ac27de85, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.9990864
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2e0c48f598180e648857bce8ac27de85, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -48.255936
+      value: -86.39992
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2e0c48f598180e648857bce8ac27de85, type: 3}
       propertyPath: m_LocalRotation.w
@@ -455,7 +455,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 2e0c48f598180e648857bce8ac27de85, type: 3}
       propertyPath: m_Name
-      value: sweet_fish
+      value: sweet_fish-AR
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 2e0c48f598180e648857bce8ac27de85, type: 3}
       propertyPath: m_TagString
@@ -524,7 +524,7 @@ MonoBehaviour:
   walkPointRange: 5
   timeBetweenAttacks: 0.001
   sightRange: 20000
-  attackRange: 30
+  attackRange: 25
   playerInSightRange: 0
   playerInAttackRange: 0
   Canvas: {fileID: 8214676790679981670}
@@ -549,7 +549,7 @@ NavMeshAgent:
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 5.024519
-  m_BaseOffset: 2.5122595
+  m_BaseOffset: 7
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 1
 --- !u!65 &6110645638109456477

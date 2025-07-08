@@ -1,9 +1,11 @@
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 public class behavior_for_ranged_fish : MonoBehaviour
 {
+
     [Header("pathfinding")]
     
     public NavMeshAgent agent;
@@ -36,12 +38,17 @@ public class behavior_for_ranged_fish : MonoBehaviour
 
     public GameObject gun;
 
+    public GameObject wave_spawner;
+
+
     private void Awake()
     {
         player = GameObject.Find("player").transform;
         agent = GetComponent<NavMeshAgent>();
 
         Canvas.GetComponent<Canvas>().worldCamera = Camera.main;
+
+        wave_spawner = GameObject.Find("fish_wave_spawner");
     }
 
     private void Update()
@@ -140,7 +147,10 @@ public class behavior_for_ranged_fish : MonoBehaviour
 
     private void DestroyEnemy()
     {
+        wave_spawner.GetComponent<Wavespawner>().encounter_enemies_alive.Remove(this.gameObject);
         Destroy(gameObject);
+        Debug.Log("enemy dead");
+       
     }
 
     public void OnTriggerEnter(Collider other)

@@ -15,6 +15,11 @@ public class projectile_controller : MonoBehaviour, IPoolable
     public float lifespan;
 
 
+    public bool frag_piece;
+    public bool is_frag_master;
+    public GameObject frag_master;
+    public GameObject[] frag_pieces;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -66,6 +71,14 @@ public class projectile_controller : MonoBehaviour, IPoolable
     public void shoot(Vector3 force)
     {
         rb.AddForce(force * speed, ForceMode.Impulse);
+
+        if (is_frag_master == true)
+        {
+            foreach (GameObject piece in frag_pieces)
+            {
+                piece.GetComponent<projectile_controller>().rb.AddForce(force * speed, ForceMode.Impulse);
+            }
+        }
     }
 
     public void Reset_momentum()
@@ -73,6 +86,17 @@ public class projectile_controller : MonoBehaviour, IPoolable
         rb.angularVelocity = Vector3.zero;
         rb.linearVelocity = Vector3.zero;
 
+        if (is_frag_master == true)
+        {
+            foreach (GameObject piece in frag_pieces)
+            {
+                piece.GetComponent<Transform>().position = frag_master.transform.position;
+
+                //piece.GetComponent<projectile_controller>().rb.angularVelocity = Vector3.zero;
+                //piece.GetComponent<projectile_controller>().rb.linearVelocity = Vector3.zero;
+                //Debug.Log("reset this piece: " + piece.gameObject.name);
+            }
+        }
         Invoke(nameof(Release), lifespan);
     }
 
@@ -80,7 +104,11 @@ public class projectile_controller : MonoBehaviour, IPoolable
     {
         //Debug.LogWarning(message:"Projectile Release", context: this);
         CancelInvoke(); // bad
-        pool.Release(this.gameObject);
+        
+        if (frag_piece == false)
+        {
+            pool.Release(this.gameObject);
+        }
     }
 
     public void RegisterPool(ObjectPoolSO pool)

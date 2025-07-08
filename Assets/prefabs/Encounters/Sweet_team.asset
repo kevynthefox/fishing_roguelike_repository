@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c9e9d30fb2a1394f8b30d7764967503, type: 3}
+  m_Name: Sweet_team
+  m_EditorClassIdentifier: 
+  enemies:
+  - {fileID: 2390817223159379938, guid: 137f7eb256e48cc4ea981a48a8c131c6, type: 3}
+  - {fileID: 1364305851731631267, guid: f3b4eb9ccc1385d41b9c04b45bca1225, type: 3}
+  - {fileID: 1364305851731631267, guid: f3b4eb9ccc1385d41b9c04b45bca1225, type: 3}
+  requirement_type: 1
+  requirement_amount: 20
+  spawn_radius: 30
