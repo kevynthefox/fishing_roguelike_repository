@@ -111,7 +111,7 @@ public class COD : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log(fish.name);
+                    //Debug.Log(fish.name);
                     feesh.Add(fish);
                     size += (fish.gameObject.GetComponent<fish_variable_holder>().fish_quality * fish.gameObject.GetComponent<fish_variable_holder>().fish_quantity);
                 }

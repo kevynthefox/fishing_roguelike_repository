@@ -25,6 +25,7 @@ public GameObject death_system;
 
 public bool dead;
 
+public bool is_player;
 
     // Start is called before the first frame update
     void Start()
@@ -35,14 +36,15 @@ public bool dead;
     void Update()
     {
 
-
-        if (health <= 0)
+        if (is_player == true)
         {
-            dead = true;
-            death();
-            //put something here to restart the whole scene
+            if (health <= 0)
+            {
+                dead = true;
+                death();
+                //put something here to restart the whole scene
+            }
         }
-
         if (health >= health_max)
         {
             health = health_max;

@@ -9772,13 +9772,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc7f40741ce017a4192ba99840c04309, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  home: {fileID: 5505522600369943033, guid: 24f0084346aae4845a12c80b672295fc, type: 3}
+  home: {fileID: 2390817223159379938, guid: 137f7eb256e48cc4ea981a48a8c131c6, type: 3}
   factor: 1
   speed: 0
   disable_water: 0
-  direction: {x: 0, y: 0, z: 0}
-  direction_modified: {x: 0, y: 0, z: 0}
-  cam: {fileID: 0}
 --- !u!65 &8944695826210379777
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9861,3 +9858,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 99
+  speed: 100
+  destroy_or_recycle: 1
+  lifespan: 10

@@ -16,18 +16,17 @@ public class heat_seeking_fishles : MonoBehaviour
 
     private GameObject water;
 
-    public Vector3 direction;
-    public Vector3 direction_modified;
+    
 
 
-    public Camera cam;
+    
 
     void Start()
     {
         //master = GameObject.Find("home_points");
         //home = GameObject.Find("sell guy");
         
-        cam = Camera.main;
+        
     }
 
     void Update()
@@ -57,34 +56,7 @@ public class heat_seeking_fishles : MonoBehaviour
             factor = 0;
         }
 
-        if (other.GetComponent<Collider>() != null)
-        {
-            //Debug.Log("i exist and am touching something");
-
-            if (other.gameObject.CompareTag("fishing_rod"))
-            {
-                //Debug.Log("touching the fishing rod. block state: " + other.gameObject.GetComponent<fishing_rod_movement>().blocking + " attack state: " + other.gameObject.GetComponent<fishing_rod_movement>().attacking);
-                if (other.TryGetComponent<fishing_script>(out fishing_script rod))
-                {
-                    if (rod.blocking == false && rod.attacking == true)
-                    {
-                        //Debug.Log("touched the rod. not blocking");
-                        this.tag = "super_food_items";
-                        Wavespawner.current.Remove_alive(this.gameObject);
-                        home = null;
-                    }
-                    if (rod.blocking == true && rod.attacking == false)
-                    {
-                        //Debug.Log("fling");
-                        direction = cam.GetComponent<Transform>().forward;
-                        direction_modified = direction * Time.deltaTime * 5000;
-
-                        GetComponent<Rigidbody>().AddForce(direction_modified, ForceMode.Impulse);
-                    }
-                }
-            }
-
-        }
+        
     }
 
     /*private void OnCollisionEnter(Collision collision)

@@ -32,6 +32,9 @@ public class behavior_for_ranged_fish : MonoBehaviour
     public Canvas Canvas;
     public GameObject health_bar;
 
+    [Header("attacking")]
+
+    public GameObject gun;
 
     private void Awake()
     {
@@ -100,7 +103,7 @@ public class behavior_for_ranged_fish : MonoBehaviour
         if (!alreadyAttacked)
         {
             //attack code here
-
+            gun.GetComponent<gun>().fire();
             //
 
             alreadyAttacked = true;
@@ -129,9 +132,10 @@ public class behavior_for_ranged_fish : MonoBehaviour
     #region health
     public void TakeDamage(int damage)
     {
-        health_bar.GetComponent<Health_display>().health -= damage;
+        health_bar.GetComponent<Health_display>().health -= damage / 2;
 
         if (health_bar.GetComponent<Health_display>().health <= 0) Invoke(nameof(DestroyEnemy), .5f);
+        if (health_bar.GetComponent<Health_display>().health <= 60) this.gameObject.tag = "fish";
     }
 
     private void DestroyEnemy()
@@ -141,10 +145,15 @@ public class behavior_for_ranged_fish : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "fishing_rod" && other.gameObject.GetComponent<fishing_script>().blocking == false)
+        if (other.gameObject.tag == "fishing_rod" && other.gameObject.GetComponent<fishing_script>().blocking == false && other.gameObject.GetComponent<fishing_script>().attacking == true)
         {
-
+            TakeDamage(other.gameObject.GetComponent<fishing_script>().damage);
         }    
+
+        if (other.gameObject.tag == "projectile")
+        {
+            TakeDamage(((int)other.gameObject.GetComponent<projectile_controller>().damage));
+        }
     }
     #endregion
 }

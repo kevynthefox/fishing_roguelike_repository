@@ -5,6 +5,7 @@ using UnityEngine;
 public class Damage : MonoBehaviour
 {
     private GameObject health_object;
+    public bool invincibility;
 
     private void Start()
     {
@@ -16,11 +17,7 @@ public class Damage : MonoBehaviour
         if (other.gameObject != null)
         {
             //Debug.Log("triggered");
-            if (other.tag == "fish")
-            {
-                health_object.GetComponent<Health_display>().health -= other.GetComponent<fish_variable_holder>().potentcy / 2;
-                yield return new WaitForSeconds(1f);
-            }
+            
 
             if (other.tag == "food_items")
             {
@@ -40,9 +37,19 @@ public class Damage : MonoBehaviour
                 yield return new WaitForSeconds(1f);
             }
 
-            if (other.tag == "projectile")
+            if (invincibility == false)
             {
-                health_object.GetComponent<Health_display>().health -= other.GetComponent<projectile_controller>().damage / 2;
+
+                if (other.tag == "fish" || other.tag == "fish_enemy")
+                {
+                    health_object.GetComponent<Health_display>().health -= other.GetComponent<fish_variable_holder>().potentcy / 2;
+                    yield return new WaitForSeconds(1f);
+                }
+
+                if (other.tag == "projectile")
+                {
+                    health_object.GetComponent<Health_display>().health -= other.GetComponent<projectile_controller>().damage / 2;
+                }
             }
         }
     }

@@ -17,6 +17,7 @@ TagManager:
   - super_food_items
   - projectile
   - water_off
+  - fish_enemy
   layers:
   - Default
   - TransparentFX

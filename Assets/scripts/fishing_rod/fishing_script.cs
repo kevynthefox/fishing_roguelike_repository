@@ -149,10 +149,21 @@ public class fishing_script : MonoBehaviour
 
     public GameObject fish_spawner;
 
+    [Header("combat variables")]
+
+    public int damage;
+
+    public Vector3 deflection_direction;
+    public Vector3 direction_modified;
+
+    public Camera cam;
+
     public void Awake()
     {
         object_holder = GameObject.Find("object_holder_object");
         bobber = object_holder.GetComponent<object_holder>().bobber;
+
+        cam = Camera.main;
     }
 
     void Start()
@@ -771,6 +782,34 @@ public class fishing_script : MonoBehaviour
             }
         }
         //}
+
+
+        
+        //Debug.Log("i exist and am touching something");
+
+        if (other.gameObject.CompareTag("fish") || other.gameObject.CompareTag("projectile"))
+        {
+            //Debug.Log("touching the fishing rod. block state: " + other.gameObject.GetComponent<fishing_rod_movement>().blocking + " attack state: " + other.gameObject.GetComponent<fishing_rod_movement>().attacking);
+            
+            if (blocking == false && attacking == true)
+            {
+                //Debug.Log("touched the rod. not blocking");
+                other.tag = "super_food_items";
+                Wavespawner.current.Remove_alive(this.gameObject);
+                other.GetComponent<heat_seeking_fishles>().home = null;
+            }
+            if (blocking == true && attacking == false)
+            {
+                Debug.Log("deflected");
+                deflection_direction = cam.GetComponent<Transform>().forward;
+                direction_modified = deflection_direction * Time.deltaTime * 5000;
+
+                other.GetComponent<Rigidbody>().AddForce(direction_modified, ForceMode.Impulse);
+            }
+            
+        }
+
+        
     }
 
     public IEnumerator reset_animations()
