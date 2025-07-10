@@ -27,10 +27,10 @@ public class gun : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.T))
+        /*if (Input.GetKeyDown(KeyCode.T))
         {
             fire();
-        }
+        }*/
 
         if (manual_fire == true)
         {

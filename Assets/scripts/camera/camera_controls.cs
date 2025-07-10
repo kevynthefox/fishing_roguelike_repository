@@ -10,7 +10,7 @@ public class camera_controls : MonoBehaviour
 
     public GameObject camera_holder;
 
-    public Camera cam1;
+    public CinemachineCamera cam1;
     public Camera cam2;
     public Vector2 look;
 
@@ -28,7 +28,7 @@ public class camera_controls : MonoBehaviour
     {
         camera_holder = GameObject.Find("camera system");
 
-        cam1 = camera_holder.GetComponent<camera_holder>().first_person;
+        cam1 = camera_holder.GetComponent<camera_holder>().CinemachineCamera;
         cam2 = camera_holder.GetComponent<camera_holder>().third_person;
 
         first_person_target = GameObject.Find("1st_person_follow_target").transform;
@@ -55,7 +55,7 @@ public class camera_controls : MonoBehaviour
 
         //GetComponent<movement>().enabled = !cam2.enabled;
         //GetComponent<move_relative_to_camera>().enabled = !cam2.enabled;
-        cam1.GetComponent<camera_rotate>().enabled = !cam2.enabled;
+        //cam1.GetComponent<camera_rotate>().enabled = !cam2.enabled;
         player_model.GetComponent<attach_to_object>().enabled = !cam2.enabled;
         cam2.GetComponent<attach_to_object>().enabled = !cam2.enabled;
         

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Cinemachine;
 using UnityEngine;
 
 public class bobber_launch : MonoBehaviour
@@ -13,7 +14,7 @@ public class bobber_launch : MonoBehaviour
         public Vector3 direction_modified;
 
     public GameObject camera_holder;
-    public Camera cam;
+    public CinemachineCamera cam;
 
     //void Update()
     //{
@@ -26,7 +27,7 @@ public class bobber_launch : MonoBehaviour
 
         camera_holder = GameObject.Find("camera system");
 
-        cam = camera_holder.GetComponent<camera_holder>().first_person;
+        cam = camera_holder.GetComponent<camera_holder>().CinemachineCamera;
     }
 
     public void Update()

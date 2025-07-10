@@ -48,6 +48,10 @@ public class Wavespawner : MonoBehaviour
 
     public void Update()
     {
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            spawning_time = true;
+        }
         
         spawn_left_right = UnityEngine.Random.Range(-1000, 1001);
         spawn_forward_back = UnityEngine.Random.Range(30, 2001);
@@ -85,6 +89,15 @@ public class Wavespawner : MonoBehaviour
                 {
                     Debug.Log("encounters that equal type 1");
                     if (rod_script.consecutive_wins >= encounter.requirement_amount)
+                    {
+                        spawn_encounter(encounter);
+                        encounters.Remove(encounter);
+                    }
+                }
+                if(encounter.requirement_type == 2)
+                {
+                    Debug.Log("encounters that equal type 2");
+                    if (rod_script.fish_ever >= encounter.requirement_amount)
                     {
                         spawn_encounter(encounter);
                         encounters.Remove(encounter);
@@ -167,7 +180,11 @@ public class Wavespawner : MonoBehaviour
             float spawn_rand = UnityEngine.Random.Range(-encounter.spawn_radius, encounter.spawn_radius);
 
             Vector3 spawn_position = new Vector3(spawn_rand, 0, 400 + spawn_rand);
-            Instantiate(enemy, spawn_position, quaternion.identity);
+            var anenemy = Instantiate(enemy, spawn_position, quaternion.identity);
+            if (anenemy.TryGetComponent<heat_seeking_fishles>(out heat_seeking_fishles fishle))
+            {
+                fishle.home = GameObject.Find("player");
+            }
             Debug.Log("spawned enemy");
             encounter_enemies_alive.Add(enemy);
         }

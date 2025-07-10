@@ -44,6 +44,7 @@ public class heat_seeking_fishles : MonoBehaviour
             //moves this object towards the other object, at this speed per second
             transform.position = Vector3.MoveTowards(transform.position, home.transform.position, speed * Time.deltaTime);
             //transform.rotation = Quaternion.LookRotation(Vector3.RotateTowards(transform.position, home.transform.position, 0, 360));
+            transform.LookAt(home.transform); // you need to child the object to an empty gameobject so that the object maintains the rotation you want.
         }
     }
 

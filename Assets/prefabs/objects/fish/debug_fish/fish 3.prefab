@@ -150,7 +150,7 @@ MonoBehaviour:
   fish_quantity: 1.8560791
   fish_quality: 1
   fish_counted: 2162
-  fish_type: {fileID: 1392038528542621144, guid: 35bdd298a8e30c6408d84f91d683d699, type: 3}
+  fish_type: {fileID: 8210535706478431012, guid: c38dbd412fa15e24a87d9d32caa5700d, type: 3}
   potentcy: 0
 --- !u!54 &6189741813823654365
 Rigidbody:
@@ -218,6 +218,3 @@ MonoBehaviour:
   factor: 1
   speed: 0
   disable_water: 0
-  direction: {x: 0, y: 0, z: 0}
-  direction_modified: {x: 0, y: 0, z: 0}
-  cam: {fileID: 0}

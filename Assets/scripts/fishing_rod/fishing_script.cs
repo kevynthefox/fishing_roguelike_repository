@@ -158,6 +158,8 @@ public class fishing_script : MonoBehaviour
 
     public Camera cam;
 
+    public int fish_ever;
+
     public void Awake()
     {
         object_holder = GameObject.Find("object_holder_object");
@@ -849,6 +851,7 @@ public class fishing_script : MonoBehaviour
                     //Debug.Log("out of fish");
                     //COD.GetComponent<COD>().size += fish_counted;
                     fish_all_spawned = true;
+                    fish_ever += fish_counted;
                 }
                 else
                 {
