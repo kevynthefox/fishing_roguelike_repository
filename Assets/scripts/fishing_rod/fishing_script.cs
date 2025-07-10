@@ -332,7 +332,7 @@ public class fishing_script : MonoBehaviour
                 velocity = GetComponent<Rigidbody>().linearVelocity;
                 GetComponent<SpringJoint>().spring = 1000 - (distance * 1);
                 GetComponent<SpringJoint>().damper = 1 + (distance * 1);
-                GetComponent<Rigidbody>().useGravity = enabled_fishing;
+                //GetComponent<Rigidbody>().useGravity = enabled_fishing;
 
             }
             GetComponent<return_to_start>().enabled = !enabled_fishing;
@@ -342,15 +342,16 @@ public class fishing_script : MonoBehaviour
             {
                 //Debug.Log("enabled fishing is true");
 
-                GetComponent<bobber_launch>().factor = distance;
+                
 
                 if (left_clicked_down == true)
                 {
                     //Debug.Log("enabled fishing is true");
                     //rod_animator.SetBool("is_in_use", true);
                     reel_able = true;
-                    GetComponent<bobber_launch>().factor = distance;
                     GetComponent<bobber_launch>().enabled = true;
+                    GetComponent<bobber_launch>().factor = distance;
+                    
                     bobber_returned = false;
                     //animator.SetBool("is_hoooked", false);
                     //rod_animator.SetBool("is_waiting", false);
@@ -363,7 +364,29 @@ public class fishing_script : MonoBehaviour
                     GetComponent<bobber_launch>().enabled = false;
                 }
 
-
+                if (right_clicked_down == true)
+                {
+                    GetComponent<bobber_launch>().enabled = true;
+                    if (distance > 1)
+                    {
+                        GetComponent<bobber_launch>().factor = -distance;
+                    }
+                    else
+                    {
+                        GetComponent<bobber_launch>().factor = 0;
+                        enabled_fishing = false;
+                    }
+                }
+                
+            }
+            else
+            {
+                if (right_clicked_up == true)
+                {
+                    GetComponent<bobber_launch>().factor = 0;
+                    GetComponent<bobber_launch>().enabled = false;
+                    enabled_fishing = true;
+                }
             }
 
 
