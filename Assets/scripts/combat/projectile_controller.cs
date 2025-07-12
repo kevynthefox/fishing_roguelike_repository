@@ -6,6 +6,7 @@ public class projectile_controller : MonoBehaviour, IPoolable
 {
     public float damage;
     public float speed;
+    public float s_to_m;
 
     public bool destroy_or_recycle; //destroy is false, recycle is true.
 
@@ -20,9 +21,14 @@ public class projectile_controller : MonoBehaviour, IPoolable
     public GameObject frag_master;
     public GameObject[] frag_pieces;
 
+    public bool explosive;
+
+
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        s_to_m = speed / rb.mass;
     }
 
     void Start()
@@ -38,7 +44,12 @@ public class projectile_controller : MonoBehaviour, IPoolable
     public IEnumerator OnCollisionEnter(Collision collision)
     {
         Debug.Log(collision.gameObject.name);
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(1f);
+        if (explosive == true)
+        {
+            this.gameObject.GetComponent<SphereCollider>().enabled = true;
+        }
+        yield return new WaitForSeconds(1f);
 
         if (collision.gameObject.name != this.gameObject.name)
         {

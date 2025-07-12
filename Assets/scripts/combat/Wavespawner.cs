@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -59,35 +60,35 @@ public class Wavespawner : MonoBehaviour
         if (spawning_time == true)
         {
             
-            if (dead_fish != null)
-            {
-                
-                foreach (fish_dead f in dead_fish)
-                {
-                    //fish_left += f.stackSize;
-                    for (int i = 0; i < family_size; i++)
-                    {
-                        var fish_object = Instantiate(f.data, new Vector3(spawn_left_right, 0, spawn_forward_back), Quaternion.identity);
-                        fish_object.GetComponent<heat_seeking_fishles>().home = GameObject.Find("player");
-                        fish_object.GetComponent<heat_seeking_fishles>().disable_water = true;
-                        Add_alive(fish_object);
-                        fish_have_been_alive = true;
-                    }
+            
+            
 
-                    Remove_dead(f.data);
+            foreach (fish_dead f in dead_fish.ToList())
+            {
+                //fish_left += f.stackSize;
+                for (int i = 0; i < family_size; i++)
+                {
+                    var fish_object = Instantiate(f.data, new Vector3(spawn_left_right, 0, spawn_forward_back), Quaternion.identity);
+                    fish_object.GetComponent<heat_seeking_fishles>().home = GameObject.Find("player");
+                    fish_object.GetComponent<heat_seeking_fishles>().disable_water = true;
+                    Add_alive(fish_object);
+                    fish_have_been_alive = true;
                 }
 
-                
+                Remove_dead(f.data);
             }
 
-            foreach (enemy_encounter_data encounter in encounters)
+
+           
+            //Debug.Log(encounters_copy_list.Count);
+            foreach (enemy_encounter_data encounter in encounters.ToList())
             {
                 
                 var rod_script = rod.GetComponent<fishing_script>();
-                Debug.Log("going through encounters");
+                //Debug.Log("going through encounters");
                 if (encounter.requirement_type == 1)
                 {
-                    Debug.Log("encounters that equal type 1");
+                    //Debug.Log("encounters that equal type 1");
                     if (rod_script.consecutive_wins >= encounter.requirement_amount)
                     {
                         spawn_encounter(encounter);
@@ -96,7 +97,7 @@ public class Wavespawner : MonoBehaviour
                 }
                 if(encounter.requirement_type == 2)
                 {
-                    Debug.Log("encounters that equal type 2");
+                    //Debug.Log("encounters that equal type 2");
                     if (rod_script.fish_ever >= encounter.requirement_amount)
                     {
                         spawn_encounter(encounter);
@@ -117,7 +118,7 @@ public class Wavespawner : MonoBehaviour
                 navmesh.SetActive(true);
             }
 
-            if (fish_have_been_alive == true)
+            if (fish_have_been_alive == true || encounter_enemies_alive.Count != 0)
             {
                 foreach (GameObject wat in GameObject.FindGameObjectsWithTag("water"))
                 {

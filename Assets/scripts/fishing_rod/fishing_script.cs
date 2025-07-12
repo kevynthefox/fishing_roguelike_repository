@@ -35,6 +35,8 @@ public class fishing_script : MonoBehaviour
 
     public int consecutive_wins;
 
+    public bool reel_in_finisher;
+
     [Header("string variables")]
     public float distance;
     public bool enabled_fishing = false;
@@ -335,7 +337,14 @@ public class fishing_script : MonoBehaviour
                 //GetComponent<Rigidbody>().useGravity = enabled_fishing;
 
             }
-            GetComponent<return_to_start>().enabled = !enabled_fishing;
+            if (enabled_fishing == false || reel_in_finisher == true)
+            {
+                GetComponent<return_to_start>().enabled = true;
+            }
+            else
+            {
+                GetComponent<return_to_start>().enabled = false;
+            }
             GetComponent<BoxCollider>().enabled = enabled_fishing;
 
             if (enabled_fishing == true)
@@ -364,30 +373,31 @@ public class fishing_script : MonoBehaviour
                     GetComponent<bobber_launch>().enabled = false;
                 }
 
-                if (right_clicked_down == true)
+                if (right_clicked_hold == true)
                 {
                     GetComponent<bobber_launch>().enabled = true;
                     if (distance > 1)
                     {
                         GetComponent<bobber_launch>().factor = -distance;
+                        //Debug.Log("distance above 1");
                     }
                     else
                     {
+                        //Debug.Log("distance below 1");
                         GetComponent<bobber_launch>().factor = 0;
-                        enabled_fishing = false;
+                        reel_in_finisher = false;
                     }
+
                 }
-                
-            }
-            else
-            {
                 if (right_clicked_up == true)
                 {
                     GetComponent<bobber_launch>().factor = 0;
                     GetComponent<bobber_launch>().enabled = false;
-                    enabled_fishing = true;
+                    reel_in_finisher = true;
                 }
+
             }
+            
 
 
             if (bobber_on == true)
@@ -422,7 +432,7 @@ public class fishing_script : MonoBehaviour
                 res.text = resistance.ToString("0.0");
                 res_2.text = "" + area_difficulty;
 
-                if (resetting == false && enabled_fishing == true && actively_fishing == true)
+                if (resetting == false && enabled_fishing == true && actively_fishing == true && water_already == true)
                 {
                     if (bar_pos <= 0 + (resistance * Time.deltaTime * direction) || bar_pos >= 1 - (effort * Time.deltaTime * direction))
                     {
@@ -440,6 +450,7 @@ public class fishing_script : MonoBehaviour
                             Debug.Log("disabled fishing, waiting to re-enable");
                             StartCoroutine(re_enable_fishing_after_win());
                             Debug.Log("re-enabled fishing");
+                            water_already = false;
                         }
 
                         //enabled_fishing = false;
@@ -465,6 +476,7 @@ public class fishing_script : MonoBehaviour
                                 StartCoroutine(spawn_fish());
 
                                 StartCoroutine(disable_reset_after_win());
+                                water_already = false;
                             }
 
                         }
@@ -702,7 +714,7 @@ public class fishing_script : MonoBehaviour
         }
     }
 
-    IEnumerator OnTriggerEnter(Collider other)
+    void OnTriggerEnter(Collider other)
     {
         if (other != null)
         {
@@ -717,7 +729,7 @@ public class fishing_script : MonoBehaviour
 
 
 
-                yield return new WaitForSeconds(0.1f);
+                //yield return new WaitForSeconds(0.1f);
                 if (bobber_returned == false)
                 {
                     
@@ -745,11 +757,11 @@ public class fishing_script : MonoBehaviour
                             fishing_bar.value = bar_pos;
 
                             //Debug.Log("water");
-                            yield return new WaitForSeconds(.5f);
+                            //yield return new WaitForSeconds(.5f);
                             rod_animator.SetBool("is_waiting", true);
                             //animator.SetBool("is_hooked", false);
 
-                            yield return new WaitForSeconds(fishing_time);
+                            //yield return new WaitForSeconds(fishing_time);
                             //possibly just remove the hooked animation and all that to make the game more fast and fun
                             //animator.SetBool("is_hooked", true);
 
@@ -778,8 +790,7 @@ public class fishing_script : MonoBehaviour
                 {
                     StartCoroutine(reset_animations());
                     fishing_system.SetActive(false);
-                    yield return new WaitForSeconds(10f);
-                    StopCoroutine(reset_animations());
+                    
                     //fish_all_spawned = false;
                 }
 
@@ -788,22 +799,22 @@ public class fishing_script : MonoBehaviour
                     //Debug.Log(other.name);
 
                     //Debug.Log("rod");
-                    yield return new WaitForSeconds(.5f);
-                    reel_able = false;
+                    /*yield return new WaitForSeconds(.5f);
+                    reel_able = false;*/
                     StartCoroutine(reset_animations());
                     bobber_returned = true;
-                    water_already = false;
+                    
 
 
                     //StartCoroutine(winlose());
                 }
-                else
+                /*else
                 {
                     yield return new WaitForSeconds(100f);
                     //Debug.Log("air");
                     rod_animator.SetBool("is_waiting", false);
                     //animator.SetBool("is_hooked", false);
-                }
+                }*/
             }
         }
         //}
@@ -827,7 +838,7 @@ public class fishing_script : MonoBehaviour
             {
                 Debug.Log("deflected");
                 deflection_direction = cam.GetComponent<Transform>().forward;
-                direction_modified = deflection_direction * Time.deltaTime * 5000;
+                direction_modified = deflection_direction * Time.deltaTime * 5000 * other.gameObject.GetComponent<Rigidbody>().mass;
 
                 other.GetComponent<Rigidbody>().AddForce(direction_modified, ForceMode.Impulse);
             }

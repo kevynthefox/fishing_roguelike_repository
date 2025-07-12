@@ -24,5 +24,5 @@ MonoBehaviour:
   - {fileID: 5741628652133827532, guid: 8029419f5fa79534bac030b08a49f0c4, type: 3}
   - {fileID: 5741628652133827532, guid: 8029419f5fa79534bac030b08a49f0c4, type: 3}
   requirement_type: 2
-  requirement_amount: 10
+  requirement_amount: 1000
   spawn_radius: 1

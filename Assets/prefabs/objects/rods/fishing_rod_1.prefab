@@ -61,7 +61,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
@@ -229,6 +229,11 @@ MonoBehaviour:
   spawning_fish: 0
   already_fishing: {fileID: 0}
   fish_spawner: {fileID: 0}
+  damage: 0
+  deflection_direction: {x: 0, y: 0, z: 0}
+  direction_modified: {x: 0, y: 0, z: 0}
+  cam: {fileID: 0}
+  fish_ever: 0
 --- !u!114 &7770692716166661309
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -402,6 +407,137 @@ FixedJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!1 &887690938536500031
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2005004962571502707}
+  - component: {fileID: 8618109090158106017}
+  - component: {fileID: 579294888427063055}
+  - component: {fileID: 477999215695868393}
+  - component: {fileID: 6208263347878598186}
+  m_Layer: 0
+  m_Name: right_hand
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2005004962571502707
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 887690938536500031}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.7071068, y: -0.7071068, z: -0, w: 0}
+  m_LocalPosition: {x: 0.024532763, y: 0.9281383, z: 0.8463604}
+  m_LocalScale: {x: 1.2266105, y: 1.2266108, z: 1.2266107}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4105307664551048513}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &8618109090158106017
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 887690938536500031}
+  m_Mesh: {fileID: 8691780276856062721, guid: 27416f8cd2927104aab9bbdfceb46071, type: 3}
+--- !u!23 &579294888427063055
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 887690938536500031}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: -2813467912831258332, guid: 27416f8cd2927104aab9bbdfceb46071, type: 3}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!54 &477999215695868393
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 887690938536500031}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!138 &6208263347878598186
+FixedJoint:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 887690938536500031}
+  serializedVersion: 1
+  m_ConnectedBody: {fileID: 4571790155545624728}
+  m_ConnectedArticulationBody: {fileID: 0}
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_EnableCollision: 0
+  m_EnablePreprocessing: 1
+  m_MassScale: 1
+  m_ConnectedMassScale: 1
 --- !u!1 &1188416235030166116
 GameObject:
   m_ObjectHideFlags: 0
@@ -463,7 +599,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
@@ -631,6 +767,11 @@ MonoBehaviour:
   spawning_fish: 0
   already_fishing: {fileID: 0}
   fish_spawner: {fileID: 0}
+  damage: 0
+  deflection_direction: {x: 0, y: 0, z: 0}
+  direction_modified: {x: 0, y: 0, z: 0}
+  cam: {fileID: 0}
+  fish_ever: 0
 --- !u!114 &1277221930101411099
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -712,7 +853,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
@@ -904,6 +1045,11 @@ MonoBehaviour:
   spawning_fish: 0
   already_fishing: {fileID: 0}
   fish_spawner: {fileID: 0}
+  damage: 0
+  deflection_direction: {x: 0, y: 0, z: 0}
+  direction_modified: {x: 0, y: 0, z: 0}
+  cam: {fileID: 0}
+  fish_ever: 0
 --- !u!114 &912262952114264254
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1231,7 +1377,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
@@ -1399,6 +1545,11 @@ MonoBehaviour:
   spawning_fish: 0
   already_fishing: {fileID: 0}
   fish_spawner: {fileID: 0}
+  damage: 0
+  deflection_direction: {x: 0, y: 0, z: 0}
+  direction_modified: {x: 0, y: 0, z: 0}
+  cam: {fileID: 0}
+  fish_ever: 0
 --- !u!114 &3579433808490763777
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1735,7 +1886,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0.46, y: -0.18099976, z: 1.22}
-  m_LocalScale: {x: 0.12228817, y: 0.1222882, z: 0.12228817}
+  m_LocalScale: {x: 0.24457629, y: 0.2445764, z: 0.24457629}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6974150987915138665}
@@ -1743,6 +1894,7 @@ Transform:
   - {fileID: 5917439552907764000}
   - {fileID: 4565934474298887431}
   - {fileID: 4555418675589130362}
+  - {fileID: 2005004962571502707}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!54 &4571790155545624728
@@ -1895,6 +2047,11 @@ MonoBehaviour:
   spawning_fish: 0
   already_fishing: {fileID: 0}
   fish_spawner: {fileID: 0}
+  damage: 0
+  deflection_direction: {x: 0, y: 0, z: 0}
+  direction_modified: {x: 0, y: 0, z: 0}
+  cam: {fileID: 0}
+  fish_ever: 0
 --- !u!1 &3928647605923234054
 GameObject:
   m_ObjectHideFlags: 0
@@ -1956,7 +2113,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
@@ -2124,6 +2281,11 @@ MonoBehaviour:
   spawning_fish: 0
   already_fishing: {fileID: 0}
   fish_spawner: {fileID: 0}
+  damage: 0
+  deflection_direction: {x: 0, y: 0, z: 0}
+  direction_modified: {x: 0, y: 0, z: 0}
+  cam: {fileID: 0}
+  fish_ever: 0
 --- !u!114 &8642162347613769995
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2313,7 +2475,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
@@ -2497,6 +2659,11 @@ MonoBehaviour:
   spawning_fish: 0
   already_fishing: {fileID: 0}
   fish_spawner: {fileID: 0}
+  damage: 0
+  deflection_direction: {x: 0, y: 0, z: 0}
+  direction_modified: {x: 0, y: 0, z: 0}
+  cam: {fileID: 0}
+  fish_ever: 0
 --- !u!114 &7184075392397230045
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2686,7 +2853,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
@@ -2854,6 +3021,11 @@ MonoBehaviour:
   spawning_fish: 0
   already_fishing: {fileID: 0}
   fish_spawner: {fileID: 0}
+  damage: 0
+  deflection_direction: {x: 0, y: 0, z: 0}
+  direction_modified: {x: 0, y: 0, z: 0}
+  cam: {fileID: 0}
+  fish_ever: 0
 --- !u!114 &1216230330321523632
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2934,7 +3106,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
@@ -3102,6 +3274,11 @@ MonoBehaviour:
   spawning_fish: 0
   already_fishing: {fileID: 0}
   fish_spawner: {fileID: 0}
+  damage: 0
+  deflection_direction: {x: 0, y: 0, z: 0}
+  direction_modified: {x: 0, y: 0, z: 0}
+  cam: {fileID: 0}
+  fish_ever: 0
 --- !u!114 &5795922344061899528
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3397,7 +3574,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
@@ -3757,7 +3934,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
@@ -4115,7 +4292,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
@@ -4203,7 +4380,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
@@ -4371,6 +4548,11 @@ MonoBehaviour:
   spawning_fish: 0
   already_fishing: {fileID: 0}
   fish_spawner: {fileID: 0}
+  damage: 0
+  deflection_direction: {x: 0, y: 0, z: 0}
+  direction_modified: {x: 0, y: 0, z: 0}
+  cam: {fileID: 0}
+  fish_ever: 0
 --- !u!114 &4301756955113784833
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4458,14 +4640,6 @@ PrefabInstance:
       propertyPath: rod_animator
       value: 
       objectReference: {fileID: 4571790155545624729}
-    - target: {fileID: 3220851619442043366, guid: f98563a06440bbd4996432a7254b0c77, type: 3}
-      propertyPath: area_difficulty
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3220851619442043366, guid: f98563a06440bbd4996432a7254b0c77, type: 3}
-      propertyPath: fish.Array.size
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4666394159460927992, guid: f98563a06440bbd4996432a7254b0c77, type: 3}
       propertyPath: bone
       value: 

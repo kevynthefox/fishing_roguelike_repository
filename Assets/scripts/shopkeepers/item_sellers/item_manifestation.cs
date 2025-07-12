@@ -113,18 +113,21 @@ public class item_manifestation : MonoBehaviour
 
     public IEnumerator checkout_part()
     {
-        while (starter == true)
+        if (items_owed != null)
         {
             
-            //Debug.Log(money_owed);
-            foreach (InventoryItemData item in items_owed)
+
+            foreach (InventoryItemData item in items_owed.ToList())
             {
-                if (items_owed != null)
-                {
-                    InventorySystem.current.Add(item);
-                    items_owed.Remove(item);
-                }
+                //Debug.Log(item.name);
+                InventorySystem.current.Add(item);
+                items_owed.Remove(item);
+
             }
+
+        }
+        while (starter == true)
+        {
             //Debug.Log("second part");
             if (money_owed >= 0 && checking_out == false)
             {

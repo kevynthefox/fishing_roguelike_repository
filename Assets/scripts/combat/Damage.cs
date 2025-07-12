@@ -12,7 +12,7 @@ public class Damage : MonoBehaviour
         health_object = GameObject.Find("HealthBar");
     }
 
-    public IEnumerator OnTriggerEnter(Collider other)
+    public void OnTriggerEnter(Collider other)
     {
         if (other.gameObject != null)
         {
@@ -25,7 +25,7 @@ public class Damage : MonoBehaviour
                 
                 Wavespawner.current.Remove_alive(other.gameObject);
                 Destroy(other.gameObject);
-                yield return new WaitForSeconds(1f);
+                
             }
 
             if (other.tag == "super_food_items")
@@ -34,7 +34,7 @@ public class Damage : MonoBehaviour
                 
                 Wavespawner.current.Remove_alive(other.gameObject);
                 Destroy(other.gameObject);
-                yield return new WaitForSeconds(1f);
+                
             }
 
             if (invincibility == false)
@@ -44,7 +44,7 @@ public class Damage : MonoBehaviour
                     if (other.tag == "fish" || other.tag == "fish_enemy")
                     {
                         health_object.GetComponent<Health_display>().health -= other.GetComponent<fish_variable_holder>().potentcy / 2;
-                        yield return new WaitForSeconds(1f);
+                        
                     }
 
                     if (other.tag == "projectile")

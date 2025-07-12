@@ -11,7 +11,7 @@ public class item_buying : MonoBehaviour
     public InventoryItemData self_item;
 
     public GameObject player;
-    public GameObject player_model;
+    public GameObject wallet;
 
 
     public float item_cost;
@@ -29,7 +29,7 @@ public class item_buying : MonoBehaviour
     private void Start()
     {
         player = GameObject.Find("player");
-        player_model = GameObject.Find("bone_pile");
+        wallet = GameObject.Find("bone_pile");
         shop = GameObject.Find(group);
 
         Canvas.GetComponent<Canvas>().worldCamera = Camera.main;
@@ -50,7 +50,7 @@ public class item_buying : MonoBehaviour
     {
         if (Input.GetMouseButton(0))
         {
-            if (player_model.GetComponent<money_collector>().money_value >= item_cost)
+            if (wallet.GetComponent<money_collector>().money_value >= item_cost)
             {
                 shop.GetComponent<item_manifestation>().money_owed += item_cost;
 
