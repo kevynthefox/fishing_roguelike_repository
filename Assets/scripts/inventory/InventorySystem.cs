@@ -10,6 +10,8 @@ public class InventorySystem : MonoBehaviour
     public Dictionary<InventoryItemData, InventoryItem> m_itemDictionary;
     public List<InventoryItem> inventory;//{ get; private set; }
 
+
+
     private void Awake()
     {
         current = this;
@@ -47,6 +49,7 @@ public class InventorySystem : MonoBehaviour
         {
             InventoryItem newItem = new InventoryItem(referenceData);
             inventory.Add(newItem);
+            //referenceData.position_in_inventory = inventory.IndexOf(newItem);
             m_itemDictionary.Add(referenceData, newItem);
         }
         InventoryChanged();
@@ -66,7 +69,24 @@ public class InventorySystem : MonoBehaviour
         }
     }
 
-    
+    public void swap_position(int spot_1, int spot_2)//,GameObject obj_1, GameObject obj_2)
+    {
+        InventoryItem temp = inventory[spot_1];
+        inventory[spot_1] = inventory[spot_2];
+        inventory[spot_2] = temp;
+        /*obj_1.GetComponent<Draggable_item>().spot_in_inventory = spot_2;
+        obj_2.GetComponent<Draggable_item>().spot_in_inventory = spot_1;*/
+        Debug.Log("swapped index a with index b");
+    }
+
+    public void update_position(int spot, InventoryItem real_outcome)
+    {
+        if (inventory[spot] != real_outcome)
+        {
+            int real_outcome_location = inventory.IndexOf(real_outcome);
+            swap_position(real_outcome_location, spot);
+        }
+    }
 }
 
 [Serializable]

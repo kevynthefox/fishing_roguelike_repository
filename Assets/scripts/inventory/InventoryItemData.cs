@@ -24,7 +24,7 @@ public class InventoryItemData : ScriptableObject
     public int action_type;
     //action done
     //action gameobject if the action is physical
-    public GameObject action_object;
+    public GameObject[] action_object;
     //action effect if action is not physical
     public string action_effect;
 
@@ -45,6 +45,9 @@ public class InventoryItemData : ScriptableObject
     public GameObject player;
 
     public bool triggered;
+
+    //position in inventory
+    public int position_in_inventory;
 
     /*
 

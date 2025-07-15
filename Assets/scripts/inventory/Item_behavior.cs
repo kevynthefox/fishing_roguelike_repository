@@ -15,7 +15,7 @@ public class Item_behavior : MonoBehaviour
     public int action_type;
     //action done
     //action gameobject if the action is physical
-    public GameObject action_object;
+    public GameObject[] action_object;
     //action effect if action is not physical
     public string action_effect;
 
@@ -30,12 +30,13 @@ public class Item_behavior : MonoBehaviour
 
     //target for action
     public GameObject target;
-    public Vector3 target_transform;
+    public Transform target_transform;
     public Quaternion target_rot;
     //type of target. this is used for things like: if it's an enemy, put a text box that shows the effect and the time left on the effect, if it's the player, add a thing to the player's ui.
     public bool enemy_or_player; //false is enemy, true is player.
 
     public GameObject player;
+    public GameObject object_holder,fishing_controller;
 
     public bool triggered;
 
@@ -44,14 +45,18 @@ public class Item_behavior : MonoBehaviour
     //trigger type list
 
     //trigger type 1 is jumping
+    //type 2 is activates upon wining fishing.
 
     //action type list
 
     //action type 1 is spawning an object at the target location
+    //type 2 is spawning something based on the position the fishing game won in(like, which colored bar)
 
     public void Awake()
     {
         player = GameObject.Find("player");
+        object_holder = GameObject.Find("object_holder_object");
+        fishing_controller = object_holder.GetComponent<object_holder>().bobber;
     }
 
     public void Update()
@@ -83,6 +88,10 @@ public class Item_behavior : MonoBehaviour
         {
             triggered = true;
         }
+        if (fishing_controller.GetComponent<fishing_script>().win_state == 1)
+        {
+            triggered = true;
+        }
 
         if (triggered == true)
         {
@@ -97,16 +106,34 @@ public class Item_behavior : MonoBehaviour
         {
             if (action_type == 1)
             {
-                if (target != null)
-                {
-                    target_transform = new Vector3(target.transform.position.x, target.transform.position.y, target.transform.position.z); //keeping this as its own variable because it may be handy for things later. like, spawning something after the action maybe.
-                    target_rot = target.transform.rotation;
-                }
-                //target_rot = target.transform.rotation;
-                Instantiate(action_object, target_transform, target_rot);
-                //Instantiate(action_object,new Vector3(0,0,0), Quaternion.identity);
+                spawn_obj(0); 
+            }
+
+            if (action_type == 2)
+            {
+                float bar_pos = fishing_controller.GetComponent<fishing_script>().bar_pos;
+                if (0.00f < bar_pos && bar_pos < 0.14f) spawn_obj(0);
+                if (0.14f < bar_pos && bar_pos < 0.28f) spawn_obj(1);
+                if (0.28f < bar_pos && bar_pos < 0.42f) spawn_obj(2);
+                if (0.42f < bar_pos && bar_pos < 0.56f) spawn_obj(3);
+                if (0.56f < bar_pos && bar_pos < 0.70f) spawn_obj(4);
+                if (0.70f < bar_pos && bar_pos < 0.84f) spawn_obj(5);
+                if (0.84f < bar_pos && bar_pos < 1.00f) spawn_obj(6);
             }
         }
         
+    }
+
+    public void spawn_obj(int object_to_spawn)
+    {
+        if (target == null)
+        {
+            var obj = Instantiate(action_object[object_to_spawn], Vector3.zero, Quaternion.identity);
+        }
+        else
+        {
+            target_transform.GetPositionAndRotation(out Vector3 pos, out Quaternion rot);
+            var obj = Instantiate(action_object[object_to_spawn], pos, rot);
+        }
     }
 }

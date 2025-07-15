@@ -506,9 +506,6 @@ public class fishing_script : MonoBehaviour
                     resetting = false;
                     win_state = 0;
 
-
-                    win_state = 0;
-
                     spawning_fish = false;
                     //Debug.Log("set spawning fish to false");
                     fish_all_spawned = false;

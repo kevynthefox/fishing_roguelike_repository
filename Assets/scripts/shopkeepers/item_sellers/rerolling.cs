@@ -52,7 +52,7 @@ public class rerolling : MonoBehaviour
                     //self.GetComponent<object_click_detector>().click_override = true;
                     player.GetComponent<money_collector>().money_value -= item_cost;
 
-                    Debug.Log("recieved 2");
+                    //Debug.Log("recieved 2");
                     whole_shop.GetComponent<item_manifestation>().item_unmaker();
                     animator.SetBool("reroll", true);
                     yield return new WaitForSeconds(1f);

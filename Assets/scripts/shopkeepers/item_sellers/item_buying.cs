@@ -31,6 +31,7 @@ public class item_buying : MonoBehaviour
         player = GameObject.Find("player");
         wallet = GameObject.Find("bone_pile");
         shop = GameObject.Find(group);
+        gamesettings = GameObject.Find("game_settings");
 
         Canvas.GetComponent<Canvas>().worldCamera = Camera.main;
     }

@@ -20,7 +20,8 @@ MonoBehaviour:
   inventory: {fileID: 0}
   trigger_type: 0
   action_type: 0
-  action_object: {fileID: 0}
+  action_object:
+  - {fileID: 0}
   action_effect: 
   duration: 0
   delay: 0

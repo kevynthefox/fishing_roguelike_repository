@@ -18,6 +18,8 @@ TagManager:
   - projectile
   - water_off
   - fish_enemy
+  - item_slot
+  - item
   layers:
   - Default
   - TransparentFX

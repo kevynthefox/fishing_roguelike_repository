@@ -20,7 +20,10 @@ MonoBehaviour:
   inventory: {fileID: 0}
   trigger_type: 0
   action_type: 0
-  action_object: {fileID: 919132149155446097, guid: cba1697431aba344980f1cb06feb7359, type: 3}
+  action_object:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   action_effect: 
   duration: 0
   delay: 0

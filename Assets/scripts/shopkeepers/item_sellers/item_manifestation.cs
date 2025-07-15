@@ -86,7 +86,7 @@ public class item_manifestation : MonoBehaviour
                 //Debug.Log(l);
                 int randomIndex = Random.Range(0, items.Length);
                 Vector3 item_position = new Vector3(l.transform.position.x, l.transform.position.y, l.transform.position.z);
-                var item = Instantiate(items[randomIndex], item_position, Quaternion.identity);
+                var item = Instantiate(items[randomIndex], item_position, items[randomIndex].transform.rotation);
             }
         }
     }

@@ -5,6 +5,7 @@ public class logbook_interaction : MonoBehaviour
     public GameObject logbook;
 
     public bool book_open = false;
+    public bool inventory_open;
 
     public GameObject health;
 
@@ -20,17 +21,35 @@ public class logbook_interaction : MonoBehaviour
 
             logbook.SetActive(book_open);
 
+            if (Input.GetKeyDown(KeyCode.Tab))
+            {
+                inventory_open = !inventory_open;
+            }
 
-            Cursor.visible = book_open;
+            if (inventory_open == true)
+            {
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+            }
+            else
+            {
+                Cursor.visible = book_open;
+            }
             if (book_open == false)
             {
-                Cursor.lockState = CursorLockMode.Locked;
+                if (inventory_open == false)
+                {
+                    Cursor.lockState = CursorLockMode.Locked;
+                }
                 Time.timeScale = 1;
             }
             else
             {
-                Cursor.lockState = CursorLockMode.None;
-                Time.timeScale = 0;
+                if (inventory_open == false)
+                {
+                    Cursor.lockState = CursorLockMode.None;
+                    Time.timeScale = 0;
+                }
             }
         }
     }
