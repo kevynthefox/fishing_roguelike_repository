@@ -6,10 +6,16 @@ public class basic_mouseover_detection : MonoBehaviour
     public void OnMouseEnter()
     {
         //Debug.Log("triggered");
-        triggered = true;
+        if (this.GetComponent<basic_mouseover_detection>().enabled == true)
+        {
+            triggered = true;
+        }
     }
     public void OnMouseExit()
     {
-        triggered = false;
+        if (this.GetComponent<basic_mouseover_detection>().enabled == true)
+        {
+            triggered = false;
+        }
     }
 }

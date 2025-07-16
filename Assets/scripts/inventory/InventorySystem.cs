@@ -10,7 +10,16 @@ public class InventorySystem : MonoBehaviour
     public Dictionary<InventoryItemData, InventoryItem> m_itemDictionary;
     public List<InventoryItem> inventory;//{ get; private set; }
 
+    public bool force_change;
 
+    private void Update()
+    {
+        if (force_change == true)
+        {
+            InventoryChanged();
+            force_change = false;
+        }
+    }
 
     private void Awake()
     {
@@ -81,11 +90,20 @@ public class InventorySystem : MonoBehaviour
 
     public void update_position(int spot, InventoryItem real_outcome)
     {
-        if (inventory[spot] != real_outcome)
+        Debug.Log("double checking position start");
+        if (inventory[spot].data != real_outcome.data)
         {
+            Debug.Log("position was wrong, fixing");
+            Debug.Log("index of real outcome: " + inventory.IndexOf(real_outcome));
             int real_outcome_location = inventory.IndexOf(real_outcome);
+
             swap_position(real_outcome_location, spot);
         }
+    }
+
+    public void put_in_right_place(int spot, InventoryItem item_in_spot)
+    {
+        inventory[spot] = item_in_spot;
     }
 }
 
@@ -94,6 +112,7 @@ public class InventoryItem
 {
     public InventoryItemData data;// {  get; private set; }
     public int stackSize;// { get; private set; }
+    public bool already_made_item;
 
     public InventoryItem(InventoryItemData source)
     {

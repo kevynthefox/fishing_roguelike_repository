@@ -174,4 +174,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   area_difficulty: 0.3
   fish:
-  - {fileID: 2118407236459578664, guid: 6fb26421602dee9468588a0e9bbbeba5, type: 3}
+  - {fileID: 4664982497591543338, guid: 40f7a3039bb3d0a4ba3201ee603812cc, type: 3}

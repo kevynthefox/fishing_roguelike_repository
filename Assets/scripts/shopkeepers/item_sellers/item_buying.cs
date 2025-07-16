@@ -49,19 +49,28 @@ public class item_buying : MonoBehaviour
 
     public IEnumerator OnMouseOver()
     {
-        if (Input.GetMouseButton(0))
+        if (this.GetComponent<item_buying>().enabled == true)
         {
-            if (wallet.GetComponent<money_collector>().money_value >= item_cost)
+            if (Input.GetMouseButton(0))
             {
-                shop.GetComponent<item_manifestation>().money_owed += item_cost;
+                if (wallet != null)
+                {
+                    if (wallet.GetComponent<money_collector>().money_value >= item_cost)
+                    {
+                        if (shop != null)
+                        {
+                            shop.GetComponent<item_manifestation>().money_owed += item_cost;
 
-                shop.GetComponent<item_manifestation>().items_owed.Add(self_item);
-                Destroy(self);
+                            shop.GetComponent<item_manifestation>().items_owed.Add(self_item);
+                        }
+                        Destroy(self);
+                    }
+                }
             }
-        }
 
-        
-        yield return null;
+
+            yield return null;
+        }
     }
 
 }

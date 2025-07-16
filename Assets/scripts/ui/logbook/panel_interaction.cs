@@ -26,32 +26,47 @@ public class panel_interaction : MonoBehaviour
 
     public void OnMouseEnter_panel()
     {
-        //Debug.Log("hovering over");
-        hover_over.SetActive(true);
+        if (this.GetComponent<panel_interaction>().enabled == true)
+        {
+            //Debug.Log("hovering over");
+            hover_over.SetActive(true);
+        }
     }
     public void OnMouseExit_panel()
     {
-        hover_over.SetActive(false);
+        if (this.GetComponent<panel_interaction>().enabled == true)
+        {
+            hover_over.SetActive(false);
+        }
     }
 
     public void OnMouseEnter_contents()
     {
-        //Debug.Log("hovering over");
-        contents_hover_over.SetActive(true);
+        if (this.GetComponent<panel_interaction>().enabled == true)
+        {
+            //Debug.Log("hovering over");
+            contents_hover_over.SetActive(true);
+        }
     }
     public void OnMouseExit_contents()
     {
-        contents_hover_over.SetActive(false);
+        if (this.GetComponent<panel_interaction>().enabled == true)
+        {
+            contents_hover_over.SetActive(false);
+        }
     }
 
     public void OnMouseDown()
     {
-        content_state = !content_state;
-        //this.gameObject.SetActive(false);
-        
-        
+        if (this.GetComponent<panel_interaction>().enabled == true)
+        {
+            content_state = !content_state;
+            //this.gameObject.SetActive(false);
 
-        hover_over.SetActive(false);
+
+
+            hover_over.SetActive(false);
+        }
     }
 
     public void Update()

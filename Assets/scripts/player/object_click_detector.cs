@@ -18,7 +18,7 @@ public class object_click_detector : MonoBehaviour
         {
             Debug.Log("click_override: " + click_override);
         }*/
-        
+
     }
 
     public IEnumerator OnMouseOver()
@@ -27,35 +27,37 @@ public class object_click_detector : MonoBehaviour
         {
             Debug.Log("over");
         }*/
-
-        if (click_override == false)
+        if (this.GetComponent<object_click_detector>().enabled == true)
         {
-
-            if (Input.GetMouseButton(0))
+            if (click_override == false)
             {
-                left_clicked = true;
+
+                if (Input.GetMouseButton(0))
+                {
+                    left_clicked = true;
+                }
+                else
+                {
+                    left_clicked = false;
+                }
+
+                if (Input.GetMouseButton(1))
+                {
+                    right_clicked = true;
+                }
+                else
+                {
+                    right_clicked = false;
+                }
+
             }
             else
             {
                 left_clicked = false;
-            }
-
-            if (Input.GetMouseButton(1))
-            {
-                right_clicked = true;
-            }
-            else
-            {
                 right_clicked = false;
             }
-            
+            yield return null;
         }
-        else
-        {
-            left_clicked = false;
-            right_clicked = false;
-        }
-        yield return null;
     }
 
     public IEnumerator OnMouseExit()
@@ -64,8 +66,11 @@ public class object_click_detector : MonoBehaviour
         {
             Debug.Log("exit");
         }*/
-        left_clicked = false;
-        right_clicked = false;
-        yield return null;
+        if (this.GetComponent<object_click_detector>().enabled == true)
+        {
+            left_clicked = false;
+            right_clicked = false;
+            yield return null;
+        }
     }
 }

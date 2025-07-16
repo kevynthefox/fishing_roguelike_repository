@@ -20,25 +20,34 @@ public class Tab_interaction : MonoBehaviour
 
     public void OnMouseEnter()
     {
-        //Debug.Log("hovering over");
-        hover_over.SetActive(true);
+        if (this.GetComponent<Tab_interaction>().enabled == true)
+        {
+            //Debug.Log("hovering over");
+            hover_over.SetActive(true);
+        }
     }
     public void OnMouseExit()
     {
-        hover_over.SetActive(false);
+        if (this.GetComponent<Tab_interaction>().enabled == true)
+        {
+            hover_over.SetActive(false);
+        }
     }
 
     public void OnMouseDown()
     {
-        content_state = !content_state;
-        //this.gameObject.SetActive(false);
-        tab_contents.SetActive(content_state);
-        foreach (GameObject tab in other_tab_list)
+        if (this.GetComponent<Tab_interaction>().enabled == true)
         {
-            Debug.Log("turning other tabs off");
-            tab.SetActive(!content_state);
+            content_state = !content_state;
+            //this.gameObject.SetActive(false);
+            tab_contents.SetActive(content_state);
+            foreach (GameObject tab in other_tab_list)
+            {
+                Debug.Log("turning other tabs off");
+                tab.SetActive(!content_state);
+            }
+            hover_over.SetActive(false);
         }
-        hover_over.SetActive(false);
     }
 
     public void logging()

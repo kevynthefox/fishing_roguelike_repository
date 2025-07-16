@@ -65,7 +65,7 @@ public class InventorySlot : MonoBehaviour, IDropHandler
 
     public void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("touched something: " + other.gameObject.name);
+        //Debug.Log("touched something: " + other.gameObject.name);
         if (other.CompareTag("item"))
         {
             //Debug.Log("touching an item");
@@ -111,10 +111,20 @@ public class InventorySlot : MonoBehaviour, IDropHandler
         first_child.GetComponent<Draggable_item>().parentAfterDrag = new_location;
         parent_of_dropped_object.GetComponent<InventorySlot>().first_child = first_child;
         first_child.GetComponent<Draggable_item>().relocate();
-        InventorySystem.current.swap_position(first_child.GetComponent<Draggable_item>().spot_in_inventory, second_child.GetComponent<Draggable_item>().spot_in_inventory);//,first_child,second_child);
-        InventorySystem.current.update_position(inventory_slot_position,first_child.GetComponent<Draggable_item>().self_inventory_item);
+        //InventorySystem.current.swap_position(first_child.GetComponent<Draggable_item>().spot_in_inventory, second_child.GetComponent<Draggable_item>().spot_in_inventory);//,first_child,second_child);
+        //InventorySystem.current.update_position(inventory_slot_position,first_child.GetComponent<Draggable_item>().self_inventory_item);
+
+        
         first_child = second_child;
         second_child = null;
         //Debug.Log("set current child's parent to the other one");
+    }
+
+    private void Update()
+    {
+        if (Input.GetKey(KeyCode.Tab))
+        {
+            InventorySystem.current.put_in_right_place(inventory_slot_position, first_child.GetComponent<Draggable_item>().self_inventory_item);
+        }
     }
 }

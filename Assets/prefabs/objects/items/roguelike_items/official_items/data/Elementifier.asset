@@ -15,7 +15,7 @@ MonoBehaviour:
   id: InventoryItem_Elementifier
   displayName: Elementifier
   icon: {fileID: 21300000, guid: 4b502a02e4847324cb1f86a6519db32d, type: 3}
-  prefab: {fileID: 919132149155446097, guid: 2d6df7de37ba096439646a393ee2d9d6, type: 3}
+  prefab: {fileID: 8197422802836098689, guid: 6864b06ef2d9f2e4a858deb4ac37e456, type: 3}
   in_inventory: 0
   inventory: {fileID: 0}
   trigger_type: 2
@@ -37,3 +37,4 @@ MonoBehaviour:
   enemy_or_player: 0
   player: {fileID: 0}
   triggered: 0
+  position_in_inventory: 0

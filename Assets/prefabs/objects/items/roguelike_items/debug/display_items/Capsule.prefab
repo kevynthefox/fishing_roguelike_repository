@@ -31,7 +31,6 @@ RectTransform:
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 7920745554469052307}
-  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -89,6 +88,7 @@ GameObject:
   - component: {fileID: 6392502703219390468}
   - component: {fileID: 5643978321385332324}
   - component: {fileID: -1111775714350280543}
+  - component: {fileID: -1004136142416914384}
   m_Layer: 0
   m_Name: Capsule
   m_TagString: debug_items
@@ -103,6 +103,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3573648674384999498}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -7.6073914, y: 15.928012, z: -91.713264}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
@@ -110,7 +111,6 @@ Transform:
   m_Children:
   - {fileID: 7920745554469052307}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &5232828328584995294
 MeshFilter:
@@ -137,6 +137,9 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -170,8 +173,17 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3573648674384999498}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 0
+  m_ProvidesContacts: 0
   m_Enabled: 1
+  serializedVersion: 2
   m_Radius: 0.5
   m_Height: 2
   m_Direction: 1
@@ -192,7 +204,7 @@ MonoBehaviour:
   self: {fileID: 3573648674384999498}
   self_item: {fileID: 11400000, guid: 678e69c9235786344904e373171cf4ca, type: 2}
   player: {fileID: 0}
-  player_model: {fileID: 0}
+  wallet: {fileID: 0}
   item_cost: 0
   item_original_cost: 3
   cost_percent: 0
@@ -201,6 +213,21 @@ MonoBehaviour:
   gamesettings: {fileID: 0}
   shop: {fileID: 0}
   group: debug_items
+--- !u!114 &-1004136142416914384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3573648674384999498}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 146a176068c4a6141ab0da5701395370, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  left_clicked: 0
+  self_item: {fileID: 11400000, guid: 678e69c9235786344904e373171cf4ca, type: 2}
+  amount_of_items: 0
 --- !u!1 &5575234776878097823
 GameObject:
   m_ObjectHideFlags: 0
@@ -232,7 +259,6 @@ RectTransform:
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 7920745554469052307}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -315,7 +341,6 @@ RectTransform:
   - {fileID: 4318068684562576188}
   - {fileID: 8882308825762536150}
   m_Father: {fileID: 8097174083848005708}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -339,7 +364,9 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
+  m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 0
+  m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0

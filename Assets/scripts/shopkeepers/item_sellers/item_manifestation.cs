@@ -113,13 +113,13 @@ public class item_manifestation : MonoBehaviour
 
     public IEnumerator checkout_part()
     {
-        if (items_owed != null)
+        if (items_owed.Count != 0)
         {
             
 
             foreach (InventoryItemData item in items_owed.ToList())
             {
-                //Debug.Log(item.name);
+                Debug.Log(item.name);
                 InventorySystem.current.Add(item);
                 items_owed.Remove(item);
 
@@ -131,7 +131,7 @@ public class item_manifestation : MonoBehaviour
             //Debug.Log("second part");
             if (money_owed >= 0 && checking_out == false)
             {
-                //Debug.Log("subtracting money");
+                Debug.Log("subtracting money");
                 wallet.GetComponent<money_collector>().money_value -= money_owed;
                 checking_out = true;
             }

@@ -1703,10 +1703,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventory:
-  - data: {fileID: 0}
-    stackSize: 0
-  - data: {fileID: 0}
-    stackSize: 0
+  - data: {fileID: 11400000, guid: 678e69c9235786344904e373171cf4ca, type: 2}
+    stackSize: 10
+    already_made_item: 0
+  force_change: 0
 --- !u!4 &874614210
 Transform:
   m_ObjectHideFlags: 0
@@ -3373,14 +3373,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 345586266}
     - target: {fileID: 3929200413903746758, guid: efd38573cfdf98746a308867327ff0fb, type: 3}
-      propertyPath: items.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 3929200413903746758, guid: efd38573cfdf98746a308867327ff0fb, type: 3}
-      propertyPath: 'items.Array.data[3]'
-      value: 
-      objectReference: {fileID: 8197422802836098689, guid: 6864b06ef2d9f2e4a858deb4ac37e456, type: 3}
-    - target: {fileID: 3929200413903746758, guid: efd38573cfdf98746a308867327ff0fb, type: 3}
       propertyPath: money_spawner_island
       value: 
       objectReference: {fileID: 843142419}
@@ -3493,10 +3485,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2191310640172604543, guid: a72626d4998c38846a5c8398b3da3c20, type: 3}
-      propertyPath: self_item
-      value: 
-      objectReference: {fileID: 11400000, guid: 79e2c15dd7985044f87a4b8264ea7878, type: 2}
     - target: {fileID: 5885001743295054473, guid: a72626d4998c38846a5c8398b3da3c20, type: 3}
       propertyPath: m_Name
       value: safety_wall
@@ -3590,10 +3578,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8305621141807829290, guid: 63bc39a8edd582448b0d4ee18c23ffd6, type: 3}
-      propertyPath: 'fish.Array.data[0]'
-      value: 
-      objectReference: {fileID: 4664982497591543338, guid: 40f7a3039bb3d0a4ba3201ee603812cc, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

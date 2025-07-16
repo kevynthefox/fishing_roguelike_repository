@@ -300,6 +300,7 @@ MonoBehaviour:
   first_child: {fileID: 6650182751253397415}
   second_child: {fileID: 0}
   triggered: 0
+  inventory_slot_position: 0
 --- !u!114 &3487498434526123825
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1467,6 +1468,7 @@ GameObject:
   - component: {fileID: 6707240045324900002}
   - component: {fileID: 1604261449295679450}
   - component: {fileID: 3219858663552603135}
+  - component: {fileID: 6070019092501049700}
   m_Layer: 5
   m_Name: item
   m_TagString: item
@@ -1551,6 +1553,10 @@ MonoBehaviour:
   parentAfterDrag: {fileID: 0}
   inventory_bar: {fileID: 0}
   current_parent: {fileID: 34620614143192288}
+  self_inventory_item:
+    data: {fileID: 0}
+    stackSize: 0
+  spot_in_inventory: 0
 --- !u!61 &1604261449295679450
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1624,6 +1630,35 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &6070019092501049700
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6650182751253397415}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 6707240045324900002}
+          m_TargetAssemblyTypeName: Draggable_item, Assembly-CSharp
+          m_MethodName: click_detection
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &6935336666410439308
 GameObject:
   m_ObjectHideFlags: 0

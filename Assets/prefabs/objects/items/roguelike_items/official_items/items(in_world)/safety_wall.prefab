@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 279197241225337830}
   - component: {fileID: 5620458828769077360}
   - component: {fileID: 5160284968591044264}
+  - component: {fileID: -4224582972272678392}
   - component: {fileID: 2191310640172604543}
   m_Layer: 12
   m_Name: safety_wall
@@ -169,6 +170,31 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2, y: 2, z: 2}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-4224582972272678392
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5885001743295054473}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afe7ca2d93608e0408d9c75e755cde3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  left_clicked: 0
+  self: {fileID: 5885001743295054473}
+  self_item: {fileID: 0}
+  player: {fileID: 0}
+  wallet: {fileID: 0}
+  item_cost: -1000
+  item_original_cost: 0
+  cost_percent: 0
+  Canvas: {fileID: 0}
+  cost_text: {fileID: 0}
+  gamesettings: {fileID: 0}
+  shop: {fileID: 0}
+  group: 
 --- !u!114 &2191310640172604543
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -182,4 +208,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   left_clicked: 0
-  self_item: {fileID: 0}
+  self_item: {fileID: 11400000, guid: 79e2c15dd7985044f87a4b8264ea7878, type: 2}
+  amount_of_items: 1
+  sell_value: -1000
