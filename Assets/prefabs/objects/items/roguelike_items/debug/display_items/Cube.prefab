@@ -271,6 +271,7 @@ GameObject:
   - component: {fileID: 5053316068556967865}
   - component: {fileID: -3826995015514415278}
   - component: {fileID: 2941681796220747121}
+  - component: {fileID: -5508753307528058022}
   m_Layer: 0
   m_Name: Cube
   m_TagString: debug_items
@@ -386,8 +387,6 @@ MonoBehaviour:
   player: {fileID: 0}
   wallet: {fileID: 0}
   item_cost: 0
-  item_original_cost: 10
-  cost_percent: 0
   Canvas: {fileID: 3123658196310455569}
   cost_text: {fileID: 7701877814245807756}
   gamesettings: {fileID: 0}
@@ -408,3 +407,20 @@ MonoBehaviour:
   left_clicked: 0
   self_item: {fileID: 11400000, guid: 7ff84172ad9359443942cc45e547dab7, type: 2}
   amount_of_items: 0
+  sell_value: 0
+--- !u!114 &-5508753307528058022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8341551117226465539}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6670e7b5d0b45164eb31be8282a50a3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item_cost: 0
+  item_original_cost: 10
+  cost_percent: 0
+  gamesettings: {fileID: 0}

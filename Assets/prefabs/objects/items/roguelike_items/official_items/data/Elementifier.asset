@@ -21,14 +21,14 @@ MonoBehaviour:
   trigger_type: 2
   action_type: 2
   action_object:
-  - {fileID: 183886, guid: 46d69f622d1354ee0820b7921e262b38, type: 3}
-  - {fileID: 782317847269395987, guid: 71cc39398398ea34ba48a1429a14f6c8, type: 3}
-  - {fileID: 1421325010732033939, guid: b6ed109e2c4d6fa46bf5878b6018f969, type: 3}
-  - {fileID: 8196582957341034641, guid: 344b2f12766283b4eae3d552dc404c54, type: 3}
-  - {fileID: 919132149155446097, guid: 1a55c0093d48cef42b0f71a1c5c7d5d3, type: 3}
-  - {fileID: 919132149155446097, guid: e313e585f2191ae4ebe8b7c66d771439, type: 3}
-  - {fileID: 919132149155446097, guid: 7456ccc1462311f48beaab6accd6e89c, type: 3}
-  action_effect: 
+  - {fileID: 4380100275839383339, guid: 10b3a42c0c6cefe45beac3e6eedcac8e, type: 3}
+  - {fileID: 3915403802236368739, guid: 425336cb354667a448267cc457575d13, type: 3}
+  - {fileID: 1583129796926740069, guid: 53fd2ee6ba8e01a47a691f28e128dc26, type: 3}
+  - {fileID: 5166792354707400490, guid: aa502606720ccdf45aadd73bb1102d55, type: 3}
+  - {fileID: 4919675567051900525, guid: f387572aeaf833f4b86bb91545fb46a5, type: 3}
+  - {fileID: 7909732440945376653, guid: 8d7ceab82e58c6e41b3e5136c4762446, type: 3}
+  - {fileID: 2517682333036285484, guid: 4e303404d8222884eb1f5758f1e2aacf, type: 3}
+  action_effect: 0
   duration: 0
   delay: 0
   strength: 0

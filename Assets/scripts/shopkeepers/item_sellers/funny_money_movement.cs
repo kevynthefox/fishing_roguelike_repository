@@ -86,54 +86,68 @@ public class funny_money_movement : MonoBehaviour
         } */
         while (starter == true)
         {
-            //Debug.Log(money_owed);
-            if (money_owed > 0)
+            if (shopkeeper.GetComponent<item_manifestation>().checking_out == true || last_clicked == reroll)
             {
-                //Debug.Log("active");
-                //absorb_area.SetActive(true);
-
-
-                if (money_owed >= 10)
+                //Debug.Log(money_owed);
+                if (money_owed > 0)
                 {
+                    foreach (GameObject i in GameObject.FindGameObjectsWithTag(shopkeeper.GetComponent<item_manifestation>().specialty))
+                    {
+                        i.GetComponent<item_buying>().enabled = false;
+                    }
+                    //Debug.Log("active");
+                    //absorb_area.SetActive(true);
 
-                    StartCoroutine(spawn(0, 10));
-                    StopCoroutine(spawn(0, 10));
-                }
-                else
-                {
-                    if (money_owed >= 1)
+
+                    if (money_owed >= 10)
                     {
 
-                        //Debug.Log("instantiated size 1 money");
-                        StartCoroutine(spawn(1, 1));
-                        StopCoroutine(spawn(1, 1));
+                        StartCoroutine(spawn(0, 10));
+                        StopCoroutine(spawn(0, 10));
                     }
                     else
                     {
-                        if (money_owed > 0)
+                        if (money_owed >= 1)
                         {
-                            //money_owed -= money_owed;
-                            StartCoroutine(spawn(1, money_owed));
-                            StopCoroutine(spawn(1, money_owed));
+
+                            //Debug.Log("instantiated size 1 money");
+                            StartCoroutine(spawn(1, 1));
+                            StopCoroutine(spawn(1, 1));
                         }
+                        else
+                        {
+                            if (money_owed > 0)
+                            {
+                                //money_owed -= money_owed;
+                                StartCoroutine(spawn(1, money_owed));
+                                StopCoroutine(spawn(1, money_owed));
+                            }
+                        }
+
+                    }
+                    yield return new WaitForSeconds(0.1f);
+                }
+                if (shopkeeper.GetComponent<item_manifestation>().money_owed <= 0)
+                //else
+                {
+                    foreach (GameObject i in GameObject.FindGameObjectsWithTag(shopkeeper.GetComponent<item_manifestation>().specialty))
+                    {
+                        i.GetComponent<item_buying>().enabled = true;
+                        Debug.Log("setting item buying to true");
                     }
 
+                    //Debug.Log("debt free");
+                    self.GetComponent<object_click_detector>().click_override = false;
+                    reroll.GetComponent<object_click_detector>().click_override = false;
+
+
+                    shopkeeper.GetComponent<item_manifestation>().checking_out = false;
+                    yield return new WaitForSeconds(1f);
+
+                    //yield return new WaitForSeconds(5f);
+                    //absorb_area.SetActive(false);
                 }
-                yield return new WaitForSeconds(0.1f);
-            }
-            if(shopkeeper.GetComponent<item_manifestation>().money_owed <= 0)
-            //else
-            {
-                //Debug.Log("debt free");
-                self.GetComponent<object_click_detector>().click_override = false;
-                reroll.GetComponent<object_click_detector>().click_override = false;
-
-
-                shopkeeper.GetComponent<item_manifestation>().checking_out = false;
-                yield return new WaitForSeconds(1f);
-
-                //yield return new WaitForSeconds(5f);
-                //absorb_area.SetActive(false);
+                
             }
             yield return new WaitForSeconds(0.001f);
         }
@@ -152,7 +166,7 @@ public class funny_money_movement : MonoBehaviour
         {
             money_object.GetComponent<heat_seeking_money>().home = redirect;
         }
-        if (last_clicked == reroll)
+        if (last_clicked == reroll)// && shopkeeper.GetComponent<item_manifestation>().checking_out == false)
         {
             money_object.GetComponent<heat_seeking_money>().home = reroll;
         }

@@ -346,6 +346,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 2d6df7de37ba096439646a393ee2d9d6, type: 3}
       insertIndex: -1
       addedObject: {fileID: -6017104673662455020}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 2d6df7de37ba096439646a393ee2d9d6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5927729325690175294}
   m_SourcePrefab: {fileID: 100100000, guid: 2d6df7de37ba096439646a393ee2d9d6, type: 3}
 --- !u!1 &8197422802836098689 stripped
 GameObject:
@@ -370,8 +373,6 @@ MonoBehaviour:
   player: {fileID: 0}
   wallet: {fileID: 0}
   item_cost: 0
-  item_original_cost: 20
-  cost_percent: 0
   Canvas: {fileID: 8202953471044584164}
   cost_text: {fileID: 2441787992843905043}
   gamesettings: {fileID: 0}
@@ -413,6 +414,23 @@ MonoBehaviour:
   left_clicked: 0
   self_item: {fileID: 11400000, guid: 355cf5d7dd1919949813a18be8170b4d, type: 2}
   amount_of_items: 0
+  sell_value: 0
+--- !u!114 &5927729325690175294
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8197422802836098689}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6670e7b5d0b45164eb31be8282a50a3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item_cost: 0
+  item_original_cost: 20
+  cost_percent: 0
+  gamesettings: {fileID: 0}
 --- !u!4 &8829527211868148795 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 2d6df7de37ba096439646a393ee2d9d6, type: 3}

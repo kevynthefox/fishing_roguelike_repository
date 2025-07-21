@@ -44,22 +44,25 @@ public class rerolling : MonoBehaviour
     {
         while (starter == true)
         {
-            if (player.GetComponent<money_collector>().money_value >= item_cost)
+            if (whole_shop.GetComponent<item_manifestation>().checking_out == false)
             {
-
-                if (self.GetComponent<object_click_detector>().left_clicked == true)
+                if (player.GetComponent<money_collector>().money_value >= item_cost)
                 {
-                    //self.GetComponent<object_click_detector>().click_override = true;
-                    player.GetComponent<money_collector>().money_value -= item_cost;
 
-                    //Debug.Log("recieved 2");
-                    whole_shop.GetComponent<item_manifestation>().item_unmaker();
-                    animator.SetBool("reroll", true);
-                    yield return new WaitForSeconds(1f);
-                    animator.SetBool("reroll", false);
-                    yield return new WaitForSeconds(1f);
-                    whole_shop.GetComponent<item_manifestation>().item_maker();
-                    //self.GetComponent<object_click_detector>().click_override = false;
+                    if (self.GetComponent<object_click_detector>().left_clicked == true)
+                    {
+                        //self.GetComponent<object_click_detector>().click_override = true;
+                        player.GetComponent<money_collector>().money_value -= item_cost;
+
+                        //Debug.Log("recieved 2");
+                        whole_shop.GetComponent<item_manifestation>().item_unmaker();
+                        animator.SetBool("reroll", true);
+                        yield return new WaitForSeconds(1f);
+                        animator.SetBool("reroll", false);
+                        yield return new WaitForSeconds(1f);
+                        whole_shop.GetComponent<item_manifestation>().item_maker();
+                        //self.GetComponent<object_click_detector>().click_override = false;
+                    }
                 }
             }
             yield return new WaitForSeconds(1f);

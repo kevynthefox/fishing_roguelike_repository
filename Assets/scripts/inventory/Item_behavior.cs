@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using UnityEditor;
 using UnityEngine;
 
 public class Item_behavior : MonoBehaviour
@@ -17,7 +19,7 @@ public class Item_behavior : MonoBehaviour
     //action gameobject if the action is physical
     public GameObject[] action_object;
     //action effect if action is not physical
-    public string action_effect;
+    public int action_effect;
 
     //duration of action
     public float duration;
@@ -40,17 +42,21 @@ public class Item_behavior : MonoBehaviour
 
     public bool triggered;
 
+    public bool over_trigger_prevention;
 
+    public InventoryItem current_item;
 
     //trigger type list
 
     //trigger type 1 is jumping
     //type 2 is activates upon wining fishing.
+    //type 3 activates when you push the activation button(same button for all of this type)
 
     //action type list
 
     //action type 1 is spawning an object at the target location
     //type 2 is spawning something based on the position the fishing game won in(like, which colored bar)
+    //type 3 modifies the values on the fishing bar. consumes the items afterwords.
 
     public void Awake()
     {
@@ -62,7 +68,7 @@ public class Item_behavior : MonoBehaviour
     public void Update()
     {
         //if (InventorySystem.current.inventory.Contains(this))
-        foreach (InventoryItem item in InventorySystem.current.inventory)
+        foreach (InventoryItem item in InventorySystem.current.inventory.ToList())
         {
             //int this_one += 1;
             trigger_type = item.data.trigger_type;
@@ -76,6 +82,8 @@ public class Item_behavior : MonoBehaviour
             enemy_or_player = item.data.enemy_or_player;
             stack_size = item.stackSize;
 
+            current_item = item;
+
             triggers();
         }
         
@@ -88,15 +96,30 @@ public class Item_behavior : MonoBehaviour
         {
             triggered = true;
         }
-        if (fishing_controller.GetComponent<fishing_script>().win_state == 1)
+        if (fishing_controller.GetComponent<fishing_script>().win_state == 1 && over_trigger_prevention == false)
         {
             triggered = true;
+            over_trigger_prevention = true;
+            //Debug.Log("won");
+        }
+        
+        if (over_trigger_prevention == true && fishing_controller.GetComponent<fishing_script>().win_state != 1)
+        {
+            over_trigger_prevention = false; // resets over trigger prevention for the win state state.
+            //Debug.Log("reset over_trigger_prevention"); 
+        }
+
+        if (Input.GetKeyDown(KeyCode.Z) && trigger_type == 3)
+        {
+            triggered = true;
+            Debug.Log("ability activated");
         }
 
         if (triggered == true)
         {
             action_taker();
             triggered = false;
+            //Debug.Log("stopped");
         }
     }
 
@@ -106,7 +129,7 @@ public class Item_behavior : MonoBehaviour
         {
             if (action_type == 1)
             {
-                spawn_obj(0); 
+                spawn_obj(0);
             }
 
             if (action_type == 2)
@@ -119,6 +142,30 @@ public class Item_behavior : MonoBehaviour
                 if (0.56f < bar_pos && bar_pos < 0.70f) spawn_obj(4);
                 if (0.70f < bar_pos && bar_pos < 0.84f) spawn_obj(5);
                 if (0.84f < bar_pos && bar_pos < 1.00f) spawn_obj(6);
+            }
+
+            if (action_type == 3)
+            {
+                //if (fishing_controller.GetComponent<fishing_script>().win_state == 1)
+                //{
+                    if (action_effect == 1) fishing_controller.GetComponent<fishing_script>().fish_quantity *= 2;
+                    if (action_effect == 2) fishing_controller.GetComponent<fishing_script>().fish_quantity_max *= 2;
+                    if (action_effect == 3) fishing_controller.GetComponent<fishing_script>().fish_quantity_min *= 2;
+                    if (action_effect == 4)
+                    {
+                        foreach (GameObject fish in GameObject.FindGameObjectsWithTag("fish").ToList())
+                        {
+                            if (TryGetComponent<fish_variable_holder>(out fish_variable_holder variable_Holder))
+                            {
+                                variable_Holder.potentcy *= 2;
+                            }
+                        }
+                    }
+                    if (action_effect == 5) fishing_controller.GetComponent<fishing_script>().fish_quality_min *= 2;
+                    if (action_effect == 6) fishing_controller.GetComponent<fishing_script>().fish_quality_max *= 2;
+                    if (action_effect == 7) fishing_controller.GetComponent<fishing_script>().fish_quality *= 2;
+                    InventorySystem.current.inventory.Remove(current_item);
+                //}
             }
         }
         

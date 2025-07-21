@@ -196,6 +196,7 @@ GameObject:
   - component: {fileID: 3307233600752428635}
   - component: {fileID: -6506643408448738233}
   - component: {fileID: 8455587612613259130}
+  - component: {fileID: 2872352924442595883}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: debug_items
@@ -311,8 +312,6 @@ MonoBehaviour:
   player: {fileID: 0}
   wallet: {fileID: 0}
   item_cost: 0
-  item_original_cost: 2
-  cost_percent: 0
   Canvas: {fileID: 5491521973265675718}
   cost_text: {fileID: 7783496430772982078}
   gamesettings: {fileID: 0}
@@ -333,6 +332,23 @@ MonoBehaviour:
   left_clicked: 0
   self_item: {fileID: 11400000, guid: d3592b41bb925c043b41830fdf76cf98, type: 2}
   amount_of_items: 0
+  sell_value: 0
+--- !u!114 &2872352924442595883
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6020825224858073573}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6670e7b5d0b45164eb31be8282a50a3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item_cost: 0
+  item_original_cost: 5
+  cost_percent: 0
+  gamesettings: {fileID: 0}
 --- !u!1 &8913586484717960324
 GameObject:
   m_ObjectHideFlags: 0

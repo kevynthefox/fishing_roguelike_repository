@@ -76,6 +76,7 @@ public class InventorySystem : MonoBehaviour
                 m_itemDictionary.Remove(referenceData);
             }
         }
+        InventoryChanged ();
     }
 
     public void swap_position(int spot_1, int spot_2)//,GameObject obj_1, GameObject obj_2)

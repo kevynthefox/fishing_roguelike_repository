@@ -26,7 +26,7 @@ public class InventoryItemData : ScriptableObject
     //action gameobject if the action is physical
     public GameObject[] action_object;
     //action effect if action is not physical
-    public string action_effect;
+    public int action_effect;
 
     //duration of action
     public float duration;

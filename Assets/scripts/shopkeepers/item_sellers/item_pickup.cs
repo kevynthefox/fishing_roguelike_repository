@@ -21,9 +21,15 @@ public class item_pickup : MonoBehaviour
 
     public IEnumerator OnMouseOver()
     {
-        if (this.GetComponent<item_pickup>().enabled == true)
+        if (this.gameObject.GetComponent<item_pickup>().enabled == true)
         {
-            Debug.Log("mouse is over");
+            if (TryGetComponent<item_price_holder>(out item_price_holder price_holder))
+            {
+                sell_value = price_holder.item_cost;
+            }
+
+
+            Debug.Log("mouse is over, item pickup");
             if (Input.GetMouseButtonDown(0))
             {
                 if (Input.GetKey(KeyCode.LeftControl))
@@ -47,12 +53,7 @@ public class item_pickup : MonoBehaviour
             }
 
 
-            if (TryGetComponent<item_buying>(out item_buying buying))
-            {
-                //Debug.Log("i have item buying");
-                buying.enabled = true;
-                sell_value = buying.item_cost;
-            }
+            
 
             if (Input.GetMouseButtonDown(1))
             {

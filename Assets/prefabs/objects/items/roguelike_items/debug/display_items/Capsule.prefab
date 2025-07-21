@@ -89,6 +89,7 @@ GameObject:
   - component: {fileID: 5643978321385332324}
   - component: {fileID: -1111775714350280543}
   - component: {fileID: -1004136142416914384}
+  - component: {fileID: 6372800669011783467}
   m_Layer: 0
   m_Name: Capsule
   m_TagString: debug_items
@@ -206,8 +207,6 @@ MonoBehaviour:
   player: {fileID: 0}
   wallet: {fileID: 0}
   item_cost: 0
-  item_original_cost: 3
-  cost_percent: 0
   Canvas: {fileID: 295702763920532306}
   cost_text: {fileID: 1466390637703456224}
   gamesettings: {fileID: 0}
@@ -228,6 +227,23 @@ MonoBehaviour:
   left_clicked: 0
   self_item: {fileID: 11400000, guid: 678e69c9235786344904e373171cf4ca, type: 2}
   amount_of_items: 0
+  sell_value: 0
+--- !u!114 &6372800669011783467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3573648674384999498}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6670e7b5d0b45164eb31be8282a50a3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item_cost: 0
+  item_original_cost: 3
+  cost_percent: 0
+  gamesettings: {fileID: 0}
 --- !u!1 &5575234776878097823
 GameObject:
   m_ObjectHideFlags: 0

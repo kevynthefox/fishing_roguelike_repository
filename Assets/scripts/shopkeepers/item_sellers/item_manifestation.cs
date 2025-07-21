@@ -62,7 +62,7 @@ public class item_manifestation : MonoBehaviour
 
         //Debug.Log(checking_out);
 
-        if (checkout.GetComponent<object_click_detector>().left_clicked == true || checkout.GetComponent<object_click_detector>().click_override == true)// && checking_out == false)
+        if (checkout.GetComponent<object_click_detector>().left_clicked == true)// || checkout.GetComponent<object_click_detector>().click_override == true)// && checking_out == false)
         {
             //Debug.Log("checking_out");
             starter = true;
@@ -119,7 +119,7 @@ public class item_manifestation : MonoBehaviour
 
             foreach (InventoryItemData item in items_owed.ToList())
             {
-                Debug.Log(item.name);
+                //Debug.Log(item.name);
                 InventorySystem.current.Add(item);
                 items_owed.Remove(item);
 
@@ -131,7 +131,7 @@ public class item_manifestation : MonoBehaviour
             //Debug.Log("second part");
             if (money_owed >= 0 && checking_out == false)
             {
-                Debug.Log("subtracting money");
+                //Debug.Log("subtracting money");
                 wallet.GetComponent<money_collector>().money_value -= money_owed;
                 checking_out = true;
             }

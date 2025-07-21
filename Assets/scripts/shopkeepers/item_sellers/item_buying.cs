@@ -15,8 +15,7 @@ public class item_buying : MonoBehaviour
 
 
     public float item_cost;
-    public float item_original_cost;
-    public float cost_percent;
+    
 
     public Canvas Canvas;
     public Text cost_text;
@@ -40,17 +39,16 @@ public class item_buying : MonoBehaviour
     {
         gamesettings = GameObject.Find("game_settings");
 
-        cost_percent = gamesettings.GetComponent<settings>().cost_percent / 100;
-
-        item_cost = cost_percent * item_original_cost;
+        item_cost = GetComponent<item_price_holder>().item_cost;
 
         cost_text.text = item_cost.ToString();
     }
 
     public IEnumerator OnMouseOver()
     {
-        if (this.GetComponent<item_buying>().enabled == true)
+        if (this.gameObject.GetComponent<item_buying>().enabled == true)
         {
+            Debug.Log("mouse is over, item_buying");
             if (Input.GetMouseButton(0))
             {
                 if (wallet != null)

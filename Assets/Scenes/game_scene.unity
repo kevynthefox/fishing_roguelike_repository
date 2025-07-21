@@ -1702,10 +1702,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 482824bb93917064999c2f1ec50cea4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventory:
-  - data: {fileID: 11400000, guid: 678e69c9235786344904e373171cf4ca, type: 2}
-    stackSize: 10
-    already_made_item: 0
+  inventory: []
   force_change: 0
 --- !u!4 &874614210
 Transform:
@@ -1740,7 +1737,7 @@ MonoBehaviour:
   action_type: 0
   action_object:
   - {fileID: 0}
-  action_effect: 
+  action_effect: 0
   duration: 0
   delay: 0
   strength: 0
@@ -1753,6 +1750,11 @@ MonoBehaviour:
   object_holder: {fileID: 0}
   fishing_controller: {fileID: 0}
   triggered: 0
+  over_trigger_prevention: 0
+  current_item:
+    data: {fileID: 0}
+    stackSize: 0
+    already_made_item: 0
 --- !u!1 &894387650
 GameObject:
   m_ObjectHideFlags: 0
@@ -2191,6 +2193,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1204003812}
   m_CullTransparentMesh: 1
+--- !u!1 &1233398376 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8733291522949645524, guid: efd38573cfdf98746a308867327ff0fb, type: 3}
+  m_PrefabInstance: {fileID: 7718165208987896761}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1311400748
 GameObject:
   m_ObjectHideFlags: 0
@@ -2300,7 +2307,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1312274980
 Transform:
   m_ObjectHideFlags: 0
@@ -3384,6 +3391,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 345586266}
+    - target: {fileID: 6512848099272832040, guid: efd38573cfdf98746a308867327ff0fb, type: 3}
+      propertyPath: checkout
+      value: 
+      objectReference: {fileID: 1233398376}
     - target: {fileID: 6512848099272832040, guid: efd38573cfdf98746a308867327ff0fb, type: 3}
       propertyPath: gamesettings
       value: 
