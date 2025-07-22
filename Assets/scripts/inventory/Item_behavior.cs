@@ -46,6 +46,10 @@ public class Item_behavior : MonoBehaviour
 
     public InventoryItem current_item;
 
+    public float target_vicinity;
+
+    public bool inheret_target_rotation;
+
     //trigger type list
 
     //trigger type 1 is jumping
@@ -79,10 +83,14 @@ public class Item_behavior : MonoBehaviour
             delay = item.data.delay;
             strength = item.data.strength;
             target = GameObject.Find(item.data.target);
+            target_transform = target.transform;
             enemy_or_player = item.data.enemy_or_player;
             stack_size = item.stackSize;
 
             current_item = item;
+
+            target_vicinity = item.data.target_vicinity;
+            inheret_target_rotation = item.data.inheret_target_rotation;
 
             triggers();
         }
@@ -112,7 +120,7 @@ public class Item_behavior : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Z) && trigger_type == 3)
         {
             triggered = true;
-            Debug.Log("ability activated");
+            //Debug.Log("ability activated");
         }
 
         if (triggered == true)
@@ -146,26 +154,106 @@ public class Item_behavior : MonoBehaviour
 
             if (action_type == 3)
             {
-                //if (fishing_controller.GetComponent<fishing_script>().win_state == 1)
-                //{
-                    if (action_effect == 1) fishing_controller.GetComponent<fishing_script>().fish_quantity *= 2;
-                    if (action_effect == 2) fishing_controller.GetComponent<fishing_script>().fish_quantity_max *= 2;
-                    if (action_effect == 3) fishing_controller.GetComponent<fishing_script>().fish_quantity_min *= 2;
-                    if (action_effect == 4)
+
+                if (action_effect == 1)
+                {
+                    if (fishing_controller.GetComponent<fishing_script>().fish_quantity_buff * strength != 1)
                     {
-                        foreach (GameObject fish in GameObject.FindGameObjectsWithTag("fish").ToList())
-                        {
-                            if (TryGetComponent<fish_variable_holder>(out fish_variable_holder variable_Holder))
-                            {
-                                variable_Holder.potentcy *= 2;
-                            }
-                        }
+                        fishing_controller.GetComponent<fishing_script>().fish_quantity_buff *= strength;
+                        fishing_controller.GetComponent<fishing_script>().fish_quantity *= strength;
                     }
-                    if (action_effect == 5) fishing_controller.GetComponent<fishing_script>().fish_quality_min *= 2;
-                    if (action_effect == 6) fishing_controller.GetComponent<fishing_script>().fish_quality_max *= 2;
-                    if (action_effect == 7) fishing_controller.GetComponent<fishing_script>().fish_quality *= 2;
-                    InventorySystem.current.inventory.Remove(current_item);
-                //}
+                    else
+                    {
+                        fishing_controller.GetComponent<fishing_script>().fish_quantity_buff = strength;
+                        fishing_controller.GetComponent<fishing_script>().fish_quantity = strength;
+                    }    
+                }
+                if (action_effect == 2)
+                {
+                    if (fishing_controller.GetComponent<fishing_script>().fish_quantity_max_buff * strength != 1)
+                    {
+                        fishing_controller.GetComponent<fishing_script>().fish_quantity_max_buff *= strength;
+                        fishing_controller.GetComponent<fishing_script>().fish_quantity_max *= strength;
+                    }
+                    else
+                    {
+                        fishing_controller.GetComponent<fishing_script>().fish_quantity_min_buff = strength;
+                        fishing_controller.GetComponent<fishing_script>().fish_quantity_min = strength;
+                    }    
+                }
+                if (action_effect == 3)
+                {
+                    if (fishing_controller.GetComponent<fishing_script>().fish_quantity_min_buff * strength != 1)
+                    {
+                        fishing_controller.GetComponent<fishing_script>().fish_quantity_min_buff *= strength;
+                        fishing_controller.GetComponent<fishing_script>().fish_quantity_min *= strength;
+                    }
+                    else
+                    {
+                        fishing_controller.GetComponent<fishing_script>().fish_quantity_min_buff = strength;
+                        fishing_controller.GetComponent<fishing_script>().fish_quantity_min = strength;
+                    }
+                }
+                if (action_effect == 4)
+                {
+                    foreach (GameObject fish in GameObject.FindGameObjectsWithTag("fish"))
+                    {
+                        if (fish.GetComponent<fish_variable_holder>().potentcy * strength != 1)
+                        {
+                            fish.GetComponent<fish_variable_holder>().potentcy *= strength;
+                        }
+                        else
+                        {
+                            fish.GetComponent<fish_variable_holder>().potentcy = strength;
+                        }
+                        //Debug.Log("multiplied potency");
+                        
+                        //Debug.Log("found fish");
+                    }
+                }
+                if (action_effect == 5)
+                {
+                    if (fishing_controller.GetComponent<fishing_script>().fish_quality_min_buff * strength != 1)
+                    {
+                        fishing_controller.GetComponent<fishing_script>().fish_quality_min_buff *= strength;
+                        fishing_controller.GetComponent<fishing_script>().fish_quality_min *= strength;
+                    }
+                    else
+                    {
+                        fishing_controller.GetComponent<fishing_script>().fish_quality_min_buff = strength;
+                        fishing_controller.GetComponent<fishing_script>().fish_quality_min = strength;
+                    }
+                }
+                if (action_effect == 6)
+                {
+                    if (fishing_controller.GetComponent<fishing_script>().fish_quality_max_buff * strength != 1)
+                    {
+                        fishing_controller.GetComponent<fishing_script>().fish_quality_max_buff *= strength;
+                        fishing_controller.GetComponent<fishing_script>().fish_quality_max *= strength;
+                    }
+                    else
+                    {
+                        fishing_controller.GetComponent<fishing_script>().fish_quality_max_buff = strength;
+                        fishing_controller.GetComponent<fishing_script>().fish_quality_max = strength;
+                    }
+                }
+                if (action_effect == 7)
+                {
+                    if (fishing_controller.GetComponent<fishing_script>().fish_quality_buff * strength != 1)
+                    {
+                        fishing_controller.GetComponent<fishing_script>().fish_quality_buff *= strength;
+                        fishing_controller.GetComponent<fishing_script>().fish_quality *= strength;
+                    }
+                    else
+                    {
+                        fishing_controller.GetComponent<fishing_script>().fish_quality_buff = strength;
+                        fishing_controller.GetComponent<fishing_script>().fish_quality = strength;
+                    }
+                }
+                InventorySystem.current.Remove(current_item.data);
+                //Debug.Log("buffed");
+                //Debug.Log(current_item.data.name);
+                
             }
         }
         
@@ -180,6 +268,18 @@ public class Item_behavior : MonoBehaviour
         else
         {
             target_transform.GetPositionAndRotation(out Vector3 pos, out Quaternion rot);
+
+            if(target_vicinity != 0)
+            {
+                pos.x += Random.Range(-target_vicinity, target_vicinity + 1);
+                pos.y += Random.Range(-target_vicinity, target_vicinity + 1);
+                pos.z += Random.Range(-target_vicinity, target_vicinity + 1);
+            }
+
+            if (inheret_target_rotation == false)
+            {
+                rot = action_object[object_to_spawn].transform.rotation;
+            }
             var obj = Instantiate(action_object[object_to_spawn], pos, rot);
         }
     }

@@ -49,6 +49,10 @@ public class InventoryItemData : ScriptableObject
     //position in inventory
     public int position_in_inventory;
 
+    public float target_vicinity;
+
+    public bool inheret_target_rotation;
+
     /*
 
     //trigger type list

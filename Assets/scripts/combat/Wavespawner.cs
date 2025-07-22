@@ -49,7 +49,7 @@ public class Wavespawner : MonoBehaviour
 
     public void Update()
     {
-        if (Input.GetKeyDown(KeyCode.T))
+        if (Input.GetKeyDown(KeyCode.Y))
         {
             spawning_time = true;
         }
@@ -112,7 +112,7 @@ public class Wavespawner : MonoBehaviour
         if (alive_fish.Count != 0 || encounter_enemies_alive.Count != 0)
         {
 
-            sell_guy.SetActive(false);
+            //sell_guy.SetActive(false);
             if (encounter_enemies_alive.Count > 0)
             {
                 navmesh.SetActive(true);
@@ -128,7 +128,7 @@ public class Wavespawner : MonoBehaviour
         }
         else
         {
-            sell_guy.SetActive(true);
+            //sell_guy.SetActive(true);
             navmesh.SetActive(false);
             //Debug.Log("no more fish alive");
             

@@ -53,6 +53,7 @@ public class fishing_script : MonoBehaviour
     public float fish_quantity; //how many fish you caught (like, im imagining fish grabbing on to one another to help resist)
     public float fish_quality; //the quality of the fish you caught(the reasoning is that they're higher quality if they're less tired)
 
+    
     public float bar_pos;
 
     public float fish_quantity_max; //maximum number of fish you can catch
@@ -60,6 +61,16 @@ public class fishing_script : MonoBehaviour
 
     public float fish_quantity_min;
     public float fish_quality_min;
+
+
+    public float fish_quantity_buff;
+    public float fish_quality_buff;
+
+    public float fish_quantity_max_buff;
+    public float fish_quality_max_buff;
+    
+    public float fish_quantity_min_buff;
+    public float fish_quality_min_buff;
 
     public float effort;
     public float resistance;
@@ -475,7 +486,10 @@ public class fishing_script : MonoBehaviour
 
                                 StartCoroutine(spawn_fish());
 
-                                StartCoroutine(disable_reset_after_win());
+                                if (fish_all_spawned == true)
+                                {
+                                    StartCoroutine(disable_reset_after_win());
+                                }
                                 water_already = false;
                             }
 
@@ -871,8 +885,7 @@ public class fishing_script : MonoBehaviour
 
             Vector3 randomPosition = new Vector3(Random.Range(0, 10), Random.Range(0, 10), Random.Range(0, 10));
 
-
-
+            
             while (resetting == true && fish_all_spawned == false)// && win_state == 1)
             {
                 //Debug.Log("spawning fish");
@@ -883,6 +896,14 @@ public class fishing_script : MonoBehaviour
                     //COD.GetComponent<COD>().size += fish_counted;
                     fish_all_spawned = true;
                     fish_ever += fish_counted;
+
+                    fish_quantity /= fish_quantity_buff;
+                    fish_quality /= fish_quality_buff;
+                    fish_quantity_max /= fish_quantity_max_buff;
+                    fish_quality_max /= fish_quality_max_buff;
+                    fish_quantity_min /= fish_quantity_min_buff;
+                    fish_quality_min /= fish_quality_min_buff;
+
                 }
                 else
                 {
@@ -954,12 +975,15 @@ public class fishing_script : MonoBehaviour
 
     public IEnumerator re_enable_fishing_after_win()
     {
-        yield return new WaitForSeconds(3f);
-        enabled_fishing = true;
-        bar_pos = 0.5f;
-        //Debug.Log("reset. E has been pressed to try again");
-        resetting = false;
-        win_state = 0;
+        //if (fish_all_spawned == true)
+        //{
+            yield return new WaitForSeconds(3f);
+            enabled_fishing = true;
+            bar_pos = 0.5f;
+            //Debug.Log("reset. E has been pressed to try again");
+            resetting = false;
+            win_state = 0;
+        //}
     }
 
     public IEnumerator disable_reset_after_win()

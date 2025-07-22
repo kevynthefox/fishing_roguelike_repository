@@ -5,6 +5,7 @@ using UnityEngine;
 public class item_pickup : MonoBehaviour
 {
     public bool left_clicked;
+    public bool touched;
 
     public InventoryItemData self_item;
 
@@ -29,7 +30,7 @@ public class item_pickup : MonoBehaviour
             }
 
 
-            Debug.Log("mouse is over, item pickup");
+            //Debug.Log("mouse is over, item pickup");
             if (Input.GetMouseButtonDown(0))
             {
                 if (Input.GetKey(KeyCode.LeftControl))
@@ -60,6 +61,40 @@ public class item_pickup : MonoBehaviour
                 wallet.GetComponent<money_collector>().money_value += (sell_value * amount_of_items);
                 Destroy(this.gameObject);
             }
+            yield return null;
+        }
+    }
+
+    public IEnumerator OnTriggerEnter(Collider other)
+    {
+        if (this.gameObject.GetComponent<item_pickup>().enabled == true)
+        {
+            if (TryGetComponent<item_price_holder>(out item_price_holder price_holder))
+            {
+                sell_value = price_holder.item_cost;
+            }
+
+
+            //Debug.Log("mouse is over, item pickup");
+            
+            if (Input.GetKey(KeyCode.LeftControl))
+            {
+                for (int i = 0; i <= amount_of_items; i++)
+                {
+                    InventorySystem.current.Add(this.self_item);
+                    amount_of_items--;
+                }
+            }
+            else
+            {
+                InventorySystem.current.Add(this.self_item);
+                amount_of_items--;
+            }
+            if (amount_of_items <= 0)
+            {
+                Destroy(this.gameObject);
+            }
+
             yield return null;
         }
     }

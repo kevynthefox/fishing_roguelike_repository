@@ -24,10 +24,12 @@ MonoBehaviour:
   action_effect: 3
   duration: 0
   delay: 0
-  strength: 0
-  target: 
+  strength: 2
+  target: player
   target_transform: {fileID: 0}
   enemy_or_player: 0
   player: {fileID: 0}
   triggered: 0
   position_in_inventory: 0
+  target_vicinity: 5
+  inheret_target_rotation: 0

@@ -36,6 +36,7 @@ public class InventorySystem : MonoBehaviour
         if (onInventoryChangedEvent != null)
         {
             onInventoryChangedEvent();
+            //Debug.Log("inventory_changed");
         }
     }
 
@@ -53,6 +54,7 @@ public class InventorySystem : MonoBehaviour
         if(m_itemDictionary.TryGetValue(referenceData, out InventoryItem value))
         {
             value.AddToStack();
+            InventoryChanged();
         }
         else
         {
@@ -60,8 +62,9 @@ public class InventorySystem : MonoBehaviour
             inventory.Add(newItem);
             //referenceData.position_in_inventory = inventory.IndexOf(newItem);
             m_itemDictionary.Add(referenceData, newItem);
+            InventoryChanged();
         }
-        InventoryChanged();
+        
     }
 
     public void Remove(InventoryItemData referenceData)
@@ -75,8 +78,9 @@ public class InventorySystem : MonoBehaviour
                 inventory.Remove(value);
                 m_itemDictionary.Remove(referenceData);
             }
+            InventoryChanged();
         }
-        InventoryChanged ();
+        
     }
 
     public void swap_position(int spot_1, int spot_2)//,GameObject obj_1, GameObject obj_2)

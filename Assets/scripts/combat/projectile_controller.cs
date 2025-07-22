@@ -43,7 +43,7 @@ public class projectile_controller : MonoBehaviour, IPoolable
 
     public IEnumerator OnCollisionEnter(Collision collision)
     {
-        Debug.Log(collision.gameObject.name);
+        //Debug.Log(collision.gameObject.name);
         yield return new WaitForSeconds(1f);
         if (explosive == true)
         {
