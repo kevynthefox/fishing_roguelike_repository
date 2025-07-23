@@ -1556,7 +1556,10 @@ MonoBehaviour:
   self_inventory_item:
     data: {fileID: 0}
     stackSize: 0
+    already_made_item: 0
   spot_in_inventory: 0
+  player: {fileID: 0}
+  already_made_item: 0
 --- !u!61 &1604261449295679450
 BoxCollider2D:
   m_ObjectHideFlags: 0

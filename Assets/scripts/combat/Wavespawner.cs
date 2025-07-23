@@ -51,7 +51,7 @@ public class Wavespawner : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Y))
         {
-            spawning_time = true;
+            spawning_time = !spawning_time;
         }
         
         spawn_left_right = UnityEngine.Random.Range(-1000, 1001);

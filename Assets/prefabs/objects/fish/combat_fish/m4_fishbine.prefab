@@ -153,6 +153,19 @@ MonoBehaviour:
   projectile: {fileID: 3039948214749845425, guid: a0134528295dc9d4f91bcd63446e095d, type: 3}
   spawn_point: {fileID: 3945942302597841649}
   manual_fire: 0
+  always_fire_at_targets: 1
+  targets: []
+  distance: 0
+  movementStrength: 0
+  barrel: {fileID: 0}
+  launch_angle: 0
+  distance_correction: 0
+  player_gun: 0
+  target: {fileID: 0}
+  target_backup: {fileID: 0}
+  starter: 1
+  fire_rate: 0.5
+  fire_timer: 0
   fish_bullet_pool: {fileID: 11400000, guid: 1103367eb9027b94c952585a3f846fef, type: 2}
   bullet_pool: {fileID: 0}
-  player: {fileID: 0}
+  types: 0

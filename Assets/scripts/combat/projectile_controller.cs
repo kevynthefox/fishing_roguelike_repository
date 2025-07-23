@@ -114,6 +114,7 @@ public class projectile_controller : MonoBehaviour, IPoolable
     public void Release()
     {
         //Debug.LogWarning(message:"Projectile Release", context: this);
+        Debug.Log("released");
         CancelInvoke(); // bad
         
         if (frag_piece == false)

@@ -530,6 +530,7 @@ MonoBehaviour:
   Canvas: {fileID: 8214676790679981670}
   health_bar: {fileID: 8861667845136227770}
   gun: {fileID: 1917255046258029041}
+  wave_spawner: {fileID: 0}
 --- !u!195 &931657380361660267
 NavMeshAgent:
   m_ObjectHideFlags: 0
