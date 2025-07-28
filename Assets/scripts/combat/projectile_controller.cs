@@ -23,7 +23,9 @@ public class projectile_controller : MonoBehaviour, IPoolable
 
     public bool explosive;
 
+    public bool touched;
 
+    public string[] tags_to_ignore;
 
     private void Awake()
     {
@@ -43,16 +45,29 @@ public class projectile_controller : MonoBehaviour, IPoolable
 
     public IEnumerator OnCollisionEnter(Collision collision)
     {
-        //Debug.Log(collision.gameObject.name);
-        yield return new WaitForSeconds(1f);
-        if (explosive == true)
-        {
-            this.gameObject.GetComponent<SphereCollider>().enabled = true;
-        }
+        touched = true;
+        Debug.Log(this.gameObject.name + " collided with 1 " + collision.gameObject.name);
         yield return new WaitForSeconds(1f);
 
-        if (collision.gameObject.name != this.gameObject.name)
+
+
+        
+
+
+        
+    }
+
+    private IEnumerator OnCollisionStay(Collision collision)
+    {
+        if (collision.gameObject.tag == tags_to_ignore[0] || collision.gameObject.tag == tags_to_ignore[1] || collision.gameObject.tag == tags_to_ignore[2])
         {
+
+        }
+        else
+        {
+            Debug.Log(this.gameObject.name + " collided with 2  " + collision.gameObject.name);
+
+
 
             if (destroy_or_recycle == false)
             {
@@ -61,10 +76,21 @@ public class projectile_controller : MonoBehaviour, IPoolable
             }
             else
             {
+                if (explosive == true)
+                {
+                    Debug.Log("boom");
+                    this.gameObject.GetComponent<SphereCollider>().enabled = true;
+                    yield return new WaitForSeconds(.1f);
+                    this.gameObject.GetComponent<SphereCollider>().enabled = false;
+                }
                 Release();
             }
         }
-        
+    }
+
+    public void OnCollisionExit(Collision collision)
+    {
+        touched = false;
     }
 
     /*private void OnEnable()
@@ -108,13 +134,18 @@ public class projectile_controller : MonoBehaviour, IPoolable
                 //Debug.Log("reset this piece: " + piece.gameObject.name);
             }
         }
-        Invoke(nameof(Release), lifespan);
+        Debug.Log("resetting momentum");
+        if (lifespan != 0)
+        {
+            Invoke(nameof(Release), lifespan);
+        }
     }
 
     public void Release()
     {
-        //Debug.LogWarning(message:"Projectile Release", context: this);
         Debug.Log("released");
+        //Debug.LogWarning(message:"Projectile Release", context: this);
+        //Debug.Log("released");
         CancelInvoke(); // bad
         
         if (frag_piece == false)

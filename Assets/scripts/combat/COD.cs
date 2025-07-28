@@ -49,12 +49,15 @@ public class COD : MonoBehaviour
             if (collided_with_wall == false)
             {
                 speed = Vector3.Distance(home.transform.position, transform.position);
-                this.transform.position = Vector3.MoveTowards(transform.position, home.transform.position, speed * Time.deltaTime);
+                
             }
             else
             {
-                speed = 0;
-            }    
+                //speed = 0;
+            }
+
+            this.transform.position = Vector3.MoveTowards(transform.position, home.transform.position, speed * Time.deltaTime);
+
             this.GetComponent<MeshRenderer>().enabled = true;
             this.GetComponent<CapsuleCollider>().enabled = true;
             this.GetComponent<Rigidbody>().isKinematic = false;
@@ -125,7 +128,7 @@ public class COD : MonoBehaviour
     {
         if (other.gameObject.name == "safety_wall")
         {
-            speed = -speed;
+            speed = -speed * 3;
             collided_with_wall = true;
         }
         yield return new WaitForSeconds(1);

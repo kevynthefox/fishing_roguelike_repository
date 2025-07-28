@@ -1,5 +1,72 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &6073693537990060796
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7078419362930873123}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: b344d506067f29f47b715aba4a824831, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.0044699195
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: b344d506067f29f47b715aba4a824831, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.008025077
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: b344d506067f29f47b715aba4a824831, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.2405245
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: b344d506067f29f47b715aba4a824831, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071067
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: b344d506067f29f47b715aba4a824831, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: b344d506067f29f47b715aba4a824831, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: b344d506067f29f47b715aba4a824831, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: b344d506067f29f47b715aba4a824831, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: b344d506067f29f47b715aba4a824831, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: b344d506067f29f47b715aba4a824831, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b344d506067f29f47b715aba4a824831, type: 3}
+      propertyPath: m_Name
+      value: target
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b344d506067f29f47b715aba4a824831, type: 3}
+--- !u!4 &6035000980280888599 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: b344d506067f29f47b715aba4a824831, type: 3}
+  m_PrefabInstance: {fileID: 6073693537990060796}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6380318393030317997 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: b344d506067f29f47b715aba4a824831, type: 3}
+  m_PrefabInstance: {fileID: 6073693537990060796}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7327674993280595144
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -88,6 +155,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: m4_fishbine
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5a98915ab3c69334eb2b4d997c9be54b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4083501151425157549, guid: 5a98915ab3c69334eb2b4d997c9be54b, type: 3}
       propertyPath: m_LocalRotation.w
       value: 0.433732
@@ -122,15 +193,26 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 5a98915ab3c69334eb2b4d997c9be54b, type: 3}
+      insertIndex: 0
+      addedObject: {fileID: 6035000980280888599}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 5a98915ab3c69334eb2b4d997c9be54b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1758342289373130001}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 5a98915ab3c69334eb2b4d997c9be54b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -2591382664384103392}
   m_SourcePrefab: {fileID: 100100000, guid: 5a98915ab3c69334eb2b4d997c9be54b, type: 3}
 --- !u!4 &3945942302597841649 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -3209962577152395719, guid: 5a98915ab3c69334eb2b4d997c9be54b, type: 3}
+  m_PrefabInstance: {fileID: 7327674993280595144}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &7078419362930873123 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 5a98915ab3c69334eb2b4d997c9be54b, type: 3}
   m_PrefabInstance: {fileID: 7327674993280595144}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &7597652031625333145 stripped
@@ -153,7 +235,7 @@ MonoBehaviour:
   projectile: {fileID: 3039948214749845425, guid: a0134528295dc9d4f91bcd63446e095d, type: 3}
   spawn_point: {fileID: 3945942302597841649}
   manual_fire: 0
-  always_fire_at_targets: 1
+  always_fire_at_targets: 0
   targets: []
   distance: 0
   movementStrength: 0
@@ -161,11 +243,34 @@ MonoBehaviour:
   launch_angle: 0
   distance_correction: 0
   player_gun: 0
-  target: {fileID: 0}
-  target_backup: {fileID: 0}
+  target: {fileID: 6380318393030317997}
+  target_backup: {fileID: 919132149155446097, guid: b344d506067f29f47b715aba4a824831, type: 3}
   starter: 1
   fire_rate: 0.5
   fire_timer: 0
+  frames: {fileID: 0}
+  fps: 0
   fish_bullet_pool: {fileID: 11400000, guid: 1103367eb9027b94c952585a3f846fef, type: 2}
   bullet_pool: {fileID: 0}
   types: 0
+--- !u!135 &-2591382664384103392
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7597652031625333145}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.00001
+  m_Center: {x: 0, y: 0, z: 0}

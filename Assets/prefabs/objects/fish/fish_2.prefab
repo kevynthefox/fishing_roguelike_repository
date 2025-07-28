@@ -11,10 +11,6 @@ GameObject:
   - component: {fileID: 40887434424217281}
   - component: {fileID: 6090530746133108906}
   - component: {fileID: 6509740147119166529}
-  - component: {fileID: 186534849396744709}
-  - component: {fileID: 8017493547079125842}
-  - component: {fileID: 4116681414765373636}
-  - component: {fileID: 5982612853878263005}
   m_Layer: 10
   m_Name: fish_2
   m_TagString: Untagged
@@ -97,84 +93,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &186534849396744709
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2606351538185548202}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 2534964839176971238, guid: 547565b10995c6c49a0d2a38318c2a2e, type: 3}
---- !u!64 &8017493547079125842
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2606351538185548202}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 2534964839176971238, guid: 547565b10995c6c49a0d2a38318c2a2e, type: 3}
---- !u!114 &4116681414765373636
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2606351538185548202}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb94337762f1922479d16ba4f99ed155, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fish_quantity: 0.8560791
-  fish_quality: 1
-  fish_counted: 2163
-  fish_type: {fileID: 1421325010732033939, guid: b6ed109e2c4d6fa46bf5878b6018f969, type: 3}
-  potentcy: 1
---- !u!114 &5982612853878263005
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2606351538185548202}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc7f40741ce017a4192ba99840c04309, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  home: {fileID: 2679988056074713764, guid: c816e89edc5ff1445b97eb82aaa64866, type: 3}
-  factor: 1
-  speed: 0
-  disable_water: 0
-  health: 1
 --- !u!1 &4664982497591543338
 GameObject:
   m_ObjectHideFlags: 0

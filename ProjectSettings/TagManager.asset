@@ -20,6 +20,7 @@ TagManager:
   - fish_enemy
   - item_slot
   - item
+  - gun
   layers:
   - Default
   - TransparentFX
@@ -36,7 +37,7 @@ TagManager:
   - invisible_wall_for_cod
   - cod
   - player_visible
-  - 
+  - projectile
   - 
   - 
   - 

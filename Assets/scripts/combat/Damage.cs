@@ -16,40 +16,44 @@ public class Damage : MonoBehaviour
     {
         if (other.gameObject != null)
         {
-            //Debug.Log("triggered");
-            
 
-            if (other.tag == "food_items")
+            if (other.isTrigger == true)
             {
-                health_object.GetComponent<Health_display>().health += other.GetComponent<fish_variable_holder>().potentcy / 2;
-                
-                Wavespawner.current.Remove_alive(other.gameObject);
-                Destroy(other.gameObject);
-                
-            }
+                //Debug.Log("triggered");
 
-            if (other.tag == "super_food_items")
-            {
-                health_object.GetComponent<Health_display>().health += (2 * other.GetComponent<fish_variable_holder>().potentcy) / 2;
-                
-                Wavespawner.current.Remove_alive(other.gameObject);
-                Destroy(other.gameObject);
-                
-            }
 
-            if (invincibility == false)
-            {
-                if (other != null)
+                if (other.tag == "food_items")
                 {
-                    if (other.tag == "fish" || other.tag == "fish_enemy")
-                    {
-                        health_object.GetComponent<Health_display>().health -= other.GetComponent<fish_variable_holder>().potentcy / 2;
-                        
-                    }
+                    health_object.GetComponent<Health_display>().health += other.GetComponent<fish_variable_holder>().potentcy;// / 2;
 
-                    if (other.tag == "projectile")
+                    Wavespawner.current.Remove_alive(other.gameObject);
+                    Destroy(other.gameObject);
+
+                }
+
+                if (other.tag == "super_food_items")
+                {
+                    health_object.GetComponent<Health_display>().health += (2 * other.GetComponent<fish_variable_holder>().potentcy);// / 2;
+
+                    Wavespawner.current.Remove_alive(other.gameObject);
+                    Destroy(other.gameObject);
+
+                }
+
+                if (invincibility == false)
+                {
+                    if (other != null)
                     {
-                        health_object.GetComponent<Health_display>().health -= other.GetComponent<projectile_controller>().damage / 2;
+                        if (other.tag == "fish" || other.tag == "fish_enemy")
+                        {
+                            health_object.GetComponent<Health_display>().health -= other.GetComponent<fish_variable_holder>().potentcy;// / 2;
+
+                        }
+
+                        if (other.tag == "projectile")
+                        {
+                            health_object.GetComponent<Health_display>().health -= other.GetComponent<projectile_controller>().damage;// / 2;
+                        }
                     }
                 }
             }

@@ -60,7 +60,8 @@ public class Item_behavior : MonoBehaviour
 
     //action type 1 is spawning an object at the target location
     //type 2 is spawning something based on the position the fishing game won in(like, which colored bar)
-    //type 3 modifies the values on the fishing bar. consumes the items afterwords.
+    //type 3 mulitplies the values on the fishing bar. consumes the items afterwords.
+    //type 4 adds to the values on the fishing bar, consumes after.
 
     public void Awake()
     {
@@ -157,40 +158,52 @@ public class Item_behavior : MonoBehaviour
 
                 if (action_effect == 1)
                 {
-                    if (fishing_controller.GetComponent<fishing_script>().fish_quantity_buff * strength != 1)
+                    //this used to multiply the fishquantity stat directly, but 1: that didn't work, 2: the minimum stat ones already did that good enough.
+                    if (fishing_controller.GetComponent<fishing_script>().fish_quantity_max_buff_mult * strength * strength != 1)
                     {
-                        fishing_controller.GetComponent<fishing_script>().fish_quantity_buff *= strength;
-                        fishing_controller.GetComponent<fishing_script>().fish_quantity *= strength;
+                        fishing_controller.GetComponent<fishing_script>().fish_quantity_max_buff_mult *= strength * strength;
+                        fishing_controller.GetComponent<fishing_script>().fish_quantity_max *= strength * strength;
                     }
                     else
                     {
-                        fishing_controller.GetComponent<fishing_script>().fish_quantity_buff = strength;
-                        fishing_controller.GetComponent<fishing_script>().fish_quantity = strength;
-                    }    
+                        fishing_controller.GetComponent<fishing_script>().fish_quantity_min_buff_mult = strength * strength;
+                        fishing_controller.GetComponent<fishing_script>().fish_quantity_min = strength * strength;
+                    }
+
+                    if (fishing_controller.GetComponent<fishing_script>().fish_quantity_min_buff_mult * strength * strength != 1)
+                    {
+                        fishing_controller.GetComponent<fishing_script>().fish_quantity_min_buff_mult *= strength * strength;
+                        fishing_controller.GetComponent<fishing_script>().fish_quantity_min *= strength * strength;
+                    }
+                    else
+                    {
+                        fishing_controller.GetComponent<fishing_script>().fish_quantity_min_buff_mult = strength * strength;
+                        fishing_controller.GetComponent<fishing_script>().fish_quantity_min = strength * strength;
+                    }
                 }
                 if (action_effect == 2)
                 {
-                    if (fishing_controller.GetComponent<fishing_script>().fish_quantity_max_buff * strength != 1)
+                    if (fishing_controller.GetComponent<fishing_script>().fish_quantity_max_buff_mult * strength != 1)
                     {
-                        fishing_controller.GetComponent<fishing_script>().fish_quantity_max_buff *= strength;
+                        fishing_controller.GetComponent<fishing_script>().fish_quantity_max_buff_mult *= strength;
                         fishing_controller.GetComponent<fishing_script>().fish_quantity_max *= strength;
                     }
                     else
                     {
-                        fishing_controller.GetComponent<fishing_script>().fish_quantity_min_buff = strength;
+                        fishing_controller.GetComponent<fishing_script>().fish_quantity_min_buff_mult = strength;
                         fishing_controller.GetComponent<fishing_script>().fish_quantity_min = strength;
                     }    
                 }
                 if (action_effect == 3)
                 {
-                    if (fishing_controller.GetComponent<fishing_script>().fish_quantity_min_buff * strength != 1)
+                    if (fishing_controller.GetComponent<fishing_script>().fish_quantity_min_buff_mult * strength != 1)
                     {
-                        fishing_controller.GetComponent<fishing_script>().fish_quantity_min_buff *= strength;
+                        fishing_controller.GetComponent<fishing_script>().fish_quantity_min_buff_mult *= strength;
                         fishing_controller.GetComponent<fishing_script>().fish_quantity_min *= strength;
                     }
                     else
                     {
-                        fishing_controller.GetComponent<fishing_script>().fish_quantity_min_buff = strength;
+                        fishing_controller.GetComponent<fishing_script>().fish_quantity_min_buff_mult = strength;
                         fishing_controller.GetComponent<fishing_script>().fish_quantity_min = strength;
                     }
                 }
@@ -213,47 +226,119 @@ public class Item_behavior : MonoBehaviour
                 }
                 if (action_effect == 5)
                 {
-                    if (fishing_controller.GetComponent<fishing_script>().fish_quality_min_buff * strength != 1)
+                    if (fishing_controller.GetComponent<fishing_script>().fish_quality_min_buff_mult * strength != 1)
                     {
-                        fishing_controller.GetComponent<fishing_script>().fish_quality_min_buff *= strength;
+                        fishing_controller.GetComponent<fishing_script>().fish_quality_min_buff_mult *= strength;
                         fishing_controller.GetComponent<fishing_script>().fish_quality_min *= strength;
                     }
                     else
                     {
-                        fishing_controller.GetComponent<fishing_script>().fish_quality_min_buff = strength;
+                        fishing_controller.GetComponent<fishing_script>().fish_quality_min_buff_mult = strength;
                         fishing_controller.GetComponent<fishing_script>().fish_quality_min = strength;
                     }
                 }
                 if (action_effect == 6)
                 {
-                    if (fishing_controller.GetComponent<fishing_script>().fish_quality_max_buff * strength != 1)
+                    if (fishing_controller.GetComponent<fishing_script>().fish_quality_max_buff_mult * strength != 1)
                     {
-                        fishing_controller.GetComponent<fishing_script>().fish_quality_max_buff *= strength;
+                        fishing_controller.GetComponent<fishing_script>().fish_quality_max_buff_mult *= strength;
                         fishing_controller.GetComponent<fishing_script>().fish_quality_max *= strength;
                     }
                     else
                     {
-                        fishing_controller.GetComponent<fishing_script>().fish_quality_max_buff = strength;
+                        fishing_controller.GetComponent<fishing_script>().fish_quality_max_buff_mult = strength;
                         fishing_controller.GetComponent<fishing_script>().fish_quality_max = strength;
                     }
                 }
                 if (action_effect == 7)
                 {
-                    if (fishing_controller.GetComponent<fishing_script>().fish_quality_buff * strength != 1)
+                    //this used to multiply the fishquality stat directly, but 1: that didn't work, 2: the minimum stat ones already did that good enough.
+                    if (fishing_controller.GetComponent<fishing_script>().fish_quality_max_buff_mult * strength * strength != 1)
                     {
-                        fishing_controller.GetComponent<fishing_script>().fish_quality_buff *= strength;
-                        fishing_controller.GetComponent<fishing_script>().fish_quality *= strength;
+                        fishing_controller.GetComponent<fishing_script>().fish_quality_max_buff_mult *= strength * strength;
+                        fishing_controller.GetComponent<fishing_script>().fish_quality_max *= strength * strength;
                     }
                     else
                     {
-                        fishing_controller.GetComponent<fishing_script>().fish_quality_buff = strength;
-                        fishing_controller.GetComponent<fishing_script>().fish_quality = strength;
+                        fishing_controller.GetComponent<fishing_script>().fish_quality_max_buff_mult = strength * strength;
+                        fishing_controller.GetComponent<fishing_script>().fish_quality_max = strength * strength;
+                    }
+                    if (fishing_controller.GetComponent<fishing_script>().fish_quality_min_buff_mult * strength * strength != 1)
+                    {
+                        fishing_controller.GetComponent<fishing_script>().fish_quality_min_buff_mult *= strength * strength;
+                        fishing_controller.GetComponent<fishing_script>().fish_quality_min *= strength * strength;
+                    }
+                    else
+                    {
+                        fishing_controller.GetComponent<fishing_script>().fish_quality_min_buff_mult = strength * strength;
+                        fishing_controller.GetComponent<fishing_script>().fish_quality_min = strength * strength;
                     }
                 }
                 InventorySystem.current.Remove(current_item.data);
                 //Debug.Log("buffed");
                 //Debug.Log(current_item.data.name);
                 
+            }
+
+            if (action_type == 4)
+            {
+
+                if (action_effect == 1)
+                {
+                    
+                    fishing_controller.GetComponent<fishing_script>().fish_quantity_buff_add += strength;
+                    fishing_controller.GetComponent<fishing_script>().fish_quantity += strength;
+                    
+                    
+                }
+                if (action_effect == 2)
+                {
+                    
+                    fishing_controller.GetComponent<fishing_script>().fish_quantity_max_buff_add += strength;
+                    fishing_controller.GetComponent<fishing_script>().fish_quantity_max += strength;
+                    
+                }
+                if (action_effect == 3)
+                {
+                    
+                    fishing_controller.GetComponent<fishing_script>().fish_quantity_min_buff_add += strength;
+                    fishing_controller.GetComponent<fishing_script>().fish_quantity_min += strength;
+                    
+                }
+                if (action_effect == 4)
+                {
+                    foreach (GameObject fish in GameObject.FindGameObjectsWithTag("fish"))
+                    {
+                        
+                        fish.GetComponent<fish_variable_holder>().potentcy += strength;
+
+                    }
+                }
+                if (action_effect == 5)
+                {
+              
+                    fishing_controller.GetComponent<fishing_script>().fish_quality_min_buff_add += strength;
+                    fishing_controller.GetComponent<fishing_script>().fish_quality_min += strength;
+
+                }
+                if (action_effect == 6)
+                {
+
+                    fishing_controller.GetComponent<fishing_script>().fish_quality_max_buff_add += strength;
+                    fishing_controller.GetComponent<fishing_script>().fish_quality_max += strength;
+
+                }
+                if (action_effect == 7)
+                {
+                    
+                    fishing_controller.GetComponent<fishing_script>().fish_quality_buff_add += strength;
+                    fishing_controller.GetComponent<fishing_script>().fish_quality += strength;
+
+                }
+                InventorySystem.current.Remove(current_item.data);
+                //Debug.Log("buffed");
+                //Debug.Log(current_item.data.name);
+
             }
         }
         

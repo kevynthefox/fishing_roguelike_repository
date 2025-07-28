@@ -32,6 +32,8 @@ public class Wavespawner : MonoBehaviour
     public GameObject water;
     public GameObject sell_guy;
 
+    public float fish_quality;
+
     public int family_max;
 
     [Header("encounters")]
@@ -54,6 +56,11 @@ public class Wavespawner : MonoBehaviour
             spawning_time = !spawning_time;
         }
         
+        if (rod.GetComponent<fishing_script>().win_state == 1)
+        {
+            fish_quality = rod.GetComponent<fishing_script>().fish_quality;
+        }
+
         spawn_left_right = UnityEngine.Random.Range(-1000, 1001);
         spawn_forward_back = UnityEngine.Random.Range(30, 2001);
         family_size = UnityEngine.Random.Range(0, family_max);
@@ -71,6 +78,9 @@ public class Wavespawner : MonoBehaviour
                     var fish_object = Instantiate(f.data, new Vector3(spawn_left_right, 0, spawn_forward_back), Quaternion.identity);
                     fish_object.GetComponent<heat_seeking_fishles>().home = GameObject.Find("player");
                     fish_object.GetComponent<heat_seeking_fishles>().disable_water = true;
+
+                    
+                    fish_object.transform.localScale = new Vector3(fish_quality,fish_quality,fish_quality);
                     Add_alive(fish_object);
                     fish_have_been_alive = true;
                 }
@@ -175,7 +185,7 @@ public class Wavespawner : MonoBehaviour
     {
         
         var rod_script = rod.GetComponent<fishing_script>();
-        Debug.Log("started encounter spawn");
+        //Debug.Log("started encounter spawn");
         foreach (GameObject enemy in encounter.enemies)
         {
             float spawn_rand = UnityEngine.Random.Range(-encounter.spawn_radius, encounter.spawn_radius);
@@ -186,7 +196,7 @@ public class Wavespawner : MonoBehaviour
             {
                 fishle.home = GameObject.Find("player");
             }
-            Debug.Log("spawned enemy");
+            //Debug.Log("spawned enemy");
             encounter_enemies_alive.Add(enemy);
         }
     }

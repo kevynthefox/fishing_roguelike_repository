@@ -14,7 +14,7 @@ public class behavior_for_ranged_fish : MonoBehaviour
 
     public LayerMask whatIsGround, whatIsPlayer;
 
-    
+    public bool stationary;
 
     //patrolling
     public Vector3 walkPoint;
@@ -44,7 +44,11 @@ public class behavior_for_ranged_fish : MonoBehaviour
     private void Awake()
     {
         player = GameObject.Find("player").transform;
-        agent = GetComponent<NavMeshAgent>();
+        
+        if (stationary == false)
+        {
+            agent = GetComponent<NavMeshAgent>();
+        }
 
         Canvas.GetComponent<Canvas>().worldCamera = Camera.main;
 
@@ -57,8 +61,11 @@ public class behavior_for_ranged_fish : MonoBehaviour
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
 
-        if (!playerInSightRange && !playerInAttackRange) patroling();
-        if (playerInSightRange && !playerInAttackRange) ChasePlayer();
+        if (agent != null)
+        {
+            if (!playerInSightRange && !playerInAttackRange) patroling();
+            if (playerInSightRange && !playerInAttackRange) ChasePlayer();
+        }
         if (playerInSightRange && playerInAttackRange) AttackPlayer();
 
          
@@ -103,14 +110,16 @@ public class behavior_for_ranged_fish : MonoBehaviour
     private void AttackPlayer()
     {
         //make sure enemy doesn't move
-        agent.SetDestination(transform.position);
-
+        if (agent != null)
+        {
+            agent.SetDestination(transform.position);
+        }
         transform.LookAt(player);
 
         if (!alreadyAttacked)
         {
             //attack code here
-            gun.GetComponent<gun>().fire();
+            gun.GetComponent<gun>().manual_fire = true;
             //
 
             alreadyAttacked = true;

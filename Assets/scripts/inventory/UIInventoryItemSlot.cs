@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,7 +10,7 @@ public class UIInventoryItemSlot : MonoBehaviour
     private Image m_icon;
 
     [SerializeField]
-    private Text m_label;
+    private TextMeshProUGUI m_label;
 
     [SerializeField]
     private GameObject m_stackObj;

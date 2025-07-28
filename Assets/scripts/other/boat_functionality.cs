@@ -104,7 +104,7 @@ public class boat_functionality : MonoBehaviour
             GetComponent<move_relative_to_camera>().in_boat = boat_yes;
             other.GetComponent<movement>().enabled = !boat_yes;
 
-            if (Input.GetKey(KeyCode.Tab))
+            if (Input.GetKey(KeyCode.LeftShift))
             {
                 boat_yes = !boat_yes;
             }

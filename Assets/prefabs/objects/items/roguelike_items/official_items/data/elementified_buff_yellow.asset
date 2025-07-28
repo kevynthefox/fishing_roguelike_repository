@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: elementified_buff_yellow
   m_EditorClassIdentifier: 
   id: InventoryItem_Elementified_Buff_Yellow
-  displayName: Elementified_Buff_Yellow
+  displayName: Elementified Buff \nYellow
   icon: {fileID: 21300000, guid: 1433392e390b6b142ba7fc33069150fe, type: 3}
   prefab: {fileID: 7909732440945376653, guid: 8d7ceab82e58c6e41b3e5136c4762446, type: 3}
   in_inventory: 0

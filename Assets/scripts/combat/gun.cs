@@ -41,10 +41,16 @@ public class gun : MonoBehaviour
     public float fire_rate; //not how many bullets per second, how long it takes for another shot.
     public float fire_timer;
 
+
+    private GameObject frames;
+    private float fps;
+
+
+
     [Header("Object Pools")]
     [SerializeField] private ObjectPoolSO fish_bullet_pool;
 
-    public GameObject bullet_pool;
+    private GameObject bullet_pool;
 
     
 
@@ -62,6 +68,8 @@ public class gun : MonoBehaviour
 
     public void Awake()
     {
+        frames = GameObject.Find("frame_rate");
+
         if (player_gun == true)
         {
             foreach (GameObject enemy in GameObject.FindGameObjectsWithTag("fish").ToList())
@@ -76,7 +84,7 @@ public class gun : MonoBehaviour
         }
         else
         {
-            targets[0] = GameObject.Find("player").transform;
+            targets.Add(GameObject.Find("player").transform);
         }
 
         bullet_pool = GameObject.Find("bullet_pool");
@@ -85,159 +93,181 @@ public class gun : MonoBehaviour
 
 
         StartCoroutine(fire_tracking());
+        StartCoroutine(turret_fire());
     }
 
     private void Update()
     {
         
-        if (Input.GetKey(KeyCode.T))
-        {
-            StartCoroutine(fire());
-        }
 
-        if (manual_fire == true)
-        {
 
-            StartCoroutine(fire());
-
-            manual_fire = false;
-        }
-
-        if (always_fire_at_targets == true)
+        if (targets != null)
         {
             if (targets.Count > 0)
             {
-                
-                StartCoroutine(fire());
-                
-            }
-            if (targets.Count > 1 && fire_timer >= fire_rate / 2) //if gun has other targets but isn't shooting, get rid of the clog and try again.
-            {
-                Debug.Log("gun was jammed. beginning clear");
-                StopCoroutine(fire());
-                //targets = null;
-                //targets.RemoveAt(0);
-                targets.RemoveAt(0);
+                if (targets[0].transform != null)
+                {
+                    distance = Vector3.Distance(targets[0].transform.position, this.transform.position) * distance_correction;
+                    if (types == Type.artillery)
+                    {
+                        //x = (vi * cos(0)) *
+                        //transform.rotation = Quaternion.AngleAxis(player.transform.position.x / (distance/0), Vector3.down);
+                        Vector3 lookDir = transform.position - targets[0].position;
+                        float radians = Mathf.Atan2(lookDir.x, lookDir.z);
+                        float degrees = radians * Mathf.Rad2Deg;
 
-                Debug.Log("jam resolved");
-            }
-            else
-            {
-                //Debug.Log("set fire time to 0");
-                //fire_timer = 0;
-            }
+                        float str = Mathf.Min(movementStrength * Time.deltaTime, 1);
+                        Quaternion targetRotation = Quaternion.Euler(0, degrees, 0);
+                        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, str);
 
 
+                        launch_angle =
+
+                            0.5f * MathF.Asin(
+                                (9.81f * distance)
+                                / (projectile.GetComponent<projectile_controller>().s_to_m * projectile.GetComponent<projectile_controller>().s_to_m)
+                            );
+
+                        //barrel.transform.localRotation = new Quaternion(x,y + transform.localRotation.y,launch_angle, transform.rotation.w);
+                        /*Quaternion barrel_targetRotation = Quaternion.Euler(0,270,launch_angle * 100);
+                        barrel.transform.localRotation = Quaternion.Slerp(barrel.transform.localRotation, barrel_targetRotation, str);*/
+                        barrel.transform.localRotation = Quaternion.Euler(-180, 90, distance * launch_angle);
+                    }
+                }
+
+
+                if (targets[0].TryGetComponent<heat_seeking_fishles>(out heat_seeking_fishles heat_seeking))
+                {
+                    if (heat_seeking.health == 0)
+                    {
+                        Debug.Log("neutralized");
+                        targets.RemoveAt(0);
+                    }
+                }
+                if (targets[0].gameObject.TryGetComponent<behavior_for_ranged_fish>(out behavior_for_ranged_fish ranged_behavior))
+                {
+                    if (ranged_behavior.GetComponent<Health_display>().health == 0)
+                    {
+                        Debug.Log("neutralized");
+                        targets.RemoveAt(0);
+                    }
+                }
+
+                //targets.RemoveAll(g => g == null); 
+            }
         }
-        if (targets.Count > 0)
-        {
-            if (targets[0].transform != null)
-            {
-                distance = Vector3.Distance(targets[0].transform.position, this.transform.position) * distance_correction;
-                if (types == Type.artillery)
-                {
-                    //x = (vi * cos(0)) *
-                    //transform.rotation = Quaternion.AngleAxis(player.transform.position.x / (distance/0), Vector3.down);
-                    Vector3 lookDir = transform.position - targets[0].position;
-                    float radians = Mathf.Atan2(lookDir.x, lookDir.z);
-                    float degrees = radians * Mathf.Rad2Deg;
-
-                    float str = Mathf.Min(movementStrength * Time.deltaTime, 1);
-                    Quaternion targetRotation = Quaternion.Euler(0, degrees, 0);
-                    transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, str);
-
-
-                    launch_angle =
-
-                        0.5f * MathF.Asin(
-                            (9.81f * distance)
-                            / (projectile.GetComponent<projectile_controller>().s_to_m * projectile.GetComponent<projectile_controller>().s_to_m)
-                        );
-
-                    barrel.transform.rotation = new Quaternion(launch_angle, transform.rotation.y, transform.rotation.z, transform.rotation.w);
-                }
-            }
-            
-
-            if (targets[0].TryGetComponent<heat_seeking_fishles>(out heat_seeking_fishles heat_seeking))
-            {
-                if (heat_seeking.health == 0)
-                {
-                    Debug.Log("neutralized");
-                    targets.RemoveAt(0);
-                }
-            }
-            if (targets[0].gameObject.TryGetComponent<behavior_for_ranged_fish>(out behavior_for_ranged_fish ranged_behavior))
-            {
-                if (ranged_behavior.GetComponent<Health_display>().health == 0)
-                {
-                    Debug.Log("neutralized");
-                    targets.RemoveAt(0);
-                }
-            }
-            
-
-            if (targets[0].GameObject().IsDestroyed())
-            {
-                targets.RemoveAt(0);
-            }
-
-            
-
-
-            
-            //targets.RemoveAll(g => g == null); 
-        }
-
         if (target == null)
         {
-            Instantiate(target_backup, Vector3.zero, Quaternion.identity);
+            var new_target = Instantiate(target_backup, Vector3.zero, Quaternion.identity);
+            target = new_target;
+            target.transform.parent = transform;
+            target.SetActive(false);
+            Debug.Log("target was missing, made another one");
+        }
+    }
+
+    public IEnumerator turret_fire()
+    {
+        while (starter == true)
+        {
+            if (Input.GetKey(KeyCode.T))
+            {
+                StartCoroutine(fire());
+            }
+
+            if (manual_fire == true)
+            {
+
+                StartCoroutine(fire());
+                manual_fire = false;
+            }
+
+
+            if (always_fire_at_targets == true)
+            {
+                if (targets.Count > 0)
+                {
+
+                    StartCoroutine(fire());
+
+                }
+                if (targets.Count > 0 && fire_timer >= fire_rate) //if gun has other targets but isn't shooting, get rid of the clog and try again.
+                {
+                    Debug.Log("gun was jammed. beginning clear");
+                    StartCoroutine(fire());
+                    //targets = null;
+                    //targets.RemoveAt(0);
+                    targets.RemoveAt(0);
+
+                    Debug.Log("jam resolved");
+                }
+                else
+                {
+                    //Debug.Log("set fire time to 0");
+                    //fire_timer = 0;
+                }
+
+
+            }
+            yield return new WaitForSeconds(fire_rate);
         }
     }
 
     public IEnumerator fire()
     {
+        yield return null;
+        
 
+        GameObject projectile = fish_bullet_pool.Get();
+        spawn_point.GetPositionAndRotation(out Vector3 pos, out Quaternion rot);
+        projectile.transform.SetPositionAndRotation(pos, rot);
+        //Debug.Log(pos); Debug.Log(rot);
+        Debug.Log("pew");
 
-
-
-        if (targets[0] != null)
+        fps = frames.GetComponent<frame_display>().frameRate;
+        if (fps <= 20)
         {
-            yield return new WaitForSeconds(fire_rate);
-
-            GameObject projectile = fish_bullet_pool.Get();
-            spawn_point.GetPositionAndRotation(out Vector3 pos, out Quaternion rot);
-            projectile.transform.SetPositionAndRotation(pos, rot);
-            //Debug.Log(pos); Debug.Log(rot);
-            Debug.Log("pew");
-
-            fire_timer = 0;
-
-            if (targets.Count > 0)
+            for (int p = 0; p < bullet_pool.transform.childCount; p++)
             {
-                if (types == Type.gun)
+                Destroy(projectile);
+            }
+        }
+
+        if (targets.Count > 0)
+        {
+            if (types == Type.gun)
+            {
+                if (targets[0] != null)
                 {
-                    if (targets[0] != null)
-                    {
-                        transform.LookAt(targets[0]);
-                    }
+                    fire_timer = 0;
+                    transform.LookAt(targets[0]);
                     if (projectile.TryGetComponent(out projectile_controller proj))
                     {
                         proj.Reset_momentum();
                         proj.shoot(transform.forward);
                     }
                 }
-                if (types == Type.artillery)
+                
+            }
+            if (types == Type.artillery)
+            {
+                if (projectile.TryGetComponent(out projectile_controller proj))
                 {
-                    if (projectile.TryGetComponent(out projectile_controller proj))
-                    {
-                        proj.Reset_momentum();
-                        proj.shoot(spawn_point.transform.forward);
-                    }
+                    proj.Reset_momentum();
+                    proj.shoot(spawn_point.transform.forward);
                 }
             }
-
         }
+        else
+        {
+            /*if (projectile.TryGetComponent(out projectile_controller proj))
+            {
+                proj.Reset_momentum();
+                proj.shoot(transform.forward);
+            }*/
+        }    
+
+        
     }
 
 
@@ -274,21 +304,25 @@ public class gun : MonoBehaviour
             target.SetActive(false);
         }
 
+        
         if (targets != null)
         {
-            if (other.transform == targets[0].transform)
+            if (targets.Count > 0)
             {
-                var targ = Instantiate(target, targets[0].transform);
-                targ.transform.parent = targets[0].transform;
-            }
+                if (other.transform == targets[0].transform)
+                {
 
-            if (targets.Contains(other.transform) == true)
-            {
-                targets.Remove(other.transform);
+                    target.transform.parent = targets[0].transform;
+                }
+
+                if (targets.Contains(other.transform) == true)
+                {
+                    targets.Remove(other.transform);
+                }
             }
         }
 
-
+        
         yield return null;
     }
 
@@ -300,15 +334,18 @@ public class gun : MonoBehaviour
             target.SetActive(true);
         }
 
-        if (targets.Count > 0)
+        if (targets != null)
         {
-            if (targets[0].transform != null)
+            if (targets.Count > 0)
             {
-                if (other.transform == targets[0].transform)
+                if (other.transform != null)
                 {
-                    target.transform.parent = targets[0].transform;
-                    target.transform.rotation = targets[0].transform.rotation;
-                    target.transform.localPosition = Vector3.zero;
+                    if (other.transform == targets[0].transform)
+                    {
+                        target.transform.parent = targets[0].transform;
+                        target.transform.rotation = targets[0].transform.rotation;
+                        target.transform.localPosition = Vector3.zero;
+                    }
                 }
             }
         }

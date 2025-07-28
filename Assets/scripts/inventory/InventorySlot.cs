@@ -25,6 +25,8 @@ public class InventorySlot : MonoBehaviour, IDropHandler
 
     public int inventory_slot_position;
 
+    public bool in_inventory;
+
     
 
     public void OnDrop(PointerEventData eventData)
@@ -73,7 +75,10 @@ public class InventorySlot : MonoBehaviour, IDropHandler
             {
                 //Debug.Log("touching a different item");
                 //relocate(other.GetComponent<Draggable_item>().current_parent);
-                push(other.gameObject);
+                if (in_inventory == true)
+                {
+                    push(other.gameObject);
+                }
             }
             
         }
@@ -124,7 +129,9 @@ public class InventorySlot : MonoBehaviour, IDropHandler
     {
         if (Input.GetKey(KeyCode.Tab))
         {
+            in_inventory = !in_inventory;
             InventorySystem.current.put_in_right_place(inventory_slot_position, first_child.GetComponent<Draggable_item>().self_inventory_item);
+            Debug.Log("put in right place");
         }
     }
 }

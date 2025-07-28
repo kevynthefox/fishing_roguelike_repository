@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1167202867643510441}
   - component: {fileID: 8146825142477434595}
   - component: {fileID: 8915718886311271947}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: mortar_shell
   m_TagString: projectile
   m_Icon: {fileID: 0}
@@ -30,7 +30,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 51.18494, y: 38.65198, z: 105.92717}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 4019887874256304391}
@@ -52,12 +52,17 @@ MonoBehaviour:
   speed: 7000
   s_to_m: 70
   destroy_or_recycle: 1
-  lifespan: 40
+  lifespan: 0
   frag_piece: 0
   is_frag_master: 0
   frag_master: {fileID: 0}
   frag_pieces: []
-  explosive: 0
+  explosive: 1
+  touched: 0
+  tags_to_ignore:
+  - projectile
+  - gun
+  - fish_enemy
 --- !u!136 &1167202867643510441
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -127,7 +132,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 0
   serializedVersion: 3
-  m_Radius: 50
+  m_Radius: 100
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &3477689051657477868
 PrefabInstance:
@@ -197,43 +202,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: mortar_shell
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: e095e3118cd04c94d8c9e1f1d0d2ca43, type: 3}
+      propertyPath: m_Layer
+      value: 15
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e095e3118cd04c94d8c9e1f1d0d2ca43, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 3987882524554308716}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e095e3118cd04c94d8c9e1f1d0d2ca43, type: 3}
 --- !u!4 &4019887874256304391 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: e095e3118cd04c94d8c9e1f1d0d2ca43, type: 3}
   m_PrefabInstance: {fileID: 3477689051657477868}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &4360137642470417341 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: e095e3118cd04c94d8c9e1f1d0d2ca43, type: 3}
-  m_PrefabInstance: {fileID: 3477689051657477868}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &3987882524554308716
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4360137642470417341}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a83333d5a28ff24b96645327a5126d0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 50
-  speed: 100
-  s_to_m: 0
-  destroy_or_recycle: 1
-  lifespan: 40
-  frag_piece: 0
-  is_frag_master: 0
-  frag_master: {fileID: 0}
-  frag_pieces: []
-  explosive: 0

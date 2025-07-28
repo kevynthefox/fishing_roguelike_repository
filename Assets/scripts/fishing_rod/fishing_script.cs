@@ -63,14 +63,24 @@ public class fishing_script : MonoBehaviour
     public float fish_quality_min;
 
 
-    public float fish_quantity_buff;
-    public float fish_quality_buff;
+    public float fish_quantity_buff_mult;
+    public float fish_quality_buff_mult;
 
-    public float fish_quantity_max_buff;
-    public float fish_quality_max_buff;
+    public float fish_quantity_max_buff_mult;
+    public float fish_quality_max_buff_mult;
     
-    public float fish_quantity_min_buff;
-    public float fish_quality_min_buff;
+    public float fish_quantity_min_buff_mult;
+    public float fish_quality_min_buff_mult;
+
+
+    public float fish_quantity_buff_add;
+    public float fish_quality_buff_add;
+
+    public float fish_quantity_max_buff_add;
+    public float fish_quality_max_buff_add;
+
+    public float fish_quantity_min_buff_add;
+    public float fish_quality_min_buff_add;
 
     public float effort;
     public float resistance;
@@ -897,12 +907,12 @@ public class fishing_script : MonoBehaviour
                     fish_all_spawned = true;
                     fish_ever += fish_counted;
 
-                    fish_quantity /= fish_quantity_buff;
-                    fish_quality /= fish_quality_buff;
-                    fish_quantity_max /= fish_quantity_max_buff;
-                    fish_quality_max /= fish_quality_max_buff;
-                    fish_quantity_min /= fish_quantity_min_buff;
-                    fish_quality_min /= fish_quality_min_buff;
+                    fish_quantity /= fish_quantity_buff_mult; fish_quantity -= fish_quantity_buff_add;
+                    fish_quality /= fish_quality_buff_mult; fish_quality -= fish_quality_buff_add;
+                    fish_quantity_max /= fish_quantity_max_buff_mult; fish_quantity_max -= fish_quantity_max_buff_add;
+                    fish_quality_max /= fish_quality_max_buff_mult; fish_quality_max -= fish_quality_max_buff_add;
+                    fish_quantity_min /= fish_quantity_min_buff_mult; fish_quantity_min -= fish_quantity_min_buff_add;
+                    fish_quality_min /= fish_quality_min_buff_mult; fish_quality_min -= fish_quality_min_buff_add;
 
                 }
                 else

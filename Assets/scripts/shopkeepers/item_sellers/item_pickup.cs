@@ -69,32 +69,37 @@ public class item_pickup : MonoBehaviour
     {
         if (this.gameObject.GetComponent<item_pickup>().enabled == true)
         {
-            if (TryGetComponent<item_price_holder>(out item_price_holder price_holder))
+            if (other.gameObject.name == "player")
             {
-                sell_value = price_holder.item_cost;
-            }
+                
+
+                if (TryGetComponent<item_price_holder>(out item_price_holder price_holder))
+                {
+                    sell_value = price_holder.item_cost;
+                }
 
 
-            //Debug.Log("mouse is over, item pickup");
-            
-            if (Input.GetKey(KeyCode.LeftControl))
-            {
-                for (int i = 0; i <= amount_of_items; i++)
+                //Debug.Log("mouse is over, item pickup");
+
+                if (Input.GetKey(KeyCode.LeftControl))
+                {
+                    for (int i = 0; i <= amount_of_items; i++)
+                    {
+                        InventorySystem.current.Add(this.self_item);
+                        amount_of_items--;
+                    }
+                }
+                else
                 {
                     InventorySystem.current.Add(this.self_item);
                     amount_of_items--;
                 }
+                if (amount_of_items <= 0)
+                {
+                    Destroy(this.gameObject);
+                }
+                
             }
-            else
-            {
-                InventorySystem.current.Add(this.self_item);
-                amount_of_items--;
-            }
-            if (amount_of_items <= 0)
-            {
-                Destroy(this.gameObject);
-            }
-
             yield return null;
         }
     }
