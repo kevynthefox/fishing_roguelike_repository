@@ -9776,6 +9776,7 @@ MonoBehaviour:
   factor: 1
   speed: 0
   disable_water: 0
+  health: 1
 --- !u!65 &8944695826210379777
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9859,5 +9860,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 99
   speed: 100
+  s_to_m: 0
   destroy_or_recycle: 1
   lifespan: 10
+  frag_piece: 0
+  is_frag_master: 0
+  frag_master: {fileID: 0}
+  frag_pieces: []
+  explosive: 0
+  touched: 0
+  tags_to_ignore:
+  - 
+  - 
+  - 

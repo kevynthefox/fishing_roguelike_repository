@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 2770030340324045143}
   m_Layer: 6
   m_Name: bobber (1)
-  m_TagString: Untagged
+  m_TagString: gun
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -103,7 +103,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1526560815456469809}
   serializedVersion: 5
-  m_Mass: 1
+  m_Mass: 2
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -117,7 +117,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 0
+  m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 1
   m_Constraints: 0
@@ -267,6 +267,7 @@ MonoBehaviour:
   object_holder: {fileID: 0}
   COD: {fileID: 0}
   consecutive_wins: 0
+  reel_in_finisher: 0
   distance: 0
   enabled_fishing: 0
   velocity: {x: 0, y: 0, z: 0}
@@ -276,10 +277,22 @@ MonoBehaviour:
   fish_quantity: 1
   fish_quality: 1
   bar_pos: 0.5
-  fish_quantity_max: 8
+  fish_quantity_max: 2
   fish_quality_max: 2
   fish_quantity_min: 1
   fish_quality_min: 1
+  fish_quantity_buff_mult: 0
+  fish_quality_buff_mult: 0
+  fish_quantity_max_buff_mult: 0
+  fish_quality_max_buff_mult: 0
+  fish_quantity_min_buff_mult: 0
+  fish_quality_min_buff_mult: 0
+  fish_quantity_buff_add: 0
+  fish_quality_buff_add: 0
+  fish_quantity_max_buff_add: 0
+  fish_quality_max_buff_add: 0
+  fish_quantity_min_buff_add: 0
+  fish_quality_min_buff_add: 0
   effort: 0.1
   resistance: 0
   stopping_factor: 1.5

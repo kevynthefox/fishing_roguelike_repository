@@ -26,17 +26,19 @@ public class falling_stars : MonoBehaviour
     public float range;
 
     public GameObject starfish_pool_object;
+    private GameObject sun;
 
     [SerializeField] private ObjectPoolSO starfish_pool;
 
     void Awake()
     {
         starfish_pool.parent = starfish_pool_object.transform;
+        sun = GameObject.Find("sun");
     }
 
     void Update()
     {
-        day_night = this.GetComponent<day_cycle>().day_night;
+        day_night = sun.GetComponent<day_cycle>().day_night;
 
         if ((day_night || manual_fire) == true)
         {

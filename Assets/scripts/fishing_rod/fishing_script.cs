@@ -82,6 +82,9 @@ public class fishing_script : MonoBehaviour
     public float fish_quantity_min_buff_add;
     public float fish_quality_min_buff_add;
 
+    public float fish_potency_buff_mult;
+    public float fish_potency_buff_add;
+
     public float effort;
     public float resistance;
 
@@ -361,10 +364,12 @@ public class fishing_script : MonoBehaviour
             if (enabled_fishing == false || reel_in_finisher == true)
             {
                 GetComponent<return_to_start>().enabled = true;
+                //Debug.Log("fishing false or finisher true");
             }
             else
             {
                 GetComponent<return_to_start>().enabled = false;
+                //Debug.Log("fishing true or finisher false");
             }
             GetComponent<BoxCollider>().enabled = enabled_fishing;
 
@@ -406,7 +411,8 @@ public class fishing_script : MonoBehaviour
                     {
                         //Debug.Log("distance below 1");
                         GetComponent<bobber_launch>().factor = 0;
-                        reel_in_finisher = false;
+                        reel_in_finisher = true;
+                        //Debug.Log("reel in finisher true because distance < 1");
                     }
 
                 }
@@ -414,7 +420,7 @@ public class fishing_script : MonoBehaviour
                 {
                     GetComponent<bobber_launch>().factor = 0;
                     GetComponent<bobber_launch>().enabled = false;
-                    reel_in_finisher = true;
+                    reel_in_finisher = false;
                 }
 
             }
@@ -852,7 +858,7 @@ public class fishing_script : MonoBehaviour
             {
                 //Debug.Log("touched the rod. not blocking");
                 other.tag = "super_food_items";
-                Wavespawner.current.Remove_alive(this.gameObject);
+                Wavespawner.current.Remove_alive(other.gameObject);
                 other.GetComponent<heat_seeking_fishles>().home = null;
             }
             if (blocking == true && attacking == false)
@@ -907,12 +913,29 @@ public class fishing_script : MonoBehaviour
                     fish_all_spawned = true;
                     fish_ever += fish_counted;
 
-                    fish_quantity /= fish_quantity_buff_mult; fish_quantity -= fish_quantity_buff_add;
-                    fish_quality /= fish_quality_buff_mult; fish_quality -= fish_quality_buff_add;
-                    fish_quantity_max /= fish_quantity_max_buff_mult; fish_quantity_max -= fish_quantity_max_buff_add;
-                    fish_quality_max /= fish_quality_max_buff_mult; fish_quality_max -= fish_quality_max_buff_add;
-                    fish_quantity_min /= fish_quantity_min_buff_mult; fish_quantity_min -= fish_quantity_min_buff_add;
-                    fish_quality_min /= fish_quality_min_buff_mult; fish_quality_min -= fish_quality_min_buff_add;
+                    if (fish_quantity_buff_mult > 0 ) fish_quantity /= fish_quantity_buff_mult; if (fish_quantity_buff_add > 0) fish_quantity -= fish_quantity_buff_add;
+                    if (fish_quality_buff_mult > 0) fish_quality /= fish_quality_buff_mult; if (fish_quality_buff_add > 0 ) fish_quality -= fish_quality_buff_add;
+                    if (fish_quantity_max_buff_mult > 0 ) fish_quantity_max /= fish_quantity_max_buff_mult; if (fish_quantity_max_buff_add > 0 ) fish_quantity_max -= fish_quantity_max_buff_add;
+                    if (fish_quality_max_buff_mult > 0 ) fish_quality_max /= fish_quality_max_buff_mult; if (fish_quality_max_buff_add > 0 ) fish_quality_max -= fish_quality_max_buff_add;
+                    if (fish_quantity_min_buff_mult > 0 ) fish_quantity_min /= fish_quantity_min_buff_mult; if (fish_quantity_min_buff_add > 0 ) fish_quantity_min -= fish_quantity_min_buff_add;
+                    if (fish_quality_min_buff_mult > 0 ) fish_quality_min /= fish_quality_min_buff_mult; if (fish_quality_min_buff_add > 0 ) fish_quality_min -= fish_quality_min_buff_add;
+
+                    fish_quantity_buff_mult = 1;
+                    fish_quality_buff_mult = 1;
+                    fish_quantity_max_buff_mult = 1;
+                    fish_quality_max_buff_mult = 1;
+                    fish_quantity_min_buff_mult = 1;
+                    fish_quality_min_buff_mult = 1;
+
+                    fish_quantity_buff_add = 0;
+                    fish_quality_buff_add = 0;
+                    fish_quantity_max_buff_add = 0;
+                    fish_quality_max_buff_add = 0;
+                    fish_quantity_min_buff_add = 0;
+                    fish_quality_min_buff_add = 0;
+
+                    fish_potency_buff_mult = 0;
+                    fish_potency_buff_add = 0;
 
                 }
                 else
@@ -930,6 +953,8 @@ public class fishing_script : MonoBehaviour
                     var fish_object = Instantiate(fish[randomIndex], SpawnPosition_3, Quaternion.identity);
 
                     fish_object.GetComponent<heat_seeking_fishles>().home = GameObject.Find("sell guy");
+
+                    fish_object.GetComponent<fish_variable_holder>().potentcy += fish_potency_buff_add; fish_object.GetComponent<fish_variable_holder>().potentcy *= fish_potency_buff_mult;
 
                     fish_counted += 1;
                     

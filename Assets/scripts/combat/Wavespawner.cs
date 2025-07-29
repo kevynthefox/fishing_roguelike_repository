@@ -21,6 +21,7 @@ public class Wavespawner : MonoBehaviour
 
     public bool starter = true;
 
+    public int time_start;
     public int time_left;
 
     public int fish_total;
@@ -36,6 +37,11 @@ public class Wavespawner : MonoBehaviour
 
     public int family_max;
 
+    public float fish_potency_buff_mult;
+    public float fish_potency_buff_add;
+
+    private GameObject player;
+
     [Header("encounters")]
     public List<enemy_encounter_data> encounters;
     public GameObject rod;
@@ -47,6 +53,8 @@ public class Wavespawner : MonoBehaviour
     public void Start()
     {
         StartCoroutine(timer());
+        player = GameObject.Find("player");
+        time_left = time_start;
     }
 
     public void Update()
@@ -62,25 +70,39 @@ public class Wavespawner : MonoBehaviour
         }
 
         spawn_left_right = UnityEngine.Random.Range(-1000, 1001);
-        spawn_forward_back = UnityEngine.Random.Range(30, 2001);
+        spawn_forward_back = UnityEngine.Random.Range(-2000, 2001);
         family_size = UnityEngine.Random.Range(0, family_max);
+
+        if (rod.GetComponent<fishing_script>().spawning_fish == true)
+        {
+            Debug.Log("fish are spawning, get the potency buffs");
+            fish_potency_buff_mult = rod.GetComponent<fishing_script>().fish_potency_buff_mult;
+            fish_potency_buff_add = rod.GetComponent<fishing_script>().fish_potency_buff_add;
+        }
+
         if (spawning_time == true)
         {
             
-            
-            
+
+
 
             foreach (fish_dead f in dead_fish.ToList())
             {
                 //fish_left += f.stackSize;
                 for (int i = 0; i < family_size; i++)
                 {
-                    var fish_object = Instantiate(f.data, new Vector3(spawn_left_right, 0, spawn_forward_back), Quaternion.identity);
+                    var fish_object = Instantiate(f.data, new Vector3(player.gameObject.transform.position.x + spawn_left_right, 0, player.gameObject.transform.position.z + spawn_forward_back), Quaternion.identity);
                     fish_object.GetComponent<heat_seeking_fishles>().home = GameObject.Find("player");
                     fish_object.GetComponent<heat_seeking_fishles>().disable_water = true;
 
-                    
-                    fish_object.transform.localScale = new Vector3(fish_quality,fish_quality,fish_quality);
+
+                    fish_object.GetComponent<fish_variable_holder>().potentcy += f.fish_potency_buff_add;
+                    fish_object.GetComponent<fish_variable_holder>().potentcy += fish_potency_buff_add;
+
+                    if (f.fish_potency_buff_mult > 1)  fish_object.GetComponent<fish_variable_holder>().potentcy *= f.fish_potency_buff_mult; 
+                    if (fish_potency_buff_mult > 1) fish_object.GetComponent<fish_variable_holder>().potentcy *= fish_potency_buff_mult;
+
+                    if ( fish_quality > 0) fish_object.transform.localScale = new Vector3(fish_quality,fish_quality,fish_quality);
                     Add_alive(fish_object);
                     fish_have_been_alive = true;
                 }
@@ -122,7 +144,7 @@ public class Wavespawner : MonoBehaviour
         if (alive_fish.Count != 0 || encounter_enemies_alive.Count != 0)
         {
 
-            //sell_guy.SetActive(false);
+            sell_guy.SetActive(false);
             if (encounter_enemies_alive.Count > 0)
             {
                 navmesh.SetActive(true);
@@ -138,10 +160,15 @@ public class Wavespawner : MonoBehaviour
         }
         else
         {
-            //sell_guy.SetActive(true);
+            sell_guy.SetActive(true);
             navmesh.SetActive(false);
             //Debug.Log("no more fish alive");
-            
+
+            if (fish_have_been_alive == true)
+            {
+                fish_potency_buff_mult = 1;
+                fish_potency_buff_add = 0;
+            }
             foreach (GameObject wat in GameObject.FindGameObjectsWithTag("water_off"))
             {
                 wat.tag = "water";
@@ -168,7 +195,7 @@ public class Wavespawner : MonoBehaviour
                 if (dead_fish.Count == 0)
                 {
                     spawning_time = false;
-                    time_left = 20;
+                    time_left = time_start;
                 }
                 else
                 {
@@ -196,6 +223,9 @@ public class Wavespawner : MonoBehaviour
             {
                 fishle.home = GameObject.Find("player");
             }
+
+            //was gonna do something here for the fish enemies(like mobster lobsters) but those shouldn't be affected by potency buffs because they're not a consequence of your fishing as directly
+            //as regular fish.
             //Debug.Log("spawned enemy");
             encounter_enemies_alive.Add(enemy);
         }
@@ -299,6 +329,8 @@ public class fish_dead
     public GameObject data;// {  get; private set; }
     public int stackSize;// { get; private set; }
 
+    public float fish_potency_buff_mult;
+    public float fish_potency_buff_add;
     public fish_dead(GameObject source)
     {
         data = source;

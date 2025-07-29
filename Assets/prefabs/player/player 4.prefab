@@ -347,6 +347,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UIInventoryItemSlot: {fileID: 716855616963021232}
   m_slotPrefab: {fileID: 34620614143192289, guid: 65218f9ef51dcd345a40770cddeab93e, type: 3}
+  slots_made: 0
 --- !u!114 &5430279586597698802
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -531,7 +532,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 32631
+    m_Bits: 65399
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -953,7 +954,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 28279
+    m_Bits: 61047
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -3665,7 +3666,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 9.6, z: 0}
-  m_LocalScale: {x: 1.0000002, y: 1, z: 1.0000002}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2115785491275927174}
@@ -5048,10 +5049,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4690853003909930613}
     m_Modifications:
-    - target: {fileID: 524056874711674526, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
-      propertyPath: damage
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 912262952114264254, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
       propertyPath: player
       value: 

@@ -256,7 +256,10 @@ MonoBehaviour:
   frag_pieces: []
   explosive: 0
   touched: 0
-  tags_to_ignore: []
+  tags_to_ignore:
+  - 
+  - 
+  - 
 --- !u!54 &3919595164398692221
 Rigidbody:
   m_ObjectHideFlags: 0

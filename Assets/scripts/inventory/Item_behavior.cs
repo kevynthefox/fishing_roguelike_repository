@@ -38,7 +38,7 @@ public class Item_behavior : MonoBehaviour
     public bool enemy_or_player; //false is enemy, true is player.
 
     public GameObject player;
-    public GameObject object_holder,fishing_controller;
+    public GameObject object_holder,fishing_controller,wavespawner;
 
     public bool triggered;
 
@@ -67,6 +67,7 @@ public class Item_behavior : MonoBehaviour
     {
         player = GameObject.Find("player");
         object_holder = GameObject.Find("object_holder_object");
+        wavespawner = GameObject.Find("fish_wave_spawner");
         fishing_controller = object_holder.GetComponent<object_holder>().bobber;
     }
 
@@ -209,20 +210,9 @@ public class Item_behavior : MonoBehaviour
                 }
                 if (action_effect == 4)
                 {
-                    foreach (GameObject fish in GameObject.FindGameObjectsWithTag("fish"))
-                    {
-                        if (fish.GetComponent<fish_variable_holder>().potentcy * strength != 1)
-                        {
-                            fish.GetComponent<fish_variable_holder>().potentcy *= strength;
-                        }
-                        else
-                        {
-                            fish.GetComponent<fish_variable_holder>().potentcy = strength;
-                        }
-                        //Debug.Log("multiplied potency");
-                        
-                        //Debug.Log("found fish");
-                    }
+                    
+                    fishing_controller.GetComponent<fishing_script>().fish_potency_buff_mult += strength;
+
                 }
                 if (action_effect == 5)
                 {
@@ -307,12 +297,8 @@ public class Item_behavior : MonoBehaviour
                 }
                 if (action_effect == 4)
                 {
-                    foreach (GameObject fish in GameObject.FindGameObjectsWithTag("fish"))
-                    {
-                        
-                        fish.GetComponent<fish_variable_holder>().potentcy += strength;
-
-                    }
+                    
+                    fishing_controller.GetComponent<fishing_script>().fish_potency_buff_add = strength;
                 }
                 if (action_effect == 5)
                 {

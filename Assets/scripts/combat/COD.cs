@@ -24,6 +24,8 @@ public class COD : MonoBehaviour
 
     public bool collided_with_wall;
 
+    private GameObject player;
+
     void Start()
     {
         scale = new Vector3(size, size * 0.3663297f, size * 0.2306069f);
@@ -31,6 +33,7 @@ public class COD : MonoBehaviour
 
         StartCoroutine(counter());
         StartCoroutine(counter_stopper());
+        player = GameObject.Find("player");
     }
 
 
@@ -67,7 +70,7 @@ public class COD : MonoBehaviour
         //escape section
         if (size <= 1)
         {
-            transform.position = new Vector3(2000, 10, 2000);
+            transform.position = new Vector3(player.transform.position.x + 2000, player.transform.position.y + 10000, player.transform.position.z + 2000);
             this.GetComponent<MeshRenderer>().enabled = false;
             this.GetComponent<CapsuleCollider>().enabled = false;
             this.GetComponent<Rigidbody>().isKinematic = true;
@@ -106,20 +109,20 @@ public class COD : MonoBehaviour
         //while (starter == true)
         //{
             
-            foreach (var fish in GameObject.FindGameObjectsWithTag("fish"))
+        foreach (var fish in GameObject.FindGameObjectsWithTag("fish"))
+        {
+            if (feesh.Contains(fish))
             {
-                if (feesh.Contains(fish))
-                {
 
-                }
-                else
-                {
-                    //Debug.Log(fish.name);
-                    feesh.Add(fish);
-                    size += (fish.gameObject.GetComponent<fish_variable_holder>().fish_quality * fish.gameObject.GetComponent<fish_variable_holder>().fish_quantity);
-                }
             }
-            yield return new WaitForSeconds(1f);
+            else
+            {
+                //Debug.Log(fish.name);
+                feesh.Add(fish);
+                size += (fish.gameObject.GetComponent<fish_variable_holder>().fish_quality * fish.gameObject.GetComponent<fish_variable_holder>().fish_quantity) / 10;
+            }
+        }
+        yield return new WaitForSeconds(1f);
             
         //}
     }
