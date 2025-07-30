@@ -14,12 +14,13 @@ public class Damage : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
+        Debug.Log("triggered");
         if (other.gameObject != null)
         {
 
             if (other.isTrigger == true)
             {
-                //Debug.Log("triggered");
+                
 
 
                 if (other.tag == "food_items")
@@ -55,8 +56,16 @@ public class Damage : MonoBehaviour
                             health_object.GetComponent<Health_display>().health -= other.GetComponent<projectile_controller>().damage;// / 2;
                         }
                     }
+                    else
+                    {
+                        Debug.Log("other was null");
+                    }
                 }
             }
+        }
+        else
+        {
+            Debug.Log("other was null");
         }
     }
 }

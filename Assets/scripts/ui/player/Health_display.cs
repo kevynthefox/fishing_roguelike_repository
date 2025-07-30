@@ -16,7 +16,7 @@ public float health,health_max;
 public Image HealthBar;
 public Text healthText;
 
-public GameObject player;
+public GameObject target;
 public GameObject respawn_point;
 
 private Coroutine recharge;
@@ -26,6 +26,8 @@ public GameObject death_system;
 public bool dead;
 
 public bool is_player;
+
+public bool is_turret;
 
     // Start is called before the first frame update
     void Start()
@@ -45,6 +47,17 @@ public bool is_player;
                 //put something here to restart the whole scene
             }
         }
+        else
+        {
+            if (health <= 0)
+            {
+                if (is_turret == true)
+                {
+                    Wavespawner.current.targets.Remove(target);
+                }
+                Destroy(target);
+            }
+        }
         if (health >= health_max)
         {
             health = health_max;
@@ -58,8 +71,18 @@ public bool is_player;
 
     public IEnumerator OnTriggerEnter(Collider other)
     {
-        Debug.Log("triggered");
-        if (other.tag == "fish")
+        Debug.Log("triggered a fish");
+        if (other.CompareTag("fish"))
+        {
+            health -= 1;
+            yield return new WaitForSeconds(1f);
+        }
+    }
+
+    public IEnumerator OnCollisionEnter(Collision collision)
+    {
+        Debug.Log("touched a fish");
+        if (collision.gameObject.CompareTag("fish"))
         {
             health -= 1;
             yield return new WaitForSeconds(1f);

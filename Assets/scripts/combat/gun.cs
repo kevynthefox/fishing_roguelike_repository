@@ -105,7 +105,7 @@ public class gun : MonoBehaviour
         {
             if (targets.Count > 0)
             {
-                if (targets[0].transform != null)
+                if (targets[0] != null)
                 {
                     distance = Vector3.Distance(targets[0].transform.position, this.transform.position) * distance_correction;
                     if (types == Type.artillery)
@@ -133,23 +133,24 @@ public class gun : MonoBehaviour
                         barrel.transform.localRotation = Quaternion.Slerp(barrel.transform.localRotation, barrel_targetRotation, str);*/
                         barrel.transform.localRotation = Quaternion.Euler(-180, 90, distance * launch_angle);
                     }
-                }
 
 
-                if (targets[0].TryGetComponent<heat_seeking_fishles>(out heat_seeking_fishles heat_seeking))
-                {
-                    if (heat_seeking.health == 0)
+
+                    if (targets[0].TryGetComponent<heat_seeking_fishles>(out heat_seeking_fishles heat_seeking))
                     {
-                        Debug.Log("neutralized");
-                        targets.RemoveAt(0);
+                        if (heat_seeking.health == 0)
+                        {
+                            Debug.Log("neutralized");
+                            targets.RemoveAt(0);
+                        }
                     }
-                }
-                if (targets[0].gameObject.TryGetComponent<behavior_for_ranged_fish>(out behavior_for_ranged_fish ranged_behavior))
-                {
-                    if (ranged_behavior.GetComponent<Health_display>().health == 0)
+                    if (targets[0].gameObject.TryGetComponent<behavior_for_ranged_fish>(out behavior_for_ranged_fish ranged_behavior))
                     {
-                        Debug.Log("neutralized");
-                        targets.RemoveAt(0);
+                        if (ranged_behavior.GetComponent<Health_display>().health == 0)
+                        {
+                            Debug.Log("neutralized");
+                            targets.RemoveAt(0);
+                        }
                     }
                 }
 
@@ -309,16 +310,23 @@ public class gun : MonoBehaviour
         {
             if (targets.Count > 0)
             {
-                if (other.transform == targets[0].transform)
+                if (targets[0] != null)
                 {
+                    if (other.transform == targets[0].transform)
+                    {
 
-                    target.transform.parent = targets[0].transform;
+                        target.transform.parent = targets[0].transform;
+                    }
+
+                    if (targets.Contains(other.transform) == true)
+                    {
+                        targets.Remove(other.transform);
+                    }
                 }
-
-                if (targets.Contains(other.transform) == true)
+                else
                 {
-                    targets.Remove(other.transform);
-                }
+                    Debug.Log("target 0 was null");
+                }    
             }
         }
 
@@ -340,11 +348,14 @@ public class gun : MonoBehaviour
             {
                 if (other.transform != null)
                 {
-                    if (other.transform == targets[0].transform)
+                    if (targets[0] != null)
                     {
-                        target.transform.parent = targets[0].transform;
-                        target.transform.rotation = targets[0].transform.rotation;
-                        target.transform.localPosition = Vector3.zero;
+                        if (other.transform == targets[0].transform)
+                        {
+                            target.transform.parent = targets[0].transform;
+                            target.transform.rotation = targets[0].transform.rotation;
+                            target.transform.localPosition = Vector3.zero;
+                        }
                     }
                 }
             }

@@ -13,12 +13,12 @@ GameObject:
   - component: {fileID: 8335199459514411616}
   - component: {fileID: 4057074853789559830}
   - component: {fileID: 4666394159460927992}
-  - component: {fileID: 8080049796473642723}
   - component: {fileID: 1226322734185159758}
   - component: {fileID: 7459851163736890697}
   - component: {fileID: 3007730463697766819}
   - component: {fileID: 3220851619442043366}
   - component: {fileID: 2770030340324045143}
+  - component: {fileID: 7452965723648057974}
   m_Layer: 6
   m_Name: bobber (1)
   m_TagString: gun
@@ -104,7 +104,7 @@ Rigidbody:
   m_GameObject: {fileID: 1526560815456469809}
   serializedVersion: 5
   m_Mass: 2
-  m_LinearDamping: 0
+  m_LinearDamping: 0.2
   m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -141,45 +141,6 @@ MonoBehaviour:
   direction_modified: {x: 0, y: 0, z: 0}
   camera_holder: {fileID: 0}
   cam: {fileID: 0}
---- !u!59 &8080049796473642723
-HingeJoint:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1526560815456469809}
-  serializedVersion: 3
-  m_ConnectedBody: {fileID: 0}
-  m_ConnectedArticulationBody: {fileID: 0}
-  m_Anchor: {x: 0, y: 1, z: 0}
-  m_Axis: {x: 1, y: 0, z: 0}
-  m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -2.1159148, y: -0.8614297, z: 0.000002861023}
-  m_UseSpring: 0
-  m_Spring:
-    spring: 0
-    damper: 0
-    targetPosition: 0
-  m_UseMotor: 0
-  m_Motor:
-    targetVelocity: 0
-    force: 0
-    freeSpin: 0
-  m_UseLimits: 0
-  m_ExtendedLimits: 0
-  m_UseAcceleration: 0
-  m_Limits:
-    min: 0
-    max: 0
-    bounciness: 0
-    bounceMinVelocity: 0.2
-    contactDistance: 0
-  m_BreakForce: Infinity
-  m_BreakTorque: Infinity
-  m_EnableCollision: 0
-  m_EnablePreprocessing: 1
-  m_MassScale: 1
-  m_ConnectedMassScale: 1
 --- !u!65 &1226322734185159758
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -252,6 +213,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64770cf14d2d75f4e9da39e72455d02b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  autofisher: 0
   string_on: 0
   bobber_on: 1
   rod_on: 0
@@ -281,18 +243,20 @@ MonoBehaviour:
   fish_quality_max: 2
   fish_quantity_min: 1
   fish_quality_min: 1
-  fish_quantity_buff_mult: 0
-  fish_quality_buff_mult: 0
-  fish_quantity_max_buff_mult: 0
-  fish_quality_max_buff_mult: 0
-  fish_quantity_min_buff_mult: 0
-  fish_quality_min_buff_mult: 0
+  fish_quantity_buff_mult: 1
+  fish_quality_buff_mult: 1
+  fish_quantity_max_buff_mult: 1
+  fish_quality_max_buff_mult: 1
+  fish_quantity_min_buff_mult: 1
+  fish_quality_min_buff_mult: 1
   fish_quantity_buff_add: 0
   fish_quality_buff_add: 0
   fish_quantity_max_buff_add: 0
   fish_quality_max_buff_add: 0
   fish_quantity_min_buff_add: 0
   fish_quality_min_buff_add: 0
+  fish_potency_buff_mult: 1
+  fish_potency_buff_add: 0
   effort: 0.1
   resistance: 0
   stopping_factor: 1.5
@@ -355,3 +319,19 @@ MonoBehaviour:
   factor: 1
   speed: 0
   mode: 0
+--- !u!138 &7452965723648057974
+FixedJoint:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1526560815456469809}
+  serializedVersion: 1
+  m_ConnectedBody: {fileID: 0}
+  m_ConnectedArticulationBody: {fileID: 0}
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_EnableCollision: 0
+  m_EnablePreprocessing: 1
+  m_MassScale: 1
+  m_ConnectedMassScale: 1

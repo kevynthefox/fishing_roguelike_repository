@@ -532,7 +532,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 65399
+    m_Bits: 130935
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -954,7 +954,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 61047
+    m_Bits: 126583
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -3649,6 +3649,7 @@ GameObject:
   - component: {fileID: 3454074937033948603}
   - component: {fileID: 1685358933508944797}
   - component: {fileID: 1429932580701967102}
+  - component: {fileID: 3751839930876068197}
   m_Layer: 7
   m_Name: player 4
   m_TagString: player
@@ -3908,6 +3909,19 @@ MonoBehaviour:
   book_open: 0
   inventory_open: 0
   health: {fileID: 8241493515390400426}
+--- !u!114 &3751839930876068197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7022627284826490943}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b315246da11c52341af51050fb975547, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  invincibility: 0
 --- !u!1 &7208398352910575041
 GameObject:
   m_ObjectHideFlags: 0
@@ -4086,7 +4100,7 @@ GameObject:
   - component: {fileID: 1249442997182533152}
   - component: {fileID: 3288309270298750159}
   - component: {fileID: 5294342410469119070}
-  m_Layer: 7
+  m_Layer: 14
   m_Name: player_idea_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4126,7 +4140,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7462083307550487122}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b315246da11c52341af51050fb975547, type: 3}
   m_Name: 

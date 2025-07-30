@@ -40,7 +40,7 @@ public class Wavespawner : MonoBehaviour
     public float fish_potency_buff_mult;
     public float fish_potency_buff_add;
 
-    private GameObject player;
+    public List<GameObject> targets;
 
     [Header("encounters")]
     public List<enemy_encounter_data> encounters;
@@ -53,7 +53,7 @@ public class Wavespawner : MonoBehaviour
     public void Start()
     {
         StartCoroutine(timer());
-        player = GameObject.Find("player");
+        targets.Add(GameObject.Find("player"));
         time_left = time_start;
     }
 
@@ -80,9 +80,21 @@ public class Wavespawner : MonoBehaviour
             fish_potency_buff_add = rod.GetComponent<fishing_script>().fish_potency_buff_add;
         }
 
+        
+
         if (spawning_time == true)
         {
-            
+            foreach (GameObject potential_target in GameObject.FindGameObjectsWithTag("player"))
+            {
+
+                if (targets.Contains(potential_target) == false)
+                {
+                    targets.Add(potential_target);
+                }
+
+            }
+
+            int random_target = UnityEngine.Random.Range(0, targets.Count);
 
 
 
@@ -91,10 +103,10 @@ public class Wavespawner : MonoBehaviour
                 //fish_left += f.stackSize;
                 for (int i = 0; i < family_size; i++)
                 {
-                    var fish_object = Instantiate(f.data, new Vector3(player.gameObject.transform.position.x + spawn_left_right, 0, player.gameObject.transform.position.z + spawn_forward_back), Quaternion.identity);
-                    fish_object.GetComponent<heat_seeking_fishles>().home = GameObject.Find("player");
+                    var fish_object = Instantiate(f.data, new Vector3(targets[random_target].transform.position.x + spawn_left_right, 0, targets[random_target].transform.position.z + spawn_forward_back), Quaternion.identity);
+                    fish_object.GetComponent<heat_seeking_fishles>().home = targets[random_target];
                     fish_object.GetComponent<heat_seeking_fishles>().disable_water = true;
-
+                    fish_object.GetComponent<heat_seeking_fishles>().enemy = true;
 
                     fish_object.GetComponent<fish_variable_holder>().potentcy += f.fish_potency_buff_add;
                     fish_object.GetComponent<fish_variable_holder>().potentcy += fish_potency_buff_add;

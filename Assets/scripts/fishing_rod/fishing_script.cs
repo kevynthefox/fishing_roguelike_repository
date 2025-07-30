@@ -9,7 +9,7 @@ using UnityEngine.UI;
 
 public class fishing_script : MonoBehaviour
 {
-    
+    public bool autofisher;
     
 
     [Header("fishing_script variables")]
@@ -191,7 +191,10 @@ public class fishing_script : MonoBehaviour
         object_holder = GameObject.Find("object_holder_object");
         bobber = object_holder.GetComponent<object_holder>().bobber;
 
-        cam = Camera.main;
+        if (autofisher == false)
+        {
+            cam = Camera.main;
+        }
     }
 
     void Start()
@@ -235,7 +238,7 @@ public class fishing_script : MonoBehaviour
     {
         if (rod_on == false)
         {
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0) && autofisher == false)
             {
                 left_clicked_down = true;
             }
@@ -244,7 +247,7 @@ public class fishing_script : MonoBehaviour
                 left_clicked_down = false;
             }
 
-            if (Input.GetMouseButtonDown(1))
+            if (Input.GetMouseButtonDown(1) && autofisher == false)
             {
                 right_clicked_down = true;
             }
@@ -253,7 +256,7 @@ public class fishing_script : MonoBehaviour
                 right_clicked_down = false;
             }
 
-            if (Input.GetMouseButton(0))
+            if (Input.GetMouseButton(0) && autofisher == false)
             {
                 left_clicked_hold = true;
             }
@@ -262,7 +265,7 @@ public class fishing_script : MonoBehaviour
                 left_clicked_hold = false;
             }
 
-            if (Input.GetMouseButton(1))
+            if (Input.GetMouseButton(1) && autofisher == false)
             {
                 right_clicked_hold = true;
             }
@@ -271,7 +274,7 @@ public class fishing_script : MonoBehaviour
                 right_clicked_hold = false;
             }
 
-            if (Input.GetMouseButtonUp(0))
+            if (Input.GetMouseButtonUp(0) && autofisher == false)
             {
                 left_clicked_up = true;
             }
@@ -280,7 +283,7 @@ public class fishing_script : MonoBehaviour
                 left_clicked_up = false;
             }
 
-            if (Input.GetMouseButtonUp(1))
+            if (Input.GetMouseButtonUp(1) && autofisher == false)
             {
                 right_clicked_up = true;
             }
@@ -288,7 +291,7 @@ public class fishing_script : MonoBehaviour
             {
                 right_clicked_up = false;
             }
-            if (Input.GetKeyDown(KeyCode.E))
+            if (Input.GetKeyDown(KeyCode.E) && autofisher == false)
             {
                 enabled_fishing = !enabled_fishing;
                 if (bobber_on == true)

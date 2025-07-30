@@ -48,7 +48,7 @@ Rigidbody:
   m_GameObject: {fileID: 259240568828154330}
   serializedVersion: 5
   m_Mass: 1
-  m_LinearDamping: 0
+  m_LinearDamping: 1
   m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -161,6 +161,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64770cf14d2d75f4e9da39e72455d02b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  autofisher: 0
   string_on: 1
   bobber_on: 0
   rod_on: 0
@@ -601,7 +602,7 @@ Rigidbody:
   m_GameObject: {fileID: 1188416235030166116}
   serializedVersion: 5
   m_Mass: 1
-  m_LinearDamping: 0
+  m_LinearDamping: 1
   m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -714,6 +715,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64770cf14d2d75f4e9da39e72455d02b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  autofisher: 0
   string_on: 1
   bobber_on: 0
   rod_on: 0
@@ -870,7 +872,7 @@ Rigidbody:
   m_GameObject: {fileID: 1372670208295128379}
   serializedVersion: 5
   m_Mass: 1
-  m_LinearDamping: 0
+  m_LinearDamping: 1
   m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -1007,6 +1009,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64770cf14d2d75f4e9da39e72455d02b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  autofisher: 0
   string_on: 1
   bobber_on: 0
   rod_on: 0
@@ -1127,7 +1130,7 @@ GameObject:
   - component: {fileID: 1738663237051779123}
   - component: {fileID: 8970102802277665052}
   - component: {fileID: 162738533393665906}
-  m_Layer: 9
+  m_Layer: 16
   m_Name: pole top
   m_TagString: fishing_rod
   m_Icon: {fileID: 0}
@@ -1409,7 +1412,7 @@ Rigidbody:
   m_GameObject: {fileID: 2306417926435356915}
   serializedVersion: 5
   m_Mass: 1
-  m_LinearDamping: 0
+  m_LinearDamping: 1
   m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -1522,6 +1525,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64770cf14d2d75f4e9da39e72455d02b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  autofisher: 0
   string_on: 1
   bobber_on: 0
   rod_on: 0
@@ -2039,6 +2043,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64770cf14d2d75f4e9da39e72455d02b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  autofisher: 0
   string_on: 0
   bobber_on: 0
   rod_on: 1
@@ -2175,7 +2180,7 @@ Rigidbody:
   m_GameObject: {fileID: 3928647605923234054}
   serializedVersion: 5
   m_Mass: 1
-  m_LinearDamping: 0
+  m_LinearDamping: 1
   m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -2288,6 +2293,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64770cf14d2d75f4e9da39e72455d02b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  autofisher: 0
   string_on: 1
   bobber_on: 0
   rod_on: 0
@@ -2552,7 +2558,7 @@ Rigidbody:
   m_GameObject: {fileID: 4175417186925768351}
   serializedVersion: 5
   m_Mass: 1
-  m_LinearDamping: 0
+  m_LinearDamping: 1
   m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -2681,6 +2687,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64770cf14d2d75f4e9da39e72455d02b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  autofisher: 0
   string_on: 1
   bobber_on: 0
   rod_on: 0
@@ -2945,7 +2952,7 @@ Rigidbody:
   m_GameObject: {fileID: 4531546020936397070}
   serializedVersion: 5
   m_Mass: 1
-  m_LinearDamping: 0
+  m_LinearDamping: 1
   m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -3058,6 +3065,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64770cf14d2d75f4e9da39e72455d02b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  autofisher: 0
   string_on: 1
   bobber_on: 0
   rod_on: 0
@@ -3213,7 +3221,7 @@ Rigidbody:
   m_GameObject: {fileID: 4838449060039462677}
   serializedVersion: 5
   m_Mass: 1
-  m_LinearDamping: 0
+  m_LinearDamping: 1
   m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -3326,6 +3334,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64770cf14d2d75f4e9da39e72455d02b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  autofisher: 0
   string_on: 1
   bobber_on: 0
   rod_on: 0
@@ -3696,7 +3705,7 @@ Rigidbody:
   m_GameObject: {fileID: 6717458602798460668}
   serializedVersion: 5
   m_Mass: 1
-  m_LinearDamping: 0
+  m_LinearDamping: 0.1
   m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -4502,7 +4511,7 @@ Rigidbody:
   m_GameObject: {fileID: 9156075749550192332}
   serializedVersion: 5
   m_Mass: 1
-  m_LinearDamping: 0
+  m_LinearDamping: 1
   m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -4615,6 +4624,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64770cf14d2d75f4e9da39e72455d02b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  autofisher: 0
   string_on: 1
   bobber_on: 0
   rod_on: 0
@@ -4790,15 +4800,11 @@ PrefabInstance:
       propertyPath: rod_animator
       value: 
       objectReference: {fileID: 4571790155545624729}
-    - target: {fileID: 3220851619442043366, guid: f98563a06440bbd4996432a7254b0c77, type: 3}
-      propertyPath: fish_potency_buff_mult
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4666394159460927992, guid: f98563a06440bbd4996432a7254b0c77, type: 3}
       propertyPath: bone
       value: 
       objectReference: {fileID: 4175417186925768351}
-    - target: {fileID: 8080049796473642723, guid: f98563a06440bbd4996432a7254b0c77, type: 3}
+    - target: {fileID: 7452965723648057974, guid: f98563a06440bbd4996432a7254b0c77, type: 3}
       propertyPath: m_ConnectedBody
       value: 
       objectReference: {fileID: 7621006919219636832}

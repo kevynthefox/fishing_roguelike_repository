@@ -16,6 +16,8 @@ public class bobber_launch : MonoBehaviour
     public GameObject camera_holder;
     public CinemachineCamera cam;
 
+    public bool autofisher;
+
     //void Update()
     //{
     //    launch();
@@ -25,9 +27,11 @@ public class bobber_launch : MonoBehaviour
     {
         StartCoroutine(launch());
 
-        camera_holder = GameObject.Find("camera system");
-
-        cam = camera_holder.GetComponent<camera_holder>().CinemachineCamera;
+        if (autofisher == false)
+        {
+            camera_holder = GameObject.Find("camera system");
+            cam = camera_holder.GetComponent<camera_holder>().CinemachineCamera;
+        }
     }
 
     public void Update()

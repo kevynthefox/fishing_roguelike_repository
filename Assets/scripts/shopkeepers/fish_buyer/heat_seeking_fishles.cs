@@ -18,9 +18,10 @@ public class heat_seeking_fishles : MonoBehaviour
 
     public int health = 1;
 
-    
 
+    public bool enemy;
 
+    public List<GameObject> targets;
     
 
     void Start()
@@ -48,10 +49,36 @@ public class heat_seeking_fishles : MonoBehaviour
             //transform.rotation = Quaternion.LookRotation(Vector3.RotateTowards(transform.position, home.transform.position, 0, 360));
             transform.LookAt(home.transform); // you need to child the object to an empty gameobject so that the object maintains the rotation you want.
         }
+
+        if (enemy == true && home == null)
+        {
+            foreach (GameObject potential_target in GameObject.FindGameObjectsWithTag("player"))
+            {
+
+                if (targets.Contains(potential_target) == false)
+                {
+                    targets.Add(potential_target);
+                }
+
+            }
+
+            int random_target = UnityEngine.Random.Range(0, targets.Count);
+
+            home = targets[random_target];
+        }
+
+        if (health == 0)
+        {
+            home = null;
+        }
     }
 
     void OnTriggerEnter(Collider other)
     {
+        if (other.isTrigger == true)
+        {
+            Debug.Log("this fish collided with: " + other.gameObject.name);
+        }
         if (other.gameObject.tag == "npc")
         {
             //Debug.Log("triggering");
