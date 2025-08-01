@@ -9,7 +9,7 @@ public class fish_variable_holder : MonoBehaviour
     public float fish_quality;
     public float fish_counted;
 
-    public GameObject fish_type;
+    public int fish_type;
 
     public float potentcy;
 

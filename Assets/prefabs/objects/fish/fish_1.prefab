@@ -156,7 +156,7 @@ MonoBehaviour:
   fish_quantity: 6.856079
   fish_quality: 1
   fish_counted: 2157
-  fish_type: {fileID: 782317847269395987, guid: 71cc39398398ea34ba48a1429a14f6c8, type: 3}
+  fish_type: 0
   potentcy: 10
 --- !u!114 &3942388523750713358
 MonoBehaviour:
@@ -175,6 +175,8 @@ MonoBehaviour:
   speed: 0
   disable_water: 0
   health: 1
+  enemy: 0
+  targets: []
 --- !u!1 &5308789793509300215
 GameObject:
   m_ObjectHideFlags: 0
@@ -229,6 +231,8 @@ MonoBehaviour:
   speed: 0
   disable_water: 0
   health: 1
+  enemy: 0
+  targets: []
 --- !u!114 &4338744741142048082
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -244,7 +248,7 @@ MonoBehaviour:
   fish_quantity: 0
   fish_quality: 0
   fish_counted: 0
-  fish_type: {fileID: 782317847269395987, guid: 71cc39398398ea34ba48a1429a14f6c8, type: 3}
+  fish_type: 1
   potentcy: 10
 --- !u!136 &8704723891553741174
 CapsuleCollider:

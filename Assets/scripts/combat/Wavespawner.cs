@@ -42,6 +42,9 @@ public class Wavespawner : MonoBehaviour
 
     public List<GameObject> targets;
 
+
+    public GameObject[] fishes;
+
     [Header("encounters")]
     public List<enemy_encounter_data> encounters;
     public GameObject rod;

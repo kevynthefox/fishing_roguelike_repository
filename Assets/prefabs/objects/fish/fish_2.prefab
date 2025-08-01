@@ -147,6 +147,8 @@ MonoBehaviour:
   speed: 0
   disable_water: 0
   health: 1
+  enemy: 0
+  targets: []
 --- !u!65 &3398146113869665000
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -204,7 +206,7 @@ MonoBehaviour:
   fish_quantity: 0
   fish_quality: 0
   fish_counted: 0
-  fish_type: {fileID: 1421325010732033939, guid: b6ed109e2c4d6fa46bf5878b6018f969, type: 3}
+  fish_type: 2
   potentcy: 1
 --- !u!54 &1268416874799639201
 Rigidbody:

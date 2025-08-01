@@ -39,8 +39,10 @@ public class Item_behavior : MonoBehaviour
 
     public GameObject player;
     public GameObject object_holder,fishing_controller,wavespawner;
+    public List<GameObject> simple_rods;
 
     public bool triggered;
+    public bool auto_triggered;
 
     public bool over_trigger_prevention;
 
@@ -49,6 +51,7 @@ public class Item_behavior : MonoBehaviour
     public float target_vicinity;
 
     public bool inheret_target_rotation;
+
 
     //trigger type list
 
@@ -96,7 +99,15 @@ public class Item_behavior : MonoBehaviour
 
             triggers();
         }
-        
+
+
+        foreach (GameObject simple_rod in GameObject.FindGameObjectsWithTag("simple_fishing_rod"))
+        {
+            if (simple_rods.Contains(simple_rod) == false)
+            {
+                simple_rods.Add(simple_rod);
+            }
+        }
     }
 
     public void triggers()
@@ -111,6 +122,20 @@ public class Item_behavior : MonoBehaviour
             triggered = true;
             over_trigger_prevention = true;
             //Debug.Log("won");
+        }
+
+        if (over_trigger_prevention == false)
+        {
+            foreach (GameObject simple_rod in simple_rods)
+            {
+                if (simple_rod.GetComponent<Auto_fisher>().fish == false)
+                {
+                    triggered = true;
+                    auto_triggered = true;
+                    over_trigger_prevention = true;
+                    //Debug.Log("won");
+                }
+            }
         }
         
         if (over_trigger_prevention == true && fishing_controller.GetComponent<fishing_script>().win_state != 1)
@@ -129,6 +154,7 @@ public class Item_behavior : MonoBehaviour
         {
             action_taker();
             triggered = false;
+            auto_triggered = false;
             //Debug.Log("stopped");
         }
     }
@@ -144,14 +170,21 @@ public class Item_behavior : MonoBehaviour
 
             if (action_type == 2)
             {
-                float bar_pos = fishing_controller.GetComponent<fishing_script>().bar_pos;
-                if (0.00f < bar_pos && bar_pos < 0.14f) spawn_obj(0);
-                if (0.14f < bar_pos && bar_pos < 0.28f) spawn_obj(1);
-                if (0.28f < bar_pos && bar_pos < 0.42f) spawn_obj(2);
-                if (0.42f < bar_pos && bar_pos < 0.56f) spawn_obj(3);
-                if (0.56f < bar_pos && bar_pos < 0.70f) spawn_obj(4);
-                if (0.70f < bar_pos && bar_pos < 0.84f) spawn_obj(5);
-                if (0.84f < bar_pos && bar_pos < 1.00f) spawn_obj(6);
+                if (auto_triggered == false)
+                {
+                    float bar_pos = fishing_controller.GetComponent<fishing_script>().bar_pos;
+                    if (0.00f < bar_pos && bar_pos < 0.14f) spawn_obj(0);
+                    if (0.14f < bar_pos && bar_pos < 0.28f) spawn_obj(1);
+                    if (0.28f < bar_pos && bar_pos < 0.42f) spawn_obj(2);
+                    if (0.42f < bar_pos && bar_pos < 0.56f) spawn_obj(3);
+                    if (0.56f < bar_pos && bar_pos < 0.70f) spawn_obj(4);
+                    if (0.70f < bar_pos && bar_pos < 0.84f) spawn_obj(5);
+                    if (0.84f < bar_pos && bar_pos < 1.00f) spawn_obj(6);
+                }
+                else
+                {
+                    spawn_obj(Random.Range(0, 7));
+                }
             }
 
             if (action_type == 3)
@@ -181,6 +214,31 @@ public class Item_behavior : MonoBehaviour
                         fishing_controller.GetComponent<fishing_script>().fish_quantity_min_buff_mult = strength * strength;
                         fishing_controller.GetComponent<fishing_script>().fish_quantity_min = strength * strength;
                     }
+
+                    foreach (GameObject simple_rod in simple_rods)
+                    {
+                        if (simple_rod.GetComponent<Auto_fisher>().fish_quantity_max_buff_mult * strength * strength != 1)
+                        {
+                            simple_rod.GetComponent<Auto_fisher>().fish_quantity_max_buff_mult *= strength * strength;
+                            //simple_rod.GetComponent<Auto_fisher>().fish_quantity_max *= strength * strength;
+                        }
+                        else
+                        {
+                            simple_rod.GetComponent<Auto_fisher>().fish_quantity_min_buff_mult = strength * strength;
+                            //simple_rod.GetComponent<Auto_fisher>().fish_quantity_min = strength * strength;
+                        }
+
+                        if (simple_rod.GetComponent<Auto_fisher>().fish_quantity_min_buff_mult * strength * strength != 1)
+                        {
+                            simple_rod.GetComponent<Auto_fisher>().fish_quantity_min_buff_mult *= strength * strength;
+                            //simple_rod.GetComponent<Auto_fisher>().fish_quantity_min *= strength * strength;
+                        }
+                        else
+                        {
+                            simple_rod.GetComponent<Auto_fisher>().fish_quantity_min_buff_mult = strength * strength;
+                            //simple_rod.GetComponent<Auto_fisher>().fish_quantity_min = strength * strength;
+                        }
+                    }
                 }
                 if (action_effect == 2)
                 {
@@ -193,7 +251,21 @@ public class Item_behavior : MonoBehaviour
                     {
                         fishing_controller.GetComponent<fishing_script>().fish_quantity_min_buff_mult = strength;
                         fishing_controller.GetComponent<fishing_script>().fish_quantity_min = strength;
-                    }    
+                    }
+
+                    foreach (GameObject simple_rod in simple_rods)
+                    {
+                        if (simple_rod.GetComponent<Auto_fisher>().fish_quantity_max_buff_mult * strength != 1)
+                        {
+                            simple_rod.GetComponent<Auto_fisher>().fish_quantity_max_buff_mult *= strength;
+                            //simple_rod.GetComponent<Auto_fisher>().fish_quantity_max *= strength;
+                        }
+                        else
+                        {
+                            simple_rod.GetComponent<Auto_fisher>().fish_quantity_min_buff_mult = strength;
+                            //simple_rod.GetComponent<Auto_fisher>().fish_quantity_min = strength;
+                        }
+                    }
                 }
                 if (action_effect == 3)
                 {
@@ -207,12 +279,31 @@ public class Item_behavior : MonoBehaviour
                         fishing_controller.GetComponent<fishing_script>().fish_quantity_min_buff_mult = strength;
                         fishing_controller.GetComponent<fishing_script>().fish_quantity_min = strength;
                     }
+
+                    foreach (GameObject simple_rod in simple_rods)
+                    {
+                        if (simple_rod.GetComponent<Auto_fisher>().fish_quantity_min_buff_mult * strength != 1)
+                        {
+                            simple_rod.GetComponent<Auto_fisher>().fish_quantity_min_buff_mult *= strength;
+                            //simple_rod.GetComponent<Auto_fisher>().fish_quantity_min *= strength;
+                        }
+                        else
+                        {
+                            simple_rod.GetComponent<Auto_fisher>().fish_quantity_min_buff_mult = strength;
+                            //simple_rod.GetComponent<Auto_fisher>().fish_quantity_min = strength;
+                        }
+                    }
                 }
                 if (action_effect == 4)
                 {
                     
                     fishing_controller.GetComponent<fishing_script>().fish_potency_buff_mult += strength;
 
+                    foreach (GameObject simple_rod in simple_rods)
+                    {
+                        simple_rod.GetComponent<Auto_fisher>().fish_potency_buff_mult += strength;
+                        //simple_rod.GetComponent<Auto_fisher>().fish_quantity_max += strength;
+                    }
                 }
                 if (action_effect == 5)
                 {
@@ -226,6 +317,20 @@ public class Item_behavior : MonoBehaviour
                         fishing_controller.GetComponent<fishing_script>().fish_quality_min_buff_mult = strength;
                         fishing_controller.GetComponent<fishing_script>().fish_quality_min = strength;
                     }
+
+                    foreach (GameObject simple_rod in simple_rods)
+                    {
+                        if (simple_rod.GetComponent<Auto_fisher>().fish_quality_min_buff_mult * strength != 1)
+                        {
+                            simple_rod.GetComponent<Auto_fisher>().fish_quality_min_buff_mult *= strength;
+                            //simple_rod.GetComponent<Auto_fisher>().fish_quality_min *= strength;
+                        }
+                        else
+                        {
+                            simple_rod.GetComponent<Auto_fisher>().fish_quality_min_buff_mult = strength;
+                            //simple_rod.GetComponent<Auto_fisher>().fish_quality_min = strength;
+                        }
+                    }
                 }
                 if (action_effect == 6)
                 {
@@ -238,6 +343,20 @@ public class Item_behavior : MonoBehaviour
                     {
                         fishing_controller.GetComponent<fishing_script>().fish_quality_max_buff_mult = strength;
                         fishing_controller.GetComponent<fishing_script>().fish_quality_max = strength;
+                    }
+
+                    foreach (GameObject simple_rod in simple_rods)
+                    {
+                        if (simple_rod.GetComponent<Auto_fisher>().fish_quality_max_buff_mult * strength != 1)
+                        {
+                            simple_rod.GetComponent<Auto_fisher>().fish_quality_max_buff_mult *= strength;
+                            //simple_rod.GetComponent<Auto_fisher>().fish_quality_max *= strength;
+                        }
+                        else
+                        {
+                            simple_rod.GetComponent<Auto_fisher>().fish_quality_max_buff_mult = strength;
+                            //simple_rod.GetComponent<Auto_fisher>().fish_quality_max = strength;
+                        }
                     }
                 }
                 if (action_effect == 7)
@@ -263,6 +382,31 @@ public class Item_behavior : MonoBehaviour
                         fishing_controller.GetComponent<fishing_script>().fish_quality_min_buff_mult = strength * strength;
                         fishing_controller.GetComponent<fishing_script>().fish_quality_min = strength * strength;
                     }
+
+                    foreach (GameObject simple_rod in simple_rods)
+                    {
+                        //this used to multiply the fishquality stat directly, but 1: that didn't work, 2: the minimum stat ones already did that good enough.
+                        if (simple_rod.GetComponent<Auto_fisher>().fish_quality_max_buff_mult * strength * strength != 1)
+                        {
+                            simple_rod.GetComponent<Auto_fisher>().fish_quality_max_buff_mult *= strength * strength;
+                            //simple_rod.GetComponent<Auto_fisher>().fish_quality_max *= strength * strength;
+                        }
+                        else
+                        {
+                            simple_rod.GetComponent<Auto_fisher>().fish_quality_max_buff_mult = strength * strength;
+                            //simple_rod.GetComponent<Auto_fisher>().fish_quality_max = strength * strength;
+                        }
+                        if (simple_rod.GetComponent<Auto_fisher>().fish_quality_min_buff_mult * strength * strength != 1)
+                        {
+                            simple_rod.GetComponent<Auto_fisher>().fish_quality_min_buff_mult *= strength * strength;
+                            //simple_rod.GetComponent<Auto_fisher>().fish_quality_min *= strength * strength;
+                        }
+                        else
+                        {
+                            simple_rod.GetComponent<Auto_fisher>().fish_quality_min_buff_mult = strength * strength;
+                            //simple_rod.GetComponent<Auto_fisher>().fish_quality_min = strength * strength;
+                        }
+                    }
                 }
                 InventorySystem.current.Remove(current_item.data);
                 //Debug.Log("buffed");
@@ -275,30 +419,54 @@ public class Item_behavior : MonoBehaviour
 
                 if (action_effect == 1)
                 {
-                    
-                    fishing_controller.GetComponent<fishing_script>().fish_quantity_buff_add += strength;
-                    fishing_controller.GetComponent<fishing_script>().fish_quantity += strength;
-                    
-                    
+
+                    fishing_controller.GetComponent<fishing_script>().fish_quantity_max_buff_add += strength * strength;
+                    fishing_controller.GetComponent<fishing_script>().fish_quantity_min_buff_add += strength * strength;
+                    fishing_controller.GetComponent<fishing_script>().fish_quantity_max += strength * strength;
+                    fishing_controller.GetComponent<fishing_script>().fish_quantity_min += strength * strength;
+
+                    foreach (GameObject simple_rod in simple_rods)
+                    {
+                        simple_rod.GetComponent<Auto_fisher>().fish_quantity_max_buff_add += strength * strength;
+                        simple_rod.GetComponent<Auto_fisher>().fish_quantity_min_buff_add += strength * strength;
+                        //simple_rod.GetComponent<Auto_fisher>().fish_quantity_max += strength * strength;
+                        //simple_rod.GetComponent<Auto_fisher>().fish_quantity_min += strength * strength;
+                    }
                 }
                 if (action_effect == 2)
                 {
                     
                     fishing_controller.GetComponent<fishing_script>().fish_quantity_max_buff_add += strength;
                     fishing_controller.GetComponent<fishing_script>().fish_quantity_max += strength;
-                    
+
+                    foreach (GameObject simple_rod in simple_rods)
+                    {
+                        simple_rod.GetComponent<Auto_fisher>().fish_quantity_max_buff_add += strength;
+                        //simple_rod.GetComponent<Auto_fisher>().fish_quantity_max += strength;
+                    }
                 }
                 if (action_effect == 3)
                 {
                     
                     fishing_controller.GetComponent<fishing_script>().fish_quantity_min_buff_add += strength;
                     fishing_controller.GetComponent<fishing_script>().fish_quantity_min += strength;
-                    
+
+                    foreach (GameObject simple_rod in simple_rods)
+                    {
+                        simple_rod.GetComponent<Auto_fisher>().fish_quantity_min_buff_add += strength;
+                        //simple_rod.GetComponent<Auto_fisher>().fish_quantity_min += strength;
+                    }
                 }
                 if (action_effect == 4)
                 {
                     
-                    fishing_controller.GetComponent<fishing_script>().fish_potency_buff_add = strength;
+                    fishing_controller.GetComponent<fishing_script>().fish_potency_buff_add += strength;
+
+                    foreach (GameObject simple_rod in simple_rods)
+                    {
+                        simple_rod.GetComponent<Auto_fisher>().fish_potency_buff_add += strength;
+                        //simple_rod.GetComponent<Auto_fisher>().fish_quantity_max += strength;
+                    }
                 }
                 if (action_effect == 5)
                 {
@@ -306,6 +474,12 @@ public class Item_behavior : MonoBehaviour
                     fishing_controller.GetComponent<fishing_script>().fish_quality_min_buff_add += strength;
                     fishing_controller.GetComponent<fishing_script>().fish_quality_min += strength;
 
+
+                    foreach (GameObject simple_rod in simple_rods)
+                    {
+                        simple_rod.GetComponent<Auto_fisher>().fish_quality_min_buff_add += strength;
+                        //simple_rod.GetComponent<Auto_fisher>().fish_quality_min += strength;
+                    }
                 }
                 if (action_effect == 6)
                 {
@@ -313,13 +487,27 @@ public class Item_behavior : MonoBehaviour
                     fishing_controller.GetComponent<fishing_script>().fish_quality_max_buff_add += strength;
                     fishing_controller.GetComponent<fishing_script>().fish_quality_max += strength;
 
+                    foreach (GameObject simple_rod in simple_rods)
+                    {
+                        simple_rod.GetComponent<Auto_fisher>().fish_quality_max_buff_add += strength;
+                        //simple_rod.GetComponent<Auto_fisher>().fish_quality_max += strength;
+                    }
                 }
                 if (action_effect == 7)
                 {
                     
-                    fishing_controller.GetComponent<fishing_script>().fish_quality_buff_add += strength;
-                    fishing_controller.GetComponent<fishing_script>().fish_quality += strength;
+                    fishing_controller.GetComponent<fishing_script>().fish_quality_max_buff_add += strength * strength;
+                    fishing_controller.GetComponent<fishing_script>().fish_quality_min_buff_add += strength * strength;
+                    fishing_controller.GetComponent<fishing_script>().fish_quality_max += strength * strength;
+                    fishing_controller.GetComponent<fishing_script>().fish_quality_min += strength * strength;
 
+                    foreach (GameObject simple_rod in simple_rods)
+                    {
+                        simple_rod.GetComponent<Auto_fisher>().fish_quality_max_buff_add += strength * strength;
+                        simple_rod.GetComponent<Auto_fisher>().fish_quality_min_buff_add += strength * strength;
+                        //simple_rod.GetComponent<Auto_fisher>().fish_quality_max += strength * strength;
+                        //simple_rod.GetComponent<Auto_fisher>().fish_quality_min += strength * strength;
+                    }
                 }
                 InventorySystem.current.Remove(current_item.data);
                 //Debug.Log("buffed");

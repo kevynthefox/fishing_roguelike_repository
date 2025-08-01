@@ -77,7 +77,7 @@ public class heat_seeking_fishles : MonoBehaviour
     {
         if (other.isTrigger == true)
         {
-            Debug.Log("this fish collided with: " + other.gameObject.name);
+            //Debug.Log("this fish collided with: " + other.gameObject.name);
         }
         if (other.gameObject.tag == "npc")
         {

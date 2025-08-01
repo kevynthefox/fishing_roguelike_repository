@@ -76,6 +76,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: fishing_rod_2
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 7cc15865c8acc264a84f34db55e7fb1c, type: 3}
+      propertyPath: m_TagString
+      value: simple_fishing_rod
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 100412682115588621, guid: 7cc15865c8acc264a84f34db55e7fb1c, type: 3}
     m_RemovedGameObjects: []
@@ -147,8 +151,31 @@ MonoBehaviour:
   bobber: {fileID: 512048271458429587}
   spawn_area: {fileID: 0}
   random_spawn: 0
-  quantity: 2
-  quality: 4
+  fish_counted: 0
+  where_fish_is_in_list: 0
+  spawn_at_all_controller: 0
+  expertise: 0
+  spawn_at_all: 0
+  fish_quantity: 0
+  fish_quality: 0
+  fish_quantity_max: 2
+  fish_quality_max: 2
+  fish_quantity_min: 1
+  fish_quality_min: 1
+  fish_quantity_buff_mult: 1
+  fish_quality_buff_mult: 1
+  fish_quantity_max_buff_mult: 1
+  fish_quality_max_buff_mult: 1
+  fish_quantity_min_buff_mult: 1
+  fish_quality_min_buff_mult: 1
+  fish_quantity_buff_add: 0
+  fish_quality_buff_add: 0
+  fish_quantity_max_buff_add: 0
+  fish_quality_max_buff_add: 0
+  fish_quantity_min_buff_add: 0
+  fish_quality_min_buff_add: 0
+  fish_potency_buff_mult: 1
+  fish_potency_buff_add: 0
 --- !u!1 &512048271458429587 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -8461199336577785499, guid: 7cc15865c8acc264a84f34db55e7fb1c, type: 3}
@@ -209,6 +236,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fish_to_spawn: []
+  rod: {fileID: 0}
 --- !u!54 &8645300273830195151
 Rigidbody:
   m_ObjectHideFlags: 0

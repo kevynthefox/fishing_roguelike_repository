@@ -163,7 +163,7 @@ public class gun : MonoBehaviour
             target = new_target;
             target.transform.parent = transform;
             target.SetActive(false);
-            Debug.Log("target was missing, made another one");
+            //Debug.Log("target was missing, made another one");
         }
     }
 
@@ -194,13 +194,13 @@ public class gun : MonoBehaviour
                 }
                 if (targets.Count > 0 && fire_timer >= fire_rate) //if gun has other targets but isn't shooting, get rid of the clog and try again.
                 {
-                    Debug.Log("gun was jammed. beginning clear");
+                    //Debug.Log("gun was jammed. beginning clear");
                     StartCoroutine(fire());
                     //targets = null;
                     //targets.RemoveAt(0);
                     targets.RemoveAt(0);
 
-                    Debug.Log("jam resolved");
+                    //Debug.Log("jam resolved");
                 }
                 else
                 {
@@ -223,7 +223,7 @@ public class gun : MonoBehaviour
         spawn_point.GetPositionAndRotation(out Vector3 pos, out Quaternion rot);
         projectile.transform.SetPositionAndRotation(pos, rot);
         //Debug.Log(pos); Debug.Log(rot);
-        Debug.Log("pew");
+        //Debug.Log("pew");
 
         fps = frames.GetComponent<frame_display>().frameRate;
         if (fps <= 20)
