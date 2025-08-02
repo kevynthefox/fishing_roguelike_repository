@@ -37,6 +37,10 @@ public class fishing_script : MonoBehaviour
 
     public bool reel_in_finisher;
 
+    public int fish_per_second_actual;
+    public float fish_per_second_theoretical;
+    public int fish_per_second_1;
+
     [Header("string variables")]
     public float distance;
     public bool enabled_fishing = false;
@@ -168,7 +172,7 @@ public class fishing_script : MonoBehaviour
     public bool water_already;
 
 
-    public bool starter;
+    public bool starter = true;
 
     public bool spawning_fish;
     public GameObject already_fishing;
@@ -195,6 +199,8 @@ public class fishing_script : MonoBehaviour
         {
             cam = Camera.main;
         }
+
+        
     }
 
     void Start()
@@ -205,8 +211,8 @@ public class fishing_script : MonoBehaviour
 
         if (bobber_on == true)
         {
+            StartCoroutine(fish_per_second_finder());
 
-            
 
 
 
@@ -896,6 +902,7 @@ public class fishing_script : MonoBehaviour
 
     public IEnumerator spawn_fish()
     {
+        StartCoroutine(fish_per_second_finder());
         if (bobber_on == true)
         {
             randomIndex = Random.Range(0, fish.Length);
@@ -904,7 +911,7 @@ public class fishing_script : MonoBehaviour
 
             Vector3 randomPosition = new Vector3(Random.Range(0, 10), Random.Range(0, 10), Random.Range(0, 10));
 
-            
+
             while (resetting == true && fish_all_spawned == false)// && win_state == 1)
             {
                 //Debug.Log("spawning fish");
@@ -916,12 +923,12 @@ public class fishing_script : MonoBehaviour
                     fish_all_spawned = true;
                     fish_ever += fish_counted;
 
-                    if (fish_quantity_buff_mult > 0 ) fish_quantity /= fish_quantity_buff_mult; if (fish_quantity_buff_add > 0) fish_quantity -= fish_quantity_buff_add;
-                    if (fish_quality_buff_mult > 0) fish_quality /= fish_quality_buff_mult; if (fish_quality_buff_add > 0 ) fish_quality -= fish_quality_buff_add;
-                    if (fish_quantity_max_buff_mult > 0 ) fish_quantity_max /= fish_quantity_max_buff_mult; if (fish_quantity_max_buff_add > 0 ) fish_quantity_max -= fish_quantity_max_buff_add;
-                    if (fish_quality_max_buff_mult > 0 ) fish_quality_max /= fish_quality_max_buff_mult; if (fish_quality_max_buff_add > 0 ) fish_quality_max -= fish_quality_max_buff_add;
-                    if (fish_quantity_min_buff_mult > 0 ) fish_quantity_min /= fish_quantity_min_buff_mult; if (fish_quantity_min_buff_add > 0 ) fish_quantity_min -= fish_quantity_min_buff_add;
-                    if (fish_quality_min_buff_mult > 0 ) fish_quality_min /= fish_quality_min_buff_mult; if (fish_quality_min_buff_add > 0 ) fish_quality_min -= fish_quality_min_buff_add;
+                    if (fish_quantity_buff_mult > 0) fish_quantity /= fish_quantity_buff_mult; if (fish_quantity_buff_add > 0) fish_quantity -= fish_quantity_buff_add;
+                    if (fish_quality_buff_mult > 0) fish_quality /= fish_quality_buff_mult; if (fish_quality_buff_add > 0) fish_quality -= fish_quality_buff_add;
+                    if (fish_quantity_max_buff_mult > 0) fish_quantity_max /= fish_quantity_max_buff_mult; if (fish_quantity_max_buff_add > 0) fish_quantity_max -= fish_quantity_max_buff_add;
+                    if (fish_quality_max_buff_mult > 0) fish_quality_max /= fish_quality_max_buff_mult; if (fish_quality_max_buff_add > 0) fish_quality_max -= fish_quality_max_buff_add;
+                    if (fish_quantity_min_buff_mult > 0) fish_quantity_min /= fish_quantity_min_buff_mult; if (fish_quantity_min_buff_add > 0) fish_quantity_min -= fish_quantity_min_buff_add;
+                    if (fish_quality_min_buff_mult > 0) fish_quality_min /= fish_quality_min_buff_mult; if (fish_quality_min_buff_add > 0) fish_quality_min -= fish_quality_min_buff_add;
 
                     fish_quantity_buff_mult = 1;
                     fish_quality_buff_mult = 1;
@@ -958,13 +965,23 @@ public class fishing_script : MonoBehaviour
                     fish_object.GetComponent<heat_seeking_fishles>().home = GameObject.Find("sell guy");
 
                     fish_object.GetComponent<fish_variable_holder>().potentcy += fish_potency_buff_add; fish_object.GetComponent<fish_variable_holder>().potentcy *= fish_potency_buff_mult;
+                    
+                    
 
                     fish_counted += 1;
+                    fish_per_second_1++;
 
                     //wave_spawner.GetComponent<Wavespawner>().dead_fish.Add(fish_object.GetComponent<fish_variable_holder>().fish_type);
                     Wavespawner.current.Add_dead(Wavespawner.current.fishes[fish_object.GetComponent<fish_variable_holder>().fish_type]);
-                    Wavespawner.current.fish_total = fish_counted;
-
+                    
+                    if (fish_quantity_original > 1000)
+                    {
+                        Wavespawner.current.fish_total = fish_counted * Mathf.RoundToInt(fish_quantity_original / 1000);
+                    }
+                    else
+                    {
+                        Wavespawner.current.fish_total = fish_counted;
+                    }
                     // this part changes the scale of the fish. if there is more than 1 of fish(1.2) then it makes the (.2) its own fish
 
 
@@ -974,7 +991,14 @@ public class fishing_script : MonoBehaviour
                         fish_object.GetComponent<Transform>().localScale = new Vector3(fish_quality, fish_quality, fish_quality);
                         fish_object.name = "big fish";//  + "     fish remaining:" + fish_quantity + " out of: " + fish_quantity_original + "  quality:" + fish_quality;
 
-                        fish_object.GetComponent<fish_variable_holder>().fish_quantity = 1;
+                        if (fish_quantity_original > 1000)
+                        {
+                            fish_object.GetComponent<fish_variable_holder>().fish_quantity = fish_quantity_original / 1000;
+                        }
+                        else
+                        {
+                            fish_object.GetComponent<fish_variable_holder>().fish_quantity = 1;
+                        }
                     }
                     else
                     {
@@ -988,7 +1012,7 @@ public class fishing_script : MonoBehaviour
 
                     }
 
-                    
+
                     fish_object.GetComponent<fish_variable_holder>().fish_quality = fish_quality;
                     fish_object.GetComponent<fish_variable_holder>().fish_counted = fish_counted;
 
@@ -997,9 +1021,21 @@ public class fishing_script : MonoBehaviour
 
                 }
 
-                fish_quantity -= Mathf.Min(fish_quantity, 1); //subtracts 1 until it can't and then subtracts what's left
+                if (fish_quantity_original < 1000)
+                {
+                    fish_quantity -= Mathf.Min(fish_quantity, 1); //subtracts 1 until it can't and then subtracts what's left
+                }
+                else
+                {
+                    fish_quantity -= Mathf.Min(fish_quantity, fish_quantity_original / 1000);
+                }    
+
                 //Debug.Log("subtracted fish quantity, current amount: " + fish_quantity);
-                yield return new WaitForSeconds(1 / fish_quantity_original);
+                //yield return new WaitForSeconds(1 / fish_quantity_original);
+
+                yield return new WaitForSeconds((1 / fish_quantity_original) * Time.deltaTime);
+
+                
             }
 
         }
@@ -1038,6 +1074,20 @@ public class fishing_script : MonoBehaviour
         won_failed_already = false;
     }
 
-    
+    public IEnumerator fish_per_second_finder()
+    {
+        //Debug.Log("fish_per_second_finder is active");
+        while (starter == true)
+        {
+            //Debug.Log("fish_per_second_finder is active 2");
+            yield return new WaitForSeconds(1f);
+            //Debug.Log("1 second passed");
+            fish_per_second_actual = fish_per_second_1;
+            fish_per_second_1 = 0;
+            fish_per_second_theoretical =  fish_quantity_original;
+            //fish_per_second = fish_per_second_2;
+        }
+    }
+
     
 }

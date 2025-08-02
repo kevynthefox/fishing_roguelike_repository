@@ -65,7 +65,7 @@ public class Auto_fisher : MonoBehaviour
         StartCoroutine(fish_anim());
     }
 
-    public void spawn_fish()
+    public IEnumerator spawn_fish()
     {
 
 
@@ -79,6 +79,7 @@ public class Auto_fisher : MonoBehaviour
         {
             for (int i = 0; i < fish_quantity; i++)
             {
+                Debug.Log(i);
                 fish_to_spawn = bobber.GetComponent<auto_fisher_fish_getter>().fish_to_spawn;
                 if (fish_to_spawn.Length > 0)
                 {
@@ -86,13 +87,19 @@ public class Auto_fisher : MonoBehaviour
                 }
 
                 var new_fish = Instantiate(fish_to_spawn[random_spawn], spawn_area.transform);
-                new_fish.GetComponent<fish_variable_holder>().fish_quantity = 1;
+                
                 new_fish.GetComponent<fish_variable_holder>().fish_quality = fish_quality;
 
                 new_fish.GetComponent<fish_variable_holder>().potentcy += fish_potency_buff_add; new_fish.GetComponent<fish_variable_holder>().potentcy *= fish_potency_buff_mult;
 
-                fish_counted++;
+                if (fish_quantity > 1000)
+                {
 
+                }
+                else
+                {
+                    fish_counted++;
+                }
 
 
                 new_fish.transform.parent = null;
@@ -106,7 +113,11 @@ public class Auto_fisher : MonoBehaviour
                 }
 
                 Wavespawner.current.Add_dead(Wavespawner.current.fishes[new_fish.GetComponent<fish_variable_holder>().fish_type]);
+                
                 Wavespawner.current.fish_total = fish_counted;
+                new_fish.GetComponent<fish_variable_holder>().fish_quantity = 1;
+
+                yield return new WaitForSeconds(1 / fish_quantity);
 
                 /*where_fish_is_in_list = Wavespawner.current.dead_fish.IndexOf(Wavespawner.current.Get(new_fish));
                 //Wavespawner.current.fish_potency_buff_add += fish_potency_buff_add; Wavespawner.current.fish_potency_buff_mult += fish_potency_buff_mult;

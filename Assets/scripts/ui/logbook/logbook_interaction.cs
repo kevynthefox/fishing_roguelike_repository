@@ -48,7 +48,7 @@ public class logbook_interaction : MonoBehaviour
                 if (inventory_open == false)
                 {
                     Cursor.lockState = CursorLockMode.None;
-                    Time.timeScale = 0;
+                    Time.timeScale = 0.1f;
                 }
             }
         }

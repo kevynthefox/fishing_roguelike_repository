@@ -85,7 +85,7 @@ public class Draggable_item : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
         Vector3 random_pos_around_player = new Vector3(Random.Range(-5, 5) + player.transform.position.x, 0 + player.transform.position.y, Random.Range(-5, 5) + player.transform.position.z);
         var spawned_item = Instantiate(self_inventory_item.data.prefab, random_pos_around_player, transform.rotation);
 
-        spawned_item.GetComponent<item_buying>().enabled = false;
+        if (spawned_item.TryGetComponent<item_buying>(out item_buying buying)) buying.enabled = false;
         spawned_item.GetComponent<item_pickup>().enabled = true;
 
         /*GameObject bigger_item;

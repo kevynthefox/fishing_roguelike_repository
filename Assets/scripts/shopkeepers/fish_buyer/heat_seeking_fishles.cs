@@ -22,25 +22,27 @@ public class heat_seeking_fishles : MonoBehaviour
     public bool enemy;
 
     public List<GameObject> targets;
-    
+
+
+
 
     void Start()
     {
         //master = GameObject.Find("home_points");
         //home = GameObject.Find("sell guy");
-        
-        
+
+
     }
 
     void Update()
     {
-        
+
 
         if (home != null)
         {
-            
 
-            
+
+
             //makes the object move faster the further away it is from the other one
             speed = Vector3.Distance(home.transform.position, transform.position);
 
@@ -48,6 +50,12 @@ public class heat_seeking_fishles : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position, home.transform.position, speed * Time.deltaTime);
             //transform.rotation = Quaternion.LookRotation(Vector3.RotateTowards(transform.position, home.transform.position, 0, 360));
             transform.LookAt(home.transform); // you need to child the object to an empty gameobject so that the object maintains the rotation you want.
+        }
+
+        if (home != null && enemy == false)
+        {
+            StartCoroutine(failsafe_counter());
+
         }
 
         if (enemy == true && home == null)
@@ -92,9 +100,18 @@ public class heat_seeking_fishles : MonoBehaviour
             home = null;
             health = 0;
         }
-        
+
     }
 
+
+    public IEnumerator failsafe_counter()
+    {
+        
+        yield return new WaitForSeconds(1);
+        //Debug.Log("failed the safe");
+        GetComponent<Rigidbody>().useGravity = true;
+
+    }
     /*private void OnCollisionEnter(Collision collision)
     {
         if (this.GetComponent<Collider>() != null)

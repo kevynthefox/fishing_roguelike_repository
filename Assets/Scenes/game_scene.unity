@@ -3247,12 +3247,20 @@ PrefabInstance:
       value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 3253096426437890810, guid: 40ba16940f2baf04a9f0df1db5dc7b8f, type: 3}
+      propertyPath: fish_quantity_max
+      value: 10000
+      objectReference: {fileID: 0}
+    - target: {fileID: 3253096426437890810, guid: 40ba16940f2baf04a9f0df1db5dc7b8f, type: 3}
       propertyPath: fish_quantity_min
-      value: 0.5
+      value: 10000
       objectReference: {fileID: 0}
     - target: {fileID: 3454539807122349431, guid: 40ba16940f2baf04a9f0df1db5dc7b8f, type: 3}
       propertyPath: m_Name
       value: auto_fisher
+      objectReference: {fileID: 0}
+    - target: {fileID: 3454539807122349431, guid: 40ba16940f2baf04a9f0df1db5dc7b8f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3275,14 +3283,6 @@ PrefabInstance:
       propertyPath: home
       value: 
       objectReference: {fileID: 5505522599765820994}
-    - target: {fileID: 3703403189979635773, guid: 09823ff8375da654793a2874101f5e0d, type: 3}
-      propertyPath: size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3703403189979635773, guid: 09823ff8375da654793a2874101f5e0d, type: 3}
-      propertyPath: day_night
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3703403189979635773, guid: 09823ff8375da654793a2874101f5e0d, type: 3}
       propertyPath: wavespawner
       value: 

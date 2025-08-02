@@ -78,7 +78,7 @@ public class Wavespawner : MonoBehaviour
 
         if (rod.GetComponent<fishing_script>().spawning_fish == true)
         {
-            Debug.Log("fish are spawning, get the potency buffs");
+            //Debug.Log("fish are spawning, get the potency buffs");
             fish_potency_buff_mult = rod.GetComponent<fishing_script>().fish_potency_buff_mult;
             fish_potency_buff_add = rod.GetComponent<fishing_script>().fish_potency_buff_add;
         }
@@ -218,7 +218,7 @@ public class Wavespawner : MonoBehaviour
                     spawning_time = true;
                 }
             }
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(1f * Time.deltaTime);
         }
         
     }
