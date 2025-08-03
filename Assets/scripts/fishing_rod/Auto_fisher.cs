@@ -77,85 +77,146 @@ public class Auto_fisher : MonoBehaviour
 
         if (spawn_at_all == true)
         {
-            for (int i = 0; i < fish_quantity; i++)
+            if (fish_quantity < 1000)
             {
-                Debug.Log(i);
-                fish_to_spawn = bobber.GetComponent<auto_fisher_fish_getter>().fish_to_spawn;
-                if (fish_to_spawn.Length > 0)
+                for (int i = 0; i < fish_quantity; i++)
                 {
-                    random_spawn = Random.Range(0, fish_to_spawn.Length);
-                }
+                    //Debug.Log("under 1000" + i);
+                    fish_to_spawn = bobber.GetComponent<auto_fisher_fish_getter>().fish_to_spawn;
+                    if (fish_to_spawn.Length > 0)
+                    {
+                        random_spawn = Random.Range(0, fish_to_spawn.Length);
+                    }
 
-                var new_fish = Instantiate(fish_to_spawn[random_spawn], spawn_area.transform);
-                
-                new_fish.GetComponent<fish_variable_holder>().fish_quality = fish_quality;
+                    var new_fish = Instantiate(fish_to_spawn[random_spawn], spawn_area.transform);
 
-                new_fish.GetComponent<fish_variable_holder>().potentcy += fish_potency_buff_add; new_fish.GetComponent<fish_variable_holder>().potentcy *= fish_potency_buff_mult;
+                    new_fish.GetComponent<fish_variable_holder>().fish_quality = fish_quality;
 
-                if (fish_quantity > 1000)
-                {
+                    new_fish.GetComponent<fish_variable_holder>().potentcy += fish_potency_buff_add; new_fish.GetComponent<fish_variable_holder>().potentcy *= fish_potency_buff_mult;
 
-                }
-                else
-                {
+
                     fish_counted++;
+
+
+
+                    new_fish.transform.parent = null;
+                    if (fish_quantity >= 1)
+                    {
+                        new_fish.GetComponent<Transform>().localScale = new Vector3(fish_quality, fish_quality, fish_quality);
+                        new_fish.name = "big fish";
+                    }
+                    else
+                    {
+                        new_fish.GetComponent<Transform>().localScale = new Vector3(fish_quantity, fish_quantity, fish_quantity);
+                        new_fish.name = "small fish";
+                    }
+
+                    Wavespawner.current.Add_dead(Wavespawner.current.fishes[new_fish.GetComponent<fish_variable_holder>().fish_type]);
+
+                    Wavespawner.current.fish_total = fish_counted;
+                    new_fish.GetComponent<fish_variable_holder>().fish_quantity = 1;
+
+                    yield return new WaitForSeconds(1 / fish_quantity);
+
+                    /*where_fish_is_in_list = Wavespawner.current.dead_fish.IndexOf(Wavespawner.current.Get(new_fish));
+                    //Wavespawner.current.fish_potency_buff_add += fish_potency_buff_add; Wavespawner.current.fish_potency_buff_mult += fish_potency_buff_mult;
+                    Wavespawner.current.dead_fish[Wavespawner.current.dead_fish.IndexOf(Wavespawner.current.Get(new_fish))].fish_potency_buff_add = fish_potency_buff_add;
+                    Wavespawner.current.dead_fish[Wavespawner.current.dead_fish.IndexOf(Wavespawner.current.Get(new_fish))].fish_potency_buff_mult = fish_potency_buff_mult;*/
+                    // you don't actually need this part because when you use this item... it's gonna affect the fish anyway.
+                    //unless you're gonna give them seperate inventories.. which kinda defeats the point?
                 }
-
-
-                new_fish.transform.parent = null;
-                if (fish_quantity >= 1)
-                {
-                    new_fish.GetComponent<Transform>().localScale = new Vector3(fish_quality, fish_quality, fish_quality);
-                }
-                else
-                {
-                    new_fish.GetComponent<Transform>().localScale = new Vector3(fish_quantity, fish_quantity, fish_quantity);
-                }
-
-                Wavespawner.current.Add_dead(Wavespawner.current.fishes[new_fish.GetComponent<fish_variable_holder>().fish_type]);
-                
-                Wavespawner.current.fish_total = fish_counted;
-                new_fish.GetComponent<fish_variable_holder>().fish_quantity = 1;
-
-                yield return new WaitForSeconds(1 / fish_quantity);
-
-                /*where_fish_is_in_list = Wavespawner.current.dead_fish.IndexOf(Wavespawner.current.Get(new_fish));
-                //Wavespawner.current.fish_potency_buff_add += fish_potency_buff_add; Wavespawner.current.fish_potency_buff_mult += fish_potency_buff_mult;
-                Wavespawner.current.dead_fish[Wavespawner.current.dead_fish.IndexOf(Wavespawner.current.Get(new_fish))].fish_potency_buff_add = fish_potency_buff_add;
-                Wavespawner.current.dead_fish[Wavespawner.current.dead_fish.IndexOf(Wavespawner.current.Get(new_fish))].fish_potency_buff_mult = fish_potency_buff_mult;*/
-                // you don't actually need this part because when you use this item... it's gonna affect the fish anyway.
-                //unless you're gonna give them seperate inventories.. which kinda defeats the point?
             }
+            else
+            {
+                for (int i = 0; i < fish_quantity / 1000; i++)
+                {
+                    //Debug.Log("over 1000 " + i);
+                    fish_to_spawn = bobber.GetComponent<auto_fisher_fish_getter>().fish_to_spawn;
+                    if (fish_to_spawn.Length > 0)
+                    {
+                        random_spawn = Random.Range(0, fish_to_spawn.Length);
+                    }
+
+                    var new_fish = Instantiate(fish_to_spawn[random_spawn], spawn_area.transform);
+
+                    new_fish.GetComponent<fish_variable_holder>().fish_quality = fish_quality;
+
+                    new_fish.GetComponent<fish_variable_holder>().potentcy += fish_potency_buff_add; new_fish.GetComponent<fish_variable_holder>().potentcy *= fish_potency_buff_mult;
+
+
+                    fish_counted += Mathf.RoundToInt(fish_quantity / 1000);
+
+
+
+                    new_fish.transform.parent = null;
+                    if (fish_quantity >= 1)
+                    {
+                        new_fish.GetComponent<Transform>().localScale = new Vector3(fish_quality, fish_quality, fish_quality);
+                        new_fish.name = "big fish";
+                    }
+                    else
+                    {
+                        new_fish.GetComponent<Transform>().localScale = new Vector3(fish_quantity, fish_quantity, fish_quantity);
+                        new_fish.name = "small fish";
+                    }
+
+                    Wavespawner.current.Add_dead(Wavespawner.current.fishes[new_fish.GetComponent<fish_variable_holder>().fish_type]);
+
+                    Wavespawner.current.fish_total = fish_counted * Mathf.RoundToInt(fish_quantity / 1000);
+                    new_fish.GetComponent<fish_variable_holder>().fish_quantity = fish_quantity / (fish_quantity / 1000);
+
+                    yield return new WaitForSeconds(1 / fish_quantity);
+
+                    /*where_fish_is_in_list = Wavespawner.current.dead_fish.IndexOf(Wavespawner.current.Get(new_fish));
+                    //Wavespawner.current.fish_potency_buff_add += fish_potency_buff_add; Wavespawner.current.fish_potency_buff_mult += fish_potency_buff_mult;
+                    Wavespawner.current.dead_fish[Wavespawner.current.dead_fish.IndexOf(Wavespawner.current.Get(new_fish))].fish_potency_buff_add = fish_potency_buff_add;
+                    Wavespawner.current.dead_fish[Wavespawner.current.dead_fish.IndexOf(Wavespawner.current.Get(new_fish))].fish_potency_buff_mult = fish_potency_buff_mult;*/
+                    // you don't actually need this part because when you use this item... it's gonna affect the fish anyway.
+                    //unless you're gonna give them seperate inventories.. which kinda defeats the point?
+                }
+            }
+
         }
-        bobber.GetComponent<auto_fisher_fish_getter>().clearlist();
-
-          fish_quantity_buff_mult = 1;
-          fish_quality_buff_mult = 1;
-
-          fish_quantity_max_buff_mult = 1;
-          fish_quality_max_buff_mult = 1;
-
-          fish_quantity_min_buff_mult = 1;
-          fish_quality_min_buff_mult = 1;
 
 
-          fish_quantity_buff_add = 0;
-          fish_quality_buff_add = 0;
 
-          fish_quantity_max_buff_add = 0;
-          fish_quality_max_buff_add = 0;
 
-          fish_quantity_min_buff_add = 0;
-          fish_quality_min_buff_add = 0;
-
-          fish_potency_buff_mult = 1;
-          fish_potency_buff_add = 0;
-
-}
+    }
 
     public void Update()
     {
         animator.SetBool("fishing", fish);
+    }
+
+
+    public void erase_values()
+    {
+        if (spawn_at_all == true)
+        {
+            //Debug.Log("erasing values");
+            bobber.GetComponent<auto_fisher_fish_getter>().clearlist();
+            fish_quantity_buff_mult = 1;
+            fish_quality_buff_mult = 1;
+
+            fish_quantity_max_buff_mult = 1;
+            fish_quality_max_buff_mult = 1;
+
+            fish_quantity_min_buff_mult = 1;
+            fish_quality_min_buff_mult = 1;
+
+
+            fish_quantity_buff_add = 0;
+            fish_quality_buff_add = 0;
+
+            fish_quantity_max_buff_add = 0;
+            fish_quality_max_buff_add = 0;
+
+            fish_quantity_min_buff_add = 0;
+            fish_quality_min_buff_add = 0;
+
+            fish_potency_buff_mult = 1;
+            fish_potency_buff_add = 0;
+        }
     }
 
     public IEnumerator fish_anim()

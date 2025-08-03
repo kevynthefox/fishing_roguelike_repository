@@ -944,7 +944,7 @@ public class fishing_script : MonoBehaviour
                     fish_quantity_min_buff_add = 0;
                     fish_quality_min_buff_add = 0;
 
-                    fish_potency_buff_mult = 0;
+                    fish_potency_buff_mult = 1;
                     fish_potency_buff_add = 0;
 
                 }

@@ -154,14 +154,14 @@ MonoBehaviour:
   fish_counted: 0
   where_fish_is_in_list: 0
   spawn_at_all_controller: 0
-  expertise: 0
+  expertise: 50
   spawn_at_all: 0
   fish_quantity: 0
   fish_quality: 0
-  fish_quantity_max: 2
+  fish_quantity_max: 1
   fish_quality_max: 2
-  fish_quantity_min: 1
-  fish_quality_min: 1
+  fish_quantity_min: 0.5
+  fish_quality_min: 0.5
   fish_quantity_buff_mult: 1
   fish_quality_buff_mult: 1
   fish_quantity_max_buff_mult: 1

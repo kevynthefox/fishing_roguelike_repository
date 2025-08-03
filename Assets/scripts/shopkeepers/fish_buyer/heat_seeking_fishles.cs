@@ -16,7 +16,7 @@ public class heat_seeking_fishles : MonoBehaviour
 
     private GameObject water;
 
-    public int health = 1;
+    public float health = 1;
 
 
     public bool enemy;

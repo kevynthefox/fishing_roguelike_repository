@@ -23,7 +23,7 @@ public class fish_seller : MonoBehaviour
         {
             if (other.name == "big fish")
             {
-                money_owed += other.GetComponent<fish_variable_holder>().fish_quality * other.GetComponent<fish_variable_holder>().potentcy;
+                money_owed += other.GetComponent<fish_variable_holder>().fish_quality * other.GetComponent<fish_variable_holder>().fish_quantity * other.GetComponent<fish_variable_holder>().potentcy;
             }
             if (other.name == "small fish")
             {

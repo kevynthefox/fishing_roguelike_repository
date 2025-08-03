@@ -45,6 +45,7 @@ public class Item_behavior : MonoBehaviour
     public bool auto_triggered;
 
     public bool over_trigger_prevention;
+    public bool over_auto_trigger_prevention;
 
     public InventoryItem current_item;
 
@@ -124,19 +125,25 @@ public class Item_behavior : MonoBehaviour
             //Debug.Log("won");
         }
 
-        if (over_trigger_prevention == false)
+        
+        foreach (GameObject simple_rod in simple_rods)
         {
-            foreach (GameObject simple_rod in simple_rods)
+            if (simple_rod.GetComponent<Auto_fisher>().fish == false)
             {
-                if (simple_rod.GetComponent<Auto_fisher>().fish == false)
+                //triggered = true;
+                if (over_auto_trigger_prevention == false)
                 {
-                    triggered = true;
                     auto_triggered = true;
-                    over_trigger_prevention = true;
-                    //Debug.Log("won");
+                    over_auto_trigger_prevention = true;
                 }
+                //Debug.Log("won");
+            }
+            if (over_auto_trigger_prevention == true && simple_rod.GetComponent<Auto_fisher>().fish == true)
+            {
+                over_auto_trigger_prevention = false;
             }
         }
+        
         
         if (over_trigger_prevention == true && fishing_controller.GetComponent<fishing_script>().win_state != 1)
         {
@@ -154,8 +161,14 @@ public class Item_behavior : MonoBehaviour
         {
             action_taker();
             triggered = false;
-            auto_triggered = false;
+            
             //Debug.Log("stopped");
+        }
+
+        if (auto_triggered == true)
+        {
+            action_taker();
+            auto_triggered = false;
         }
     }
 
@@ -187,7 +200,7 @@ public class Item_behavior : MonoBehaviour
                 }
             }
 
-            if (action_type == 3)
+            if (action_type == 3 && triggered == true)
             {
 
                 if (action_effect == 1)
@@ -414,7 +427,7 @@ public class Item_behavior : MonoBehaviour
                 
             }
 
-            if (action_type == 4)
+            if (action_type == 4 && triggered == true)
             {
 
                 if (action_effect == 1)
