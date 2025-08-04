@@ -508,9 +508,14 @@ public class fishing_script : MonoBehaviour
                                 spawning_fish = true;
 
                                 //Debug.Log("progressing 2");
-
-                                StartCoroutine(spawn_fish());
-
+                                if (Wavespawner.current.stop_fishing == false)
+                                {
+                                    StartCoroutine(spawn_fish());
+                                }
+                                else
+                                {
+                                    //Wavespawner.current.sources_of_fish.Remove(this.gameObject);
+                                }
                                 if (fish_all_spawned == true)
                                 {
                                     StartCoroutine(disable_reset_after_win());
@@ -902,6 +907,8 @@ public class fishing_script : MonoBehaviour
 
     public IEnumerator spawn_fish()
     {
+        Wavespawner.current.sources_of_fish.Add(this.gameObject);
+
         StartCoroutine(fish_per_second_finder());
         if (bobber_on == true)
         {
@@ -947,6 +954,8 @@ public class fishing_script : MonoBehaviour
                     fish_potency_buff_mult = 1;
                     fish_potency_buff_add = 0;
 
+                    Wavespawner.current.fish_total += fish_counted;
+                    Wavespawner.current.sources_of_fish.Remove(this.gameObject);
                 }
                 else
                 {
@@ -968,19 +977,27 @@ public class fishing_script : MonoBehaviour
                     
                     
 
-                    fish_counted += 1;
+                    
                     fish_per_second_1++;
 
                     //wave_spawner.GetComponent<Wavespawner>().dead_fish.Add(fish_object.GetComponent<fish_variable_holder>().fish_type);
-                    Wavespawner.current.Add_dead(Wavespawner.current.fishes[fish_object.GetComponent<fish_variable_holder>().fish_type]);
+                    
                     
                     if (fish_quantity_original > 1000)
                     {
-                        Wavespawner.current.fish_total = fish_counted * Mathf.RoundToInt(fish_quantity_original / 1000);
+                        fish_counted += Mathf.RoundToInt(fish_quantity_original / 1000);
+                        
+
+                        for (int f = 0; f < fish_quantity_original / 1000; f++)
+                        {
+                            Wavespawner.current.Add_dead(Wavespawner.current.fishes[fish_object.GetComponent<fish_variable_holder>().fish_type]);
+                        }
                     }
                     else
                     {
-                        Wavespawner.current.fish_total = fish_counted;
+                        fish_counted += 1;
+                        
+                        Wavespawner.current.Add_dead(Wavespawner.current.fishes[fish_object.GetComponent<fish_variable_holder>().fish_type]);
                     }
                     // this part changes the scale of the fish. if there is more than 1 of fish(1.2) then it makes the (.2) its own fish
 

@@ -93,7 +93,7 @@ public class heat_seeking_fishles : MonoBehaviour
             GetComponent<Rigidbody>().linearVelocity = Vector3.zero;
             factor = 0;
         }
-        if (other.gameObject.tag == "projectile")
+        if (other.gameObject.tag == "projectile" || other.gameObject.tag == "fishing_rod")
         {
             this.tag = "super_food_items";
             Wavespawner.current.Remove_alive(this.gameObject);

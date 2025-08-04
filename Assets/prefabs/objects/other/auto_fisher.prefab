@@ -588,6 +588,14 @@ PrefabInstance:
       propertyPath: spawn_area
       value: 
       objectReference: {fileID: 7598505062934123514}
+    - target: {fileID: 6928409684158690115, guid: ac439f53ff148954ab99db2bff5deea1, type: 3}
+      propertyPath: fish_quantity_max
+      value: 10000
+      objectReference: {fileID: 0}
+    - target: {fileID: 6928409684158690115, guid: ac439f53ff148954ab99db2bff5deea1, type: 3}
+      propertyPath: fish_quantity_min
+      value: 10000
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

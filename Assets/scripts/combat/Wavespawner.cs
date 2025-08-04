@@ -12,6 +12,8 @@ public class Wavespawner : MonoBehaviour
 {
     [Header("waves")]
     public bool spawning_time;
+    public bool spawnable;
+    public bool stop_fishing;
     //public List<GameObject> fish_actual;
 
     public float spawn_left_right;
@@ -45,6 +47,9 @@ public class Wavespawner : MonoBehaviour
 
     public GameObject[] fishes;
 
+    public List<GameObject> sources_of_fish;
+    public List<GameObject> active_fish;
+
     [Header("encounters")]
     public List<enemy_encounter_data> encounters;
     public GameObject rod;
@@ -56,6 +61,7 @@ public class Wavespawner : MonoBehaviour
     public void Start()
     {
         StartCoroutine(timer());
+        StartCoroutine(spawn_prevention());
         targets.Add(GameObject.Find("player"));
         time_left = time_start;
     }
@@ -200,25 +206,28 @@ public class Wavespawner : MonoBehaviour
     {
         while (starter == true)
         {
+
             if (time_left >= 1 && spawning_time == false)
             {
                 time_left -= 1;
             }
             else
             {
-
-                if (dead_fish.Count == 0)
+                if (spawnable == true)
                 {
-                    spawning_time = false;
-                    time_left = time_start;
-                }
-                else
-                {
-                    //Debug.Log("not null");
-                    spawning_time = true;
+                    if (dead_fish.Count == 0)
+                    {
+                        spawning_time = false;
+                        time_left = time_start;
+                    }
+                    else
+                    {
+                        //Debug.Log("not null");
+                        spawning_time = true;
+                    }
                 }
             }
-            yield return new WaitForSeconds(1f * Time.deltaTime);
+            yield return new WaitForSeconds(1f);
         }
         
     }
@@ -246,6 +255,53 @@ public class Wavespawner : MonoBehaviour
         }
     }
     
+    public IEnumerator spawn_prevention()
+    {
+        while (starter == true)
+        {
+            if (spawning_time == false) 
+            {
+                foreach (GameObject fish in GameObject.FindGameObjectsWithTag("fish"))
+                {
+                    if (!active_fish.Contains(fish))
+                    {
+                        //if (fish.name != "COD")
+                        //{
+                        active_fish.Add(fish);
+                        //}
+                    }
+                }
+            }
+
+            if (sources_of_fish.Count > 0)
+            {
+                spawnable = false;
+            }
+
+            if (time_left <= 0)
+            {
+                stop_fishing = true;
+            }
+            else
+            {
+                stop_fishing = false;
+            }
+
+            if (sources_of_fish.Count <= 0)
+            {
+                if (active_fish.Count <= 1)
+                {
+                    Debug.Log("could not find any fish, wait 1 second and set spawnable to true");
+                    yield return new WaitForSeconds(1f);
+                    spawnable = true;
+                }
+
+                
+            }
+            yield return new WaitForSeconds(0.1f);
+        }
+    }
+
     #region fish dead list
     public static Wavespawner current;
     public Dictionary<GameObject, fish_dead> m_itemDictionary;

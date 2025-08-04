@@ -18,5 +18,10 @@ public class fish_variable_holder : MonoBehaviour
         
     }
 
-    
+
+    private void OnDestroy()
+    {
+        Wavespawner.current.active_fish.Remove(this.gameObject);
+    }
+
 }

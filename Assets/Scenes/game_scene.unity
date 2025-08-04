@@ -2221,47 +2221,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1135494216 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5935134533287613416, guid: b10d9103dde275444a13464ee0e997fa, type: 3}
-  m_PrefabInstance: {fileID: 1551661325871689008}
-  m_PrefabAsset: {fileID: 0}
---- !u!65 &1135494220
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1135494216}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 2, y: 2, z: 2}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1135494221
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1135494216}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b315246da11c52341af51050fb975547, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health_object: {fileID: 1551661325871689009}
-  invincibility: 1
-  trigger_or_collision: 0
 --- !u!1 &1204003812
 GameObject:
   m_ObjectHideFlags: 0
@@ -2484,11 +2443,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawning_time: 0
+  spawnable: 0
+  stop_fishing: 0
   spawn_left_right: 0
   spawn_forward_back: 0
   family_size: 0
   starter: 1
-  time_start: 200000
+  time_start: 20
   time_left: 200000
   fish_total: 0
   fish_alive: 0
@@ -2505,6 +2466,8 @@ MonoBehaviour:
   - {fileID: 5308789793509300215, guid: 3c3ae3c7cd391044c8ed07d1f99c617c, type: 3}
   - {fileID: 4664982497591543338, guid: 40f7a3039bb3d0a4ba3201ee603812cc, type: 3}
   - {fileID: 8210535706478431012, guid: c38dbd412fa15e24a87d9d32caa5700d, type: 3}
+  sources_of_fish: []
+  active_fish: []
   encounters:
   - {fileID: 11400000, guid: cd1114a1654d7664bab0a73f95b8b159, type: 2}
   - {fileID: 11400000, guid: 25ceeff52d047584cbe249fa7a5540dd, type: 2}
@@ -2806,46 +2769,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: af0e15e944e500d41999918a920ff7fb, type: 3}
---- !u!1 &1607696485 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2503511408535007059, guid: b10d9103dde275444a13464ee0e997fa, type: 3}
-  m_PrefabInstance: {fileID: 1551661325871689008}
-  m_PrefabAsset: {fileID: 0}
---- !u!65 &1607696489
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1607696485}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0.96}
---- !u!114 &1607696490
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1607696485}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 22cae6571be7997459019eb7c1a44bc0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  touching_something: 0
-  draining_health: 0
 --- !u!1 &1621211331
 GameObject:
   m_ObjectHideFlags: 0
@@ -3324,17 +3247,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3253096426437890810, guid: 40ba16940f2baf04a9f0df1db5dc7b8f, type: 3}
-      propertyPath: expertise
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3454539807122349431, guid: 40ba16940f2baf04a9f0df1db5dc7b8f, type: 3}
       propertyPath: m_Name
       value: auto_fisher
       objectReference: {fileID: 0}
     - target: {fileID: 3454539807122349431, guid: 40ba16940f2baf04a9f0df1db5dc7b8f, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3418,10 +3337,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 452945614930653393, guid: b10d9103dde275444a13464ee0e997fa, type: 3}
-      propertyPath: max_time_since_firing
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 1063153852059483018, guid: b10d9103dde275444a13464ee0e997fa, type: 3}
       propertyPath: death_system
       value: 
@@ -3433,10 +3348,6 @@ PrefabInstance:
     - target: {fileID: 5935134533287613416, guid: b10d9103dde275444a13464ee0e997fa, type: 3}
       propertyPath: m_Name
       value: lamprey
-      objectReference: {fileID: 0}
-    - target: {fileID: 5935134533287613416, guid: b10d9103dde275444a13464ee0e997fa, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6900859755888333575, guid: b10d9103dde275444a13464ee0e997fa, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3481,25 +3392,8 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5935134533287613416, guid: b10d9103dde275444a13464ee0e997fa, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1135494220}
-    - targetCorrespondingSourceObject: {fileID: 5935134533287613416, guid: b10d9103dde275444a13464ee0e997fa, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1135494221}
-    - targetCorrespondingSourceObject: {fileID: 2503511408535007059, guid: b10d9103dde275444a13464ee0e997fa, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1607696489}
-    - targetCorrespondingSourceObject: {fileID: 2503511408535007059, guid: b10d9103dde275444a13464ee0e997fa, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1607696490}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b10d9103dde275444a13464ee0e997fa, type: 3}
---- !u!1 &1551661325871689009 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1063153852059483013, guid: b10d9103dde275444a13464ee0e997fa, type: 3}
-  m_PrefabInstance: {fileID: 1551661325871689008}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2679988057607225672
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3519,10 +3413,6 @@ PrefabInstance:
     - target: {fileID: 2679988056074713764, guid: c816e89edc5ff1445b97eb82aaa64866, type: 3}
       propertyPath: m_Name
       value: sell guy
-      objectReference: {fileID: 0}
-    - target: {fileID: 2679988056074713765, guid: c816e89edc5ff1445b97eb82aaa64866, type: 3}
-      propertyPath: m_Size.x
-      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2679988056074713785, guid: c816e89edc5ff1445b97eb82aaa64866, type: 3}
       propertyPath: m_LocalPosition.x
