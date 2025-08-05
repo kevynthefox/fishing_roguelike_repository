@@ -873,7 +873,7 @@ public class fishing_script : MonoBehaviour
                 //Debug.Log("touched the rod. not blocking");
                 other.tag = "super_food_items";
                 Wavespawner.current.Remove_alive(other.gameObject);
-                other.GetComponent<heat_seeking_fishles>().home = null;
+                other.GetComponent<heat_seeking_fishles>().health = 0;
             }
             if (blocking == true && attacking == false)
             {

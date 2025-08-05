@@ -641,7 +641,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5819184043660787169, guid: 87054dda7839aab47b22bf04d5def158, type: 3}
       propertyPath: m_Name
-      value: HealthBar_turret
+      value: HealthBar
       objectReference: {fileID: 0}
     - target: {fileID: 5819184043660787170, guid: 87054dda7839aab47b22bf04d5def158, type: 3}
       propertyPath: m_Pivot.x

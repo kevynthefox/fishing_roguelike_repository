@@ -397,7 +397,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 7456ccc1462311f48beaab6accd6e89c, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 7456ccc1462311f48beaab6accd6e89c, type: 3}
       propertyPath: m_TagString
@@ -616,7 +616,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5819184043660787169, guid: 87054dda7839aab47b22bf04d5def158, type: 3}
       propertyPath: m_Name
-      value: HealthBar_autofisher
+      value: HealthBar
       objectReference: {fileID: 0}
     - target: {fileID: 5819184043660787170, guid: 87054dda7839aab47b22bf04d5def158, type: 3}
       propertyPath: m_Pivot.x

@@ -9,7 +9,7 @@ public class heat_seeking_fishles : MonoBehaviour
     public GameObject home;
     //public GameObject master;
 
-    public float factor = 1;
+    public float flight_duration;
     public float speed;
 
     public bool disable_water;
@@ -58,6 +58,11 @@ public class heat_seeking_fishles : MonoBehaviour
 
         }
 
+        if (home != null && enemy == true)
+        {
+            StartCoroutine(failsafe_counter_2());
+        }
+
         if (enemy == true && home == null)
         {
             foreach (GameObject potential_target in GameObject.FindGameObjectsWithTag("player"))
@@ -91,9 +96,9 @@ public class heat_seeking_fishles : MonoBehaviour
         {
             //Debug.Log("triggering");
             GetComponent<Rigidbody>().linearVelocity = Vector3.zero;
-            factor = 0;
+
         }
-        if (other.gameObject.tag == "projectile" || other.gameObject.tag == "fishing_rod")
+        if (other.gameObject.tag == "projectile")
         {
             this.tag = "super_food_items";
             Wavespawner.current.Remove_alive(this.gameObject);
@@ -108,6 +113,21 @@ public class heat_seeking_fishles : MonoBehaviour
     {
         
         yield return new WaitForSeconds(1);
+        //Debug.Log("failed the safe");
+        GetComponent<Rigidbody>().useGravity = true;
+
+    }
+
+    public IEnumerator failsafe_counter_2()
+    {
+        if (flight_duration != 0)
+        {
+            yield return new WaitForSeconds(flight_duration);
+        }
+        else
+        {
+            StopCoroutine(failsafe_counter_2());
+        }
         //Debug.Log("failed the safe");
         GetComponent<Rigidbody>().useGravity = true;
 

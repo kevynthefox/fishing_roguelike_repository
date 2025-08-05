@@ -72,6 +72,12 @@ public class Wavespawner : MonoBehaviour
         {
             spawning_time = !spawning_time;
         }
+
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            Debug.Log("adding a debug fish to the wavepsawner");
+            Add_dead(fishes[2]);
+        }
         
         if (rod.GetComponent<fishing_script>().win_state == 1)
         {
@@ -291,7 +297,7 @@ public class Wavespawner : MonoBehaviour
             {
                 if (active_fish.Count <= 1)
                 {
-                    Debug.Log("could not find any fish, wait 1 second and set spawnable to true");
+                    //Debug.Log("could not find any fish, wait 1 second and set spawnable to true");
                     yield return new WaitForSeconds(1f);
                     spawnable = true;
                 }

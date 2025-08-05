@@ -103,7 +103,7 @@ public class gun : MonoBehaviour
 
         if (targets != null)
         {
-            if (targets.Count > 0)
+            if (targets.Count >= 1)
             {
                 if (targets[0] != null)
                 {
@@ -146,7 +146,7 @@ public class gun : MonoBehaviour
                     }
                     if (targets[0].gameObject.TryGetComponent<behavior_for_ranged_fish>(out behavior_for_ranged_fish ranged_behavior))
                     {
-                        if (ranged_behavior.GetComponent<Health_display>().health == 0)
+                        if (ranged_behavior.gameObject.GetComponent<Health_display>().health == 0)
                         {
                             Debug.Log("neutralized");
                             targets.RemoveAt(0);
@@ -192,7 +192,9 @@ public class gun : MonoBehaviour
                     StartCoroutine(fire());
 
                 }
-                if (targets.Count > 0 && fire_timer >= fire_rate) //if gun has other targets but isn't shooting, get rid of the clog and try again.
+
+                
+                /*if (targets.Count > 0 && fire_timer >= fire_rate) //if gun has other targets but isn't shooting, get rid of the clog and try again.
                 {
                     //Debug.Log("gun was jammed. beginning clear");
                     StartCoroutine(fire());
@@ -206,7 +208,7 @@ public class gun : MonoBehaviour
                 {
                     //Debug.Log("set fire time to 0");
                     //fire_timer = 0;
-                }
+                }*/
 
 
             }
@@ -216,6 +218,7 @@ public class gun : MonoBehaviour
 
     public IEnumerator fire()
     {
+        CleanUpMyList();
         yield return null;
         
 
@@ -342,6 +345,27 @@ public class gun : MonoBehaviour
             target.SetActive(true);
         }
 
+        if (player_gun == true)
+        {
+            if (other.CompareTag("fish") || other.CompareTag("fish_enemy"))
+            {
+                if (targets.Contains(other.transform) == false)
+                {
+                    targets.Add(other.transform);
+                }
+            }
+        }
+        else
+        {
+            if (other.CompareTag("player"))
+            {
+                if (targets.Contains(other.transform) == false)
+                {
+                    targets.Add(other.transform);
+                }
+            }
+        }
+
         if (targets != null)
         {
             if (targets.Count > 0)
@@ -370,6 +394,11 @@ public class gun : MonoBehaviour
             fire_timer += ( fire_rate / 2);
             yield return new WaitForSeconds(fire_rate);
         }
+    }
+
+    public void CleanUpMyList()
+    {
+        targets = targets.Where(t => t != null).ToList();
     }
 }
 

@@ -46,7 +46,7 @@ public class projectile_controller : MonoBehaviour, IPoolable
     public IEnumerator OnCollisionEnter(Collision collision)
     {
         touched = true;
-        Debug.Log(this.gameObject.name + " collided with 1 " + collision.gameObject.name);
+        //Debug.Log(this.gameObject.name + " collided with 1 " + collision.gameObject.name);
         yield return new WaitForSeconds(1f);
 
 
@@ -65,7 +65,7 @@ public class projectile_controller : MonoBehaviour, IPoolable
         }
         else
         {
-            Debug.Log(this.gameObject.name + " collided with 2  " + collision.gameObject.name);
+            //Debug.Log(this.gameObject.name + " collided with 2  " + collision.gameObject.name);
 
 
 
@@ -78,7 +78,7 @@ public class projectile_controller : MonoBehaviour, IPoolable
             {
                 if (explosive == true)
                 {
-                    Debug.Log("boom");
+                    //Debug.Log("boom");
                     this.gameObject.GetComponent<SphereCollider>().enabled = true;
                     yield return new WaitForSeconds(.1f);
                     this.gameObject.GetComponent<SphereCollider>().enabled = false;
@@ -134,7 +134,7 @@ public class projectile_controller : MonoBehaviour, IPoolable
                 //Debug.Log("reset this piece: " + piece.gameObject.name);
             }
         }
-        Debug.Log("resetting momentum");
+        //Debug.Log("resetting momentum");
         if (lifespan != 0)
         {
             Invoke(nameof(Release), lifespan);
@@ -143,7 +143,7 @@ public class projectile_controller : MonoBehaviour, IPoolable
 
     public void Release()
     {
-        Debug.Log("released");
+        //Debug.Log("released");
         //Debug.LogWarning(message:"Projectile Release", context: this);
         //Debug.Log("released");
         CancelInvoke(); // bad
