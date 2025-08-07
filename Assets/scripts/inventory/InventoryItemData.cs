@@ -36,7 +36,8 @@ public class InventoryItemData : ScriptableObject
     public int strength;
 
     //target for action
-    public string target;
+    public string target_obj;
+    public string target_group;
     public Transform target_transform;
     //public Quaternion target_rot;
     //type of target. this is used for things like: if it's an enemy, put a text box that shows the effect and the time left on the effect, if it's the player, add a thing to the player's ui.
@@ -52,6 +53,12 @@ public class InventoryItemData : ScriptableObject
     public float target_vicinity;
 
     public bool inheret_target_rotation;
+
+    //other
+    //public int times_used;
+    public bool been_clicked_on;
+    public bool been_Right_clicked_on;
+    public bool been_Left_clicked_on;
 
     /*
 

@@ -3749,8 +3749,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 3, z: 1}
+  m_Center: {x: 0, y: 0.7, z: 0}
 --- !u!54 &4122852226063933632
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3922,7 +3922,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health_object: {fileID: 8241493515390400426}
-  invincibility: 1
+  invincibility: 0
   trigger_or_collision: 0
 --- !u!1 &7208398352910575041
 GameObject:

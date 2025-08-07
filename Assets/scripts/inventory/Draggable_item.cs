@@ -66,7 +66,7 @@ public class Draggable_item : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
             if (Input.GetKey(KeyCode.LeftControl))
             {
                 //Debug.Log("dropped one big item from inventory");
-                for (int i = 0; i < self_inventory_item.stackSize; i++)
+                for (int i = 0; i <= self_inventory_item.stackSize + 1; i++)
                 {
                     drop_item(false);
                 }
@@ -100,9 +100,10 @@ public class Draggable_item : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
                 spawned_item.GetComponent<item_pickup>().amount_of_items = self_inventory_item.stackSize;
                 InventorySystem.current.inventory[spot_in_inventory].already_made_item = true;
 
-                for (int i = 0; i <= self_inventory_item.stackSize; i++)
+                for (int i = 0; i <= self_inventory_item.stackSize + 1; i++)
                 {
                     InventorySystem.current.Remove(self_inventory_item.data);
+                    Debug.Log("times removing");
                 }
 
             }
@@ -159,6 +160,20 @@ public class Draggable_item : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
         
         InventorySystem.current.InventoryChanged();
 
+    }
+
+    public void item_clicked_on()
+    {
+        self_inventory_item.data.been_clicked_on = true;
+        if (Input.GetMouseButtonDown(0)) { self_inventory_item.data.been_Left_clicked_on = true; }
+        if (Input.GetMouseButtonDown(1)) { self_inventory_item.data.been_Right_clicked_on = true; }
+    }
+
+    public void item_clicked_off()
+    {
+        self_inventory_item.data.been_clicked_on = false;
+        self_inventory_item.data.been_Left_clicked_on = false; 
+        self_inventory_item.data.been_Right_clicked_on = false; 
     }
     #endregion
 }

@@ -10,24 +10,27 @@ public class Health_display : MonoBehaviour
 {
 
 
-public float health,health_max;
+    public float health,health_max;
+    //public float health_max_buffed;
 
 
-public Image HealthBar;
-public Text healthText;
+    public Image HealthBar;
+    public Text healthText;
 
-public GameObject target;
-public GameObject respawn_point;
+    public GameObject target;
+    public GameObject respawn_point;
 
-private Coroutine recharge;
+    private Coroutine recharge;
 
-public GameObject death_system;
+    public GameObject death_system;
 
-public bool dead;
+    public bool dead;
 
-public bool is_player;
+    public bool is_player;
 
-public bool is_turret;
+    public bool is_turret;
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -63,9 +66,18 @@ public bool is_turret;
             health = health_max;
         }
 
-        healthText.text = "health : " + health;
-        HealthBar.fillAmount = health / health_max;
 
+        
+        /*if (health_max_buffed > health_max)
+        {
+            healthText.text = "health : " + health + " / " + health_max_buffed;
+            HealthBar.fillAmount = health / health_max_buffed;
+        }
+        else
+        {*/
+        healthText.text = "health : " + health + " / " + health_max;
+        HealthBar.fillAmount = health / health_max;
+        //}
 
     }
 

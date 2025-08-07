@@ -20,6 +20,8 @@ public class item_pickup : MonoBehaviour
         wallet = GameObject.Find("bone_pile");
     }
 
+    
+
     public IEnumerator OnMouseOver()
     {
         if (this.gameObject.GetComponent<item_pickup>().enabled == true)
@@ -31,10 +33,11 @@ public class item_pickup : MonoBehaviour
 
 
             //Debug.Log("mouse is over, item pickup");
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButton(0))
             {
                 if (Input.GetKey(KeyCode.LeftControl))
                 {
+                    
                     for (int i = 0; i <= amount_of_items; i++)
                     {
                         InventorySystem.current.Add(this.self_item);

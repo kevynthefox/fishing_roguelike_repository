@@ -18,18 +18,22 @@ MonoBehaviour:
   prefab: {fileID: 6020825224858073573, guid: 99d04a21fac5195498e8f20823c0727c, type: 3}
   in_inventory: 0
   inventory: {fileID: 0}
-  trigger_type: 0
-  action_type: 0
-  action_object:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  action_effect: 
+  trigger_type: 4
+  action_type: 5
+  action_object: []
+  action_effect: 0
   duration: 0
   delay: 0
-  strength: 0
-  target: bone_pile
+  strength: 10
+  target_obj: 
+  target_group: player
   target_transform: {fileID: 0}
   enemy_or_player: 0
   player: {fileID: 0}
   triggered: 0
+  position_in_inventory: 0
+  target_vicinity: 0
+  inheret_target_rotation: 0
+  been_clicked_on: 0
+  been_Right_clicked_on: 0
+  been_Left_clicked_on: 0

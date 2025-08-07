@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using JetBrains.Annotations;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 
@@ -31,7 +33,8 @@ public class Item_behavior : MonoBehaviour
     public int stack_size;
 
     //target for action
-    public GameObject target;
+    public GameObject target_obj;
+    public string target_group;
     public Transform target_transform;
     public Quaternion target_rot;
     //type of target. this is used for things like: if it's an enemy, put a text box that shows the effect and the time left on the effect, if it's the player, add a thing to the player's ui.
@@ -43,9 +46,11 @@ public class Item_behavior : MonoBehaviour
 
     public bool triggered;
     public bool auto_triggered;
+    public bool passive_triggered;
 
     public bool over_trigger_prevention;
     public bool over_auto_trigger_prevention;
+    public int times_used;
 
     public InventoryItem current_item;
 
@@ -54,11 +59,13 @@ public class Item_behavior : MonoBehaviour
     public bool inheret_target_rotation;
 
 
+
     //trigger type list
 
     //trigger type 1 is jumping
     //type 2 is activates upon wining fishing.
     //type 3 activates when you push the activation button(same button for all of this type)
+    //type 4 is passive(always active when the item is in your inventory. buff removed upon removing the item.
 
     //action type list
 
@@ -66,6 +73,26 @@ public class Item_behavior : MonoBehaviour
     //type 2 is spawning something based on the position the fishing game won in(like, which colored bar)
     //type 3 mulitplies the values on the fishing bar. consumes the items afterwords.
     //type 4 adds to the values on the fishing bar, consumes after.
+    //type 5 is a health (additive) increase to all players. (passive?)
+    //type 6 is a health (multiplicative) increase to all players.(passive?)
+
+
+    //list section
+    public List<GameObject> list_of_players;
+
+
+
+    //syncing new buildings section
+    public List<int> add_list;
+    public List<int> mult_list;
+    public List<int> divide_list;
+
+    //other
+    public bool been_clicked_on;
+    public bool been_Right_clicked_on;
+    public bool been_Left_clicked_on;
+    public bool starter = true;
+
 
     public void Awake()
     {
@@ -73,11 +100,13 @@ public class Item_behavior : MonoBehaviour
         object_holder = GameObject.Find("object_holder_object");
         wavespawner = GameObject.Find("fish_wave_spawner");
         fishing_controller = object_holder.GetComponent<object_holder>().bobber;
+
+        StartCoroutine(list_time_buffer());
     }
 
     public void Update()
     {
-        //if (InventorySystem.current.inventory.Contains(this))
+        
         foreach (InventoryItem item in InventorySystem.current.inventory.ToList())
         {
             //int this_one += 1;
@@ -88,8 +117,12 @@ public class Item_behavior : MonoBehaviour
             duration = item.data.duration;
             delay = item.data.delay;
             strength = item.data.strength;
-            target = GameObject.Find(item.data.target);
-            target_transform = target.transform;
+            if (item.data.target_obj.Length > 0 )
+            {
+                target_obj = GameObject.Find(item.data.target_obj);
+                target_transform = target_obj.transform;
+            }
+            target_group = item.data.target_group;
             enemy_or_player = item.data.enemy_or_player;
             stack_size = item.stackSize;
 
@@ -98,21 +131,31 @@ public class Item_behavior : MonoBehaviour
             target_vicinity = item.data.target_vicinity;
             inheret_target_rotation = item.data.inheret_target_rotation;
 
+            times_used = item.times_used;
+
+            been_clicked_on = item.data.been_clicked_on;
+            been_Left_clicked_on = item.data.been_Left_clicked_on;
+            been_Right_clicked_on = item.data.been_Right_clicked_on;
+
             triggers();
         }
 
+        Debug.Log("been right clicked on = " + been_Right_clicked_on);
 
-        foreach (GameObject simple_rod in GameObject.FindGameObjectsWithTag("simple_fishing_rod"))
+
+        if (stack_size == 1)
         {
-            if (simple_rods.Contains(simple_rod) == false)
-            {
-                simple_rods.Add(simple_rod);
-            }
+            current_item.last_item_in_stack = true;
+        }
+        else
+        {
+            current_item.last_item_in_stack = false;
         }
     }
 
     public void triggers()
     {
+        //Debug.Log("triggers-ing");
         //detect jumping
         if (player.GetComponent<movement>().isOnGround == true && Input.GetKeyDown(KeyCode.Space) && trigger_type == 1)
         {
@@ -125,7 +168,7 @@ public class Item_behavior : MonoBehaviour
             //Debug.Log("won");
         }
 
-        
+
         foreach (GameObject simple_rod in simple_rods)
         {
             if (simple_rod.GetComponent<Auto_fisher>().fish == false)
@@ -143,8 +186,8 @@ public class Item_behavior : MonoBehaviour
                 over_auto_trigger_prevention = false;
             }
         }
-        
-        
+
+
         if (over_trigger_prevention == true && fishing_controller.GetComponent<fishing_script>().win_state != 1)
         {
             over_trigger_prevention = false; // resets over trigger prevention for the win state state.
@@ -157,11 +200,16 @@ public class Item_behavior : MonoBehaviour
             //Debug.Log("ability activated");
         }
 
+        if (trigger_type == 4)
+        {
+            passive_triggered = true;
+        }
+
         if (triggered == true)
         {
             action_taker();
             triggered = false;
-            
+
             //Debug.Log("stopped");
         }
 
@@ -170,13 +218,23 @@ public class Item_behavior : MonoBehaviour
             action_taker();
             auto_triggered = false;
         }
+
+        if (passive_triggered == true)
+        {
+            //Debug.Log("passive action triggering");
+            passive_action_doer();
+        }
+        
+
     }
+
+    
 
     public void action_taker()
     {
         for (int i = 0; i < stack_size; i++)
         {
-            if (action_type == 1)
+            if (action_type == 1 && triggered == true)
             {
                 spawn_obj(0);
             }
@@ -309,7 +367,7 @@ public class Item_behavior : MonoBehaviour
                 }
                 if (action_effect == 4)
                 {
-                    
+
                     fishing_controller.GetComponent<fishing_script>().fish_potency_buff_mult += strength;
 
                     foreach (GameObject simple_rod in simple_rods)
@@ -424,7 +482,7 @@ public class Item_behavior : MonoBehaviour
                 InventorySystem.current.Remove(current_item.data);
                 //Debug.Log("buffed");
                 //Debug.Log(current_item.data.name);
-                
+
             }
 
             if (action_type == 4 && triggered == true)
@@ -448,7 +506,7 @@ public class Item_behavior : MonoBehaviour
                 }
                 if (action_effect == 2)
                 {
-                    
+
                     fishing_controller.GetComponent<fishing_script>().fish_quantity_max_buff_add += strength;
                     fishing_controller.GetComponent<fishing_script>().fish_quantity_max += strength;
 
@@ -460,7 +518,7 @@ public class Item_behavior : MonoBehaviour
                 }
                 if (action_effect == 3)
                 {
-                    
+
                     fishing_controller.GetComponent<fishing_script>().fish_quantity_min_buff_add += strength;
                     fishing_controller.GetComponent<fishing_script>().fish_quantity_min += strength;
 
@@ -472,7 +530,7 @@ public class Item_behavior : MonoBehaviour
                 }
                 if (action_effect == 4)
                 {
-                    
+
                     fishing_controller.GetComponent<fishing_script>().fish_potency_buff_add += strength;
 
                     foreach (GameObject simple_rod in simple_rods)
@@ -483,7 +541,7 @@ public class Item_behavior : MonoBehaviour
                 }
                 if (action_effect == 5)
                 {
-              
+
                     fishing_controller.GetComponent<fishing_script>().fish_quality_min_buff_add += strength;
                     fishing_controller.GetComponent<fishing_script>().fish_quality_min += strength;
 
@@ -508,7 +566,7 @@ public class Item_behavior : MonoBehaviour
                 }
                 if (action_effect == 7)
                 {
-                    
+
                     fishing_controller.GetComponent<fishing_script>().fish_quality_max_buff_add += strength * strength;
                     fishing_controller.GetComponent<fishing_script>().fish_quality_min_buff_add += strength * strength;
                     fishing_controller.GetComponent<fishing_script>().fish_quality_max += strength * strength;
@@ -527,13 +585,97 @@ public class Item_behavior : MonoBehaviour
                 //Debug.Log(current_item.data.name);
 
             }
+
+            
+
+
+            
+            current_item.times_used = i + 1;
         }
+
+        
         
     }
+    public void passive_action_doer()
+    {
+        //Debug.Log("passive action doing");
+        
 
+        if (stack_size > times_used && !Input.GetMouseButton(1))
+        {
+            //Debug.Log("stack size was bigger(over), doing a thing");
+            passive_action_taker(1);
+
+        }
+
+        if (been_Right_clicked_on == true && Input.GetKey(KeyCode.LeftControl))
+        {
+            for (int i = 0; i < times_used; i++)
+            {
+                passive_action_taker(-1);
+                Debug.Log("control, last item in stack, undoing");
+            }
+            
+        }
+
+        if (((stack_size < times_used) || (times_used == 1 && been_Right_clicked_on == true)) && !Input.GetKey(KeyCode.LeftControl))
+        {
+            if (times_used == 1 && been_Right_clicked_on)
+            {
+                Debug.Log("last item in stack, undoing");
+            }
+
+            //Debug.Log("stack size was smaller, undoing a thing, over " + "stack size: " + stack_size + " times used: " + times_used);
+            //if (times_used == 1) yield return new WaitForSeconds(.02f);
+            passive_action_taker(-1);
+
+        }
+
+        
+    }
+    public void passive_action_taker(int sign)
+    {
+        //Debug.Log("passive action taking");
+        if (action_type == 5)
+        {
+            foreach (GameObject player in list_of_players)
+            {
+                player.transform.GetComponentInChildren<Health_display>().health_max = player.transform.GetComponentInChildren<Health_display>().health_max + (sign * strength);// * stack_size);
+                //Debug.Log(player.name);
+            }
+            add_list.Add(sign * strength);
+        }
+
+        if (action_type == 6)
+        {
+            foreach (GameObject player in list_of_players)
+            {
+                if (sign == 1)
+                {
+                    player.transform.GetComponentInChildren<Health_display>().health_max = player.transform.GetComponentInChildren<Health_display>().health_max * (strength);// * stack_size);
+                }
+                if (sign == -1)
+                {
+                    player.transform.GetComponentInChildren<Health_display>().health_max = player.transform.GetComponentInChildren<Health_display>().health_max / (strength);// * stack_size);
+                }
+            }
+            if (sign == 1)
+            {
+                mult_list.Add(strength);
+            }
+            if (sign == -1)
+            {
+                divide_list.Add(strength);
+            }
+        }
+
+        current_item.times_used += sign;
+    }
+
+ 
     public void spawn_obj(int object_to_spawn)
     {
-        if (target == null)
+        if (target_obj == null)
         {
             var obj = Instantiate(action_object[object_to_spawn], Vector3.zero, Quaternion.identity);
         }
@@ -553,6 +695,53 @@ public class Item_behavior : MonoBehaviour
                 rot = action_object[object_to_spawn].transform.rotation;
             }
             var obj = Instantiate(action_object[object_to_spawn], pos, rot);
+        }
+    }
+    
+    public void gather_groups(string tag, List<GameObject> list_to_target)
+    {
+        //Debug.Log("gathering list of objects with the tag: " + tag + " and sending it to list: " + list_to_target);
+        foreach (GameObject obj in GameObject.FindGameObjectsWithTag(tag))
+        {
+            if (!list_to_target.Contains(obj))
+            {
+                list_to_target.Add(obj);
+            }
+        }
+    }
+
+    public IEnumerator list_time_buffer()
+    {
+        
+        while (starter == true)
+        {
+            gather_groups("player", list_of_players);
+            gather_groups("simple_fishing_rod", simple_rods);
+            
+            
+            yield return new WaitForSeconds(1);
+            //Debug.Log("still going");
+
+        }
+    }
+
+    public void apply_changes_that_have_been_made(GameObject object_to_apply_to)
+    {
+        for (int i = 0; i < add_list.Count; i++)
+        {
+            Debug.Log("times applied: " + i);
+            object_to_apply_to.transform.GetComponentInChildren<Health_display>().health_max = object_to_apply_to.transform.GetComponentInChildren<Health_display>().health_max + (add_list[i]);
+
+        }
+        
+
+        for (int i = 0; i < mult_list.Count; i++)
+        {
+            object_to_apply_to.transform.GetComponentInChildren<Health_display>().health_max = object_to_apply_to.transform.GetComponentInChildren<Health_display>().health_max * (mult_list[i]);
+        }
+        for (int i = 0; i < divide_list.Count; i++)
+        {
+            object_to_apply_to.transform.GetComponentInChildren<Health_display>().health_max = object_to_apply_to.transform.GetComponentInChildren<Health_display>().health_max / (divide_list[i]);
         }
     }
 }

@@ -388,6 +388,7 @@ MonoBehaviour:
   second_child: {fileID: 0}
   triggered: 0
   inventory_slot_position: 0
+  in_inventory: 0
 --- !u!114 &3487498434526123825
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1805,6 +1806,8 @@ MonoBehaviour:
     data: {fileID: 0}
     stackSize: 0
     already_made_item: 0
+    times_used: 0
+    last_item_in_stack: 0
   spot_in_inventory: 0
   player: {fileID: 0}
   already_made_item: 0
@@ -1901,6 +1904,38 @@ MonoBehaviour:
         - m_Target: {fileID: 6707240045324900002}
           m_TargetAssemblyTypeName: Draggable_item, Assembly-CSharp
           m_MethodName: click_detection
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 2
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 6707240045324900002}
+          m_TargetAssemblyTypeName: Draggable_item, Assembly-CSharp
+          m_MethodName: item_clicked_on
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 3
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 6707240045324900002}
+          m_TargetAssemblyTypeName: Draggable_item, Assembly-CSharp
+          m_MethodName: item_clicked_off
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}

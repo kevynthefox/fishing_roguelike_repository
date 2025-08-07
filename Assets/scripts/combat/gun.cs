@@ -284,7 +284,7 @@ public class gun : MonoBehaviour
             {
                 if (targets.Contains(other.transform) == false)
                 {
-                    targets.Add(other.transform);
+                    if (other.GetComponent<heat_seeking_fishles>().enemy == true) targets.Add(other.transform);
                 }
             }
         }
@@ -328,7 +328,7 @@ public class gun : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("target 0 was null");
+                    //Debug.Log("target 0 was null");
                 }    
             }
         }
@@ -351,7 +351,7 @@ public class gun : MonoBehaviour
             {
                 if (targets.Contains(other.transform) == false)
                 {
-                    targets.Add(other.transform);
+                    if (other.GetComponent<heat_seeking_fishles>().enemy == true) targets.Add(other.transform);
                 }
             }
         }

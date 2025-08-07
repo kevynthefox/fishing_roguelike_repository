@@ -30,12 +30,30 @@ public class InventorySystem : MonoBehaviour
     }
 
     public event Action onInventoryChangedEvent;
+    public event Action onInventoryAddedEvent;
+    public event Action onInventoryRemovedEvent;
 
     public void InventoryChanged()
     {
         if (onInventoryChangedEvent != null)
         {
             onInventoryChangedEvent();
+            //Debug.Log("inventory_changed");
+        }
+    }
+    public void InventoryAdded()
+    {
+        if (onInventoryAddedEvent != null)
+        {
+            onInventoryAddedEvent();
+            //Debug.Log("inventory_changed");
+        }
+    }
+    public void InventoryRemoved()
+    {
+        if (onInventoryRemovedEvent != null)
+        {
+            onInventoryRemovedEvent();
             //Debug.Log("inventory_changed");
         }
     }
@@ -55,6 +73,7 @@ public class InventorySystem : MonoBehaviour
         {
             value.AddToStack();
             InventoryChanged();
+            InventoryAdded();
         }
         else
         {
@@ -63,6 +82,7 @@ public class InventorySystem : MonoBehaviour
             //referenceData.position_in_inventory = inventory.IndexOf(newItem);
             m_itemDictionary.Add(referenceData, newItem);
             InventoryChanged();
+            InventoryAdded();
         }
         
     }
@@ -79,6 +99,7 @@ public class InventorySystem : MonoBehaviour
                 m_itemDictionary.Remove(referenceData);
             }
             InventoryChanged();
+            InventoryRemoved();
         }
         
     }
@@ -118,6 +139,8 @@ public class InventoryItem
     public InventoryItemData data;// {  get; private set; }
     public int stackSize;// { get; private set; }
     public bool already_made_item;
+    public int times_used;
+    public bool last_item_in_stack;
 
     public InventoryItem(InventoryItemData source)
     {

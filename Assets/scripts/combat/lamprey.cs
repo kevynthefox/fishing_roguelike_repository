@@ -61,7 +61,7 @@ public class lamprey : MonoBehaviour
                     if (heal_targ.transform.GetComponentInChildren<Health_display>().health < heal_targ.transform.GetComponentInChildren<Health_display>().health_max)
                     {
                         healing = true;
-                        Debug.Log("attempting heal on: " + heal_targ.name);
+                        //Debug.Log("attempting heal on: " + heal_targ.name);
                         heal_targ.transform.GetComponentInChildren<Health_display>().health += drain_rate;
                         health_pool -= drain_rate;
 
@@ -74,7 +74,7 @@ public class lamprey : MonoBehaviour
             {
                 healing = false;
                 health_pool = 0;
-                Debug.Log("can't because they're full.");
+                //Debug.Log("can't because they're full.");
             }
 
         }
@@ -94,7 +94,7 @@ public class lamprey : MonoBehaviour
             {
                 if (targets.Contains(other.transform) == false)
                 {
-                    targets.Add(other.transform);
+                    if (other.GetComponent<heat_seeking_fishles>().enemy == true) targets.Add(other.transform);
                 }
             }
         }
@@ -164,7 +164,7 @@ public class lamprey : MonoBehaviour
 
         if (other.CompareTag("player"))
         {
-            Debug.Log("toucjed anopther player");
+            //Debug.Log("toucjed anopther player");
             if (heal_targets.Contains(other.gameObject) == false)
             {
                 heal_targets.Add(other.gameObject);
@@ -189,7 +189,7 @@ public class lamprey : MonoBehaviour
             {
                 if (targets.Contains(other.transform) == false)
                 {
-                    targets.Add(other.transform);
+                    if (other.GetComponent<heat_seeking_fishles>().enemy == true) targets.Add(other.transform);
                 }
             }
         }
