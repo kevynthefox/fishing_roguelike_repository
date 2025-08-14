@@ -677,7 +677,7 @@ public class Item_behavior : MonoBehaviour
     {
         if (target_obj == null)
         {
-            var obj = Instantiate(action_object[object_to_spawn], Vector3.zero, Quaternion.identity);
+            var obj = Instantiate(action_object[object_to_spawn], Vector3.zero, action_object[object_to_spawn].transform.rotation);
         }
         else
         {

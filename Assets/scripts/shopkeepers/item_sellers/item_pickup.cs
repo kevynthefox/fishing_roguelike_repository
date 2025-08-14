@@ -1,6 +1,6 @@
 using System.Collections;
 using UnityEngine;
-
+using UnityEngine.UI;
 
 public class item_pickup : MonoBehaviour
 {
@@ -15,12 +15,15 @@ public class item_pickup : MonoBehaviour
 
     private GameObject wallet;
 
+
+
     private void Awake()
     {
         wallet = GameObject.Find("bone_pile");
+
     }
 
-    
+ 
 
     public IEnumerator OnMouseOver()
     {

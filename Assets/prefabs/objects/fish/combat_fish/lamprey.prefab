@@ -284,6 +284,7 @@ GameObject:
   - component: {fileID: 7603512632632309544}
   - component: {fileID: 5710606492943243759}
   - component: {fileID: 5394708716028430345}
+  - component: {fileID: -6514455596906672775}
   m_Layer: 0
   m_Name: lamprey
   m_TagString: player
@@ -387,6 +388,18 @@ MonoBehaviour:
   health_object: {fileID: 1063153852059483013}
   invincibility: 0
   trigger_or_collision: 1
+--- !u!114 &-6514455596906672775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5935134533287613416}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5116d367e5b12bf4ab9650a098666fd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &3350444533464748546
 PrefabInstance:
   m_ObjectHideFlags: 0

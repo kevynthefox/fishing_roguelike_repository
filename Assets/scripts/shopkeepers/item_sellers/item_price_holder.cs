@@ -1,4 +1,6 @@
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class item_price_holder : MonoBehaviour
 {
@@ -8,11 +10,43 @@ public class item_price_holder : MonoBehaviour
 
     private GameObject gamesettings;
 
+    public bool buy_or_pickup;
+
+    public Canvas Canvas;
+    public Text cost_text;
+    public GameObject image;
+
+
     private void Start()
     {
+        
+
+
+        Canvas.GetComponent<Canvas>().worldCamera = Camera.main;
+
         gamesettings = GameObject.Find("game_settings");
 
         cost_percent = gamesettings.GetComponent<settings>().cost_percent / 100;
         item_cost = cost_percent * item_original_cost;
+
+        if (buy_or_pickup == false)
+        {
+            this.gameObject.GetComponent<item_pickup>().enabled = false;
+            this.gameObject.GetComponent<item_buying>().enabled = true;
+
+            cost_text.text = item_cost.ToString();
+            image.SetActive(true);
+        }
+
+        if (buy_or_pickup == true)
+        {
+            this.gameObject.GetComponent<item_pickup>().enabled = true;
+            this.gameObject.GetComponent<item_buying>().enabled = false;
+
+            cost_text.text = null;
+            image.SetActive(false);
+        }
     }
+
+    
 }

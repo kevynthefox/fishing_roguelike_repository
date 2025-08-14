@@ -93,7 +93,7 @@ public class funny_money_movement : MonoBehaviour
                 {
                     foreach (GameObject i in GameObject.FindGameObjectsWithTag(shopkeeper.GetComponent<item_manifestation>().specialty))
                     {
-                        i.GetComponent<item_buying>().enabled = false;
+                        i.GetComponent<item_price_holder>().buy_or_pickup = true;
                     }
                     //Debug.Log("active");
                     //absorb_area.SetActive(true);
@@ -132,7 +132,7 @@ public class funny_money_movement : MonoBehaviour
                 {
                     foreach (GameObject i in GameObject.FindGameObjectsWithTag(shopkeeper.GetComponent<item_manifestation>().specialty))
                     {
-                        i.GetComponent<item_buying>().enabled = true;
+                        i.GetComponent<item_price_holder>().buy_or_pickup = false;
                         Debug.Log("setting item buying to true");
                     }
 

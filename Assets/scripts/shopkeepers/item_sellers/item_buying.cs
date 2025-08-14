@@ -17,8 +17,7 @@ public class item_buying : MonoBehaviour
     public float item_cost;
     
 
-    public Canvas Canvas;
-    public Text cost_text;
+    
 
     public GameObject gamesettings;
 
@@ -32,7 +31,7 @@ public class item_buying : MonoBehaviour
         shop = GameObject.Find(group);
         gamesettings = GameObject.Find("game_settings");
 
-        Canvas.GetComponent<Canvas>().worldCamera = Camera.main;
+        
     }
 
     public void LateUpdate()
@@ -41,7 +40,7 @@ public class item_buying : MonoBehaviour
 
         item_cost = GetComponent<item_price_holder>().item_cost;
 
-        cost_text.text = item_cost.ToString();
+        
     }
 
     public IEnumerator OnMouseOver()

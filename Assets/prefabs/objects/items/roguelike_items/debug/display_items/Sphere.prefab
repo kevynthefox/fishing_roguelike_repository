@@ -312,8 +312,6 @@ MonoBehaviour:
   player: {fileID: 0}
   wallet: {fileID: 0}
   item_cost: 0
-  Canvas: {fileID: 5491521973265675718}
-  cost_text: {fileID: 7783496430772982078}
   gamesettings: {fileID: 0}
   shop: {fileID: 0}
   group: debug_items
@@ -330,6 +328,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   left_clicked: 0
+  touched: 0
   self_item: {fileID: 11400000, guid: d3592b41bb925c043b41830fdf76cf98, type: 2}
   amount_of_items: 0
   sell_value: 0
@@ -348,7 +347,10 @@ MonoBehaviour:
   item_cost: 0
   item_original_cost: 5
   cost_percent: 0
-  gamesettings: {fileID: 0}
+  buy_or_pickup: 0
+  Canvas: {fileID: 5491521973265675718}
+  cost_text: {fileID: 7783496430772982078}
+  image: {fileID: 8913586484717960324}
 --- !u!1 &8913586484717960324
 GameObject:
   m_ObjectHideFlags: 0

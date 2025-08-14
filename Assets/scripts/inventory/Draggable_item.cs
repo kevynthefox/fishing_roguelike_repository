@@ -83,10 +83,10 @@ public class Draggable_item : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
     public void drop_item(bool multiple_items_or_not) // false is one item worth several, true is several each worth one.
     {
         Vector3 random_pos_around_player = new Vector3(Random.Range(-5, 5) + player.transform.position.x, 0 + player.transform.position.y, Random.Range(-5, 5) + player.transform.position.z);
-        var spawned_item = Instantiate(self_inventory_item.data.prefab, random_pos_around_player, transform.rotation);
+        var spawned_item = Instantiate(self_inventory_item.data.prefab, random_pos_around_player, self_inventory_item.data.prefab.transform.rotation);
 
-        if (spawned_item.TryGetComponent<item_buying>(out item_buying buying)) buying.enabled = false;
-        spawned_item.GetComponent<item_pickup>().enabled = true;
+        if (spawned_item.TryGetComponent<item_price_holder>(out item_price_holder price_Holder)) price_Holder.buy_or_pickup = true;
+        
 
         /*GameObject bigger_item;
         GameObject smaller_item;*/
