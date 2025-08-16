@@ -73,7 +73,7 @@ public class Wavespawner : MonoBehaviour
             spawning_time = !spawning_time;
         }
 
-        if (Input.GetKey(KeyCode.Insert))
+        if (Input.GetKey(KeyCode.RightControl))
         {
             Debug.Log("adding a debug fish to the wavepsawner");
             Add_dead(fishes[2]);

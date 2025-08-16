@@ -140,7 +140,7 @@ public class Item_behavior : MonoBehaviour
             triggers();
         }
 
-        Debug.Log("been right clicked on = " + been_Right_clicked_on);
+        //Debug.Log("been right clicked on = " + been_Right_clicked_on);
 
 
         if (stack_size == 1)
@@ -613,7 +613,7 @@ public class Item_behavior : MonoBehaviour
             for (int i = 0; i < times_used; i++)
             {
                 passive_action_taker(-1);
-                Debug.Log("control, last item in stack, undoing");
+                //Debug.Log("control, last item in stack, undoing");
             }
             
         }
@@ -622,7 +622,7 @@ public class Item_behavior : MonoBehaviour
         {
             if (times_used == 1 && been_Right_clicked_on)
             {
-                Debug.Log("last item in stack, undoing");
+                //Debug.Log("last item in stack, undoing");
             }
 
             //Debug.Log("stack size was smaller, undoing a thing, over " + "stack size: " + stack_size + " times used: " + times_used);
@@ -729,7 +729,7 @@ public class Item_behavior : MonoBehaviour
     {
         for (int i = 0; i < add_list.Count; i++)
         {
-            Debug.Log("times applied: " + i);
+            //Debug.Log("times applied: " + i);
             object_to_apply_to.transform.GetComponentInChildren<Health_display>().health_max = object_to_apply_to.transform.GetComponentInChildren<Health_display>().health_max + (add_list[i]);
 
         }
