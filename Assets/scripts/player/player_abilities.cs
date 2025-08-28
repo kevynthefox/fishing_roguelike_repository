@@ -147,60 +147,11 @@ public class player_abilities : MonoBehaviour
         if (hitFound)
         {
             looked_at_object = interactionRayHit.transform.gameObject;
-            //hit_shower.transform.position = new Vector3(interactionRayHit.point.x, interactionRayHit.point.y + hit_shower.transform.localScale.y /2, interactionRayHit.point.z); //this part offsets it so that it is on top of the object.
-            //hit_shower.transform.position = new Vector3(interactionRayHit.point.x - hit_shower.transform.localScale.x / 2, interactionRayHit.point.y + hit_shower.transform.localScale.y / 2, interactionRayHit.point.z); //this tries to make it not halfway inside the object, but, it only works in one direction, the other direction is fully in the wall
-            /*speed = Vector3.Distance(interactionRayHit.point, hit_shower.transform.position);
-            hit_shower.transform.position = Vector3.MoveTowards(hit_shower.transform.position, interactionRayHit.point, speed * Time.deltaTime);*/
-
+            
+            hit_shower.transform.position = interactionRayHit.point;
+            hit_shower.transform.rotation = new Quaternion(interactionRayHit.normal.x, interactionRayHit.normal.y, interactionRayHit.normal.z,0);
 
             
-             if (hit_shower.transform.Find("up").GetComponent<basic_trigger_detection_3d>().triggered == true || hit_shower.transform.Find("down").GetComponent<basic_trigger_detection_3d>().triggered == true
-                 || hit_shower.transform.Find("right").GetComponent<basic_trigger_detection_3d>().triggered == true || hit_shower.transform.Find("left").GetComponent<basic_trigger_detection_3d>().triggered == true
-                 || hit_shower.transform.Find("front").GetComponent<basic_trigger_detection_3d>().triggered == true || hit_shower.transform.Find("back").GetComponent<basic_trigger_detection_3d>().triggered == true)
-             {
-                 if (hit_shower.transform.Find("up").GetComponent<basic_trigger_detection_3d>().triggered == true)
-                 {
-                    Debug.Log("pushing down");
-                    hit_shower.transform.position = new Vector3(interactionRayHit.point.x, interactionRayHit.point.y + hit_shower.transform.localScale.y / 2, interactionRayHit.point.z);
-                 }
-                 if (hit_shower.transform.Find("down").GetComponent<basic_trigger_detection_3d>().triggered == true)
-                 {
-                    Debug.Log("pushing up");
-                    hit_shower.transform.position = new Vector3(interactionRayHit.point.x, interactionRayHit.point.y - hit_shower.transform.localScale.y / 2, interactionRayHit.point.z);
-                 }
-                 if (hit_shower.transform.Find("right").GetComponent<basic_trigger_detection_3d>().triggered == true)
-                 {
-                    Debug.Log("pushing left");
-                    hit_shower.transform.position = new Vector3(interactionRayHit.point.x - hit_shower.transform.localScale.x / 2, interactionRayHit.point.y, interactionRayHit.point.z);
-                 }
-                 if (hit_shower.transform.Find("left").GetComponent<basic_trigger_detection_3d>().triggered == true)
-                 {
-                    Debug.Log("pushing right");
-                    hit_shower.transform.position = new Vector3(interactionRayHit.point.x + hit_shower.transform.localScale.x / 2, interactionRayHit.point.y, interactionRayHit.point.z);
-                 }
-
-                 if (hit_shower.transform.Find("front").GetComponent<basic_trigger_detection_3d>().triggered == true)
-                 {
-                    Debug.Log("pushing back");
-                    hit_shower.transform.position = new Vector3(interactionRayHit.point.x, interactionRayHit.point.y, interactionRayHit.point.z - hit_shower.transform.localScale.z / 2);
-                 }
-                 if (hit_shower.transform.Find("back").GetComponent<basic_trigger_detection_3d>().triggered == true)
-                 {
-                    Debug.Log("pushing forward");
-                    hit_shower.transform.position = new Vector3(interactionRayHit.point.x, interactionRayHit.point.y, interactionRayHit.point.z + hit_shower.transform.localScale.z / 2);
-                 }
-             }
-             else
-             {
-                 hit_shower.transform.position = interactionRayHit.point;
-             }
-
-            //hit_shower.transform.position = interactionRayHit.point - hit_shower.transform.localScale/2;
-
-
-            //hit_shower.transform.position = interactionRayHit.point;
-
-            //Debug.Log(looked_at_object.name);
         }
         else
         {
