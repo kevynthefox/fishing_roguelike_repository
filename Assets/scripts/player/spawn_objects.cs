@@ -2,12 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class player_abilities : MonoBehaviour
+public class spawn_objects : MonoBehaviour
 {
     public List<GameObject> spawnable_objects;
 
     public GameObject sight_obj;
     public GameObject looked_at_object;
+    public GameObject hit_shower_holder;
     public GameObject hit_shower;
     public GameObject hit_shower_pos;
 
@@ -52,10 +53,10 @@ public class player_abilities : MonoBehaviour
 
         if (placing > 0)
         {
-            hit_shower.SetActive(true);
+            hit_shower_holder.SetActive(true);
             //hit_shower.transform.rotation = Quaternion.AngleAxis(hit_shower.transform.rotation.y + sight_obj.transform.rotation.y, Vector3.up);
 
-            hit_shower.transform.eulerAngles = new Vector3(0, sight_obj.transform.eulerAngles.y,0 );
+            
 
             InteractRaycast();
             if (Input.GetMouseButtonDown(0))
@@ -64,11 +65,21 @@ public class player_abilities : MonoBehaviour
             }
 
             sizechange();
+            Debug.Log(Input.GetAxis("Mouse ScrollWheel"));
+            if (Input.GetAxis("Mouse ScrollWheel") > 0)
+            {
+                hit_shower.transform.Rotate(new Vector3(0, 1, 0));
+            }
+            if (Input.GetAxis("Mouse ScrollWheel") < 0)
+            {
+                hit_shower.transform.Rotate(new Vector3(0,  -1, 0));
+            }
+            
         }
         else
         {
-            hit_shower.SetActive(false);
-            hit_shower.transform.position = sight_obj.transform.position;
+            hit_shower_holder.SetActive(false);
+            hit_shower_holder.transform.position = sight_obj.transform.position;
         }
 
         //InteractRaycast();
@@ -78,15 +89,15 @@ public class player_abilities : MonoBehaviour
     {
         if (placing == 1)
         {
-            hit_shower.transform.localScale = new Vector3(9, 9, 9);
+            hit_shower_holder.transform.localScale = new Vector3(9, 9, 9);
         }
         if (placing == 2)
         {
-            hit_shower.transform.localScale = new Vector3(3, 3, 3);
+            hit_shower_holder.transform.localScale = new Vector3(3, 3, 3);
         }
         if (placing == 3)
         {
-            hit_shower.transform.localScale = new Vector3(4, 4, 4);
+            hit_shower_holder.transform.localScale = new Vector3(4, 4, 4);
         }
     }
 
@@ -95,7 +106,6 @@ public class player_abilities : MonoBehaviour
         var new_obj = Instantiate(spawnable_objects[object_to_spawn], hit_shower.transform.position, Quaternion.identity);
         new_obj.transform.eulerAngles += hit_shower.transform.eulerAngles;
         new_obj.transform.parent = looked_at_object.transform;
-
         StartCoroutine(spawn_animation(new_obj));
     }
 
@@ -117,18 +127,26 @@ public class player_abilities : MonoBehaviour
             {
                 if (repeat_time < 10)
                 {
-                    object_to_affect.transform.localScale += new Vector3(0.01f, 0.01f, 0.01f);
+                    
+                    SetGlobalScale(object_to_affect.transform, object_to_affect.transform.localScale += new Vector3(0.01f, 0.01f, 0.01f));
                     repeat_time++;
                 }
                 else
                 {
-                    object_to_affect.transform.localScale = Vector3.one;
+                    SetGlobalScale(object_to_affect.transform, Vector3.one);
                     finished = false;
                     finished2 = true;
+                    
                 }
             }
             yield return new WaitForSeconds(0.01f);
         }
+    }
+
+    public void SetGlobalScale(Transform transform, Vector3 globalScale)
+    {
+        transform.localScale = Vector3.one;
+        transform.localScale = new Vector3(globalScale.x / transform.lossyScale.x, globalScale.y / transform.lossyScale.y, globalScale.z / transform.lossyScale.z);
     }
 
     void InteractRaycast()
@@ -148,10 +166,12 @@ public class player_abilities : MonoBehaviour
         {
             looked_at_object = interactionRayHit.transform.gameObject;
             
-            hit_shower.transform.position = interactionRayHit.point;
-            hit_shower.transform.rotation = new Quaternion(interactionRayHit.normal.x, interactionRayHit.normal.y, interactionRayHit.normal.z,0);
+            hit_shower_holder.transform.position = interactionRayHit.point;
+            //Debug.Log(interactionRayHit.normal);
+            hit_shower_holder.transform.rotation = Quaternion.FromToRotation(Vector3.up, interactionRayHit.normal);
 
-            
+
+            //Debug.Log(looked_at_object.name);
         }
         else
         {
