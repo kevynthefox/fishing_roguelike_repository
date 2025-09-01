@@ -54,11 +54,17 @@ public class InventoryItemData : ScriptableObject
 
     public bool inheret_target_rotation;
 
-    //other
-    //public int times_used;
+    //
+
+    //toggling
+    public bool toggleOffOn;
+    public Sprite icon_off;
+
+    //click detection
     public bool been_clicked_on;
     public bool been_Right_clicked_on;
     public bool been_Left_clicked_on;
+    public bool been_middle_clicked_on;
 
     /*
 

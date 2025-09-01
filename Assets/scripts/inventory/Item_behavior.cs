@@ -47,10 +47,12 @@ public class Item_behavior : MonoBehaviour
     public bool triggered;
     public bool auto_triggered;
     public bool passive_triggered;
+    public int toggle_triggered; //0 is no, 1 is off, 2 is on.
 
     public bool over_trigger_prevention;
     public bool over_auto_trigger_prevention;
     public int times_used;
+    public bool over_toggle_prevention;
 
     public InventoryItem current_item;
 
@@ -58,6 +60,12 @@ public class Item_behavior : MonoBehaviour
 
     public bool inheret_target_rotation;
 
+    public bool toggleOffOn;
+
+    //gravity
+    public Vector3 gravity_outcome = new Vector3(0, -9.81f, 0);
+    public bool gravity_OffOn = true;
+    public bool gravity_reverse;
 
 
     //trigger type list
@@ -66,6 +74,7 @@ public class Item_behavior : MonoBehaviour
     //type 2 is activates upon wining fishing.
     //type 3 activates when you push the activation button(same button for all of this type)
     //type 4 is passive(always active when the item is in your inventory. buff removed upon removing the item.
+    //type 5 is togglable;
 
     //action type list
 
@@ -75,6 +84,8 @@ public class Item_behavior : MonoBehaviour
     //type 4 adds to the values on the fishing bar, consumes after.
     //type 5 is a health (additive) increase to all players. (passive?)
     //type 6 is a health (multiplicative) increase to all players.(passive?)
+    //type 7 reverses gravity
+    //type 8 removes gravity
 
 
     //list section
@@ -96,6 +107,10 @@ public class Item_behavior : MonoBehaviour
 
     public void Awake()
     {
+        gravity_outcome = new Vector3(0, -9.81f, 0);
+        gravity_OffOn = true;
+
+
         player = GameObject.Find("player");
         object_holder = GameObject.Find("object_holder_object");
         wavespawner = GameObject.Find("fish_wave_spawner");
@@ -133,6 +148,14 @@ public class Item_behavior : MonoBehaviour
 
             times_used = item.times_used;
 
+            if (item.data.been_middle_clicked_on == true && over_toggle_prevention == false && Input.GetMouseButtonDown(2))
+            {
+                item.data.toggleOffOn = !item.data.toggleOffOn;
+                over_toggle_prevention = true;
+                StartCoroutine(timed_untoggler());
+            }
+            toggleOffOn = item.data.toggleOffOn;
+
             been_clicked_on = item.data.been_clicked_on;
             been_Left_clicked_on = item.data.been_Left_clicked_on;
             been_Right_clicked_on = item.data.been_Right_clicked_on;
@@ -151,7 +174,24 @@ public class Item_behavior : MonoBehaviour
         {
             current_item.last_item_in_stack = false;
         }
+
+        if (gravity_OffOn == true)
+        {
+            if (gravity_reverse == true)
+            {
+                Physics.gravity = -gravity_outcome;
+            }
+            if (gravity_reverse == false)
+            {
+                Physics.gravity = gravity_outcome;
+            }
+        }
+        else
+        {
+            Physics.gravity = gravity_outcome * 0;
+        }
     }
+
 
     public void triggers()
     {
@@ -205,6 +245,19 @@ public class Item_behavior : MonoBehaviour
             passive_triggered = true;
         }
 
+        if (trigger_type == 5)
+        {
+            //it is done like this because the effect needs to be reversed when the item is turned off.
+            if (toggleOffOn == true)
+            {
+                toggle_triggered = 2;
+            }
+            if (toggleOffOn == false)
+            {
+                toggle_triggered = 1;
+            }
+        }
+
         if (triggered == true)
         {
             action_taker();
@@ -224,8 +277,11 @@ public class Item_behavior : MonoBehaviour
             //Debug.Log("passive action triggering");
             passive_action_doer();
         }
-        
 
+        if (toggle_triggered != 0)
+        {
+            action_taker();
+        }
     }
 
     
@@ -586,8 +642,23 @@ public class Item_behavior : MonoBehaviour
 
             }
 
-            
+            if (action_type == 7 && toggle_triggered == 2)
+            {
+                gravity_reverse = true;
+            }
+            if (action_type == 7 && toggle_triggered == 1)
+            {
+                gravity_reverse = false;
+            }
 
+            if (action_type == 8 && toggle_triggered == 2)
+            {
+                gravity_OffOn = false;
+            }
+            if (action_type == 8 && toggle_triggered == 1)
+            {
+                gravity_OffOn = true;
+            }
 
             
             current_item.times_used = i + 1;
@@ -743,5 +814,13 @@ public class Item_behavior : MonoBehaviour
         {
             object_to_apply_to.transform.GetComponentInChildren<Health_display>().health_max = object_to_apply_to.transform.GetComponentInChildren<Health_display>().health_max / (divide_list[i]);
         }
+    }
+
+
+    public IEnumerator timed_untoggler()
+    {
+        InventorySystem.current.force_change = true;
+        yield return new WaitForSeconds(0.5f);
+        over_toggle_prevention = false;
     }
 }

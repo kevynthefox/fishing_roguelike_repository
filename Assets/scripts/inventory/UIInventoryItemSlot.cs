@@ -21,7 +21,21 @@ public class UIInventoryItemSlot : MonoBehaviour
 
     public void Set(InventoryItem item)
     {
-        m_icon.sprite = item.data.icon;
+        if (item.data.trigger_type == 5)
+        {
+            if (item.data.toggleOffOn == true)
+            {
+                m_icon.sprite = item.data.icon;
+            }
+            else
+            {
+                m_icon.sprite = item.data.icon_off;
+            }
+        }
+        else
+        {
+            m_icon.sprite = item.data.icon;
+        }
         m_label.text = item.data.displayName;
         if (item.stackSize <= 1)
         {

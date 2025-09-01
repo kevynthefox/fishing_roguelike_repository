@@ -18,6 +18,7 @@ public class Draggable_item : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
     public GameObject player;
 
     public bool already_made_item;
+    public bool toggleOffOn;
 
     public void Awake()
     {
@@ -167,13 +168,16 @@ public class Draggable_item : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
         self_inventory_item.data.been_clicked_on = true;
         if (Input.GetMouseButtonDown(0)) { self_inventory_item.data.been_Left_clicked_on = true; }
         if (Input.GetMouseButtonDown(1)) { self_inventory_item.data.been_Right_clicked_on = true; }
+        if (Input.GetMouseButtonDown(2)) { self_inventory_item.data.been_middle_clicked_on = true; Debug.Log("middle clicked");}
     }
 
     public void item_clicked_off()
     {
         self_inventory_item.data.been_clicked_on = false;
         self_inventory_item.data.been_Left_clicked_on = false; 
-        self_inventory_item.data.been_Right_clicked_on = false; 
+        self_inventory_item.data.been_Right_clicked_on = false;
+        self_inventory_item.data.been_middle_clicked_on = false; Debug.Log("UN middle clicked");
     }
+
     #endregion
 }
