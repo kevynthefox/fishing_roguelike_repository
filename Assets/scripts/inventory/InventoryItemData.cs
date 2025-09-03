@@ -57,6 +57,7 @@ public class InventoryItemData : ScriptableObject
     //
 
     //toggling
+    public bool toggleable;
     public bool toggleOffOn;
     public Sprite icon_off;
 

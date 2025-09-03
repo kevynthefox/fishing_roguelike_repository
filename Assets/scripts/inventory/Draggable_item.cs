@@ -1,4 +1,6 @@
+using System.Collections;
 using Unity.VisualScripting;
+using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -165,10 +167,15 @@ public class Draggable_item : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
 
     public void item_clicked_on()
     {
-        self_inventory_item.data.been_clicked_on = true;
+        
         if (Input.GetMouseButtonDown(0)) { self_inventory_item.data.been_Left_clicked_on = true; }
         if (Input.GetMouseButtonDown(1)) { self_inventory_item.data.been_Right_clicked_on = true; }
-        if (Input.GetMouseButtonDown(2)) { self_inventory_item.data.been_middle_clicked_on = true; Debug.Log("middle clicked");}
+        if (Input.GetMouseButtonDown(2) && self_inventory_item.data.toggleable == true) { self_inventory_item.data.been_middle_clicked_on = true; Debug.Log("middle clicked"); StartCoroutine(middleclickFalse());
+        }
+        else { self_inventory_item.data.been_clicked_on = true; }
+
+        //Invoke("item_clicked_off", 1f);
+        //item_clicked_off();
     }
 
     public void item_clicked_off()
@@ -177,6 +184,12 @@ public class Draggable_item : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
         self_inventory_item.data.been_Left_clicked_on = false; 
         self_inventory_item.data.been_Right_clicked_on = false;
         self_inventory_item.data.been_middle_clicked_on = false; Debug.Log("UN middle clicked");
+    }
+
+    public IEnumerator middleclickFalse()
+    {
+        yield return new WaitForSeconds(1);
+        self_inventory_item.data.been_middle_clicked_on = false; Debug.Log("UN middle clicked(via numerator)");
     }
 
     #endregion

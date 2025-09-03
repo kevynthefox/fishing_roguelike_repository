@@ -148,11 +148,11 @@ public class Item_behavior : MonoBehaviour
 
             times_used = item.times_used;
 
-            if (item.data.been_middle_clicked_on == true && over_toggle_prevention == false && Input.GetMouseButtonDown(2))
+            if (item.data.been_middle_clicked_on == true && over_toggle_prevention == false)// && Input.GetMouseButtonDown(2))
             {
                 item.data.toggleOffOn = !item.data.toggleOffOn;
                 over_toggle_prevention = true;
-                StartCoroutine(timed_untoggler());
+                StartCoroutine(timed_untoggler(item));
             }
             toggleOffOn = item.data.toggleOffOn;
 
@@ -817,9 +817,10 @@ public class Item_behavior : MonoBehaviour
     }
 
 
-    public IEnumerator timed_untoggler()
+    public IEnumerator timed_untoggler(InventoryItem item)
     {
         InventorySystem.current.force_change = true;
+        item.data.been_middle_clicked_on = false;
         yield return new WaitForSeconds(0.5f);
         over_toggle_prevention = false;
     }

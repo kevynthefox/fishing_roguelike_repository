@@ -659,6 +659,8 @@ GameObject:
   - component: {fileID: 305670024}
   - component: {fileID: 305670023}
   - component: {fileID: 305670022}
+  - component: {fileID: 305670025}
+  - component: {fileID: 305670026}
   m_Layer: 0
   m_Name: boat
   m_TagString: Untagged
@@ -751,6 +753,42 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 10, y: 3, z: 20}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &305670025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 305670020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4ac1ae7c96e26445a0fe132b8631925, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  camera_holder: {fileID: 0}
+  Camera: {fileID: 0}
+  boat_visible: {fileID: 0}
+  direction: {x: 0, y: 0, z: 0}
+  direction_modified: {x: 0, y: 0, z: 0}
+  player_speed: 0
+  boat_speed: 100
+  boat_yes: 0
+--- !u!114 &305670026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 305670020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffd7c7e3676ce2944a1946a22037eaf9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  camera_holder: {fileID: 0}
+  Camera: {fileID: 0}
+  cameraRelativeMovement: {x: 0, y: 0, z: 0}
+  in_boat: 0
 --- !u!1 &345586266 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 88ec0fd88a3f86b449927ebc855d72a2, type: 3}
@@ -2046,8 +2084,6 @@ GameObject:
   - component: {fileID: 894387655}
   - component: {fileID: 894387654}
   - component: {fileID: 894387653}
-  - component: {fileID: 894387656}
-  - component: {fileID: 894387659}
   - component: {fileID: 894387658}
   m_Layer: 0
   m_Name: boat
@@ -2129,26 +2165,6 @@ Transform:
   - {fileID: 710590389}
   m_Father: {fileID: 305670021}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &894387656
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 894387650}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a4ac1ae7c96e26445a0fe132b8631925, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  camera_holder: {fileID: 0}
-  Camera: {fileID: 0}
-  boat_visible: {fileID: 0}
-  direction: {x: 0, y: 0, z: 0}
-  direction_modified: {x: 0, y: 0, z: 0}
-  player_speed: 0
-  boat_speed: 100
-  boat_yes: 0
 --- !u!114 &894387658
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2170,22 +2186,6 @@ MonoBehaviour:
   Camera: {fileID: 0}
   cameraRelativeMovement: {x: 0, y: 0, z: 0}
   movement_target: {fileID: 0}
---- !u!114 &894387659
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 894387650}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ffd7c7e3676ce2944a1946a22037eaf9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  camera_holder: {fileID: 0}
-  Camera: {fileID: 0}
-  cameraRelativeMovement: {x: 0, y: 0, z: 0}
-  in_boat: 0
 --- !u!1 &936699814
 GameObject:
   m_ObjectHideFlags: 0

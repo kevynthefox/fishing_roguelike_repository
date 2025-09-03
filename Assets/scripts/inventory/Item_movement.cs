@@ -23,6 +23,6 @@ public class Item_movement : MonoBehaviour
             out position);
 
         transform.position = canvas.transform.TransformPoint(position);
-        
+        Debug.Log("drag handler active");
     }
 }

@@ -43,12 +43,20 @@ public class item_pickup : MonoBehaviour
                     
                     for (int i = 0; i <= amount_of_items; i++)
                     {
+                        if (self_item.toggleable == true)
+                        {
+                            self_item.toggleOffOn = false;
+                        }
                         InventorySystem.current.Add(this.self_item);
                         amount_of_items--;
                     }
                 }
                 else
                 {
+                    if (self_item.toggleable == true)
+                    {
+                        self_item.toggleOffOn = false;
+                    }
                     InventorySystem.current.Add(this.self_item);
                     amount_of_items--;
                 }
@@ -91,12 +99,20 @@ public class item_pickup : MonoBehaviour
                 {
                     for (int i = 0; i <= amount_of_items; i++)
                     {
+                        if (self_item.toggleable == true)
+                        {
+                            self_item.toggleOffOn = false;
+                        }
                         InventorySystem.current.Add(this.self_item);
                         amount_of_items--;
                     }
                 }
                 else
                 {
+                    if (self_item.toggleable == true)
+                    {
+                        self_item.toggleOffOn = false;
+                    }
                     InventorySystem.current.Add(this.self_item);
                     amount_of_items--;
                 }

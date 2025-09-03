@@ -56,6 +56,10 @@ public class item_buying : MonoBehaviour
                     {
                         if (shop != null)
                         {
+                            if (self_item.toggleable == true)
+                            {
+                                self_item.toggleOffOn = false;
+                            }
                             shop.GetComponent<item_manifestation>().money_owed += item_cost;
 
                             shop.GetComponent<item_manifestation>().items_owed.Add(self_item);
