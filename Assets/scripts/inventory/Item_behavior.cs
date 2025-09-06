@@ -141,7 +141,7 @@ public class Item_behavior : MonoBehaviour
             enemy_or_player = item.data.enemy_or_player;
             stack_size = item.stackSize;
 
-            current_item = item;
+            current_item = item; Debug.Log(current_item.data.name);
 
             target_vicinity = item.data.target_vicinity;
             inheret_target_rotation = item.data.inheret_target_rotation;
@@ -299,14 +299,17 @@ public class Item_behavior : MonoBehaviour
             {
                 if (auto_triggered == false)
                 {
-                    float bar_pos = fishing_controller.GetComponent<fishing_script>().bar_pos;
-                    if (0.00f < bar_pos && bar_pos < 0.14f) spawn_obj(0);
-                    if (0.14f < bar_pos && bar_pos < 0.28f) spawn_obj(1);
-                    if (0.28f < bar_pos && bar_pos < 0.42f) spawn_obj(2);
-                    if (0.42f < bar_pos && bar_pos < 0.56f) spawn_obj(3);
-                    if (0.56f < bar_pos && bar_pos < 0.70f) spawn_obj(4);
-                    if (0.70f < bar_pos && bar_pos < 0.84f) spawn_obj(5);
-                    if (0.84f < bar_pos && bar_pos < 1.00f) spawn_obj(6);
+                    if (triggered == true)
+                    {
+                        float bar_pos = fishing_controller.GetComponent<fishing_script>().bar_pos;
+                        if (0.00f < bar_pos && bar_pos < 0.14f) spawn_obj(0);
+                        if (0.14f < bar_pos && bar_pos < 0.28f) spawn_obj(1);
+                        if (0.28f < bar_pos && bar_pos < 0.42f) spawn_obj(2);
+                        if (0.42f < bar_pos && bar_pos < 0.56f) spawn_obj(3);
+                        if (0.56f < bar_pos && bar_pos < 0.70f) spawn_obj(4);
+                        if (0.70f < bar_pos && bar_pos < 0.84f) spawn_obj(5);
+                        if (0.84f < bar_pos && bar_pos < 1.00f) spawn_obj(6);
+                    }
                 }
                 else
                 {
@@ -819,7 +822,7 @@ public class Item_behavior : MonoBehaviour
 
     public IEnumerator timed_untoggler(InventoryItem item)
     {
-        InventorySystem.current.force_change = true;
+        InventorySystem.current.force_change = true; Debug.Log("change forced");
         item.data.been_middle_clicked_on = false;
         yield return new WaitForSeconds(0.5f);
         over_toggle_prevention = false;
