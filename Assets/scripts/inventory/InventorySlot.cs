@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class InventorySlot : MonoBehaviour, IDropHandler
+public class InventorySlot : MonoBehaviour//, IDropHandler
 {
     /*public GameObject left_collider;
     public GameObject top_collider;
@@ -14,10 +14,10 @@ public class InventorySlot : MonoBehaviour, IDropHandler
     public GameObject bottom_slot;
     */
 
-    public Transform parent_of_dropped_object;
+    //public Transform parent_of_dropped_object;
 
-    public GameObject first_child;
-    public GameObject second_child;
+    public GameObject child;
+    //public GameObject second_child;
 
     //public int triggered_area; // 1 left, 2 top, 3 right, 4 bottom 
 
@@ -27,9 +27,9 @@ public class InventorySlot : MonoBehaviour, IDropHandler
 
     public bool in_inventory;
 
-    
 
-    public void OnDrop(PointerEventData eventData)
+    #region dragging_items[depreceated]
+    /*public void OnDrop(PointerEventData eventData)
     {
         //Debug.Log("dropped");
         GameObject dropped = eventData.pointerDrag;
@@ -40,7 +40,7 @@ public class InventorySlot : MonoBehaviour, IDropHandler
         draggable_Item.parentAfterDrag = transform;
         
         draggable_Item.current_parent = transform;
-        second_child = dropped;
+        //second_child = dropped;
 
 
         //relocate(parent_of_dropped_object);
@@ -49,9 +49,9 @@ public class InventorySlot : MonoBehaviour, IDropHandler
         //{
             
         //}
-    }
+    }*/
 
-    void push(GameObject touched_obj)
+    /*void push(GameObject touched_obj)
     {
         Draggable_item draggable_Item = touched_obj.GetComponent<Draggable_item>();
 
@@ -60,34 +60,40 @@ public class InventorySlot : MonoBehaviour, IDropHandler
         draggable_Item.parentAfterDrag = transform;
 
         draggable_Item.current_parent = transform;
-        second_child = touched_obj;
+        //second_child = touched_obj;
 
-        relocate(parent_of_dropped_object);
-    }
+        //second_child.GetComponent<Rigidbody2D>().addforce
 
-    public void OnTriggerEnter2D(Collider2D other)
+        //relocate(parent_of_dropped_object);
+    }*/
+
+    /*public void OnTriggerEnter2D(Collider2D other)
     {
-        //Debug.Log("touched something: " + other.gameObject.name);
-        if (other.CompareTag("item"))
+        if (in_inventory == true)
         {
-            //Debug.Log("touching an item");
-            if (other.gameObject != first_child)
+            Debug.Log("inventory is open");
+            //Debug.Log("touched something: " + other.gameObject.name);
+            if (other.CompareTag("item"))
             {
-                //Debug.Log("touching a different item");
-                //relocate(other.GetComponent<Draggable_item>().current_parent);
-                if (in_inventory == true)
+                Debug.Log("touching an item");
+                /*if (other.gameObject != first_child)
                 {
-                    push(other.gameObject);
-                }
-            }
-            
-        }
-    }
+                    Debug.Log("touching a different item");
+                    //relocate(other.GetComponent<Draggable_item>().current_parent);
 
-    public void OnTriggerStay2D(Collider2D other)
+                    
+                    push(other.gameObject);
+
+                //}
+
+            }
+        }
+    }*/
+
+    /*public void OnTriggerStay2D(Collider2D other)
     {
         //Debug.Log("touching anything" + other.gameObject.name);
-        /*if (other.gameObject.tag == "item_slot")
+        if (other.gameObject.tag == "item_slot")
         {
             if (left_collider.GetComponent<basic_mouseover_detection>().triggered == true)
             {
@@ -105,33 +111,46 @@ public class InventorySlot : MonoBehaviour, IDropHandler
             {
                 bottom_slot = other.gameObject;
             }
-        }*/
+        }
 
         
         
-    }
+    }*/
 
-    void relocate(Transform new_location)
+    /*void relocate(Transform new_location)
     {
+        first_child.name = "item " + new_location.GetComponent<InventorySlot>().inventory_slot_position.ToString();
         first_child.GetComponent<Draggable_item>().parentAfterDrag = new_location;
-        parent_of_dropped_object.GetComponent<InventorySlot>().first_child = first_child;
+        new_location.GetComponent<InventorySlot>().first_child = first_child;
         first_child.GetComponent<Draggable_item>().relocate();
         //InventorySystem.current.swap_position(first_child.GetComponent<Draggable_item>().spot_in_inventory, second_child.GetComponent<Draggable_item>().spot_in_inventory);//,first_child,second_child);
         //InventorySystem.current.update_position(inventory_slot_position,first_child.GetComponent<Draggable_item>().self_inventory_item);
 
-        
-        first_child = second_child;
-        second_child = null;
-        //Debug.Log("set current child's parent to the other one");
-    }
 
+        //first_child = second_child;
+        first_child = this.transform.GetChild(0).gameObject;
+        new_location.GetComponent<InventorySlot>().first_child = new_location.transform.GetChild(0).gameObject;
+        second_child.GetComponent<Draggable_item>().spot_in_inventory = inventory_slot_position;
+        second_child = null;
+
+        Debug.Log("slot [" +inventory_slot_position + "]'s real child is: " + transform.GetChild(0).name);
+        //if (first_child != transform.GetChild(0))
+        //{
+        //    Debug.Log("my child is someone elses");
+        //    first_child = transform.GetChild(0).gameObject;
+        //}
+        //Debug.Log("set current child's parent to the other one");
+    }*/
+    #endregion
     private void Update()
     {
+        if (Cursor.lockState == CursorLockMode.None) { in_inventory = true; }
+        if (Cursor.lockState == CursorLockMode.Locked) { in_inventory = false; }
         if (Input.GetKey(KeyCode.Tab))
         {
-            in_inventory = !in_inventory;
-            InventorySystem.current.put_in_right_place(inventory_slot_position, first_child.GetComponent<Draggable_item>().self_inventory_item);
+            //InventorySystem.current.put_in_right_place(inventory_slot_position, first_child.GetComponent<Draggable_item>().self_inventory_item);
             Debug.Log("put in right place");
         }
+        
     }
 }

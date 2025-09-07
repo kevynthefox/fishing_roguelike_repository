@@ -12,7 +12,8 @@ public class Item_movement : MonoBehaviour
         canvas = GameObject.Find("UI").GetComponent<Canvas>();
     }
 
-    public void DragHandler(BaseEventData data)
+    #region dragging_items[depreceated]
+    /*public void DragHandler(BaseEventData data)
     {
         PointerEventData pointerData = (PointerEventData)data;
         Vector2 position;
@@ -24,5 +25,6 @@ public class Item_movement : MonoBehaviour
 
         transform.position = canvas.transform.TransformPoint(position);
         Debug.Log("drag handler active");
-    }
+    }*/
+    #endregion
 }

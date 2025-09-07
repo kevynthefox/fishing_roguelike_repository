@@ -141,7 +141,7 @@ public class Item_behavior : MonoBehaviour
             enemy_or_player = item.data.enemy_or_player;
             stack_size = item.stackSize;
 
-            current_item = item; Debug.Log(current_item.data.name);
+            current_item = item; //Debug.Log(current_item.data.name);
 
             target_vicinity = item.data.target_vicinity;
             inheret_target_rotation = item.data.inheret_target_rotation;

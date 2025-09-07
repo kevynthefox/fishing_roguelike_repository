@@ -9,7 +9,7 @@ public class inventory_ui_manager : MonoBehaviour
     public GameObject UIInventoryItemSlot;
     public GameObject m_slotPrefab;
 
-    public int slots_made;
+    //public int slots_made;
     public void Start()
     {
         //GameEvents.current.InventoryChanged += onInventoryChangedEvent;

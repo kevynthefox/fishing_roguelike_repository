@@ -1,17 +1,18 @@
 using System.Collections;
+using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class Draggable_item : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+public class Draggable_item : MonoBehaviour//, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     public Image image;
-    public Transform parentAfterDrag;
-    public Transform inventory_bar;
+    //public Transform parentAfterDrag;
+    //public Transform inventory_bar;
 
-    public Transform current_parent;
+    //public Transform current_parent;
 
     public InventoryItem self_inventory_item;
 
@@ -22,13 +23,15 @@ public class Draggable_item : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
     public bool already_made_item;
     public bool toggleOffOn;
 
+
     public void Awake()
     {
-        inventory_bar = GameObject.Find("inventory_bar").transform;
+        //inventory_bar = GameObject.Find("inventory_bar").transform;
         player = GameObject.Find("player");
+
     }
-    
-    public void OnBeginDrag(PointerEventData eventData)
+    #region dragging_items[depreceated]
+    /*public void OnBeginDrag(PointerEventData eventData)
     {
         //Debug.Log("Begin drag");
         parentAfterDrag = transform.parent;
@@ -47,7 +50,7 @@ public class Draggable_item : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
     {
         //Debug.Log("End drag");
         transform.SetParent(parentAfterDrag);
-        spot_in_inventory = (parentAfterDrag.GetComponent<InventorySlot>().inventory_slot_position);
+        spot_in_inventory = (transform.parent.GetComponent<InventorySlot>().inventory_slot_position);
         image.raycastTarget = true;
     }
 
@@ -56,8 +59,26 @@ public class Draggable_item : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
     public void relocate()
     {
         transform.SetParent(parentAfterDrag);
+        
         image.raycastTarget = true;
+    }*/
+    #endregion
+    #region teleporting_items
+    private void Update()
+    {
+        //if (spot_in_inventory >= 0)
+        //{
+            if (self_inventory_item.data.been_Left_clicked_on == true)
+            {
+                if (inventory_controller.current.hand_increment <= 1)
+                {
+                    transform.parent = inventory_controller.current.hands[inventory_controller.current.hand_increment].transform;
+                    inventory_controller.current.hand_increment++;
+                }
+            }
+        //}
     }
+    #endregion
     #region item_dropping
     public void click_detection()
     {
@@ -167,7 +188,7 @@ public class Draggable_item : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
 
     public void item_clicked_on()
     {
-        
+        Debug.Log("clicked on");
         if (Input.GetMouseButtonDown(0)) { self_inventory_item.data.been_Left_clicked_on = true; }
         if (Input.GetMouseButtonDown(1)) { self_inventory_item.data.been_Right_clicked_on = true; }
         if (Input.GetMouseButtonDown(2) && self_inventory_item.data.toggleable == true) { self_inventory_item.data.been_middle_clicked_on = true; Debug.Log("middle clicked"); StartCoroutine(middleclickFalse());
@@ -180,6 +201,7 @@ public class Draggable_item : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
 
     public void item_clicked_off()
     {
+        Debug.Log("clicked off");
         self_inventory_item.data.been_clicked_on = false;
         self_inventory_item.data.been_Left_clicked_on = false; 
         self_inventory_item.data.been_Right_clicked_on = false;
