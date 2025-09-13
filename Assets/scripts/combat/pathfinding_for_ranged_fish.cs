@@ -57,18 +57,21 @@ public class behavior_for_ranged_fish : MonoBehaviour
 
     private void Update()
     {
-        //check for sight and attack range
-        playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
-        playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
-
-        if (agent != null)
+        if (Starter.current.update == true)
         {
-            if (!playerInSightRange && !playerInAttackRange) patroling();
-            if (playerInSightRange && !playerInAttackRange) ChasePlayer();
-        }
-        if (playerInSightRange && playerInAttackRange) AttackPlayer();
+            //check for sight and attack range
+            playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
+            playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
 
-         
+            if (agent != null)
+            {
+                if (!playerInSightRange && !playerInAttackRange) patroling();
+                if (playerInSightRange && !playerInAttackRange) ChasePlayer();
+            }
+            if (playerInSightRange && playerInAttackRange) AttackPlayer();
+
+
+        }
     }
     #region pathfinding
     private void patroling()

@@ -20,7 +20,7 @@ public class funny_money_movement : MonoBehaviour
     public GameObject shopkeeper;
 
 
-    public bool starter;
+    //public bool starter;
 
 
     public float money_owed;
@@ -30,7 +30,7 @@ public class funny_money_movement : MonoBehaviour
 
     public void Start()
     {
-        starter = true;
+        //starter = true;
 
         StartCoroutine(spawn_logic());
         StartCoroutine(click_detection());
@@ -46,7 +46,7 @@ public class funny_money_movement : MonoBehaviour
 
     public IEnumerator click_detection()
     {
-        while (starter == true)
+        while (Starter.current.starter == true)
         {
             if (self.GetComponent<object_click_detector>().left_clicked == true)
             {
@@ -84,7 +84,7 @@ public class funny_money_movement : MonoBehaviour
             Vector3 spawnpos = new Vector3(spawn_area.transform.position.x, spawn_area.transform.position.y * 2, spawn_area.transform.position.z);
             //Quaternion rotation = new Quaterion(spawn_area.transform.rotation.x, spawn_area.transform.rotation.y, spawn_area.transform.rotation.z, 0f);
         } */
-        while (starter == true)
+        while (Starter.current.starter == true)
         {
             if (shopkeeper.GetComponent<item_manifestation>().checking_out == true || last_clicked == reroll)
             {

@@ -40,45 +40,48 @@ public class Health_display : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Starter.current.update == true)
+        {
 
-        if (is_player == true)
-        {
-            if (health <= 0)
+            if (is_player == true)
             {
-                dead = true;
-                death();
-                //put something here to restart the whole scene
-            }
-        }
-        else
-        {
-            if (health <= 0)
-            {
-                if (is_turret == true)
+                if (health <= 0)
                 {
-                    Wavespawner.current.targets.Remove(target);
+                    dead = true;
+                    death();
+                    //put something here to restart the whole scene
                 }
-                Destroy(target);
             }
-        }
-        if (health >= health_max)
-        {
-            health = health_max;
-        }
+            else
+            {
+                if (health <= 0)
+                {
+                    if (is_turret == true)
+                    {
+                        Wavespawner.current.targets.Remove(target);
+                    }
+                    Destroy(target);
+                }
+            }
+            if (health >= health_max)
+            {
+                health = health_max;
+            }
 
 
-        
-        /*if (health_max_buffed > health_max)
-        {
-            healthText.text = "health : " + health + " / " + health_max_buffed;
-            HealthBar.fillAmount = health / health_max_buffed;
-        }
-        else
-        {*/
-        healthText.text = "health : " + health + " / " + health_max;
-        HealthBar.fillAmount = health / health_max;
-        //}
 
+            /*if (health_max_buffed > health_max)
+            {
+                healthText.text = "health : " + health + " / " + health_max_buffed;
+                HealthBar.fillAmount = health / health_max_buffed;
+            }
+            else
+            {*/
+            healthText.text = "health : " + health + " / " + health_max;
+            HealthBar.fillAmount = health / health_max;
+            //}
+
+        }
     }
 
     public IEnumerator OnTriggerEnter(Collider other)

@@ -71,14 +71,17 @@ public class panel_interaction : MonoBehaviour
 
     public void Update()
     {
-        panel_contents.SetActive(content_state);
-        if (content_state == true)
+        if (Starter.current.update == true)
         {
-            tab.transform.SetAsLastSibling();
-        }
-        else
-        {
-            tab.transform.SetAsFirstSibling();
+            panel_contents.SetActive(content_state);
+            if (content_state == true)
+            {
+                tab.transform.SetAsLastSibling();
+            }
+            else
+            {
+                tab.transform.SetAsFirstSibling();
+            }
         }
     }
 

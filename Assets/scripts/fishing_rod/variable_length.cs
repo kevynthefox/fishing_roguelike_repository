@@ -30,53 +30,56 @@ public class variable_length : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        GetComponent<SpringJoint>().maxDistance = distance / 10;
-        GetComponent<Rigidbody>().useGravity = enabled_fishing;
-        velocity = GetComponent<Rigidbody>().linearVelocity;
-        GetComponent<SpringJoint>().spring = 1000 - (distance * 1);
-        GetComponent<SpringJoint>().damper = 1000 + (distance * 1);
-        GetComponent<BoxCollider>().enabled = enabled_fishing;
-
-        enabled_fishing = master.GetComponent<variable_length>().enabled_fishing;
-
-        if (enabled_fishing == true)
+        if (Starter.current.update == true)
         {
-            if (Input.GetMouseButton(0)) //(Input.GetAxis("Mouse ScrollWheel") > 0f)
+            GetComponent<SpringJoint>().maxDistance = distance / 10;
+            GetComponent<Rigidbody>().useGravity = enabled_fishing;
+            velocity = GetComponent<Rigidbody>().linearVelocity;
+            GetComponent<SpringJoint>().spring = 1000 - (distance * 1);
+            GetComponent<SpringJoint>().damper = 1000 + (distance * 1);
+            GetComponent<BoxCollider>().enabled = enabled_fishing;
+
+            enabled_fishing = master.GetComponent<variable_length>().enabled_fishing;
+
+            if (enabled_fishing == true)
             {
-                distance += 1;
+                if (Input.GetMouseButton(0)) //(Input.GetAxis("Mouse ScrollWheel") > 0f)
+                {
+                    distance += 1;
+                }
+
+                if (Input.GetMouseButton(1)) //(Input.GetAxis("Mouse ScrollWheel") < 0f)
+                {
+                    distance -= 1;
+                }
             }
 
-            if (Input.GetMouseButton(1)) //(Input.GetAxis("Mouse ScrollWheel") < 0f)
+            if (Input.GetKeyDown(KeyCode.E))
             {
-                distance -= 1;
+                enabled_fishing = !enabled_fishing;
+
+                //GetComponent<Rigidbody>().isKinematic = !enabled_fishing;
             }
-        }
 
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            enabled_fishing = !enabled_fishing;
-            
-            //GetComponent<Rigidbody>().isKinematic = !enabled_fishing;
-        }
+            if (enabled_fishing == false)
+            {
+                //GetComponent<Rigidbody>().velocity = Vector3.zero;
+                distance = 0;
+                fishing_bar.GetComponent<fishing_bar>().success = false;
+                //fishing_bar.GetComponent<fishing_bar>().failure = true;
 
-        if (enabled_fishing == false)
-        {
-            //GetComponent<Rigidbody>().velocity = Vector3.zero;
-            distance = 0;
-            fishing_bar.GetComponent<fishing_bar>().success = false;
-            //fishing_bar.GetComponent<fishing_bar>().failure = true;
-            
-        }
-        
-        GetComponent<return_to_start>().enabled = !enabled_fishing;
+            }
 
-        bobber_returned = bobber.GetComponent<bobber_impact>().returned;
-        
-        if (bobber_returned == true)
-        {
-            StartCoroutine(wait_then_reset());
-        }
+            GetComponent<return_to_start>().enabled = !enabled_fishing;
 
+            bobber_returned = bobber.GetComponent<bobber_impact>().returned;
+
+            if (bobber_returned == true)
+            {
+                StartCoroutine(wait_then_reset());
+            }
+
+        }
     }
 
     IEnumerator wait_then_reset()

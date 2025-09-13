@@ -33,15 +33,7 @@ public class projectile_controller : MonoBehaviour, IPoolable
         s_to_m = speed / rb.mass;
     }
 
-    void Start()
-    {
-        
-    }
-
-    void Update()
-    {
-        
-    }
+    
 
     public IEnumerator OnCollisionEnter(Collision collision)
     {

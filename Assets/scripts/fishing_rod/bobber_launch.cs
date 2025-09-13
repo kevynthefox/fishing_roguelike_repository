@@ -36,27 +36,30 @@ public class bobber_launch : MonoBehaviour
 
     public void Update()
     {
-        //factor = bone.GetComponent<variable_length>().distance;
-        //if (Input.GetMouseButtonDown(0))
-        //{
+        if (Starter.current.update == true)
+        {
+            //factor = bone.GetComponent<variable_length>().distance;
+            //if (Input.GetMouseButtonDown(0))
+            //{
             //Debug.Log("fling");
             //yield return new WaitForSeconds(0.3f);
             //GetComponent<Rigidbody>().AddForce(new Vector3(0, 0, Mathf.Abs(factor)), ForceMode.Impulse);
             launch();
-        StartCoroutine(launch());
-        StopCoroutine(launch());
-        //direction = player.GetComponent<movement>(MovePlayerRelativeToCamera).cameraRelativeMovement;
-        //durection = player.getcomponen
+            StartCoroutine(launch());
+            StopCoroutine(launch());
+            //direction = player.GetComponent<movement>(MovePlayerRelativeToCamera).cameraRelativeMovement;
+            //durection = player.getcomponen
 
 
-        //direction = GetComponent<move_relative_to_camera>().cameraRelativeMovement;
-        direction = cam.GetComponent<Transform>().forward;
-        direction_modified = direction * Time.deltaTime * factor;
-        
+            //direction = GetComponent<move_relative_to_camera>().cameraRelativeMovement;
+            direction = cam.GetComponent<Transform>().forward;
+            direction_modified = direction * Time.deltaTime * factor;
 
-        //Vector3 cameraForward = Camera.main.transform.forward;
 
-        //}
+            //Vector3 cameraForward = Camera.main.transform.forward;
+
+            //}
+        }
     }
 
     private IEnumerator launch()

@@ -16,7 +16,7 @@ public class COD : MonoBehaviour
 
     public GameObject home;
 
-    private bool starter = true;
+    //private bool starter = true;
 
     public float speed;
 
@@ -39,52 +39,54 @@ public class COD : MonoBehaviour
 
     void Update()
     {
-        
-        day_night = sun.GetComponent<day_cycle>().day_night;
-
-
-        if (day_night == true)
+        if (Starter.current.update == true)
         {
-            //size control section
-            scale = new Vector3(size, size * 0.3663297f, size * 0.2306069f);
-            GetComponent<Transform>().localScale = scale;
-            //movement control section
-            if (collided_with_wall == false)
+            day_night = sun.GetComponent<day_cycle>().day_night;
+
+
+            if (day_night == true)
             {
-                speed = Vector3.Distance(home.transform.position, transform.position);
-                
-            }
-            else
-            {
-                //speed = 0;
+                //size control section
+                scale = new Vector3(size, size * 0.3663297f, size * 0.2306069f);
+                GetComponent<Transform>().localScale = scale;
+                //movement control section
+                if (collided_with_wall == false)
+                {
+                    speed = Vector3.Distance(home.transform.position, transform.position);
+
+                }
+                else
+                {
+                    //speed = 0;
+                }
+
+                this.transform.position = Vector3.MoveTowards(transform.position, home.transform.position, speed * Time.deltaTime);
+
+                this.GetComponent<MeshRenderer>().enabled = true;
+                this.GetComponent<CapsuleCollider>().enabled = true;
+                this.GetComponent<Rigidbody>().isKinematic = false;
+
             }
 
-            this.transform.position = Vector3.MoveTowards(transform.position, home.transform.position, speed * Time.deltaTime);
+            //escape section
+            if (size <= 1)
+            {
+                transform.position = new Vector3(player.transform.position.x + 2000, player.transform.position.y + 10000, player.transform.position.z + 2000);
+                this.GetComponent<MeshRenderer>().enabled = false;
+                this.GetComponent<CapsuleCollider>().enabled = false;
+                this.GetComponent<Rigidbody>().isKinematic = true;
 
-            this.GetComponent<MeshRenderer>().enabled = true;
-            this.GetComponent<CapsuleCollider>().enabled = true;
-            this.GetComponent<Rigidbody>().isKinematic = false;
+            }
+
+            this.GetComponent<fish_variable_holder>().potentcy = size;
+
 
         }
-          
-        //escape section
-        if (size <= 1)
-        {
-            transform.position = new Vector3(player.transform.position.x + 2000, player.transform.position.y + 10000, player.transform.position.z + 2000);
-            this.GetComponent<MeshRenderer>().enabled = false;
-            this.GetComponent<CapsuleCollider>().enabled = false;
-            this.GetComponent<Rigidbody>().isKinematic = true;
-
-        }
-
-        this.GetComponent<fish_variable_holder>().potentcy = size;
-       
-        
     }
 
     public IEnumerator counter_stopper()
     {
-        while (starter == true)
+        while (Starter.current.starter == true)
         {
             if (day_night == true)
             {

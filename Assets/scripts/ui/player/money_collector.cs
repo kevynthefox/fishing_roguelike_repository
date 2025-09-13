@@ -34,13 +34,16 @@ public class money_collector : MonoBehaviour
 
     public void Update()
     {
-        money.text = ":" + money_value;
-        wait = 1 / bobber.GetComponent<fishing_script>().fish_quantity_original;
-        others_value_2 = money_value / others_value_divider;
+        if (Starter.current.update == true)
+        {
+            money.text = ":" + money_value;
+            wait = 1 / bobber.GetComponent<fishing_script>().fish_quantity_original;
+            others_value_2 = money_value / others_value_divider;
 
-        self.GetComponent<Transform>().localScale = new Vector3(1f,1f,1f) + new Vector3(others_value_2 / others_value_divider, others_value_2 / others_value_divider, others_value_2);
-        self.GetComponent<Transform>().position = new Vector3(106.85f, 11.942f, -324.53f) + new Vector3(0f, others_value_2, 0f);
-        money_spawner_island.GetComponent<Transform>().position = new Vector3(106.85f, 300f, -324.53f) + new Vector3(0, others_value_2 * 2, 0f);
+            self.GetComponent<Transform>().localScale = new Vector3(1f, 1f, 1f) + new Vector3(others_value_2 / others_value_divider, others_value_2 / others_value_divider, others_value_2);
+            self.GetComponent<Transform>().position = new Vector3(106.85f, 11.942f, -324.53f) + new Vector3(0f, others_value_2, 0f);
+            money_spawner_island.GetComponent<Transform>().position = new Vector3(106.85f, 300f, -324.53f) + new Vector3(0, others_value_2 * 2, 0f);
+        }
     }
 
     public IEnumerator OnTriggerEnter(Collider other)

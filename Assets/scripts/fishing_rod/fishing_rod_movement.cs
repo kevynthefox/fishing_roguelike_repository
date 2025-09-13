@@ -31,108 +31,111 @@ public class fishing_rod_movement : MonoBehaviour
 
     }
 
-	void Update()
-	{
-        fishable = bone.GetComponent<variable_length>().enabled_fishing;
-        //Debug.Log("blocking_state: " + blocking);
-
-        if (fishable == true)
+    void Update()
+    {
+        if (Starter.current.update == true)
         {
+            fishable = bone.GetComponent<variable_length>().enabled_fishing;
+            //Debug.Log("blocking_state: " + blocking);
 
-            reset_animations();
-            bobber.GetComponent<bobber_launch>().factor = bone.GetComponent<variable_length>().distance;
-
-            if (Input.GetMouseButtonDown(0))
+            if (fishable == true)
             {
-                animator.SetBool("is_in_use", true);
-                reel_able = true;
+
+                reset_animations();
                 bobber.GetComponent<bobber_launch>().factor = bone.GetComponent<variable_length>().distance;
-                bobber.GetComponent<bobber_launch>().enabled = true;
-                bobber.GetComponent<bobber_impact>().returned = false;
-                //animator.SetBool("is_hoooked", false);
-                animator.SetBool("is_waiting", false);
-            }
-            if (Input.GetMouseButtonUp(0))
-            {
-                //animator.SetBool("is_in_use", false);
-                //reel_able = false;
-                bobber.GetComponent<bobber_launch>().factor = 0;
-                bobber.GetComponent<bobber_launch>().enabled = false;
-            }
 
-            if (reel_able)
-            {
-
-                if (Input.GetMouseButtonDown(1))
+                if (Input.GetMouseButtonDown(0))
+                {
+                    animator.SetBool("is_in_use", true);
+                    reel_able = true;
+                    bobber.GetComponent<bobber_launch>().factor = bone.GetComponent<variable_length>().distance;
+                    bobber.GetComponent<bobber_launch>().enabled = true;
+                    bobber.GetComponent<bobber_impact>().returned = false;
+                    //animator.SetBool("is_hoooked", false);
+                    animator.SetBool("is_waiting", false);
+                }
+                if (Input.GetMouseButtonUp(0))
                 {
                     //animator.SetBool("is_in_use", false);
-                    //animator.SetBool("is_in_reel", true);
-                    /*animator.SetBool("is_hooked", false);
-                    animator.SetBool("is_waiting", false);
-                    */
-                    //StartCoroutine(reel_in());
+                    //reel_able = false;
+                    bobber.GetComponent<bobber_launch>().factor = 0;
+                    bobber.GetComponent<bobber_launch>().enabled = false;
+                }
+
+                if (reel_able)
+                {
+
+                    if (Input.GetMouseButtonDown(1))
+                    {
+                        //animator.SetBool("is_in_use", false);
+                        //animator.SetBool("is_in_reel", true);
+                        /*animator.SetBool("is_hooked", false);
+                        animator.SetBool("is_waiting", false);
+                        */
+                        //StartCoroutine(reel_in());
+                    }
+                }
+                else
+                {
+                    //animator.SetBool("is_in_reel", false);
                 }
             }
             else
             {
+                reel_able = false;
+                fishable = false;
+                animator.SetBool("is_in_use", false);
                 //animator.SetBool("is_in_reel", false);
+                //animator.SetBool("is_hooked", false);
+                animator.SetBool("is_waiting", false);
+
+
+
+                if (Input.GetMouseButtonDown(0))
+                {
+                    attacking = true;
+                    fight_animation = Random.Range(0, 2);
+                    if (fight_animation == 0)
+                    {
+                        animator.SetBool("fighting_1", true);
+                    }
+                    if (fight_animation == 1)
+                    {
+                        animator.SetBool("fighting_2", true);
+                    }
+                }
+                if (Input.GetMouseButtonDown(1))
+                {
+                    blocking = true;
+                    loop_animation = true;
+                    fight_animation = Random.Range(0, 2);
+
+                    if (fight_animation == 0)
+                    {
+                        animator.SetBool("blocking_1", true);
+                    }
+                    if (fight_animation == 1)
+                    {
+                        animator.SetBool("blocking_2", true);
+                    }
+
+                }
+                if (Input.GetMouseButtonUp(0))
+                {
+                    attacking = false;
+                    animator.SetBool("fighting_1", false);
+                    animator.SetBool("fighting_2", false);
+                }
+                if (Input.GetMouseButtonUp(1))
+                {
+                    loop_animation = false;
+                    blocking = false;
+                    animator.SetBool("blocking_1", false);
+                    animator.SetBool("blocking_2", false);
+                }
             }
+
         }
-        else
-        {
-            reel_able = false;
-            fishable = false;
-            animator.SetBool("is_in_use", false);
-            //animator.SetBool("is_in_reel", false);
-            //animator.SetBool("is_hooked", false);
-            animator.SetBool("is_waiting", false);
-
-            
-
-            if (Input.GetMouseButtonDown(0))
-            {
-                attacking = true;
-                fight_animation = Random.Range(0, 2);
-                if (fight_animation == 0)
-                {
-                    animator.SetBool("fighting_1", true);
-                }
-                if (fight_animation == 1)
-                {
-                    animator.SetBool("fighting_2", true);
-                }
-            }
-            if (Input.GetMouseButtonDown(1))
-            {
-                blocking = true;
-                loop_animation = true;
-                fight_animation = Random.Range(0, 2);
-                
-                if (fight_animation == 0)
-                {
-                    animator.SetBool("blocking_1", true);
-                }
-                if (fight_animation == 1)
-                {
-                    animator.SetBool("blocking_2", true);
-                }
-                
-            }
-            if (Input.GetMouseButtonUp(0))
-            {
-                attacking = false;
-                animator.SetBool("fighting_1", false);
-                animator.SetBool("fighting_2", false);
-            }
-            if (Input.GetMouseButtonUp(1))
-            {
-                loop_animation = false;
-                blocking = false;
-                animator.SetBool("blocking_1", false);
-                animator.SetBool("blocking_2", false);
-            }
-        }
-
     }
 
     public void reset_animations()

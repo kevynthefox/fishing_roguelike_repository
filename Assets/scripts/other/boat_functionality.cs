@@ -30,40 +30,46 @@ public class boat_functionality : MonoBehaviour
 
     void Update()
     {
-        direction = Camera.GetComponent<Transform>().forward;
-        direction_modified = direction * Time.deltaTime * boat_speed;
+        if (Starter.current.update == true)
+        {
+            direction = Camera.GetComponent<Transform>().forward;
+            direction_modified = direction * Time.deltaTime * boat_speed;
 
-        
+
+        }
     }
 
     public void FixedUpdate()
     {
-        if (boat_yes == true)
+        if (Starter.current.update == true)
         {
-            var forcedirection = Vector3.forward;
-            var steer = 0;
-            var move = 0;
-            if (Input.GetKey(KeyCode.A))
+            if (boat_yes == true)
             {
-                steer = -1;
-            }
+                var forcedirection = Vector3.forward;
+                var steer = 0;
+                var move = 0;
+                if (Input.GetKey(KeyCode.A))
+                {
+                    steer = -1;
+                }
 
-            if (Input.GetKey(KeyCode.D))
-            {
-                steer = +1;
-            }
+                if (Input.GetKey(KeyCode.D))
+                {
+                    steer = +1;
+                }
 
-            if (Input.GetKey(KeyCode.S))
-            {
-                move = -1;
-            }
+                if (Input.GetKey(KeyCode.S))
+                {
+                    move = -1;
+                }
 
-            if (Input.GetKey(KeyCode.W))
-            {
-                move = +1;
+                if (Input.GetKey(KeyCode.W))
+                {
+                    move = +1;
+                }
+                transform.Rotate(0, steer, 0);
+                transform.Translate(forcedirection * move * boat_speed * Time.deltaTime);
             }
-            transform.Rotate(0, steer, 0);
-            transform.Translate(forcedirection * move * boat_speed * Time.deltaTime);
         }
     }
 

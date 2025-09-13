@@ -10,7 +10,7 @@ public class day_cycle : MonoBehaviour
     public float degpersec = 6;
     public float cycle_length; //a deg per sec of 6 means it takes 1 minute to fully rotate
 
-    public bool starter = true;
+    //public bool starter = true;
 
     public bool day_night; //day is false night is true
 
@@ -21,13 +21,16 @@ public class day_cycle : MonoBehaviour
 
     public void Update()
     {
-        degpersec = (1 / cycle_length) * 6 * 60; 
+        if (Starter.current.update == true)
+        {
+            degpersec = (1 / cycle_length) * 6 * 60;
 
-        rot.x = degpersec * Time.deltaTime;
-        transform.Rotate(rot,Space.World);
+            rot.x = degpersec * Time.deltaTime;
+            transform.Rotate(rot, Space.World);
 
-        
-        //GetComponent<Transform>().rotation.x += time;
+
+            //GetComponent<Transform>().rotation.x += time;
+        }
     }
 
     public static Quaternion rotation(float x, float y, float z)
@@ -37,7 +40,7 @@ public class day_cycle : MonoBehaviour
 
     public IEnumerator time_keeper()
     {
-        while (starter == true)
+        while (Starter.current.starter == true)
         {
             if (time >= cycle_length)
             {

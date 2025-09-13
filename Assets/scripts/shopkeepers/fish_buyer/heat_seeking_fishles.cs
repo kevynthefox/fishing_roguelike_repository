@@ -36,53 +36,60 @@ public class heat_seeking_fishles : MonoBehaviour
 
     void Update()
     {
-
-
-        if (home != null)
+        if (Starter.current.update == true)
         {
+            this.GetComponent<Rigidbody>().isKinematic = false;
 
-
-
-            //makes the object move faster the further away it is from the other one
-            speed = Vector3.Distance(home.transform.position, transform.position);
-
-            //moves this object towards the other object, at this speed per second
-            transform.position = Vector3.MoveTowards(transform.position, home.transform.position, speed * Time.deltaTime);
-            //transform.rotation = Quaternion.LookRotation(Vector3.RotateTowards(transform.position, home.transform.position, 0, 360));
-            transform.LookAt(home.transform); // you need to child the object to an empty gameobject so that the object maintains the rotation you want.
-        }
-
-        if (home != null && enemy == false)
-        {
-            StartCoroutine(failsafe_counter());
-
-        }
-
-        if (home != null && enemy == true)
-        {
-            StartCoroutine(failsafe_counter_2());
-        }
-
-        if (enemy == true && home == null)
-        {
-            foreach (GameObject potential_target in GameObject.FindGameObjectsWithTag("player"))
+            if (home != null)
             {
 
-                if (targets.Contains(potential_target) == false)
-                {
-                    targets.Add(potential_target);
-                }
+
+
+                //makes the object move faster the further away it is from the other one
+                speed = Vector3.Distance(home.transform.position, transform.position);
+
+                //moves this object towards the other object, at this speed per second
+                transform.position = Vector3.MoveTowards(transform.position, home.transform.position, speed * Time.deltaTime);
+                //transform.rotation = Quaternion.LookRotation(Vector3.RotateTowards(transform.position, home.transform.position, 0, 360));
+                transform.LookAt(home.transform); // you need to child the object to an empty gameobject so that the object maintains the rotation you want.
+            }
+
+            if (home != null && enemy == false)
+            {
+                StartCoroutine(failsafe_counter());
 
             }
 
-            int random_target = UnityEngine.Random.Range(0, targets.Count);
+            if (home != null && enemy == true)
+            {
+                StartCoroutine(failsafe_counter_2());
+            }
 
-            home = targets[random_target];
+            if (enemy == true && home == null)
+            {
+                foreach (GameObject potential_target in GameObject.FindGameObjectsWithTag("player"))
+                {
+
+                    if (targets.Contains(potential_target) == false)
+                    {
+                        targets.Add(potential_target);
+                    }
+
+                }
+
+                int random_target = UnityEngine.Random.Range(0, targets.Count);
+
+                home = targets[random_target];
+            }
+
+            if (health == 0)
+            {
+                home = null;
+            }
         }
-
-        if (health == 0)
+        else
         {
-            home = null;
+            this.GetComponent<Rigidbody>().isKinematic = true;
         }
     }
 

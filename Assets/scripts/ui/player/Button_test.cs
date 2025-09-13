@@ -11,9 +11,4 @@ public class Button_test : MonoBehaviour
         Debug.Log("it works");
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

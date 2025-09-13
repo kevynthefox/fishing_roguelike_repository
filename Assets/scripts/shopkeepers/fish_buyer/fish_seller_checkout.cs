@@ -19,7 +19,7 @@ public class fish_seller_checkout : MonoBehaviour
 
     public float money_owed;
 
-    public bool starter;
+    //public bool starter;
 
     public bool collectible;
 
@@ -33,12 +33,18 @@ public class fish_seller_checkout : MonoBehaviour
 
     private void Start()
     {
-        starter = true;
+        //starter = true;
     }
 
     public void Update()
     {
-        rotation(spawn_area.transform.rotation.x, spawn_area.transform.rotation.y, spawn_area.transform.rotation.z);
+        if (Starter.current.update == true)
+        {
+            if (Starter.current.update == true)
+            {
+                rotation(spawn_area.transform.rotation.x, spawn_area.transform.rotation.y, spawn_area.transform.rotation.z);
+            }
+        }
     }
 
     public static Quaternion rotation(float x, float y, float z)
@@ -48,12 +54,12 @@ public class fish_seller_checkout : MonoBehaviour
 
     public IEnumerator OnTriggerEnter(Collider other)
     {
-        starter = true;
+        //starter = true;
 
         if (other != null)
         {
             //Vector3 spawnpos = new Vector3(spawn_area.transform.position.x, spawn_area.transform.position.y, spawn_area.transform.position.z);
-            while (starter == true)
+            while (Starter.current.starter == true)
             {
                 
                 Vector3 spawnpos = new Vector3(spawn_area.transform.position.x, spawn_area.transform.position.y, spawn_area.transform.position.z);

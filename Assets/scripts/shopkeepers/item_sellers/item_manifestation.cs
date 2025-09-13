@@ -31,7 +31,7 @@ public class item_manifestation : MonoBehaviour
 
     public bool un_make;
     public bool checking_out;
-    public bool starter = false;
+    public bool starter = false; //keeping this as its own because it is necessary for the script to not run too much
 
     public float money_owed;
 
@@ -49,29 +49,32 @@ public class item_manifestation : MonoBehaviour
 
     public void Update()
     {
-        //other_value = wallet.GetComponent<money_collector>().others_value;
-        others_value_divider = wallet.GetComponent<money_collector>().others_value_divider;
-        others_value_2 = wallet.GetComponent<money_collector>().others_value_2;
-
-        if (un_make == true)
+        if (Starter.current.update == true)
         {
-            item_unmaker();
-        }
+            //other_value = wallet.GetComponent<money_collector>().others_value;
+            others_value_divider = wallet.GetComponent<money_collector>().others_value_divider;
+            others_value_2 = wallet.GetComponent<money_collector>().others_value_2;
 
-        total_owed.text = "bill: " + money_owed;
+            if (un_make == true)
+            {
+                item_unmaker();
+            }
 
-        //Debug.Log(checking_out);
+            total_owed.text = "bill: " + money_owed;
 
-        if (checkout.GetComponent<object_click_detector>().left_clicked == true)// || checkout.GetComponent<object_click_detector>().click_override == true)// && checking_out == false)
-        {
-            //Debug.Log("checking_out");
-            starter = true;
-            StartCoroutine(checkout_part());
-        }
+            //Debug.Log(checking_out);
 
-        if (checking_out == true)
-        {
-            starter = false;
+            if (checkout.GetComponent<object_click_detector>().left_clicked == true)// || checkout.GetComponent<object_click_detector>().click_override == true)// && checking_out == false)
+            {
+                //Debug.Log("checking_out");
+                starter = true;
+                StartCoroutine(checkout_part());
+            }
+
+            if (checking_out == true)
+            {
+                starter = false;
+            }
         }
     }
 

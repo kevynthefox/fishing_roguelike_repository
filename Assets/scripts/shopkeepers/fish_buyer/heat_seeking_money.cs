@@ -21,11 +21,14 @@ public class heat_seeking_money : MonoBehaviour
 
     public void Update()
     {
-        //makes the object move faster the further away it is from the other one
-        speed = Vector3.Distance(home.transform.position, transform.position);
+        if (Starter.current.update == true)
+        {
+            //makes the object move faster the further away it is from the other one
+            speed = Vector3.Distance(home.transform.position, transform.position);
 
-        //moves this object towards the other object, at this speed per second
-        transform.position = Vector3.MoveTowards(transform.position, home.transform.position, speed * Time.deltaTime);
+            //moves this object towards the other object, at this speed per second
+            transform.position = Vector3.MoveTowards(transform.position, home.transform.position, speed * Time.deltaTime);
+        }
     }
     /*seek()
     {

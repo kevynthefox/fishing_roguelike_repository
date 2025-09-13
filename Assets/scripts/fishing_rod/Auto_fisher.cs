@@ -8,7 +8,7 @@ public class Auto_fisher : MonoBehaviour
     
     public bool fish;
 
-    public bool starter = true;
+    //public bool starter = true;
 
     public Animator animator;
 
@@ -167,7 +167,10 @@ public class Auto_fisher : MonoBehaviour
 
     public void Update()
     {
-        animator.SetBool("fishing", fish);
+        if (Starter.current.update == true)
+        {
+            animator.SetBool("fishing", fish);
+        }
     }
 
 
@@ -205,7 +208,7 @@ public class Auto_fisher : MonoBehaviour
 
     public IEnumerator fish_anim()
     {
-        while (starter == true)
+        while (Starter.current.starter == true)
         {
             if (Wavespawner.current.stop_fishing == false)
             {

@@ -14,42 +14,45 @@ public class attach_to_object : MonoBehaviour
 	public bool offset_rotation;
 	public Quaternion rotation;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+	// Start is called before the first frame update
+	void Start()
+	{
 
-    // Update is called once per frame
-    void FixedUpdate()
-    {
-	//sets the position of the first object to the position of the second object, plus offset, or not.
-        if (attachment == true)
+	}
+
+	// Update is called once per frame
+	void FixedUpdate()
+	{
+		if (Starter.current.update == true)
 		{
-			if (offset_attachment == true)
+			//sets the position of the first object to the position of the second object, plus offset, or not.
+			if (attachment == true)
 			{
-				transform.position = Object_b.transform.position + offset;
-				//transform.rotation = rotation;
+				if (offset_attachment == true)
+				{
+					transform.position = Object_b.transform.position + offset;
+					//transform.rotation = rotation;
+				}
+				else
+				{
+					transform.position = Object_b.transform.position;
+				}
 			}
-			else
+			//rotates the first object with the second object or not
+			if (rotate_with_Object_b == true)
 			{
-				transform.position = Object_b.transform.position;
-			}
- 		}
-		//rotates the first object with the second object or not
-		if (rotate_with_Object_b == true)
-		{
-		
-			if (offset_rotation == true)
-			{
-					transform.rotation =  rotation;
-			
-			}
-			else
-			{
+
+				if (offset_rotation == true)
+				{
+					transform.rotation = rotation;
+
+				}
+				else
+				{
 					transform.rotation = Object_b.transform.rotation;
+				}
 			}
+
 		}
-	
-    }
+	}
 }

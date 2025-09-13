@@ -18,24 +18,27 @@ public class redirection_for_funnymovement : MonoBehaviour
 
     public void Update()
     {
-        if (first_time == false)
+        if (Starter.current.update == true)
         {
-            randomindex = Random.Range(0, places.Length);
-            first_time = true;
-        }
-
-        if (first_time == true)
-        {
-            if (timer > 0)
+            if (first_time == false)
             {
-                timer -= 1 * Time.deltaTime;
-                //Debug.Log("subtracting");
-                //yield return new WaitForSeconds(1f);
+                randomindex = Random.Range(0, places.Length);
+                first_time = true;
             }
-            else
+
+            if (first_time == true)
             {
-                first_time = false;
-                //StartCoroutine(time_false());
+                if (timer > 0)
+                {
+                    timer -= 1 * Time.deltaTime;
+                    //Debug.Log("subtracting");
+                    //yield return new WaitForSeconds(1f);
+                }
+                else
+                {
+                    first_time = false;
+                    //StartCoroutine(time_false());
+                }
             }
         }
     }

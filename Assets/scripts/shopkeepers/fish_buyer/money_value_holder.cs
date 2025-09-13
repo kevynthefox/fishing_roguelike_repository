@@ -29,34 +29,37 @@ public class money_value_holder : MonoBehaviour
     }
     private void Update()
     {
-        collectible = money_spawner.GetComponent<fish_seller_checkout>().collectible;
-
-        frameRate = frame_holder.GetComponent<frame_display>().frameRate;
-
-        //Debug.Log(frameRate);
-        /*
-        if (frameRate <= 20)
+        if (Starter.current.update == true)
         {
-            money_spawner.GetComponent<fish_seller_checkout>().collectible = true;
-            money_spawner.GetComponent<fish_seller_checkout>().starter = false;
-            self.GetComponent<heat_seeking_money>().enabled = true;
+            collectible = money_spawner.GetComponent<fish_seller_checkout>().collectible;
 
-            //self.GetComponent<BoxCollider>().size = new Vector3(50,50, 50);
+            frameRate = frame_holder.GetComponent<frame_display>().frameRate;
+
+            //Debug.Log(frameRate);
+            /*
+            if (frameRate <= 20)
+            {
+                money_spawner.GetComponent<fish_seller_checkout>().collectible = true;
+                money_spawner.GetComponent<fish_seller_checkout>().starter = false;
+                self.GetComponent<heat_seeking_money>().enabled = true;
+
+                //self.GetComponent<BoxCollider>().size = new Vector3(50,50, 50);
+            }
+            else
+            {
+                self.GetComponent<heat_seeking_money>().enabled = false;
+                money_spawner.GetComponent<fish_seller_checkout>().starter = true;
+            }
+            */
+
+            //self.GetComponent<heat_seeking_money>().enabled = false;
+
+            //GetComponent<Rigidbody>().isKinematic = !collectible;
+
+
+
         }
-        else
-        {
-            self.GetComponent<heat_seeking_money>().enabled = false;
-            money_spawner.GetComponent<fish_seller_checkout>().starter = true;
-        }
-        */
-
-        //self.GetComponent<heat_seeking_money>().enabled = false;
-
-        //GetComponent<Rigidbody>().isKinematic = !collectible;
-
 
 
     }
-
-    
 }

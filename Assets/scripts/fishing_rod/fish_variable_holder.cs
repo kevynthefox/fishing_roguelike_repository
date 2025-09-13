@@ -13,10 +13,6 @@ public class fish_variable_holder : MonoBehaviour
 
     public float potentcy;
 
-    public void Update()
-    {
-        
-    }
 
 
     private void OnDestroy()

@@ -41,7 +41,7 @@ public class bobber_impact : MonoBehaviour
     public bool success;
     public bool failure;
 
-    public bool starter;
+    //public bool starter;
 
     public bool spawning_fish;
     public GameObject already_fishing;
@@ -54,7 +54,7 @@ public class bobber_impact : MonoBehaviour
         fishing_time = fishing_rod_1.GetComponent<fishing_rod_movement>().fishing_time;
         fishing_time_cool = fishing_rod_1.GetComponent<fishing_rod_movement>().fishing_time_cool;
         fishing_system.SetActive(false);
-        starter = true;
+        //starter = true;
         
     }
 

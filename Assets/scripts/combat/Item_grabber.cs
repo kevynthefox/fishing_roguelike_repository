@@ -11,11 +11,14 @@ public class Item_grabber : MonoBehaviour
 
     public void Update()
     {
-        if (Object_b != null)
+        if (Starter.current.update == true)
         {
-            //Object_b.transform.position = this.transform.position;
-            speed = Vector3.Distance(this.transform.position, transform.position);
-            Object_b.transform.position = Vector3.MoveTowards(transform.position, this.transform.position, speed * Time.deltaTime);
+            if (Object_b != null)
+            {
+                //Object_b.transform.position = this.transform.position;
+                speed = Vector3.Distance(this.transform.position, transform.position);
+                Object_b.transform.position = Vector3.MoveTowards(transform.position, this.transform.position, speed * Time.deltaTime);
+            }
         }
     }
 

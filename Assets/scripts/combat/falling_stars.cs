@@ -38,14 +38,16 @@ public class falling_stars : MonoBehaviour
 
     void Update()
     {
-        day_night = sun.GetComponent<day_cycle>().day_night;
-
-        if ((day_night || manual_fire) == true)
+        if (Starter.current.update == true)
         {
-            spawn();
-        }
+            day_night = sun.GetComponent<day_cycle>().day_night;
 
-        
+            if ((day_night || manual_fire) == true)
+            {
+                spawn();
+            }
+
+        }
     }
 
     public void spawn()

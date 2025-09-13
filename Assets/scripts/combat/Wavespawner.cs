@@ -21,7 +21,7 @@ public class Wavespawner : MonoBehaviour
     public int family_size;
     //public List<GameObject> dead_fish;
 
-    public bool starter = true;
+    //public bool starter = true;
 
     public int time_start;
     public int time_left;
@@ -68,149 +68,152 @@ public class Wavespawner : MonoBehaviour
 
     public void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Y))
+        if (Starter.current.update == true)
         {
-            spawning_time = !spawning_time;
-        }
-
-        if (Input.GetKey(KeyCode.RightControl))
-        {
-            Debug.Log("adding a debug fish to the wavepsawner");
-            Add_dead(fishes[2]);
-        }
-        
-        if (rod.GetComponent<fishing_script>().win_state == 1)
-        {
-            fish_quality = rod.GetComponent<fishing_script>().fish_quality;
-        }
-
-        spawn_left_right = UnityEngine.Random.Range(-1000, 1001);
-        spawn_forward_back = UnityEngine.Random.Range(-2000, 2001);
-        family_size = UnityEngine.Random.Range(0, family_max);
-
-        if (rod.GetComponent<fishing_script>().spawning_fish == true)
-        {
-            //Debug.Log("fish are spawning, get the potency buffs");
-            fish_potency_buff_mult = rod.GetComponent<fishing_script>().fish_potency_buff_mult;
-            fish_potency_buff_add = rod.GetComponent<fishing_script>().fish_potency_buff_add;
-        }
-
-        
-
-        if (spawning_time == true)
-        {
-            foreach (GameObject potential_target in GameObject.FindGameObjectsWithTag("player"))
+            if (Input.GetKeyDown(KeyCode.Y))
             {
-
-                if (targets.Contains(potential_target) == false)
-                {
-                    targets.Add(potential_target);
-                }
-
+                spawning_time = !spawning_time;
             }
 
-            int random_target = UnityEngine.Random.Range(0, targets.Count);
-
-
-
-            foreach (fish_dead f in dead_fish.ToList())
+            if (Input.GetKey(KeyCode.RightControl))
             {
-                //fish_left += f.stackSize;
-                for (int i = 0; i < family_size; i++)
-                {
-                    var fish_object = Instantiate(f.data, new Vector3(targets[random_target].transform.position.x + spawn_left_right, 0, targets[random_target].transform.position.z + spawn_forward_back), Quaternion.identity);
-                    fish_object.GetComponent<heat_seeking_fishles>().home = targets[random_target];
-                    fish_object.GetComponent<heat_seeking_fishles>().disable_water = true;
-                    fish_object.GetComponent<heat_seeking_fishles>().enemy = true;
+                Debug.Log("adding a debug fish to the wavepsawner");
+                Add_dead(fishes[2]);
+            }
 
-                    fish_object.GetComponent<fish_variable_holder>().potentcy += f.fish_potency_buff_add;
-                    fish_object.GetComponent<fish_variable_holder>().potentcy += fish_potency_buff_add;
+            if (rod.GetComponent<fishing_script>().win_state == 1)
+            {
+                fish_quality = rod.GetComponent<fishing_script>().fish_quality;
+            }
 
-                    if (f.fish_potency_buff_mult > 1)  fish_object.GetComponent<fish_variable_holder>().potentcy *= f.fish_potency_buff_mult; 
-                    if (fish_potency_buff_mult > 1) fish_object.GetComponent<fish_variable_holder>().potentcy *= fish_potency_buff_mult;
+            spawn_left_right = UnityEngine.Random.Range(-1000, 1001);
+            spawn_forward_back = UnityEngine.Random.Range(-2000, 2001);
+            family_size = UnityEngine.Random.Range(0, family_max);
 
-                    if ( fish_quality > 0) fish_object.transform.localScale = new Vector3(fish_quality,fish_quality,fish_quality);
-                    Add_alive(fish_object);
-                    fish_have_been_alive = true;
-                }
-
-                Remove_dead(f.data);
+            if (rod.GetComponent<fishing_script>().spawning_fish == true)
+            {
+                //Debug.Log("fish are spawning, get the potency buffs");
+                fish_potency_buff_mult = rod.GetComponent<fishing_script>().fish_potency_buff_mult;
+                fish_potency_buff_add = rod.GetComponent<fishing_script>().fish_potency_buff_add;
             }
 
 
-           
-            //Debug.Log(encounters_copy_list.Count);
-            foreach (enemy_encounter_data encounter in encounters.ToList())
+
+            if (spawning_time == true)
             {
-                
-                var rod_script = rod.GetComponent<fishing_script>();
-                //Debug.Log("going through encounters");
-                if (encounter.requirement_type == 1)
+                foreach (GameObject potential_target in GameObject.FindGameObjectsWithTag("player"))
                 {
-                    //Debug.Log("encounters that equal type 1");
-                    if (rod_script.consecutive_wins >= encounter.requirement_amount)
+
+                    if (targets.Contains(potential_target) == false)
                     {
-                        spawn_encounter(encounter);
-                        encounters.Remove(encounter);
+                        targets.Add(potential_target);
+                    }
+
+                }
+
+                int random_target = UnityEngine.Random.Range(0, targets.Count);
+
+
+
+                foreach (fish_dead f in dead_fish.ToList())
+                {
+                    //fish_left += f.stackSize;
+                    for (int i = 0; i < family_size; i++)
+                    {
+                        var fish_object = Instantiate(f.data, new Vector3(targets[random_target].transform.position.x + spawn_left_right, 0, targets[random_target].transform.position.z + spawn_forward_back), Quaternion.identity);
+                        fish_object.GetComponent<heat_seeking_fishles>().home = targets[random_target];
+                        fish_object.GetComponent<heat_seeking_fishles>().disable_water = true;
+                        fish_object.GetComponent<heat_seeking_fishles>().enemy = true;
+
+                        fish_object.GetComponent<fish_variable_holder>().potentcy += f.fish_potency_buff_add;
+                        fish_object.GetComponent<fish_variable_holder>().potentcy += fish_potency_buff_add;
+
+                        if (f.fish_potency_buff_mult > 1) fish_object.GetComponent<fish_variable_holder>().potentcy *= f.fish_potency_buff_mult;
+                        if (fish_potency_buff_mult > 1) fish_object.GetComponent<fish_variable_holder>().potentcy *= fish_potency_buff_mult;
+
+                        if (fish_quality > 0) fish_object.transform.localScale = new Vector3(fish_quality, fish_quality, fish_quality);
+                        Add_alive(fish_object);
+                        fish_have_been_alive = true;
+                    }
+
+                    Remove_dead(f.data);
+                }
+
+
+
+                //Debug.Log(encounters_copy_list.Count);
+                foreach (enemy_encounter_data encounter in encounters.ToList())
+                {
+
+                    var rod_script = rod.GetComponent<fishing_script>();
+                    //Debug.Log("going through encounters");
+                    if (encounter.requirement_type == 1)
+                    {
+                        //Debug.Log("encounters that equal type 1");
+                        if (rod_script.consecutive_wins >= encounter.requirement_amount)
+                        {
+                            spawn_encounter(encounter);
+                            encounters.Remove(encounter);
+                        }
+                    }
+                    if (encounter.requirement_type == 2)
+                    {
+                        //Debug.Log("encounters that equal type 2");
+                        if (rod_script.fish_ever >= encounter.requirement_amount)
+                        {
+                            spawn_encounter(encounter);
+                            encounters.Remove(encounter);
+                        }
+                    }
+
+                }
+            }
+
+
+            if (alive_fish.Count != 0 || encounter_enemies_alive.Count != 0)
+            {
+
+                sell_guy.SetActive(false);
+                if (encounter_enemies_alive.Count > 0)
+                {
+                    navmesh.SetActive(true);
+                }
+
+                if (fish_have_been_alive == true || encounter_enemies_alive.Count != 0)
+                {
+                    foreach (GameObject wat in GameObject.FindGameObjectsWithTag("water"))
+                    {
+                        wat.tag = "water_off";
                     }
                 }
-                if(encounter.requirement_type == 2)
+            }
+            else
+            {
+                sell_guy.SetActive(true);
+                navmesh.SetActive(false);
+                //Debug.Log("no more fish alive");
+
+                if (fish_have_been_alive == true)
                 {
-                    //Debug.Log("encounters that equal type 2");
-                    if (rod_script.fish_ever >= encounter.requirement_amount)
-                    {
-                        spawn_encounter(encounter);
-                        encounters.Remove(encounter);
-                    }
+                    fish_potency_buff_mult = 1;
+                    fish_potency_buff_add = 0;
                 }
-             
-            }
-        }
-
-
-        if (alive_fish.Count != 0 || encounter_enemies_alive.Count != 0)
-        {
-
-            sell_guy.SetActive(false);
-            if (encounter_enemies_alive.Count > 0)
-            {
-                navmesh.SetActive(true);
-            }
-
-            if (fish_have_been_alive == true || encounter_enemies_alive.Count != 0)
-            {
-                foreach (GameObject wat in GameObject.FindGameObjectsWithTag("water"))
+                foreach (GameObject wat in GameObject.FindGameObjectsWithTag("water_off"))
                 {
-                    wat.tag = "water_off";
+                    wat.tag = "water";
+                    fish_have_been_alive = false;
                 }
+
             }
+
+
+
         }
-        else
-        {
-            sell_guy.SetActive(true);
-            navmesh.SetActive(false);
-            //Debug.Log("no more fish alive");
-
-            if (fish_have_been_alive == true)
-            {
-                fish_potency_buff_mult = 1;
-                fish_potency_buff_add = 0;
-            }
-            foreach (GameObject wat in GameObject.FindGameObjectsWithTag("water_off"))
-            {
-                wat.tag = "water";
-                fish_have_been_alive = false;
-            }
-            
-        }
-
-
-        
     }
 
     public IEnumerator timer()
     {
-        while (starter == true)
+        while (Starter.current.starter == true)
         {
 
             if (time_left >= 1 && spawning_time == false)
@@ -263,7 +266,7 @@ public class Wavespawner : MonoBehaviour
     
     public IEnumerator spawn_prevention()
     {
-        while (starter == true)
+        while (Starter.current.starter == true)
         {
             if (spawning_time == false) 
             {

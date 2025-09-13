@@ -23,12 +23,10 @@ public class Draggable_item : MonoBehaviour//, IBeginDragHandler, IDragHandler, 
     public bool already_made_item;
     public bool toggleOffOn;
 
-
     public void Awake()
     {
         //inventory_bar = GameObject.Find("inventory_bar").transform;
         player = GameObject.Find("player");
-
     }
     #region dragging_items[depreceated]
     /*public void OnBeginDrag(PointerEventData eventData)
@@ -64,19 +62,28 @@ public class Draggable_item : MonoBehaviour//, IBeginDragHandler, IDragHandler, 
     }*/
     #endregion
     #region teleporting_items
-    private void Update()
+    public IEnumerator UpdateForItemTp()
     {
-        //if (spot_in_inventory >= 0)
-        //{
+        while (Starter.current.starter == true)
+        {
             if (self_inventory_item.data.been_Left_clicked_on == true)
             {
-                if (inventory_controller.current.hand_increment <= 1)
+                if (InventoryController.current.left_hand_filled == false)
                 {
-                    transform.parent = inventory_controller.current.hands[inventory_controller.current.hand_increment].transform;
-                    inventory_controller.current.hand_increment++;
+                    transform.parent = InventoryController.current.hands[0].transform;
+                    transform.localPosition = Vector3.zero;
+                }
+                else
+                {
+                    if (InventoryController.current.right_hand_filled == false)
+                    {
+                        transform.parent = InventoryController.current.hands[1].transform;
+                        transform.localPosition = Vector3.zero;
+                    }
                 }
             }
-        //}
+            yield return new WaitForSeconds(0.1f);
+        }
     }
     #endregion
     #region item_dropping

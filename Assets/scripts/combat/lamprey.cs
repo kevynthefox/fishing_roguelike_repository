@@ -30,57 +30,59 @@ public class lamprey : MonoBehaviour
 
     public void Update()
     {
-        
-
-
-
-        if (targets.Count >= 1)
+        if (Starter.current.update == true)
         {
-            if (mouth.GetComponent<lamprey_mouth>().touching_something == false)
+
+
+
+            if (targets.Count >= 1)
             {
-
-                mouth.transform.localScale += new Vector3(0, 0, stretch_rate);
-            }
-            mouth.transform.LookAt(targets[0]);
-        }
-        else
-        {
-            mouth.transform.localScale = Vector3.one;
-        }
-
-
-        //if (healing == true)
-        //{
-        foreach (GameObject heal_targ in heal_targets)
-        {
-            if (health_pool > 0)
-            {
-                if (heal_targ.GetComponent<Damage>().invincibility == false)
+                if (mouth.GetComponent<lamprey_mouth>().touching_something == false)
                 {
 
-                    if (heal_targ.transform.GetComponentInChildren<Health_display>().health < heal_targ.transform.GetComponentInChildren<Health_display>().health_max)
-                    {
-                        healing = true;
-                        //Debug.Log("attempting heal on: " + heal_targ.name);
-                        heal_targ.transform.GetComponentInChildren<Health_display>().health += drain_rate;
-                        health_pool -= drain_rate;
-
-
-                    }
+                    mouth.transform.localScale += new Vector3(0, 0, stretch_rate);
                 }
-                
+                mouth.transform.LookAt(targets[0]);
             }
             else
             {
-                healing = false;
-                health_pool = 0;
-                //Debug.Log("can't because they're full.");
+                mouth.transform.localScale = Vector3.one;
             }
 
-        }
-        //}
 
-        CleanUpMyList();
+            //if (healing == true)
+            //{
+            foreach (GameObject heal_targ in heal_targets)
+            {
+                if (health_pool > 0)
+                {
+                    if (heal_targ.GetComponent<Damage>().invincibility == false)
+                    {
+
+                        if (heal_targ.transform.GetComponentInChildren<Health_display>().health < heal_targ.transform.GetComponentInChildren<Health_display>().health_max)
+                        {
+                            healing = true;
+                            //Debug.Log("attempting heal on: " + heal_targ.name);
+                            heal_targ.transform.GetComponentInChildren<Health_display>().health += drain_rate;
+                            health_pool -= drain_rate;
+
+
+                        }
+                    }
+
+                }
+                else
+                {
+                    healing = false;
+                    health_pool = 0;
+                    //Debug.Log("can't because they're full.");
+                }
+
+            }
+            //}
+
+            CleanUpMyList();
+        }
     }
 
     public IEnumerator OnTriggerEnter(Collider other)

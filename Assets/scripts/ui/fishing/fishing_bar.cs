@@ -69,55 +69,58 @@ public class fishing_bar : MonoBehaviour
 
     void Update()
     {
-
-        fish_num = fish_num_max * bar_pos; //the more the bar goes up, the more fish are caught
-        fish_quality = fish_quality_max * (1-bar_pos); // the more the bar goes down, the higher quality of the fish caught.
-
-       
-        //floors the numbers to be at minumum of 1
-        if (fish_num <= fish_num_min) fish_num = fish_num_min;
-        if (fish_quality <= fish_quality_min) fish_quality = fish_quality_min;
-
-        direction = Random.Range(direction_min,direction_max);
-        //Debug.Log("direction:" + direction);
-
-        StartCoroutine(catch_mechanic());
-
-        fish_bar.value = bar_pos;
-        
-        StopCoroutine(catch_mechanic());
-
-        quality.text = "quality:" + fish_quality.ToString("0.0") + "     max:" + fish_quality_max + "     min:" + fish_quality_min;
-        quantity.text = "quanity:" + fish_num.ToString("0.0") + "    max:" + fish_num_max + "     min:" + fish_num_min;
-
-        distance = distance_bar.GetComponent<distance_bar>().current_distance;
-
-        if (bobber.GetComponent<bobber_impact>().resetting == false)
+        if (Starter.current.update == true)
         {
-            if (bone_master.GetComponent<variable_length>().enabled_fishing == true)
-            {
-                if (bar_pos <= 0 + (resistance * Time.deltaTime * direction) || bar_pos >= 1 - (effort * Time.deltaTime * direction))
-                {
-                    failure = true;
-                    success = false;
-                    Debug.Log("failure");
-                }
-                else
-                {
-                    if (distance <= 0)
-                    {
-                        failure = false;
-                        success = true;
-                        Debug.Log("success");
-                    }
 
+            fish_num = fish_num_max * bar_pos; //the more the bar goes up, the more fish are caught
+            fish_quality = fish_quality_max * (1 - bar_pos); // the more the bar goes down, the higher quality of the fish caught.
+
+
+            //floors the numbers to be at minumum of 1
+            if (fish_num <= fish_num_min) fish_num = fish_num_min;
+            if (fish_quality <= fish_quality_min) fish_quality = fish_quality_min;
+
+            direction = Random.Range(direction_min, direction_max);
+            //Debug.Log("direction:" + direction);
+
+            StartCoroutine(catch_mechanic());
+
+            fish_bar.value = bar_pos;
+
+            StopCoroutine(catch_mechanic());
+
+            quality.text = "quality:" + fish_quality.ToString("0.0") + "     max:" + fish_quality_max + "     min:" + fish_quality_min;
+            quantity.text = "quanity:" + fish_num.ToString("0.0") + "    max:" + fish_num_max + "     min:" + fish_num_min;
+
+            distance = distance_bar.GetComponent<distance_bar>().current_distance;
+
+            if (bobber.GetComponent<bobber_impact>().resetting == false)
+            {
+                if (bone_master.GetComponent<variable_length>().enabled_fishing == true)
+                {
+                    if (bar_pos <= 0 + (resistance * Time.deltaTime * direction) || bar_pos >= 1 - (effort * Time.deltaTime * direction))
+                    {
+                        failure = true;
+                        success = false;
+                        Debug.Log("failure");
+                    }
+                    else
+                    {
+                        if (distance <= 0)
+                        {
+                            failure = false;
+                            success = true;
+                            Debug.Log("success");
+                        }
+
+                    }
                 }
             }
-        }
-        if (failure == true)
-        {
-            bone_master.GetComponent<variable_length>().enabled_fishing = false;
-            success = false;
+            if (failure == true)
+            {
+                bone_master.GetComponent<variable_length>().enabled_fishing = false;
+                success = false;
+            }
         }
     }
     

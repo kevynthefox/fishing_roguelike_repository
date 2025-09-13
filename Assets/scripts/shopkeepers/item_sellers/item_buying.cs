@@ -36,11 +36,14 @@ public class item_buying : MonoBehaviour
 
     public void LateUpdate()
     {
-        gamesettings = GameObject.Find("game_settings");
+        if (Starter.current.update == true)
+        {
+            gamesettings = GameObject.Find("game_settings");
 
-        item_cost = GetComponent<item_price_holder>().item_cost;
+            item_cost = GetComponent<item_price_holder>().item_cost;
 
-        
+
+        }
     }
 
     public IEnumerator OnMouseOver()

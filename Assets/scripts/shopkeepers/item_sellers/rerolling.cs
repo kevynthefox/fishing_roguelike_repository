@@ -19,7 +19,7 @@ public class rerolling : MonoBehaviour
 
     public GameObject player;
 
-    public bool starter;
+    //public bool starter;
 
     public float item_cost;
     public float item_original_cost;
@@ -27,22 +27,25 @@ public class rerolling : MonoBehaviour
 
     public void Start()
     {
-        starter = true;
+        //starter = true;
         StartCoroutine(rotater());
     }
 
     public void LateUpdate()
     {
-        cost_percent = gamesettings.GetComponent<settings>().cost_percent / 100;
+        if (Starter.current.update == true)
+        {
+            cost_percent = gamesettings.GetComponent<settings>().cost_percent / 100;
 
-        item_cost = cost_percent * item_original_cost;
+            item_cost = cost_percent * item_original_cost;
 
-        cost_text.text = item_cost.ToString();
+            cost_text.text = item_cost.ToString();
+        }
     }
 
     public IEnumerator rotater()
     {
-        while (starter == true)
+        while (Starter.current.starter == true)
         {
             if (whole_shop.GetComponent<item_manifestation>().checking_out == false)
             {

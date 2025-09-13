@@ -19,7 +19,7 @@ public class spawn_objects : MonoBehaviour
 
     public float speed;
 
-    public bool starter = true;
+    //public bool starter = true;
 
     void Start()
     {
@@ -29,60 +29,63 @@ public class spawn_objects : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Keypad1))
+        if (Starter.current.update == true)
         {
-            placing = 1;
-        }
-        if (Input.GetKeyDown(KeyCode.Keypad2))
-        {
-            placing = 2;
-            
-        }
-        if (Input.GetKeyDown(KeyCode.Keypad3))
-        {
-            placing = 3;
-        }
+            if (Input.GetKeyDown(KeyCode.Keypad1))
+            {
+                placing = 1;
+            }
+            if (Input.GetKeyDown(KeyCode.Keypad2))
+            {
+                placing = 2;
 
-        if (Input.GetMouseButtonDown(1))
-        {
+            }
+            if (Input.GetKeyDown(KeyCode.Keypad3))
+            {
+                placing = 3;
+            }
+
+            if (Input.GetMouseButtonDown(1))
+            {
+                if (placing > 0)
+                {
+                    placing = 0;
+                }
+            }
+
             if (placing > 0)
             {
-                placing = 0;
+                hit_shower_holder.SetActive(true);
+                //hit_shower.transform.rotation = Quaternion.AngleAxis(hit_shower.transform.rotation.y + sight_obj.transform.rotation.y, Vector3.up);
+
+
+
+                InteractRaycast();
+                if (Input.GetMouseButtonDown(0))
+                {
+                    spawn_object(placing);
+                }
+
+                sizechange();
+                Debug.Log(Input.GetAxis("Mouse ScrollWheel"));
+                if (Input.GetAxis("Mouse ScrollWheel") > 0)
+                {
+                    hit_shower.transform.Rotate(new Vector3(0, 1, 0));
+                }
+                if (Input.GetAxis("Mouse ScrollWheel") < 0)
+                {
+                    hit_shower.transform.Rotate(new Vector3(0, -1, 0));
+                }
+
             }
-        }
-
-        if (placing > 0)
-        {
-            hit_shower_holder.SetActive(true);
-            //hit_shower.transform.rotation = Quaternion.AngleAxis(hit_shower.transform.rotation.y + sight_obj.transform.rotation.y, Vector3.up);
-
-            
-
-            InteractRaycast();
-            if (Input.GetMouseButtonDown(0))
+            else
             {
-                spawn_object(placing);
+                hit_shower_holder.SetActive(false);
+                hit_shower_holder.transform.position = sight_obj.transform.position;
             }
 
-            sizechange();
-            Debug.Log(Input.GetAxis("Mouse ScrollWheel"));
-            if (Input.GetAxis("Mouse ScrollWheel") > 0)
-            {
-                hit_shower.transform.Rotate(new Vector3(0, 1, 0));
-            }
-            if (Input.GetAxis("Mouse ScrollWheel") < 0)
-            {
-                hit_shower.transform.Rotate(new Vector3(0,  -1, 0));
-            }
-            
+            //InteractRaycast();
         }
-        else
-        {
-            hit_shower_holder.SetActive(false);
-            hit_shower_holder.transform.position = sight_obj.transform.position;
-        }
-
-        //InteractRaycast();
     }
 
     private void sizechange()
@@ -115,7 +118,7 @@ public class spawn_objects : MonoBehaviour
         bool finished = false;
         bool finished2 = false;
         int repeat_time = 0;
-        while (starter == true && finished2 == false)
+        while (Starter.current.starter == true && finished2 == false)
         {
             if (object_to_affect.transform.localScale.x < 1 || finished == true || finished2 == true)
             {

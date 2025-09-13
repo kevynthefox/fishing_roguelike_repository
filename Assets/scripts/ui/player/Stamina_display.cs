@@ -35,35 +35,38 @@ public float sprint_speed_mult = 2;
 		sprint_speed = sprint_speed_mult * player.GetComponent<movement>().speed;
     }
 
-    // Update is called once per frame
-    void Update()
+	// Update is called once per frame
+	void Update()
 	{
-		horizontalInput = player.GetComponent<movement>().horizontalInput;
-		forwardInput = player.GetComponent<movement>().forwardInput;
-		hunger_ = hunger.GetComponent<Hunger_display>().hunger;
-
-
-
-        
-
-		if (stamina <= 0) { stamina = 0; }
-
-		if (Input.GetKey(KeyCode.LeftShift) && (forwardInput !=0 || horizontalInput !=0) && stamina >0)
-        {
-			stamina -= SprintCost * Time.deltaTime;
-			if (recharge != null) StopCoroutine(recharge);
-			recharge = StartCoroutine(RechargeStamina());
-			player.GetComponent<movement>().speed = sprint_speed;
-            staminaText.text = "stamina : " + stamina;
-            StaminaBar.fillAmount = stamina / stamina_max;
-
-        } 
-		else
+		if (Starter.current.update == true)
 		{
-			player.GetComponent<movement>().speed *= 1;
-		}
+			horizontalInput = player.GetComponent<movement>().horizontalInput;
+			forwardInput = player.GetComponent<movement>().forwardInput;
+			hunger_ = hunger.GetComponent<Hunger_display>().hunger;
 
-    }
+
+
+
+
+			if (stamina <= 0) { stamina = 0; }
+
+			if (Input.GetKey(KeyCode.LeftShift) && (forwardInput != 0 || horizontalInput != 0) && stamina > 0)
+			{
+				stamina -= SprintCost * Time.deltaTime;
+				if (recharge != null) StopCoroutine(recharge);
+				recharge = StartCoroutine(RechargeStamina());
+				player.GetComponent<movement>().speed = sprint_speed;
+				staminaText.text = "stamina : " + stamina;
+				StaminaBar.fillAmount = stamina / stamina_max;
+
+			}
+			else
+			{
+				player.GetComponent<movement>().speed *= 1;
+			}
+
+		}
+	}
 
 
 	private IEnumerator RechargeStamina()
