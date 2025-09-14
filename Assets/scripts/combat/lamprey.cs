@@ -30,7 +30,7 @@ public class lamprey : MonoBehaviour
 
     public void Update()
     {
-        if (Starter.current.update == true)
+        if (TimeManager.current.update == true)
         {
 
 

@@ -37,13 +37,14 @@ public class inventory_ui_manager : MonoBehaviour
 
     public void AddInventorySlot(InventoryItem item)
     {
+        int place = InventorySystem.current.inventory.IndexOf(item);
         GameObject obj = Instantiate(m_slotPrefab);
         obj.transform.SetParent(transform, false);
         obj.GetComponent<Transform>().Find("item").GetComponent<Draggable_item>().spot_in_inventory = InventorySystem.current.inventory.IndexOf(item);
-        obj.GetComponent<InventorySlot>().inventory_slot_position = InventorySystem.current.inventory.IndexOf(item);
+        obj.GetComponent<InventorySlot>().inventory_slot_position = place;//InventorySystem.current.inventory.IndexOf(item);
         obj.GetComponent<Transform>().Find("item").GetComponent<Draggable_item>().self_inventory_item = item;
         UIInventoryItemSlot slot = obj.GetComponent<UIInventoryItemSlot>();
-        slot.Set(item);
+        slot.Set(item, place);
     }
 
 

@@ -34,7 +34,7 @@ public class money_collector : MonoBehaviour
 
     public void Update()
     {
-        if (Starter.current.update == true)
+        if (TimeManager.current.update == true)
         {
             money.text = ":" + money_value;
             wait = 1 / bobber.GetComponent<fishing_script>().fish_quantity_original;

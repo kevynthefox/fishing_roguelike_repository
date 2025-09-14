@@ -38,9 +38,9 @@ public class fish_seller_checkout : MonoBehaviour
 
     public void Update()
     {
-        if (Starter.current.update == true)
+        if (TimeManager.current.update == true)
         {
-            if (Starter.current.update == true)
+            if (TimeManager.current.update == true)
             {
                 rotation(spawn_area.transform.rotation.x, spawn_area.transform.rotation.y, spawn_area.transform.rotation.z);
             }
@@ -59,7 +59,7 @@ public class fish_seller_checkout : MonoBehaviour
         if (other != null)
         {
             //Vector3 spawnpos = new Vector3(spawn_area.transform.position.x, spawn_area.transform.position.y, spawn_area.transform.position.z);
-            while (Starter.current.starter == true)
+            while (TimeManager.current.starter == true)
             {
                 
                 Vector3 spawnpos = new Vector3(spawn_area.transform.position.x, spawn_area.transform.position.y, spawn_area.transform.position.z);

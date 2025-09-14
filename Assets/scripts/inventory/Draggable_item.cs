@@ -23,11 +23,19 @@ public class Draggable_item : MonoBehaviour//, IBeginDragHandler, IDragHandler, 
     public bool already_made_item;
     public bool toggleOffOn;
 
+
+
     public void Awake()
     {
         //inventory_bar = GameObject.Find("inventory_bar").transform;
         player = GameObject.Find("player");
+        
     }
+    private void Start()
+    {
+        StartCoroutine(UpdateForItemTp());
+    }
+
     #region dragging_items[depreceated]
     /*public void OnBeginDrag(PointerEventData eventData)
     {
@@ -61,10 +69,12 @@ public class Draggable_item : MonoBehaviour//, IBeginDragHandler, IDragHandler, 
         image.raycastTarget = true;
     }*/
     #endregion
+
+
     #region teleporting_items
     public IEnumerator UpdateForItemTp()
     {
-        while (Starter.current.starter == true)
+        while (TimeManager.current.essential_starter == true)
         {
             if (self_inventory_item.data.been_Left_clicked_on == true)
             {
@@ -113,95 +123,101 @@ public class Draggable_item : MonoBehaviour//, IBeginDragHandler, IDragHandler, 
 
     public void drop_item(bool multiple_items_or_not) // false is one item worth several, true is several each worth one.
     {
-        Vector3 random_pos_around_player = new Vector3(Random.Range(-5, 5) + player.transform.position.x, 0 + player.transform.position.y, Random.Range(-5, 5) + player.transform.position.z);
-        var spawned_item = Instantiate(self_inventory_item.data.prefab, random_pos_around_player, self_inventory_item.data.prefab.transform.rotation);
-
-        if (spawned_item.TryGetComponent<item_price_holder>(out item_price_holder price_Holder)) price_Holder.buy_or_pickup = true;
-        
-
-        /*GameObject bigger_item;
-        GameObject smaller_item;*/
-        if (multiple_items_or_not == false)
+        if (InventoryController.current.either_hand_filled == false)
         {
-            //Debug.Log("one big item");
-            //int original_stack_size = self_inventory_item.stackSize;
-            //Debug.Log("original_stack size: " + original_stack_size);
-            if (InventorySystem.current.inventory[spot_in_inventory].already_made_item == false)
-            {
-                spawned_item.GetComponent<item_pickup>().amount_of_items = self_inventory_item.stackSize;
-                InventorySystem.current.inventory[spot_in_inventory].already_made_item = true;
+            Vector3 random_pos_around_player = new Vector3(Random.Range(-5, 5) + player.transform.position.x, 0 + player.transform.position.y, Random.Range(-5, 5) + player.transform.position.z);
+            var spawned_item = Instantiate(self_inventory_item.data.prefab, random_pos_around_player, self_inventory_item.data.prefab.transform.rotation);
 
-                for (int i = 0; i <= self_inventory_item.stackSize + 1; i++)
+            if (spawned_item.TryGetComponent<item_price_holder>(out item_price_holder price_Holder)) price_Holder.buy_or_pickup = true;
+
+
+            /*GameObject bigger_item;
+            GameObject smaller_item;*/
+            if (multiple_items_or_not == false)
+            {
+                //Debug.Log("one big item");
+                //int original_stack_size = self_inventory_item.stackSize;
+                //Debug.Log("original_stack size: " + original_stack_size);
+                if (InventorySystem.current.inventory[spot_in_inventory].already_made_item == false)
                 {
-                    InventorySystem.current.Remove(self_inventory_item.data);
-                    Debug.Log("times removing");
+                    spawned_item.GetComponent<item_pickup>().amount_of_items = self_inventory_item.stackSize;
+                    InventorySystem.current.inventory[spot_in_inventory].already_made_item = true;
+
+                    for (int i = 0; i <= self_inventory_item.stackSize + 1; i++)
+                    {
+                        InventorySystem.current.Remove(self_inventory_item.data);
+                        Debug.Log("times removing");
+                    }
+
                 }
+                else
+                {
+                    spawned_item.GetComponent<item_pickup>().amount_of_items = 0;
+                    Destroy(spawned_item);
+                    for (int i = 0; i <= self_inventory_item.stackSize; i++)
+                    {
+                        InventorySystem.current.Remove(self_inventory_item.data);
+                    }
+
+                }
+
+
+                /*if (self_inventory_item.stackSize > 2)
+                {
+                    if (self_inventory_item.stackSize <= 1)
+                    {
+                        Destroy(spawned_item);
+                    }
+                } */
+
+                /*int original_item_size = InventorySystem.current.inventory[spot_in_inventory].stackSize;
+                Debug.Log("original size: " +  original_item_size);
+                if (self_inventory_item.stackSize > 2)
+                {
+                    if (spawned_item.GetComponent<item_pickup>().amount_of_items != original_item_size)
+                    {
+                        Debug.Log("not original stack size, destroying");
+                        Destroy(spawned_item);
+                    }
+                }*/
+
+
+
+
 
             }
             else
             {
-                spawned_item.GetComponent<item_pickup>().amount_of_items = 0;
-                Destroy(spawned_item);
-                for (int i = 0; i <= self_inventory_item.stackSize; i++)
+                //Debug.Log("many items");
+                if (InventorySystem.current.inventory[spot_in_inventory].already_made_item == false)
                 {
-                    InventorySystem.current.Remove(self_inventory_item.data);
+                    spawned_item.GetComponent<item_pickup>().amount_of_items = 1;
                 }
-                
-            }
-            
-
-            /*if (self_inventory_item.stackSize > 2)
-            {
-                if (self_inventory_item.stackSize <= 1)
+                else
                 {
+                    spawned_item.GetComponent<item_pickup>().amount_of_items = 0;
                     Destroy(spawned_item);
                 }
-            } */   
-
-            /*int original_item_size = InventorySystem.current.inventory[spot_in_inventory].stackSize;
-            Debug.Log("original size: " +  original_item_size);
-            if (self_inventory_item.stackSize > 2)
-            {
-                if (spawned_item.GetComponent<item_pickup>().amount_of_items != original_item_size)
-                {
-                    Debug.Log("not original stack size, destroying");
-                    Destroy(spawned_item);
-                }
-            }*/
-            
-            
-            
-
-            
-        }
-        else
-        {
-            //Debug.Log("many items");
-            if (InventorySystem.current.inventory[spot_in_inventory].already_made_item == false)
-            {
-                spawned_item.GetComponent<item_pickup>().amount_of_items = 1;
+                InventorySystem.current.Remove(self_inventory_item.data);
             }
-            else
-            {
-                spawned_item.GetComponent<item_pickup>().amount_of_items = 0;
-                Destroy(spawned_item);
-            }
-            InventorySystem.current.Remove(self_inventory_item.data);
-        }
-        
-        InventorySystem.current.InventoryChanged();
 
+            InventorySystem.current.InventoryChanged();
+        }
     }
 
     public void item_clicked_on()
     {
         Debug.Log("clicked on");
         if (Input.GetMouseButtonDown(0)) { self_inventory_item.data.been_Left_clicked_on = true; }
-        if (Input.GetMouseButtonDown(1)) { self_inventory_item.data.been_Right_clicked_on = true; }
-        if (Input.GetMouseButtonDown(2) && self_inventory_item.data.toggleable == true) { self_inventory_item.data.been_middle_clicked_on = true; Debug.Log("middle clicked"); StartCoroutine(middleclickFalse());
-        }
-        else { self_inventory_item.data.been_clicked_on = true; }
-
+        if (InventoryController.current.either_hand_filled == false)
+        {
+            if (Input.GetMouseButtonDown(1)) { self_inventory_item.data.been_Right_clicked_on = true; }
+            if (Input.GetMouseButtonDown(2) && self_inventory_item.data.toggleable == true)
+            {
+                self_inventory_item.data.been_middle_clicked_on = true; Debug.Log("middle clicked"); StartCoroutine(middleclickFalse());
+            }
+            else { self_inventory_item.data.been_clicked_on = true; }
+        }   
         //Invoke("item_clicked_off", 1f);
         //item_clicked_off();
     }

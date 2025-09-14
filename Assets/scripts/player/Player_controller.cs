@@ -26,27 +26,33 @@ public class Player_controller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        speed = 0;
-        Vector3 inputDirection = new Vector3(input.move.x, 0, input.move.y);
-        float targetRotation = 0;
-        
-        if(input.move != Vector2.zero)
+        if (GetComponentInChildren<Health_display>().dead == false)
         {
-            speed = GetComponent<movement>().speed;
-            targetRotation = Quaternion.LookRotation(inputDirection).eulerAngles.y + mainCam.transform.rotation.eulerAngles.y;
-            Quaternion rotation = Quaternion.Euler(0, targetRotation,0);
-            transform.rotation = Quaternion.Slerp(transform.rotation, rotation, 20 * Time.deltaTime);
+            speed = 0;
+            Vector3 inputDirection = new Vector3(input.move.x, 0, input.move.y);
+            float targetRotation = 0;
+
+            if (input.move != Vector2.zero)
+            {
+                speed = GetComponent<movement>().speed;
+                targetRotation = Quaternion.LookRotation(inputDirection).eulerAngles.y + mainCam.transform.rotation.eulerAngles.y;
+                Quaternion rotation = Quaternion.Euler(0, targetRotation, 0);
+                transform.rotation = Quaternion.Slerp(transform.rotation, rotation, 20 * Time.deltaTime);
+            }
+
+
+            Vector3 targetDirection = Quaternion.Euler(0, targetRotation, 0) * Vector3.forward;
+            controller.Move(targetDirection * speed * sprintspeed * Time.deltaTime);
+            Debug.Log("targetDirection" + targetDirection);
         }
-
-
-        Vector3 targetDirection = Quaternion.Euler(0, targetRotation, 0) * Vector3.forward;
-        controller.Move(targetDirection * speed * sprintspeed * Time.deltaTime);
-        Debug.Log("targetDirection" + targetDirection);
     }
     void LateUpdate()
     {
-        CameraRotation();
+        if (GetComponentInChildren<Health_display>().dead == false)
+        {
+            CameraRotation();
 
+        }
     }
     void CameraRotation()
     {

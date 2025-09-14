@@ -38,7 +38,7 @@ public float sprint_speed_mult = 2;
 	// Update is called once per frame
 	void Update()
 	{
-		if (Starter.current.update == true)
+		if (TimeManager.current.update == true)
 		{
 			horizontalInput = player.GetComponent<movement>().horizontalInput;
 			forwardInput = player.GetComponent<movement>().forwardInput;

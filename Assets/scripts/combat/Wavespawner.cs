@@ -65,10 +65,35 @@ public class Wavespawner : MonoBehaviour
         targets.Add(GameObject.Find("player"));
         time_left = time_start;
     }
-
+    private bool already_sent_starter_inactive;
+    private bool already_sent_starter_active;
     public void Update()
     {
-        if (Starter.current.update == true)
+        if (TimeManager.current.starter_reignitable == true)
+        {
+            if (TimeManager.current.starter == true)
+            {
+                if (already_sent_starter_active == false)
+                {
+                    already_sent_starter_inactive = false;
+                    TimeManager.current.starters_inactive -= 1;
+                    already_sent_starter_active = true;
+                    StartCoroutine(timer());
+                    StartCoroutine(spawn_prevention());
+                }
+            }
+        }
+        if (TimeManager.current.starter == false)
+        {
+            already_sent_starter_active = false;
+            if (already_sent_starter_inactive == false)
+            {
+                TimeManager.current.starters_inactive += 1;
+                already_sent_starter_inactive = true;
+            }
+        }
+
+        if (TimeManager.current.update == true)
         {
             if (Input.GetKeyDown(KeyCode.Y))
             {
@@ -213,7 +238,7 @@ public class Wavespawner : MonoBehaviour
 
     public IEnumerator timer()
     {
-        while (Starter.current.starter == true)
+        while (TimeManager.current.starter == true)
         {
 
             if (time_left >= 1 && spawning_time == false)
@@ -266,7 +291,7 @@ public class Wavespawner : MonoBehaviour
     
     public IEnumerator spawn_prevention()
     {
-        while (Starter.current.starter == true)
+        while (TimeManager.current.starter == true)
         {
             if (spawning_time == false) 
             {

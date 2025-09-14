@@ -30,7 +30,7 @@ public class boat_functionality : MonoBehaviour
 
     void Update()
     {
-        if (Starter.current.update == true)
+        if (TimeManager.current.update == true)
         {
             direction = Camera.GetComponent<Transform>().forward;
             direction_modified = direction * Time.deltaTime * boat_speed;
@@ -41,7 +41,7 @@ public class boat_functionality : MonoBehaviour
 
     public void FixedUpdate()
     {
-        if (Starter.current.update == true)
+        if (TimeManager.current.update == true)
         {
             if (boat_yes == true)
             {

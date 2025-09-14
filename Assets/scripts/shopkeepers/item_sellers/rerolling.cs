@@ -33,7 +33,7 @@ public class rerolling : MonoBehaviour
 
     public void LateUpdate()
     {
-        if (Starter.current.update == true)
+        if (TimeManager.current.update == true)
         {
             cost_percent = gamesettings.GetComponent<settings>().cost_percent / 100;
 
@@ -43,9 +43,37 @@ public class rerolling : MonoBehaviour
         }
     }
 
+    private bool already_sent_starter_inactive;
+    private bool already_sent_starter_active;
+    private void Update()
+    {
+        if (TimeManager.current.starter_reignitable == true)
+        {
+            if (TimeManager.current.starter == true)
+            {
+                if (already_sent_starter_active == false)
+                {
+                    already_sent_starter_inactive = false;
+                    TimeManager.current.starters_inactive -= 1;
+                    already_sent_starter_active = true;
+                    StartCoroutine(rotater());
+                }
+            }
+        }
+        if (TimeManager.current.starter == false)
+        {
+            already_sent_starter_active = false;
+            if (already_sent_starter_inactive == false)
+            {
+                TimeManager.current.starters_inactive += 1;
+                already_sent_starter_inactive = true;
+            }
+        }
+    }
+
     public IEnumerator rotater()
     {
-        while (Starter.current.starter == true)
+        while (TimeManager.current.starter == true)
         {
             if (whole_shop.GetComponent<item_manifestation>().checking_out == false)
             {

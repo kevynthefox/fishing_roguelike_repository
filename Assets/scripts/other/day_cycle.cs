@@ -21,7 +21,7 @@ public class day_cycle : MonoBehaviour
 
     public void Update()
     {
-        if (Starter.current.update == true)
+        if (TimeManager.current.update == true)
         {
             degpersec = (1 / cycle_length) * 6 * 60;
 
@@ -31,7 +31,32 @@ public class day_cycle : MonoBehaviour
 
             //GetComponent<Transform>().rotation.x += time;
         }
+
+        if (TimeManager.current.starter_reignitable == true)
+        {
+            if (TimeManager.current.starter == true)
+            {
+                if (already_sent_starter_active == false)
+                {
+                    already_sent_starter_inactive = false;
+                    TimeManager.current.starters_inactive -= 1;
+                    already_sent_starter_active = true;
+                    StartCoroutine(time_keeper());
+                }
+            }
+        }
+        if (TimeManager.current.starter == false)
+        {
+            already_sent_starter_active = false;
+            if (already_sent_starter_inactive == false)
+            {
+                TimeManager.current.starters_inactive += 1;
+                already_sent_starter_inactive = true;
+            }
+        }
     }
+    private bool already_sent_starter_inactive;
+    private bool already_sent_starter_active;
 
     public static Quaternion rotation(float x, float y, float z)
     {
@@ -40,7 +65,7 @@ public class day_cycle : MonoBehaviour
 
     public IEnumerator time_keeper()
     {
-        while (Starter.current.starter == true)
+        while (TimeManager.current.starter == true)
         {
             if (time >= cycle_length)
             {

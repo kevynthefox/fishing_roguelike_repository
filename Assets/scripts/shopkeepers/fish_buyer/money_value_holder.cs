@@ -29,7 +29,7 @@ public class money_value_holder : MonoBehaviour
     }
     private void Update()
     {
-        if (Starter.current.update == true)
+        if (TimeManager.current.update == true)
         {
             collectible = money_spawner.GetComponent<fish_seller_checkout>().collectible;
 

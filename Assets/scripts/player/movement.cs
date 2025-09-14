@@ -41,25 +41,31 @@ public class movement : MonoBehaviour
         Camera = camera_holder.GetComponent<camera_holder>().first_person;
     }
 
-	// Update is called once per frame
-	void FixedUpdate()
-	{
+    // Update is called once per frame
+    void FixedUpdate()
+    {
+        if (GetComponentInChildren<Health_display>().dead == false)
+        {
 
-        //horizontalInput = Input.GetAxis("Horizontal");
-		//forwardInput = Input.GetAxis("Vertical");
+            //horizontalInput = Input.GetAxis("Horizontal");
+            //forwardInput = Input.GetAxis("Vertical");
 
-		
-	    cameraRelativeMovement = GetComponent<move_relative_to_camera>().cameraRelativeMovement;
-        
-        movement_target.transform.Translate(cameraRelativeMovement * Time.deltaTime * speed);
+
+            cameraRelativeMovement = GetComponent<move_relative_to_camera>().cameraRelativeMovement;
+
+            movement_target.transform.Translate(cameraRelativeMovement * Time.deltaTime * speed);
+        }
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && isOnGround)
+        if (GetComponentInChildren<Health_display>().dead == false)
         {
-            Rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-            isOnGround = false;
+            if (Input.GetKeyDown(KeyCode.Space) && isOnGround)
+            {
+                Rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+                isOnGround = false;
+            }
         }
     }
 

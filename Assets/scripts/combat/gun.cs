@@ -98,7 +98,7 @@ public class gun : MonoBehaviour
 
     private void Update()
     {
-        if (Starter.current.update == true)
+        if (TimeManager.current.update == true)
         {
 
 
@@ -167,11 +167,36 @@ public class gun : MonoBehaviour
                 //Debug.Log("target was missing, made another one");
             }
         }
-    }
 
+        if (TimeManager.current.starter_reignitable == true)
+        {
+            if (TimeManager.current.starter == true)
+            {
+                if (already_sent_starter_active == false)
+                {
+                    already_sent_starter_inactive = false;
+                    TimeManager.current.starters_inactive -= 1;
+                    already_sent_starter_active = true;
+                    StartCoroutine(turret_fire());
+                    StartCoroutine(fire_tracking());
+                }
+            }
+        }
+        if (TimeManager.current.starter == false)
+        {
+            already_sent_starter_active = false;
+            if (already_sent_starter_inactive == false)
+            {
+                TimeManager.current.starters_inactive += 1;
+                already_sent_starter_inactive = true;
+            }
+        }
+    }
+    private bool already_sent_starter_inactive;
+    private bool already_sent_starter_active;
     public IEnumerator turret_fire()
     {
-        while (Starter.current.starter == true)
+        while (TimeManager.current.starter == true)
         {
             if (Input.GetKey(KeyCode.T))
             {
@@ -391,7 +416,7 @@ public class gun : MonoBehaviour
 
     public IEnumerator fire_tracking()
     {
-        while (Starter.current.starter == true)
+        while (TimeManager.current.starter == true)
         {
             fire_timer += ( fire_rate / 2);
             yield return new WaitForSeconds(fire_rate);

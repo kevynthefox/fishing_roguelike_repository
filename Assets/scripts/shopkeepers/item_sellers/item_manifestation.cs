@@ -49,7 +49,7 @@ public class item_manifestation : MonoBehaviour
 
     public void Update()
     {
-        if (Starter.current.update == true)
+        if (TimeManager.current.update == true)
         {
             //other_value = wallet.GetComponent<money_collector>().others_value;
             others_value_divider = wallet.GetComponent<money_collector>().others_value_divider;
@@ -76,8 +76,32 @@ public class item_manifestation : MonoBehaviour
                 starter = false;
             }
         }
-    }
 
+        if (TimeManager.current.starter_reignitable == true)
+        {
+            if (TimeManager.current.starter == true)
+            {
+                if (already_sent_starter_active == false)
+                {
+                    already_sent_starter_inactive = false;
+                    TimeManager.current.starters_inactive -= 1;
+                    already_sent_starter_active = true;
+                    StartCoroutine(checkout_part());
+                }
+            }
+        }
+        if (TimeManager.current.starter == false)
+        {
+            already_sent_starter_active = false;
+            if (already_sent_starter_inactive == false)
+            {
+                TimeManager.current.starters_inactive += 1;
+                already_sent_starter_inactive = true;
+            }
+        }
+    }
+    private bool already_sent_starter_inactive;
+    private bool already_sent_starter_active;
     public void item_maker()
     {
         

@@ -30,7 +30,8 @@ public class Health_display : MonoBehaviour
 
     public bool is_turret;
 
-
+    public bool freezeframe_or_movement;
+    public bool initiate_freezeframe;
 
     // Start is called before the first frame update
     void Start()
@@ -40,7 +41,7 @@ public class Health_display : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Starter.current.update == true)
+        if (TimeManager.current.update == true)
         {
 
             if (is_player == true)
@@ -81,6 +82,10 @@ public class Health_display : MonoBehaviour
             HealthBar.fillAmount = health / health_max;
             //}
 
+            if (Input.GetKey(KeyCode.K))
+            {
+                health = 0;
+            }
         }
     }
 
@@ -116,13 +121,15 @@ public class Health_display : MonoBehaviour
         }
     }
     //
-    
+
     public void death()
     {
         death_system.SetActive(true);
+        if (freezeframe_or_movement == false)
+        {
+            initiate_freezeframe = true;
+        }
+        
 
-        Time.timeScale = 0;
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
     }
 }

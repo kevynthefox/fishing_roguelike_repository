@@ -57,8 +57,9 @@ public class behavior_for_ranged_fish : MonoBehaviour
 
     private void Update()
     {
-        if (Starter.current.update == true)
+        if (TimeManager.current.update == true)
         {
+            agent.enabled = true;
             //check for sight and attack range
             playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
             playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
@@ -72,67 +73,87 @@ public class behavior_for_ranged_fish : MonoBehaviour
 
 
         }
+        else
+        {
+            agent.enabled = false;
+        }
+        GetComponent<Rigidbody>().isKinematic = !agent.enabled;
     }
     #region pathfinding
     private void patroling()
     {
-        if (!walkPointSet) SearchWalkPoint();
-
-        if (walkPointSet)
+        if (TimeManager.current.update == true)
         {
-            agent.SetDestination(walkPoint);
-        }    
+            if (!walkPointSet) SearchWalkPoint();
 
-        Vector3 distanceToWalkpoint = transform.position - walkPoint;
+            if (walkPointSet)
+            {
+                agent.SetDestination(walkPoint);
+            }
 
-        //walkpoint reached
-        if (distanceToWalkpoint.magnitude < 1f)
-        {
-            walkPointSet = false;
+            Vector3 distanceToWalkpoint = transform.position - walkPoint;
+
+            //walkpoint reached
+            if (distanceToWalkpoint.magnitude < 1f)
+            {
+                walkPointSet = false;
+            }
         }
     }
 
     private void SearchWalkPoint()
     {
-        //calculate random point in range
-        float randomZ = Random.Range(-walkPointRange, walkPointRange);
-        float randomx = Random.Range(-walkPointRange, walkPointRange);
-
-        walkPoint = new Vector3(transform.position.x + randomx, transform.position.y, transform.position.z + randomZ);
-
-        if (Physics.Raycast(walkPoint,-transform.up, 2f, whatIsGround))
+        if (TimeManager.current.update == true)
         {
-            walkPointSet = true;
+            //calculate random point in range
+            float randomZ = Random.Range(-walkPointRange, walkPointRange);
+            float randomx = Random.Range(-walkPointRange, walkPointRange);
+
+            walkPoint = new Vector3(transform.position.x + randomx, transform.position.y, transform.position.z + randomZ);
+
+            if (Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround))
+            {
+                walkPointSet = true;
+            }
         }
     }
 
     private void ChasePlayer()
     {
-        agent.SetDestination(player.position);
+        if (TimeManager.current.update == true)
+        {
+            agent.SetDestination(player.position);
+        }
     }
     private void AttackPlayer()
     {
-        //make sure enemy doesn't move
-        if (agent != null)
+        if (TimeManager.current.update == true)
         {
-            agent.SetDestination(transform.position);
-        }
-        transform.LookAt(player);
+            //make sure enemy doesn't move
+            if (agent != null)
+            {
+                agent.SetDestination(transform.position);
+            }
+            transform.LookAt(player);
 
-        if (!alreadyAttacked)
-        {
-            //attack code here
-            gun.GetComponent<gun>().manual_fire = true;
-            //
+            if (!alreadyAttacked)
+            {
+                //attack code here
+                gun.GetComponent<gun>().manual_fire = true;
+                //
 
-            alreadyAttacked = true;
-            Invoke(nameof(ResetAttack),timeBetweenAttacks);
+                alreadyAttacked = true;
+                Invoke(nameof(ResetAttack), timeBetweenAttacks);
+            }
         }
     }
 
     private void ResetAttack()
     {
-        alreadyAttacked = false;
+        if (TimeManager.current.update == true)
+        {
+            alreadyAttacked = false;
+        }
     }
 
     
@@ -151,32 +172,41 @@ public class behavior_for_ranged_fish : MonoBehaviour
     #region health
     public void TakeDamage(float damage)
     {
-        health_bar.GetComponent<Health_display>().health -= damage;
+        if (TimeManager.current.update == true)
+        {
+            health_bar.GetComponent<Health_display>().health -= damage;
 
-        if (health_bar.GetComponent<Health_display>().health <= 0) Invoke(nameof(DestroyEnemy), .5f);
-        if (health_bar.GetComponent<Health_display>().health <= 60) this.gameObject.tag = "fish";
+            if (health_bar.GetComponent<Health_display>().health <= 0) Invoke(nameof(DestroyEnemy), .5f);
+            if (health_bar.GetComponent<Health_display>().health <= 60) this.gameObject.tag = "fish";
+        }
     }
 
     private void DestroyEnemy()
     {
-        wave_spawner.GetComponent<Wavespawner>().encounter_enemies_alive.Remove(this.gameObject);
-        Destroy(gameObject);
-        Debug.Log("enemy dead");
-       
+        if (TimeManager.current.update == true)
+        {
+            wave_spawner.GetComponent<Wavespawner>().encounter_enemies_alive.Remove(this.gameObject);
+            Destroy(gameObject);
+            Debug.Log("enemy dead");
+
+        }
     }
 
     public void OnTriggerEnter(Collider other)
     {
-        if (other.isTrigger == true)
+        if (TimeManager.current.update == true)
         {
-            if (other.gameObject.tag == "fishing_rod" && other.gameObject.GetComponent<fishing_script>().blocking == false && other.gameObject.GetComponent<fishing_script>().attacking == true)
+            if (other.isTrigger == true)
             {
-                TakeDamage(other.gameObject.GetComponent<fishing_script>().damage);
-            }
+                if (other.gameObject.tag == "fishing_rod" && other.gameObject.GetComponent<fishing_script>().blocking == false && other.gameObject.GetComponent<fishing_script>().attacking == true)
+                {
+                    TakeDamage(other.gameObject.GetComponent<fishing_script>().damage);
+                }
 
-            if (other.gameObject.tag == "projectile")
-            {
-                TakeDamage(((int)other.gameObject.GetComponent<projectile_controller>().damage));
+                if (other.gameObject.tag == "projectile")
+                {
+                    TakeDamage(((int)other.gameObject.GetComponent<projectile_controller>().damage));
+                }
             }
         }
     }

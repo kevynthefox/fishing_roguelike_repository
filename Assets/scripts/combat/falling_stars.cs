@@ -38,7 +38,7 @@ public class falling_stars : MonoBehaviour
 
     void Update()
     {
-        if (Starter.current.update == true)
+        if (TimeManager.current.update == true)
         {
             day_night = sun.GetComponent<day_cycle>().day_night;
 

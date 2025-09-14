@@ -39,7 +39,7 @@ public class COD : MonoBehaviour
 
     void Update()
     {
-        if (Starter.current.update == true)
+        if (TimeManager.current.update == true)
         {
             day_night = sun.GetComponent<day_cycle>().day_night;
 
@@ -82,11 +82,37 @@ public class COD : MonoBehaviour
 
 
         }
+
+        if (TimeManager.current.starter_reignitable == true)
+        {
+            if (TimeManager.current.starter == true)
+            {
+                if (already_sent_starter_active == false)
+                {
+                    already_sent_starter_inactive = false;
+                    TimeManager.current.starters_inactive -= 1;
+                    already_sent_starter_active = true;
+                    StartCoroutine(counter_stopper());
+                }
+            }
+        }
+        if (TimeManager.current.starter == false)
+        {
+            already_sent_starter_active = false;
+            if (already_sent_starter_inactive == false)
+            {
+                TimeManager.current.starters_inactive += 1;
+                already_sent_starter_inactive = true;
+            }
+        }
     }
+
+    private bool already_sent_starter_inactive;
+    private bool already_sent_starter_active;
 
     public IEnumerator counter_stopper()
     {
-        while (Starter.current.starter == true)
+        while (TimeManager.current.starter == true)
         {
             if (day_night == true)
             {

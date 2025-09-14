@@ -102,8 +102,7 @@ public class Item_behavior : MonoBehaviour
     public bool been_clicked_on;
     public bool been_Right_clicked_on;
     public bool been_Left_clicked_on;
-    //public bool starter = true;
-
+    
 
     public void Awake()
     {
@@ -116,83 +115,90 @@ public class Item_behavior : MonoBehaviour
         wavespawner = GameObject.Find("fish_wave_spawner");
         fishing_controller = object_holder.GetComponent<object_holder>().bobber;
 
+        
+    }
+
+    private void Start()
+    {
         StartCoroutine(list_time_buffer());
     }
 
     public void Update()
     {
-        if (Starter.current.update == true)
+        
+        foreach (InventoryItem item in InventorySystem.current.inventory.ToList())
         {
-            foreach (InventoryItem item in InventorySystem.current.inventory.ToList())
+            //int this_one += 1;
+            trigger_type = item.data.trigger_type;
+            action_type = item.data.action_type;
+            action_object = item.data.action_object;
+            action_effect = item.data.action_effect;
+            duration = item.data.duration;
+            delay = item.data.delay;
+            strength = item.data.strength;
+            if (item.data.target_obj.Length > 0)
             {
-                //int this_one += 1;
-                trigger_type = item.data.trigger_type;
-                action_type = item.data.action_type;
-                action_object = item.data.action_object;
-                action_effect = item.data.action_effect;
-                duration = item.data.duration;
-                delay = item.data.delay;
-                strength = item.data.strength;
-                if (item.data.target_obj.Length > 0)
-                {
-                    target_obj = GameObject.Find(item.data.target_obj);
-                    target_transform = target_obj.transform;
-                }
-                target_group = item.data.target_group;
-                enemy_or_player = item.data.enemy_or_player;
-                stack_size = item.stackSize;
-
-                current_item = item; //Debug.Log(current_item.data.name);
-
-                target_vicinity = item.data.target_vicinity;
-                inheret_target_rotation = item.data.inheret_target_rotation;
-
-                times_used = item.times_used;
-
-                if (item.data.been_middle_clicked_on == true && over_toggle_prevention == false)// && Input.GetMouseButtonDown(2))
-                {
-                    item.data.toggleOffOn = !item.data.toggleOffOn;
-                    over_toggle_prevention = true;
-                    StartCoroutine(timed_untoggler(item));
-                }
-                toggleOffOn = item.data.toggleOffOn;
-
-                been_clicked_on = item.data.been_clicked_on;
-                been_Left_clicked_on = item.data.been_Left_clicked_on;
-                been_Right_clicked_on = item.data.been_Right_clicked_on;
-
-                triggers();
+                target_obj = GameObject.Find(item.data.target_obj);
+                target_transform = target_obj.transform;
             }
+            target_group = item.data.target_group;
+            enemy_or_player = item.data.enemy_or_player;
+            stack_size = item.stackSize;
 
-            //Debug.Log("been right clicked on = " + been_Right_clicked_on);
+            current_item = item; //Debug.Log(current_item.data.name);
 
+            target_vicinity = item.data.target_vicinity;
+            inheret_target_rotation = item.data.inheret_target_rotation;
 
-            if (stack_size == 1)
+            times_used = item.times_used;
+
+            if (item.data.been_middle_clicked_on == true && over_toggle_prevention == false)// && Input.GetMouseButtonDown(2))
             {
-                current_item.last_item_in_stack = true;
+                item.data.toggleOffOn = !item.data.toggleOffOn;
+                over_toggle_prevention = true;
+                StartCoroutine(timed_untoggler(item));
             }
-            else
-            {
-                current_item.last_item_in_stack = false;
-            }
+            toggleOffOn = item.data.toggleOffOn;
 
-            if (gravity_OffOn == true)
+            been_clicked_on = item.data.been_clicked_on;
+            been_Left_clicked_on = item.data.been_Left_clicked_on;
+            been_Right_clicked_on = item.data.been_Right_clicked_on;
+
+            triggers();
+        }
+
+        //Debug.Log("been right clicked on = " + been_Right_clicked_on);
+
+
+        if (stack_size == 1)
+        {
+            current_item.last_item_in_stack = true;
+        }
+        else
+        {
+            current_item.last_item_in_stack = false;
+        }
+
+        if (gravity_OffOn == true)
+        {
+            if (gravity_reverse == true)
             {
-                if (gravity_reverse == true)
-                {
-                    Physics.gravity = -gravity_outcome;
-                }
-                if (gravity_reverse == false)
-                {
-                    Physics.gravity = gravity_outcome;
-                }
+                Physics.gravity = -gravity_outcome;
             }
-            else
+            if (gravity_reverse == false)
             {
-                Physics.gravity = gravity_outcome * 0;
+                Physics.gravity = gravity_outcome;
             }
         }
+        else
+        {
+            Physics.gravity = gravity_outcome * 0;
+        }
+        
+
+        
     }
+
 
 
     public void triggers()
@@ -788,8 +794,7 @@ public class Item_behavior : MonoBehaviour
 
     public IEnumerator list_time_buffer()
     {
-        
-        while (Starter.current.starter == true)
+        while (TimeManager.current.essential_starter == true)
         {
             gather_groups("player", list_of_players);
             gather_groups("simple_fishing_rod", simple_rods);

@@ -23,20 +23,23 @@ public class frame_display : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Starter.current.update == true)
+        if (TimeManager.current.destroyed == false)
         {
-            time += Time.deltaTime;
-
-            frameCount++;
-
-            if (time >= pollingTime)
+            if (TimeManager.current.update == true)
             {
-                frameRate = Mathf.RoundToInt(frameCount / time);
+                time += Time.deltaTime;
 
-                frame.text = "fps: " + frameRate;
+                frameCount++;
 
-                time -= pollingTime;
-                frameCount = 0;
+                if (time >= pollingTime)
+                {
+                    frameRate = Mathf.RoundToInt(frameCount / time);
+
+                    frame.text = "fps: " + frameRate;
+
+                    time -= pollingTime;
+                    frameCount = 0;
+                }
             }
         }
         else

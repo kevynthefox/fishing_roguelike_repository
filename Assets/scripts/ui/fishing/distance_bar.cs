@@ -30,7 +30,7 @@ public class distance_bar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Starter.current.update == true)
+        if (TimeManager.current.update == true)
         {
             if (Input.GetMouseButtonDown(0) && distance_set == false)
             {

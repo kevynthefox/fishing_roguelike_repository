@@ -238,10 +238,34 @@ public class fishing_script : MonoBehaviour
             fishing_system.SetActive(false);
         }
     }
-
+    private bool already_sent_starter_inactive;
+    private bool already_sent_starter_active;
     public void Update()
     {
-        if (Starter.current.update == true)
+        if (TimeManager.current.starter_reignitable == true)
+        {
+            if (TimeManager.current.starter == true)
+            {
+                if (already_sent_starter_active == false)
+                {
+                    already_sent_starter_inactive = false;
+                    TimeManager.current.starters_inactive -= 1;
+                    already_sent_starter_active = true;
+                    StartCoroutine(fish_per_second_finder());
+                }
+            }
+        }
+        if (TimeManager.current.starter == false)
+        {
+            already_sent_starter_active = false;
+            if (already_sent_starter_inactive == false)
+            {
+                TimeManager.current.starters_inactive += 1;
+                already_sent_starter_inactive = true;
+            }
+        }
+
+        if (TimeManager.current.essential_starter == true)
         {
             if (rod_on == false)
             {
@@ -922,135 +946,137 @@ public class fishing_script : MonoBehaviour
 
             while (resetting == true && fish_all_spawned == false)// && win_state == 1)
             {
-                //Debug.Log("spawning fish");
-
-                if (fish_quantity <= 0)
+                if (TimeManager.current.update == true)
                 {
-                    //Debug.Log("out of fish");
-                    //COD.GetComponent<COD>().size += fish_counted;
-                    fish_all_spawned = true;
-                    fish_ever += fish_counted;
+                    //Debug.Log("spawning fish");
 
-                    if (fish_quantity_buff_mult > 0) fish_quantity /= fish_quantity_buff_mult; if (fish_quantity_buff_add > 0) fish_quantity -= fish_quantity_buff_add;
-                    if (fish_quality_buff_mult > 0) fish_quality /= fish_quality_buff_mult; if (fish_quality_buff_add > 0) fish_quality -= fish_quality_buff_add;
-                    if (fish_quantity_max_buff_mult > 0) fish_quantity_max /= fish_quantity_max_buff_mult; if (fish_quantity_max_buff_add > 0) fish_quantity_max -= fish_quantity_max_buff_add;
-                    if (fish_quality_max_buff_mult > 0) fish_quality_max /= fish_quality_max_buff_mult; if (fish_quality_max_buff_add > 0) fish_quality_max -= fish_quality_max_buff_add;
-                    if (fish_quantity_min_buff_mult > 0) fish_quantity_min /= fish_quantity_min_buff_mult; if (fish_quantity_min_buff_add > 0) fish_quantity_min -= fish_quantity_min_buff_add;
-                    if (fish_quality_min_buff_mult > 0) fish_quality_min /= fish_quality_min_buff_mult; if (fish_quality_min_buff_add > 0) fish_quality_min -= fish_quality_min_buff_add;
-
-                    fish_quantity_buff_mult = 1;
-                    fish_quality_buff_mult = 1;
-                    fish_quantity_max_buff_mult = 1;
-                    fish_quality_max_buff_mult = 1;
-                    fish_quantity_min_buff_mult = 1;
-                    fish_quality_min_buff_mult = 1;
-
-                    fish_quantity_buff_add = 0;
-                    fish_quality_buff_add = 0;
-                    fish_quantity_max_buff_add = 0;
-                    fish_quality_max_buff_add = 0;
-                    fish_quantity_min_buff_add = 0;
-                    fish_quality_min_buff_add = 0;
-
-                    fish_potency_buff_mult = 1;
-                    fish_potency_buff_add = 0;
-
-                    Wavespawner.current.fish_total += fish_counted;
-                    Wavespawner.current.sources_of_fish.Remove(this.gameObject);
-                }
-                else
-                {
-
-                    randomIndex = Random.Range(0, fish.Length);
-
-                    Vector3 SpawnPosition_2 = new Vector3(fish_quantity + fish_counted, fish_quantity, fish_quantity);
-
-                    Vector3 SpawnPosition_3 = new Vector3(fish_spawner.transform.position.x, fish_spawner.transform.position.y, fish_spawner.transform.position.z);
-
-                    //transform.position = SpawnPosition_2;
-
-
-                    var fish_object = Instantiate(fish[randomIndex], SpawnPosition_3, Quaternion.identity);
-
-                    fish_object.GetComponent<heat_seeking_fishles>().home = GameObject.Find("sell guy");
-
-                    fish_object.GetComponent<fish_variable_holder>().potentcy += fish_potency_buff_add; fish_object.GetComponent<fish_variable_holder>().potentcy *= fish_potency_buff_mult;
-                    
-                    
-
-                    
-                    fish_per_second_1++;
-
-                    //wave_spawner.GetComponent<Wavespawner>().dead_fish.Add(fish_object.GetComponent<fish_variable_holder>().fish_type);
-                    
-                    
-                    if (fish_quantity_original > 1000)
+                    if (fish_quantity <= 0)
                     {
-                        fish_counted += Mathf.RoundToInt(fish_quantity_original / 1000);
-                        
+                        //Debug.Log("out of fish");
+                        //COD.GetComponent<COD>().size += fish_counted;
+                        fish_all_spawned = true;
+                        fish_ever += fish_counted;
 
-                        for (int f = 0; f < fish_quantity_original / 1000; f++)
-                        {
-                            Wavespawner.current.Add_dead(Wavespawner.current.fishes[fish_object.GetComponent<fish_variable_holder>().fish_type]);
-                        }
+                        if (fish_quantity_buff_mult > 0) fish_quantity /= fish_quantity_buff_mult; if (fish_quantity_buff_add > 0) fish_quantity -= fish_quantity_buff_add;
+                        if (fish_quality_buff_mult > 0) fish_quality /= fish_quality_buff_mult; if (fish_quality_buff_add > 0) fish_quality -= fish_quality_buff_add;
+                        if (fish_quantity_max_buff_mult > 0) fish_quantity_max /= fish_quantity_max_buff_mult; if (fish_quantity_max_buff_add > 0) fish_quantity_max -= fish_quantity_max_buff_add;
+                        if (fish_quality_max_buff_mult > 0) fish_quality_max /= fish_quality_max_buff_mult; if (fish_quality_max_buff_add > 0) fish_quality_max -= fish_quality_max_buff_add;
+                        if (fish_quantity_min_buff_mult > 0) fish_quantity_min /= fish_quantity_min_buff_mult; if (fish_quantity_min_buff_add > 0) fish_quantity_min -= fish_quantity_min_buff_add;
+                        if (fish_quality_min_buff_mult > 0) fish_quality_min /= fish_quality_min_buff_mult; if (fish_quality_min_buff_add > 0) fish_quality_min -= fish_quality_min_buff_add;
+
+                        fish_quantity_buff_mult = 1;
+                        fish_quality_buff_mult = 1;
+                        fish_quantity_max_buff_mult = 1;
+                        fish_quality_max_buff_mult = 1;
+                        fish_quantity_min_buff_mult = 1;
+                        fish_quality_min_buff_mult = 1;
+
+                        fish_quantity_buff_add = 0;
+                        fish_quality_buff_add = 0;
+                        fish_quantity_max_buff_add = 0;
+                        fish_quality_max_buff_add = 0;
+                        fish_quantity_min_buff_add = 0;
+                        fish_quality_min_buff_add = 0;
+
+                        fish_potency_buff_mult = 1;
+                        fish_potency_buff_add = 0;
+
+                        Wavespawner.current.fish_total += fish_counted;
+                        Wavespawner.current.sources_of_fish.Remove(this.gameObject);
                     }
                     else
                     {
-                        fish_counted += 1;
-                        
-                        Wavespawner.current.Add_dead(Wavespawner.current.fishes[fish_object.GetComponent<fish_variable_holder>().fish_type]);
-                    }
-                    // this part changes the scale of the fish. if there is more than 1 of fish(1.2) then it makes the (.2) its own fish
+
+                        randomIndex = Random.Range(0, fish.Length);
+
+                        Vector3 SpawnPosition_2 = new Vector3(fish_quantity + fish_counted, fish_quantity, fish_quantity);
+
+                        Vector3 SpawnPosition_3 = new Vector3(fish_spawner.transform.position.x, fish_spawner.transform.position.y, fish_spawner.transform.position.z);
+
+                        //transform.position = SpawnPosition_2;
 
 
-                    if (fish_quantity >= 1)
-                    {
+                        var fish_object = Instantiate(fish[randomIndex], SpawnPosition_3, Quaternion.identity);
 
-                        fish_object.GetComponent<Transform>().localScale = new Vector3(fish_quality, fish_quality, fish_quality);
-                        fish_object.name = "big fish";//  + "     fish remaining:" + fish_quantity + " out of: " + fish_quantity_original + "  quality:" + fish_quality;
+                        fish_object.GetComponent<heat_seeking_fishles>().home = GameObject.Find("sell guy");
+
+                        fish_object.GetComponent<fish_variable_holder>().potentcy += fish_potency_buff_add; fish_object.GetComponent<fish_variable_holder>().potentcy *= fish_potency_buff_mult;
+
+
+
+
+                        fish_per_second_1++;
+
+                        //wave_spawner.GetComponent<Wavespawner>().dead_fish.Add(fish_object.GetComponent<fish_variable_holder>().fish_type);
+
 
                         if (fish_quantity_original > 1000)
                         {
-                            fish_object.GetComponent<fish_variable_holder>().fish_quantity = fish_quantity_original / 1000;
+                            fish_counted += Mathf.RoundToInt(fish_quantity_original / 1000);
+
+
+                            for (int f = 0; f < fish_quantity_original / 1000; f++)
+                            {
+                                Wavespawner.current.Add_dead(Wavespawner.current.fishes[fish_object.GetComponent<fish_variable_holder>().fish_type]);
+                            }
                         }
                         else
                         {
-                            fish_object.GetComponent<fish_variable_holder>().fish_quantity = 1;
+                            fish_counted += 1;
+
+                            Wavespawner.current.Add_dead(Wavespawner.current.fishes[fish_object.GetComponent<fish_variable_holder>().fish_type]);
                         }
+                        // this part changes the scale of the fish. if there is more than 1 of fish(1.2) then it makes the (.2) its own fish
+
+
+                        if (fish_quantity >= 1)
+                        {
+
+                            fish_object.GetComponent<Transform>().localScale = new Vector3(fish_quality, fish_quality, fish_quality);
+                            fish_object.name = "big fish";//  + "     fish remaining:" + fish_quantity + " out of: " + fish_quantity_original + "  quality:" + fish_quality;
+
+                            if (fish_quantity_original > 1000)
+                            {
+                                fish_object.GetComponent<fish_variable_holder>().fish_quantity = fish_quantity_original / 1000;
+                            }
+                            else
+                            {
+                                fish_object.GetComponent<fish_variable_holder>().fish_quantity = 1;
+                            }
+                        }
+                        else
+                        {
+                            if (fish_quantity > 0)
+                            {
+                                fish_object.GetComponent<Transform>().localScale = new Vector3(fish_quantity, fish_quantity, fish_quantity);
+                                fish_object.name = "small fish";//  + "     fish remaining:" + fish_quantity + " out of: " + fish_quantity_original + "  quality:" + fish_quality;
+                                fish_object.GetComponent<fish_variable_holder>().fish_quantity = fish_quantity;
+                            }
+
+
+                        }
+
+
+                        fish_object.GetComponent<fish_variable_holder>().fish_quality = fish_quality;
+                        fish_object.GetComponent<fish_variable_holder>().fish_counted = fish_counted;
+
+
+
+
+                    }
+
+                    if (fish_quantity_original < 1000)
+                    {
+                        fish_quantity -= Mathf.Min(fish_quantity, 1); //subtracts 1 until it can't and then subtracts what's left
                     }
                     else
                     {
-                        if (fish_quantity > 0)
-                        {
-                            fish_object.GetComponent<Transform>().localScale = new Vector3(fish_quantity, fish_quantity, fish_quantity);
-                            fish_object.name = "small fish";//  + "     fish remaining:" + fish_quantity + " out of: " + fish_quantity_original + "  quality:" + fish_quality;
-                            fish_object.GetComponent<fish_variable_holder>().fish_quantity = fish_quantity;
-                        }
-
-
+                        fish_quantity -= Mathf.Min(fish_quantity, fish_quantity_original / 1000);
                     }
 
-
-                    fish_object.GetComponent<fish_variable_holder>().fish_quality = fish_quality;
-                    fish_object.GetComponent<fish_variable_holder>().fish_counted = fish_counted;
-
-
-
-
+                    //Debug.Log("subtracted fish quantity, current amount: " + fish_quantity);
+                    //yield return new WaitForSeconds(1 / fish_quantity_original);
                 }
-
-                if (fish_quantity_original < 1000)
-                {
-                    fish_quantity -= Mathf.Min(fish_quantity, 1); //subtracts 1 until it can't and then subtracts what's left
-                }
-                else
-                {
-                    fish_quantity -= Mathf.Min(fish_quantity, fish_quantity_original / 1000);
-                }    
-
-                //Debug.Log("subtracted fish quantity, current amount: " + fish_quantity);
-                //yield return new WaitForSeconds(1 / fish_quantity_original);
-
                 yield return new WaitForSeconds((1 / fish_quantity_original) * Time.deltaTime);
 
                 
@@ -1095,7 +1121,7 @@ public class fishing_script : MonoBehaviour
     public IEnumerator fish_per_second_finder()
     {
         //Debug.Log("fish_per_second_finder is active");
-        while (Starter.current.starter == true)
+        while (TimeManager.current.essential_starter == true)
         {
             //Debug.Log("fish_per_second_finder is active 2");
             yield return new WaitForSeconds(1f);

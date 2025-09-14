@@ -30,7 +30,7 @@ public class variable_length : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Starter.current.update == true)
+        if (TimeManager.current.update == true)
         {
             GetComponent<SpringJoint>().maxDistance = distance / 10;
             GetComponent<Rigidbody>().useGravity = enabled_fishing;

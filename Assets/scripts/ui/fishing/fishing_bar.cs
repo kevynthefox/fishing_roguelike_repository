@@ -69,7 +69,7 @@ public class fishing_bar : MonoBehaviour
 
     void Update()
     {
-        if (Starter.current.update == true)
+        if (TimeManager.current.update == true)
         {
 
             fish_num = fish_num_max * bar_pos; //the more the bar goes up, the more fish are caught

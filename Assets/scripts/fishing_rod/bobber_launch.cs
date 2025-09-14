@@ -36,7 +36,7 @@ public class bobber_launch : MonoBehaviour
 
     public void Update()
     {
-        if (Starter.current.update == true)
+        if (TimeManager.current.essential_starter == true)
         {
             //factor = bone.GetComponent<variable_length>().distance;
             //if (Input.GetMouseButtonDown(0))

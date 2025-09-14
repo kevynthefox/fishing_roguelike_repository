@@ -29,7 +29,7 @@ public class spawn_objects : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Starter.current.update == true)
+        if (TimeManager.current.update == true)
         {
             if (Input.GetKeyDown(KeyCode.Keypad1))
             {
@@ -118,7 +118,7 @@ public class spawn_objects : MonoBehaviour
         bool finished = false;
         bool finished2 = false;
         int repeat_time = 0;
-        while (Starter.current.starter == true && finished2 == false)
+        while (TimeManager.current.starter == true && finished2 == false)
         {
             if (object_to_affect.transform.localScale.x < 1 || finished == true || finished2 == true)
             {

@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class logbook_interaction : MonoBehaviour
 {
+    public static logbook_interaction current;
     public GameObject logbook;
 
     public bool book_open = false;
@@ -9,6 +10,10 @@ public class logbook_interaction : MonoBehaviour
 
     public GameObject health;
 
+    private void Awake()
+    {
+        current = this;
+    }
     private void Update()
     {
         if (health.GetComponent<Health_display>().dead == false)
@@ -21,36 +26,6 @@ public class logbook_interaction : MonoBehaviour
 
             logbook.SetActive(book_open);
 
-            if (Input.GetKeyDown(KeyCode.Tab))
-            {
-                inventory_open = !inventory_open;
-            }
-
-            if (inventory_open == true)
-            {
-                Cursor.lockState = CursorLockMode.None;
-                Cursor.visible = true;
-            }
-            else
-            {
-                Cursor.visible = book_open;
-            }
-            if (book_open == false)
-            {
-                if (inventory_open == false)
-                {
-                    Cursor.lockState = CursorLockMode.Locked;
-                }
-                Time.timeScale = 1;
-            }
-            else
-            {
-                if (inventory_open == false)
-                {
-                    Cursor.lockState = CursorLockMode.None;
-                    Time.timeScale = 0.1f;
-                }
-            }
         }
     }
 }

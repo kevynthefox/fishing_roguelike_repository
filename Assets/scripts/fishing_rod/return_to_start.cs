@@ -20,7 +20,7 @@ public class return_to_start : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (Starter.current.update == true)
+        if (TimeManager.current.update == true)
         {
             if (mode == false)
             {

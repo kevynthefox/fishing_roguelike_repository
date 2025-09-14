@@ -16,11 +16,13 @@ public class UIInventoryItemSlot : MonoBehaviour
     private GameObject m_stackObj;
 
     [SerializeField]
-
     private Text m_stackLabel;
 
-    public void Set(InventoryItem item)
+    [SerializeField]
+    private Text m_slotLabel;
+    public void Set(InventoryItem item,int place)
     {
+        m_slotLabel.text = place.ToString();// InventorySystem.current.inventory.IndexOf(item).ToString();
         if (item.data.trigger_type == 5)
         {
             if (item.data.toggleOffOn == true)
@@ -44,5 +46,6 @@ public class UIInventoryItemSlot : MonoBehaviour
         }
 
         m_stackLabel.text = item.stackSize.ToString();
+        
     }
 }

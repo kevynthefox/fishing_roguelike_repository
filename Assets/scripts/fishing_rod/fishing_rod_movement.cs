@@ -33,7 +33,7 @@ public class fishing_rod_movement : MonoBehaviour
 
     void Update()
     {
-        if (Starter.current.update == true)
+        if (TimeManager.current.update == true)
         {
             fishable = bone.GetComponent<variable_length>().enabled_fishing;
             //Debug.Log("blocking_state: " + blocking);

@@ -18,7 +18,7 @@ public class redirection_for_funnymovement : MonoBehaviour
 
     public void Update()
     {
-        if (Starter.current.update == true)
+        if (TimeManager.current.update == true)
         {
             if (first_time == false)
             {

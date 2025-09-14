@@ -13,6 +13,8 @@ public class InventoryController : MonoBehaviour
     public List<GameObject> hands;
     public bool left_hand_filled;
     public bool right_hand_filled;
+
+    public bool either_hand_filled;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Awake()
     {
@@ -29,7 +31,8 @@ public class InventoryController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Tab))
         {
-            inventory_enabled = !inventory_enabled;  
+            inventory_enabled = !inventory_enabled;
+            InventorySystem.current.force_change = true;
         }
         inventory_display.SetActive(inventory_enabled);
 
@@ -51,5 +54,28 @@ public class InventoryController : MonoBehaviour
         {
             right_hand_filled = false;
         }
+
+        if (left_hand_filled == true || right_hand_filled == true)
+        {
+            either_hand_filled = true;
+        }
+        else
+        {
+            either_hand_filled = false;
+        }
+
+        if (inventory_enabled == false)
+        {
+            if (left_hand_filled == true)
+            {
+                Destroy(hands[0].transform.GetChild(1).gameObject);
+            }
+            if (right_hand_filled == true)
+            {
+                Destroy(hands[1].transform.GetChild(1).gameObject);
+            }
+        }
+
+        
     }
 }

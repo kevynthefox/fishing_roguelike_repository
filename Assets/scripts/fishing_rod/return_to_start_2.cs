@@ -18,7 +18,7 @@ public class return_to_start_2 : MonoBehaviour
 
     void Update()
     {
-        if (Starter.current.update == true)
+        if (TimeManager.current.update == true)
         {
             //makes the object move faster the further away it is from the other one
             speed = Vector3.Distance(home.transform.position, transform.position);

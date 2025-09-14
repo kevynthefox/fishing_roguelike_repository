@@ -36,7 +36,7 @@ public class item_buying : MonoBehaviour
 
     public void LateUpdate()
     {
-        if (Starter.current.update == true)
+        if (TimeManager.current.update == true)
         {
             gamesettings = GameObject.Find("game_settings");
 

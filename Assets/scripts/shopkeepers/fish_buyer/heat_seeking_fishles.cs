@@ -36,7 +36,7 @@ public class heat_seeking_fishles : MonoBehaviour
 
     void Update()
     {
-        if (Starter.current.update == true)
+        if (TimeManager.current.update == true)
         {
             this.GetComponent<Rigidbody>().isKinematic = false;
 

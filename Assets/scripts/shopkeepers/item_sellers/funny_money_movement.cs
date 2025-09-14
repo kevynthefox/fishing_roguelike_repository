@@ -44,9 +44,38 @@ public class funny_money_movement : MonoBehaviour
         }
     }*/
 
+    private bool already_sent_starter_inactive;
+    private bool already_sent_starter_active;
+    private void Update()
+    {
+        if (TimeManager.current.starter_reignitable == true)
+        {
+            if (TimeManager.current.starter == true)
+            {
+                if (already_sent_starter_active == false)
+                {
+                    already_sent_starter_inactive = false;
+                    TimeManager.current.starters_inactive -= 1;
+                    already_sent_starter_active = true;
+                    StartCoroutine(click_detection());
+                    StartCoroutine(spawn_logic());
+                }
+            }
+        }
+        if (TimeManager.current.starter == false)
+        {
+            already_sent_starter_active = false;
+            if (already_sent_starter_inactive == false)
+            {
+                TimeManager.current.starters_inactive += 1;
+                already_sent_starter_inactive = true;
+            }
+        }
+    }
+
     public IEnumerator click_detection()
     {
-        while (Starter.current.starter == true)
+        while (TimeManager.current.starter == true)
         {
             if (self.GetComponent<object_click_detector>().left_clicked == true)
             {
@@ -84,7 +113,7 @@ public class funny_money_movement : MonoBehaviour
             Vector3 spawnpos = new Vector3(spawn_area.transform.position.x, spawn_area.transform.position.y * 2, spawn_area.transform.position.z);
             //Quaternion rotation = new Quaterion(spawn_area.transform.rotation.x, spawn_area.transform.rotation.y, spawn_area.transform.rotation.z, 0f);
         } */
-        while (Starter.current.starter == true)
+        while (TimeManager.current.starter == true)
         {
             if (shopkeeper.GetComponent<item_manifestation>().checking_out == true || last_clicked == reroll)
             {

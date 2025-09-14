@@ -71,7 +71,7 @@ public class panel_interaction : MonoBehaviour
 
     public void Update()
     {
-        if (Starter.current.update == true)
+        if (TimeManager.current.essential_starter == true)
         {
             panel_contents.SetActive(content_state);
             if (content_state == true)

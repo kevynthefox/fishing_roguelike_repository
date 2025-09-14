@@ -23,7 +23,7 @@ public class attach_to_object : MonoBehaviour
 	// Update is called once per frame
 	void FixedUpdate()
 	{
-		if (Starter.current.update == true)
+		if (TimeManager.current.update == true)
 		{
 			//sets the position of the first object to the position of the second object, plus offset, or not.
 			if (attachment == true)

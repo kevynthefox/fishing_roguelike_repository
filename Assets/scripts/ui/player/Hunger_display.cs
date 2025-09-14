@@ -44,7 +44,7 @@ public class Hunger_display : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Starter.current.update == true)
+        if (TimeManager.current.update == true)
         {
 
             HungerCost = stamina.GetComponent<Stamina_display>().ChargeRate;

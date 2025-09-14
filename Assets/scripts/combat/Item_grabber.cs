@@ -11,7 +11,7 @@ public class Item_grabber : MonoBehaviour
 
     public void Update()
     {
-        if (Starter.current.update == true)
+        if (TimeManager.current.update == true)
         {
             if (Object_b != null)
             {
