@@ -23,6 +23,7 @@ public class UIInventoryItemSlot : MonoBehaviour
     public void Set(InventoryItem item,int place)
     {
         m_slotLabel.text = place.ToString();// InventorySystem.current.inventory.IndexOf(item).ToString();
+        name = "item slot: " + place.ToString();
         if (item.data.trigger_type == 5)
         {
             if (item.data.toggleOffOn == true)

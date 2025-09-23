@@ -143,6 +143,8 @@ public class InventoryItem
     public int times_used;
     public bool last_item_in_stack;
 
+    public bool assigned_to_section;
+
     public InventoryItem(InventoryItemData source)
     {
         data = source;

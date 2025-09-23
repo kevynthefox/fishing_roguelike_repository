@@ -5,6 +5,7 @@ using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+//using UnityEngine.Windows;
 
 public class Draggable_item : MonoBehaviour//, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
@@ -78,17 +79,29 @@ public class Draggable_item : MonoBehaviour//, IBeginDragHandler, IDragHandler, 
         {
             if (self_inventory_item.data.been_Left_clicked_on == true)
             {
-                if (InventoryController.current.left_hand_filled == false)
+                if (transform.parent == InventoryController.current.hands[0].transform || transform.parent == InventoryController.current.hands[1].transform)
                 {
-                    transform.parent = InventoryController.current.hands[0].transform;
+                    Debug.Log("taking out of hand");
+                    //InventorySystem.current.swap_position(spot_in_inventory, spot_in_inventory);
+                    string parent_forFind = "item slot: " + spot_in_inventory.ToString();
+                    transform.parent = GameObject.Find(parent_forFind).transform;
+                    //InventorySystem.current.force_change = true;
                     transform.localPosition = Vector3.zero;
                 }
                 else
                 {
-                    if (InventoryController.current.right_hand_filled == false)
+                    if (InventoryController.current.left_hand_filled == false)
                     {
-                        transform.parent = InventoryController.current.hands[1].transform;
+                        transform.parent = InventoryController.current.hands[0].transform;
                         transform.localPosition = Vector3.zero;
+                    }
+                    else
+                    {
+                        if (InventoryController.current.right_hand_filled == false)
+                        {
+                            transform.parent = InventoryController.current.hands[1].transform;
+                            transform.localPosition = Vector3.zero;
+                        }
                     }
                 }
             }
@@ -202,7 +215,7 @@ public class Draggable_item : MonoBehaviour//, IBeginDragHandler, IDragHandler, 
             }
 
             InventorySystem.current.InventoryChanged();
-        }
+        }   
     }
 
     public void item_clicked_on()

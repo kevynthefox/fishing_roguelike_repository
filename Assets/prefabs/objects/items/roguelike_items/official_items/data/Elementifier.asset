@@ -41,6 +41,7 @@ MonoBehaviour:
   position_in_inventory: 0
   target_vicinity: 5
   inheret_target_rotation: 0
+  item_type: 1
   toggleable: 0
   toggleOffOn: 0
   icon_off: {fileID: 0}

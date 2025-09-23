@@ -8,6 +8,7 @@ public class inventory_ui_manager : MonoBehaviour
 
     public GameObject UIInventoryItemSlot;
     public GameObject m_slotPrefab;
+    public GameObject[] section; public bool master_sectioner;
 
     //public int slots_made;
     public void Start()
@@ -39,7 +40,7 @@ public class inventory_ui_manager : MonoBehaviour
     {
         int place = InventorySystem.current.inventory.IndexOf(item);
         GameObject obj = Instantiate(m_slotPrefab);
-        obj.transform.SetParent(transform, false);
+        if (master_sectioner == true) obj.transform.SetParent(section[item.data.item_type].transform, false);
         obj.GetComponent<Transform>().Find("item").GetComponent<Draggable_item>().spot_in_inventory = InventorySystem.current.inventory.IndexOf(item);
         obj.GetComponent<InventorySlot>().inventory_slot_position = place;//InventorySystem.current.inventory.IndexOf(item);
         obj.GetComponent<Transform>().Find("item").GetComponent<Draggable_item>().self_inventory_item = item;
