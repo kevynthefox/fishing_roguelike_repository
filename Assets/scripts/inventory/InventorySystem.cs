@@ -9,6 +9,7 @@ public class InventorySystem : MonoBehaviour
     public static InventorySystem current;
     public Dictionary<InventoryItemData, InventoryItem> m_itemDictionary;
     public List<InventoryItem> inventory;//{ get; private set; }
+    //public List<InventoryItem> buffs_to_consume;//{ get; private set; }
 
     public bool force_change;
 

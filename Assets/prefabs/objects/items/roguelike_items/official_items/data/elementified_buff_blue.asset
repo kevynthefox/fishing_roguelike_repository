@@ -35,6 +35,7 @@ MonoBehaviour:
   target_vicinity: 5
   inheret_target_rotation: 0
   item_type: 2
+  in_potion: 0
   toggleable: 0
   toggleOffOn: 0
   icon_off: {fileID: 0}

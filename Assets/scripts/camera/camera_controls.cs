@@ -14,8 +14,8 @@ public class camera_controls : MonoBehaviour
     public Camera cam2;
     public Vector2 look;
 
-    public Transform first_person_target;
-    public Transform third_person_target;
+    //public Transform first_person_target;
+    //public Transform third_person_target;
 
     public GameObject player_model;
 
@@ -31,8 +31,8 @@ public class camera_controls : MonoBehaviour
         cam1 = camera_holder.GetComponent<camera_holder>().CinemachineCamera;
         cam2 = camera_holder.GetComponent<camera_holder>().third_person;
 
-        first_person_target = GameObject.Find("1st_person_follow_target").transform;
-        third_person_target = GameObject.Find("3rd_person_follow_target").transform;
+        //first_person_target = GameObject.Find("1st_person_follow_target").transform;
+        //third_person_target = GameObject.Find("3rd_person_follow_target").transform;
 
         cam1.enabled = true;
     	cam2.enabled = false;

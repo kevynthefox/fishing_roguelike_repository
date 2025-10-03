@@ -59,7 +59,7 @@ public class InventoryItemData : ScriptableObject
     public bool inheret_target_rotation;
 
     public int item_type; // 1 is regular items. 2 is buffs. 3 is equipment(like fishing rod). 4 is heirlooms.
-
+    public bool in_potion;
     //
 
     //toggling
@@ -75,7 +75,10 @@ public class InventoryItemData : ScriptableObject
     public bool been_Left_clicked_on;
     public bool been_middle_clicked_on;
 
-    
+    private void Awake()
+    {
+        in_potion = false;
+    }
 
     /*
 

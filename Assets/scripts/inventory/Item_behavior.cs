@@ -164,7 +164,7 @@ public class Item_behavior : MonoBehaviour
             been_Left_clicked_on = item.data.been_Left_clicked_on;
             been_Right_clicked_on = item.data.been_Right_clicked_on;
 
-            triggers();
+            triggers(item.data.in_potion);
         }
 
         //Debug.Log("been right clicked on = " + been_Right_clicked_on);
@@ -201,7 +201,7 @@ public class Item_behavior : MonoBehaviour
 
 
 
-    public void triggers()
+    public void triggers(bool in_potion)
     {
         //Debug.Log("triggers-ing");
         //detect jumping
@@ -242,8 +242,9 @@ public class Item_behavior : MonoBehaviour
             //Debug.Log("reset over_trigger_prevention"); 
         }
 
-        if (Input.GetKeyDown(KeyCode.Z) && trigger_type == 3)
+        if (Input.GetKeyDown(KeyCode.Z) && trigger_type == 3 && in_potion == true)
         {
+            
             triggered = true;
             //Debug.Log("ability activated");
         }

@@ -15,6 +15,12 @@ public class InventoryController : MonoBehaviour
     public bool right_hand_filled;
 
     public bool either_hand_filled;
+
+    public bool potion_hand_filled;
+
+    public GameObject[] section;
+
+    public bool in_buffs;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Awake()
     {
@@ -29,6 +35,8 @@ public class InventoryController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        hands[2].SetActive(in_buffs);
+
         if (Input.GetKeyDown(KeyCode.Tab))
         {
             inventory_enabled = !inventory_enabled;
@@ -55,7 +63,16 @@ public class InventoryController : MonoBehaviour
             right_hand_filled = false;
         }
 
-        if (left_hand_filled == true || right_hand_filled == true)
+        if (hands[2].transform.childCount > 1)
+        {
+            potion_hand_filled = true;
+        }
+        else
+        {
+            potion_hand_filled = false;
+        }
+
+        if (left_hand_filled == true || right_hand_filled == true || potion_hand_filled == true)
         {
             either_hand_filled = true;
         }
@@ -76,6 +93,29 @@ public class InventoryController : MonoBehaviour
             }
         }
 
-        
+
     }
+
+    #region sectioning
+    public void section_1_toFront()
+    {
+        section[1].transform.SetAsLastSibling();
+        in_buffs = false;
+    }
+    public void section_2_toFront()
+    {
+        section[2].transform.SetAsLastSibling();
+        in_buffs = true;
+    }
+    public void section_3_toFront()
+    {
+        section[3].transform.SetAsLastSibling();
+        in_buffs = false;
+    }
+    public void section_4_toFront()
+    {
+        section[4].transform.SetAsLastSibling();
+        in_buffs = false;
+    }
+    #endregion
 }

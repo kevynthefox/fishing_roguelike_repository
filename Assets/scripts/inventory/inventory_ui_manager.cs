@@ -6,9 +6,9 @@ using UnityEngine;
 public class inventory_ui_manager : MonoBehaviour
 {
 
-    public GameObject UIInventoryItemSlot;
+    //public GameObject UIInventoryItemSlot;
     public GameObject m_slotPrefab;
-    public GameObject[] section; public bool master_sectioner;
+    public GameObject[] section;
 
     //public int slots_made;
     public void Start()
@@ -20,11 +20,15 @@ public class inventory_ui_manager : MonoBehaviour
 
     private void OnUpdateInventory()
     {
-        foreach(Transform t in transform)
+        for (int i = 1; i < section.Length; i++)
         {
-            Destroy(t.gameObject);
-        }
+            foreach (Transform t in section[i].transform)
+            {
+                Destroy(t.gameObject);
+            }
 
+            
+        }
         DrawInventory();
     }
 
@@ -34,13 +38,17 @@ public class inventory_ui_manager : MonoBehaviour
         {
             AddInventorySlot(item);
         }
+        /*foreach (InventoryItem item in InventorySystem.current.buffs_to_consume)
+        {
+            AddInventorySlot(item);
+        }*/
     }
 
     public void AddInventorySlot(InventoryItem item)
     {
         int place = InventorySystem.current.inventory.IndexOf(item);
         GameObject obj = Instantiate(m_slotPrefab);
-        if (master_sectioner == true) obj.transform.SetParent(section[item.data.item_type].transform, false);
+        obj.transform.SetParent(section[item.data.item_type].transform, false);
         obj.GetComponent<Transform>().Find("item").GetComponent<Draggable_item>().spot_in_inventory = InventorySystem.current.inventory.IndexOf(item);
         obj.GetComponent<InventorySlot>().inventory_slot_position = place;//InventorySystem.current.inventory.IndexOf(item);
         obj.GetComponent<Transform>().Find("item").GetComponent<Draggable_item>().self_inventory_item = item;
