@@ -830,7 +830,7 @@ public class Item_behavior : MonoBehaviour
 
     public IEnumerator timed_untoggler(InventoryItem item)
     {
-        InventorySystem.current.force_change = true; Debug.Log("change forced");
+        InventorySystem.current.forceChange(); Debug.Log("change forced");
         item.data.been_middle_clicked_on = false;
         yield return new WaitForSeconds(0.5f);
         over_toggle_prevention = false;

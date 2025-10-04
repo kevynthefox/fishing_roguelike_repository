@@ -24,12 +24,25 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  action_effect: 
+  action_effect: 0
   duration: 0
   delay: 0
   strength: 0
-  target: fish_spawn_point
+  target_obj: 
+  target_group: 
   target_transform: {fileID: 0}
   enemy_or_player: 0
   player: {fileID: 0}
   triggered: 0
+  position_in_inventory: 0
+  target_vicinity: 0
+  inheret_target_rotation: 0
+  item_type: 1
+  in_potion: 0
+  toggleable: 0
+  toggleOffOn: 0
+  icon_off: {fileID: 0}
+  been_clicked_on: 0
+  been_Right_clicked_on: 0
+  been_Left_clicked_on: 0
+  been_middle_clicked_on: 0

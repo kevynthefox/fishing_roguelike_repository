@@ -75,6 +75,7 @@ public class TimeManager : MonoBehaviour
             Cursor.visible = true;
             if (InventoryController.current.inventory_enabled == true)
             {
+                player.GetComponent<Rigidbody>().isKinematic = true;
                 freeze_most_time();
             }
             if (logbook_interaction.current.book_open == true)
@@ -109,6 +110,7 @@ public class TimeManager : MonoBehaviour
 
     public void un_freeze_all_time()
     {
+        player.GetComponent<Rigidbody>().isKinematic = false;
         Time.timeScale = 1f;
         starter = true;
         update = true;

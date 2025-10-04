@@ -16,8 +16,6 @@ public class InventoryController : MonoBehaviour
 
     public bool either_hand_filled;
 
-    public bool potion_hand_filled;
-
     public GameObject[] section;
 
     public bool in_buffs;
@@ -35,12 +33,11 @@ public class InventoryController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        hands[2].SetActive(in_buffs);
-
+        
         if (Input.GetKeyDown(KeyCode.Tab))
         {
             inventory_enabled = !inventory_enabled;
-            InventorySystem.current.force_change = true;
+            InventorySystem.current.forceChange();
         }
         inventory_display.SetActive(inventory_enabled);
 
@@ -53,7 +50,6 @@ public class InventoryController : MonoBehaviour
         {
             left_hand_filled = false;
         }
-
         if (hands[1].transform.childCount > 1)
         {
             right_hand_filled = true;
@@ -63,16 +59,7 @@ public class InventoryController : MonoBehaviour
             right_hand_filled = false;
         }
 
-        if (hands[2].transform.childCount > 1)
-        {
-            potion_hand_filled = true;
-        }
-        else
-        {
-            potion_hand_filled = false;
-        }
-
-        if (left_hand_filled == true || right_hand_filled == true || potion_hand_filled == true)
+        if (left_hand_filled == true || right_hand_filled == true)
         {
             either_hand_filled = true;
         }

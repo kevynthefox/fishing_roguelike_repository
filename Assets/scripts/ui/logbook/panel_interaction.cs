@@ -12,7 +12,7 @@ public class panel_interaction : MonoBehaviour
 
     public GameObject contents_hover_over;
 
-    public GameObject tab;
+    //public GameObject tab;
 
 
     public bool content_state = false;
@@ -21,6 +21,7 @@ public class panel_interaction : MonoBehaviour
     {
         panel_contents.SetActive(false);
         hover_over.SetActive(false);
+        panel_contents.transform.position = transform.parent.position;
     }
 
 
@@ -71,18 +72,7 @@ public class panel_interaction : MonoBehaviour
 
     public void Update()
     {
-        if (TimeManager.current.essential_starter == true)
-        {
-            panel_contents.SetActive(content_state);
-            if (content_state == true)
-            {
-                tab.transform.SetAsLastSibling();
-            }
-            else
-            {
-                tab.transform.SetAsFirstSibling();
-            }
-        }
+        panel_contents.SetActive(content_state);
     }
 
     public void logging()

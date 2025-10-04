@@ -30,12 +30,9 @@ public class Slot_mover : MonoBehaviour
             {
                 Destroy(InventoryController.current.hands[1].transform.GetChild(1).gameObject);
             }
-            if (InventoryController.current.potion_hand_filled == true)
-            {
-                Destroy(InventoryController.current.hands[1].transform.GetChild(1).gameObject);
-            }
+            
 
-            InventorySystem.current.force_change = true;
+            InventorySystem.current.forceChange();
             input.text = "input slot #\nhere";
         }        
     }

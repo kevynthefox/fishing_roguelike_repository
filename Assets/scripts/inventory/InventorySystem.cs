@@ -13,6 +13,14 @@ public class InventorySystem : MonoBehaviour
 
     public bool force_change;
 
+    [Header("amounts of item types")]
+    public int item_count;
+    public int buff_count;
+    public int buffs_in_potion_count;
+    public int equipment_count;
+    public int heirloom_count;
+    public int total_count;
+
     private void Update()
     {
         if (force_change == true)
@@ -20,6 +28,11 @@ public class InventorySystem : MonoBehaviour
             InventoryChanged();
             force_change = false;
         }
+    }
+    public void forceChange()
+    {
+        Debug.Log("change forced");
+        InventoryChanged();
     }
 
     private void Awake()
@@ -41,6 +54,46 @@ public class InventorySystem : MonoBehaviour
             onInventoryChangedEvent();
             //Debug.Log("inventory_changed");
         }
+    }
+
+    public void count_item_types()
+    {
+        item_count = 0;
+        buff_count = 0;
+        buffs_in_potion_count = 0;
+        equipment_count = 0;
+        heirloom_count = 0;
+
+        foreach (InventoryItem item in inventory)
+        {
+            for (int i = 0; i < item.stackSize; i++)
+            {
+                if (item.data.item_type == 1)
+                {
+                    item_count++;
+                }
+                if (item.data.item_type == 2)
+                {
+                    if (item.data.in_potion == true)
+                    {
+                        buffs_in_potion_count++;
+                    }
+                    else
+                    {
+                        buff_count++;
+                    }
+                }
+                if (item.data.item_type == 3)
+                {
+                    equipment_count++;
+                }
+                if (item.data.item_type == 4)
+                {
+                    heirloom_count++;
+                }
+            }
+        }
+        total_count = item_count + buff_count + buffs_in_potion_count + equipment_count + heirloom_count;
     }
     public void InventoryAdded()
     {
@@ -131,6 +184,19 @@ public class InventorySystem : MonoBehaviour
     public void put_in_right_place(int spot, InventoryItem item_in_spot)
     {
         inventory[spot] = item_in_spot;
+    }
+
+    private void OnApplicationQuit()
+    {
+        foreach (InventoryItem item in inventory)
+        {
+            if (item.data.in_potion == true)
+            {
+                item.data.in_potion = false;
+                //Debug.Log("setting to not in potion");
+            }
+        }
+
     }
 }
 

@@ -85,7 +85,7 @@ public class Draggable_item : MonoBehaviour//, IBeginDragHandler, IDragHandler, 
                     //InventorySystem.current.swap_position(spot_in_inventory, spot_in_inventory);
                     string parent_forFind = "item slot: " + spot_in_inventory.ToString();
                     transform.parent = GameObject.Find(parent_forFind).transform;
-                    //InventorySystem.current.force_change = true;
+                    //InventorySystem.current.forceChange();
                     transform.localPosition = Vector3.zero;
                 }
                 else
@@ -105,27 +105,7 @@ public class Draggable_item : MonoBehaviour//, IBeginDragHandler, IDragHandler, 
                     }
                 }
             }
-            if(self_inventory_item.data.item_type == 2 && self_inventory_item.data.been_middle_clicked_on == true)
-            {
-                if (transform.parent == InventoryController.current.hands[2].transform)
-                {
-                    Debug.Log("taking out of hand");
-                    //InventorySystem.current.swap_position(spot_in_inventory, spot_in_inventory);
-                    string parent_forFind = "item slot: " + spot_in_inventory.ToString();
-                    transform.parent = GameObject.Find(parent_forFind).transform;
-                    //InventorySystem.current.force_change = true;
-                    transform.localPosition = Vector3.zero;
-                }
-                else
-                {
-                    if (InventoryController.current.potion_hand_filled == false)
-                    {
-                        transform.parent = InventoryController.current.hands[2].transform;
-                        transform.localPosition = Vector3.zero;
-                    }
-                    
-                }
-            }
+            
             yield return new WaitForSeconds(0.1f);
         }
     }

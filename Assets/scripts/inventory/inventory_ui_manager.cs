@@ -20,6 +20,8 @@ public class inventory_ui_manager : MonoBehaviour
 
     private void OnUpdateInventory()
     {
+        Debug.Log("inventory updated");
+        InventorySystem.current.count_item_types();
         for (int i = 1; i < section.Length; i++)
         {
             foreach (Transform t in section[i].transform)
@@ -48,7 +50,15 @@ public class inventory_ui_manager : MonoBehaviour
     {
         int place = InventorySystem.current.inventory.IndexOf(item);
         GameObject obj = Instantiate(m_slotPrefab);
-        obj.transform.SetParent(section[item.data.item_type].transform, false);
+        if (item.data.in_potion == true)
+        {
+            //Debug.Log(section[5].name);
+            obj.transform.SetParent(section[5].transform, false);
+        }
+        else
+        {
+            obj.transform.SetParent(section[item.data.item_type].transform, false);
+        }
         obj.GetComponent<Transform>().Find("item").GetComponent<Draggable_item>().spot_in_inventory = InventorySystem.current.inventory.IndexOf(item);
         obj.GetComponent<InventorySlot>().inventory_slot_position = place;//InventorySystem.current.inventory.IndexOf(item);
         obj.GetComponent<Transform>().Find("item").GetComponent<Draggable_item>().self_inventory_item = item;

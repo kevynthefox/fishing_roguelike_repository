@@ -75,10 +75,7 @@ public class InventoryItemData : ScriptableObject
     public bool been_Left_clicked_on;
     public bool been_middle_clicked_on;
 
-    private void Awake()
-    {
-        in_potion = false;
-    }
+    
 
     /*
 
