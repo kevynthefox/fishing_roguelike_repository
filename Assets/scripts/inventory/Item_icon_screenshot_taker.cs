@@ -14,6 +14,10 @@ public class Item_icon_screenshot_taker : MonoBehaviour
     public List<GameObject> sceneObjects;
     public List<InventoryItemData> dataObjects;
 
+    [Header("no item pictures")]
+    public string title;
+    public int item_slot;
+
     private void Awake()
     {
         camera = GetComponent<Camera>();
@@ -36,18 +40,36 @@ public class Item_icon_screenshot_taker : MonoBehaviour
 
             yield return null;
 
-            TakeScreenshot($"{Application.dataPath}/{pathFolder}/{data.id}_Icon.png");
-
-            yield return null;
-            obj.gameObject.SetActive(false);
-
-            Sprite s = AssetDatabase.LoadAssetAtPath<Sprite>($"Assets/{pathFolder}/{data.id}_icon.png");
-            if ( s != null )
+            if (item_slot != 0)
             {
-                data.icon = s;
-                EditorUtility.SetDirty(data);
-            }
+                TakeScreenshot($"{Application.dataPath}/{pathFolder}/{data.id}_Icon.png");
+                
 
+                yield return null;
+                obj.gameObject.SetActive(false);
+
+                Sprite s = AssetDatabase.LoadAssetAtPath<Sprite>($"Assets/{pathFolder}/{data.id}_icon.png");
+                if (s != null)
+                {
+                    if (item_slot == 1) data.icon = s;
+                    if (item_slot == 2) data.icon_off = s;
+                    EditorUtility.SetDirty(data);
+                }
+            }
+            if (item_slot == 0)
+            {
+                TakeScreenshot($"{Application.dataPath}/{pathFolder}/{title}_Icon.png");
+
+
+                yield return null;
+                obj.gameObject.SetActive(false);
+
+                Sprite s = AssetDatabase.LoadAssetAtPath<Sprite>($"Assets/{pathFolder}/{title}_icon.png");
+                if (s != null)
+                {
+                    EditorUtility.SetDirty(data);
+                }
+            }
             yield return null;
         }
     }    
