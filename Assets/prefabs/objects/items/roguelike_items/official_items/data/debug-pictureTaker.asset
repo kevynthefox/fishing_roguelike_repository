@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: paw-fox
   displayName: paw-fox
-  icon: {fileID: 21300000, guid: 5676982352f19cb4b99ed163f8427826, type: 3}
+  icon: {fileID: 21300000, guid: 2f925b973f42864468b5c63e774cd0c6, type: 3}
   prefab: {fileID: 5885001743295054473, guid: a72626d4998c38846a5c8398b3da3c20, type: 3}
   in_inventory: 0
   inventory: {fileID: 0}
@@ -39,7 +39,7 @@ MonoBehaviour:
   in_potion: 0
   toggleable: 0
   toggleOffOn: 0
-  icon_off: {fileID: 0}
+  icon_off: {fileID: 21300000, guid: 2f925b973f42864468b5c63e774cd0c6, type: 3}
   been_clicked_on: 0
   been_Right_clicked_on: 0
   been_Left_clicked_on: 0
