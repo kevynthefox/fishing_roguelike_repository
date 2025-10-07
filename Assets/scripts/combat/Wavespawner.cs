@@ -32,7 +32,7 @@ public class Wavespawner : MonoBehaviour
 
     public bool fish_have_been_alive;
 
-    public GameObject water;
+    //public GameObject water;
     public GameObject sell_guy;
 
     public float fish_quality;

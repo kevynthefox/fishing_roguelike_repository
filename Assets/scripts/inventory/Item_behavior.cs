@@ -244,7 +244,7 @@ public class Item_behavior : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Z) && trigger_type == 3 && in_potion == true)
         {
-            
+            //effectCatalouge.current.affected[0].applied_effects.Add() yeah you're gonna finish this later. this is too complicated for today
             triggered = true;
             //Debug.Log("ability activated");
         }

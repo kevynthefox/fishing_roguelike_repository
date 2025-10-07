@@ -77,54 +77,5 @@ public class InventoryItemData : ScriptableObject
 
     
 
-    /*
-
-    //trigger type list
-
-    //trigger type 1 is jumping
-
-    //action type list
-
-    //action type 1 is spawning an object at the target location
-
-    public void Awake()
-    {
-        player = GameObject.Find("player");
-    }
-
-    public void Update()
-    {
-        //if (InventorySystem.current.inventory.Contains(this))
-
-        triggers();
-    }
-
-    public void triggers()
-    {
-        //detect jumping
-        if (player.GetComponent<movement>().isOnGround == false && trigger_type == 1)
-        {
-            triggered = true;
-        }
-
-        if (triggered == true)
-        {
-            action_taker();
-            triggered = false;
-        }
-    }
-
-    public void action_taker()
-    {
-        if (action_type == 1)
-        {
-            if (target != null)
-            {
-                target_transform = target.transform; //keeping this as its own variable because it may be handy for things later. like, spawning something after the action maybe.
-            }
-            //target_rot = target.transform.rotation;
-            Instantiate(action_object, target_transform, target_transform);
-            //Instantiate(action_object,new Vector3(0,0,0), Quaternion.identity);
-        }
-    }*/
+    
 }
