@@ -76,6 +76,5 @@ public class InventoryItemData : ScriptableObject
     public bool been_middle_clicked_on;
 
     
-
     
 }

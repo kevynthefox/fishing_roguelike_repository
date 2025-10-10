@@ -43,3 +43,4 @@ MonoBehaviour:
   been_Right_clicked_on: 0
   been_Left_clicked_on: 0
   been_middle_clicked_on: 0
+  already_activated: 0

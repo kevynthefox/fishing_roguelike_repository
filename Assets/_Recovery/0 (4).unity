@@ -3717,7 +3717,8 @@ MonoBehaviour:
   gravity_OffOn: 0
   gravity_reverse: 0
   list_of_players: []
-  effect_manager_queue: []
+  effect_manager_queue:
+  - {fileID: 963376475}
   place_in_queue: 0
   place_in_queue_in_queue: 0
   add_list: 

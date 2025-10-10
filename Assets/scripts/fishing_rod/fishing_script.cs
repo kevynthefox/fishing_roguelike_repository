@@ -981,6 +981,14 @@ public class fishing_script : MonoBehaviour
                         fish_potency_buff_mult = 1;
                         fish_potency_buff_add = 0;
 
+                        Item_behavior.current.Untrigger("elementified_buff_blue(Clone)");
+                        Item_behavior.current.Untrigger("elementified_buff_green(Clone)");
+                        Item_behavior.current.Untrigger("elementified_buff_orange(Clone)");
+                        Item_behavior.current.Untrigger("elementified_buff_purple(Clone)");
+                        Item_behavior.current.Untrigger("elementified_buff_red(Clone)");
+                        Item_behavior.current.Untrigger("elementified_buff_violet(Clone)");
+                        Item_behavior.current.Untrigger("elementified_buff_yellow(Clone)");
+
                         Wavespawner.current.fish_total += fish_counted;
                         Wavespawner.current.sources_of_fish.Remove(this.gameObject);
                     }

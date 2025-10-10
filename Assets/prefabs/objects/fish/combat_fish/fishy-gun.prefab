@@ -1,5 +1,75 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &5407611357803041131
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 8579028851942539391}
+    m_Modifications:
+    - target: {fileID: 2271177222491163722, guid: 54b723083ef8f6a4f9c347185d9a6d91, type: 3}
+      propertyPath: m_Size.z
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2463728325721671536, guid: 54b723083ef8f6a4f9c347185d9a6d91, type: 3}
+      propertyPath: z_radius
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4866478031110374212, guid: 54b723083ef8f6a4f9c347185d9a6d91, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4866478031110374212, guid: 54b723083ef8f6a4f9c347185d9a6d91, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4866478031110374212, guid: 54b723083ef8f6a4f9c347185d9a6d91, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4866478031110374212, guid: 54b723083ef8f6a4f9c347185d9a6d91, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4866478031110374212, guid: 54b723083ef8f6a4f9c347185d9a6d91, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4866478031110374212, guid: 54b723083ef8f6a4f9c347185d9a6d91, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4866478031110374212, guid: 54b723083ef8f6a4f9c347185d9a6d91, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4866478031110374212, guid: 54b723083ef8f6a4f9c347185d9a6d91, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4866478031110374212, guid: 54b723083ef8f6a4f9c347185d9a6d91, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4866478031110374212, guid: 54b723083ef8f6a4f9c347185d9a6d91, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7507711421559024191, guid: 54b723083ef8f6a4f9c347185d9a6d91, type: 3}
+      propertyPath: m_Name
+      value: effect_manager
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 54b723083ef8f6a4f9c347185d9a6d91, type: 3}
+--- !u!4 &613195561929298479 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4866478031110374212, guid: 54b723083ef8f6a4f9c347185d9a6d91, type: 3}
+  m_PrefabInstance: {fileID: 5407611357803041131}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6767257428048514017
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -143,6 +213,9 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 1a55c0093d48cef42b0f71a1c5c7d5d3, type: 3}
+      insertIndex: 0
+      addedObject: {fileID: 613195561929298479}
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 1a55c0093d48cef42b0f71a1c5c7d5d3, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6512374092850129930}
     m_AddedComponents:
@@ -193,11 +266,9 @@ MonoBehaviour:
   player_gun: 0
   target: {fileID: 5848848905721722544}
   target_backup: {fileID: 919132149155446097, guid: b344d506067f29f47b715aba4a824831, type: 3}
-  starter: 1
   fire_rate: 0.1
   fire_timer: 0
   fish_bullet_pool: {fileID: 11400000, guid: 03b129e4a9e25c64fb9dd263dd7981f4, type: 2}
-  bullet_pool: {fileID: 0}
   types: 0
 --- !u!135 &-1502783410880465574
 SphereCollider:
