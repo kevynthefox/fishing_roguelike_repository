@@ -2739,7 +2739,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cost_percent: 100
-  player_model: {fileID: 1005742503}
 --- !u!4 &627793530
 Transform:
   m_ObjectHideFlags: 0
@@ -4056,11 +4055,6 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -667525549367627312, guid: 0bd7cf1affb974441897175d01e3e73d, type: 3}
---- !u!1 &1005742503 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7462083307550487122, guid: c0909263df6a80047b02e92c9d7c9c56, type: 3}
-  m_PrefabInstance: {fileID: 5793751535755447267}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1064474798 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5334308994735927956, guid: 0bd7cf1affb974441897175d01e3e73d, type: 3}
@@ -5225,63 +5219,6 @@ MonoBehaviour:
     fish_potency_buff_mult: 0
     fish_potency_buff_add: 0
   alive_fish: []
---- !u!1001 &1312991134
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 3725368859737239547, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
-      propertyPath: m_Name
-      value: fishing_rod_1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4105307664551048513, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -12.81
-      objectReference: {fileID: 0}
-    - target: {fileID: 4105307664551048513, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 10.845
-      objectReference: {fileID: 0}
-    - target: {fileID: 4105307664551048513, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -17.26
-      objectReference: {fileID: 0}
-    - target: {fileID: 4105307664551048513, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4105307664551048513, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4105307664551048513, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 1.0000001
-      objectReference: {fileID: 0}
-    - target: {fileID: 4105307664551048513, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4105307664551048513, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4105307664551048513, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 180
-      objectReference: {fileID: 0}
-    - target: {fileID: 4105307664551048513, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
 --- !u!54 &1341999141
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -14029,4 +13966,3 @@ SceneRoots:
   - {fileID: 4515829039205801216}
   - {fileID: 2087264352}
   - {fileID: 1507521030}
-  - {fileID: 1312991134}

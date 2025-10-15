@@ -5,4 +5,5 @@ using UnityEngine;
 public class settings : MonoBehaviour
 {
     public float cost_percent;
+    public GameObject player_model;
 }

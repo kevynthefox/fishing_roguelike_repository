@@ -178,6 +178,9 @@ MonoBehaviour:
   COD: {fileID: 0}
   consecutive_wins: 0
   reel_in_finisher: 0
+  fish_per_second_actual: 0
+  fish_per_second_theoretical: 0
+  fish_per_second_1: 0
   distance: 0
   enabled_fishing: 0
   velocity: {x: 0, y: 0, z: 0}
@@ -241,7 +244,6 @@ MonoBehaviour:
   fish_all_spawned: 0
   resetting: 0
   water_already: 0
-  starter: 0
   spawning_fish: 0
   already_fishing: {fileID: 0}
   fish_spawner: {fileID: 0}
@@ -269,6 +271,110 @@ MonoBehaviour:
   direction_modified: {x: 0, y: 0, z: 0}
   camera_holder: {fileID: 0}
   cam: {fileID: 0}
+  autofisher: 0
+--- !u!1 &332955393032292964
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8925070929081306825}
+  - component: {fileID: 6974543344034629344}
+  - component: {fileID: 7006528850425512694}
+  - component: {fileID: 3651310110533306176}
+  m_Layer: 5
+  m_Name: Canvas
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &8925070929081306825
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 332955393032292964}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 9201554014277484398}
+  - {fileID: 5907625466358277435}
+  m_Father: {fileID: 4105307664551048513}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 14.59}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!223 &6974543344034629344
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 332955393032292964}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_VertexColorAlwaysGammaSpace: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_UpdateRectTransformForStandalone: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
+--- !u!114 &7006528850425512694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 332955393032292964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_UiScaleMode: 0
+  m_ReferencePixelsPerUnit: 100
+  m_ScaleFactor: 1
+  m_ReferenceResolution: {x: 800, y: 600}
+  m_ScreenMatchMode: 0
+  m_MatchWidthOrHeight: 0
+  m_PhysicalUnit: 3
+  m_FallbackScreenDPI: 96
+  m_DefaultSpriteDPI: 96
+  m_DynamicPixelsPerUnit: 1
+  m_PresetInfoIsWorld: 1
+--- !u!114 &3651310110533306176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 332955393032292964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!1 &383935094737667319
 GameObject:
   m_ObjectHideFlags: 0
@@ -333,6 +439,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -354,6 +462,7 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
@@ -486,6 +595,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -507,6 +618,7 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
@@ -732,6 +844,9 @@ MonoBehaviour:
   COD: {fileID: 0}
   consecutive_wins: 0
   reel_in_finisher: 0
+  fish_per_second_actual: 0
+  fish_per_second_theoretical: 0
+  fish_per_second_1: 0
   distance: 0
   enabled_fishing: 0
   velocity: {x: 0, y: 0, z: 0}
@@ -795,7 +910,6 @@ MonoBehaviour:
   fish_all_spawned: 0
   resetting: 0
   water_already: 0
-  starter: 0
   spawning_fish: 0
   already_fishing: {fileID: 0}
   fish_spawner: {fileID: 0}
@@ -823,6 +937,7 @@ MonoBehaviour:
   direction_modified: {x: 0, y: 0, z: 0}
   camera_holder: {fileID: 0}
   cam: {fileID: 0}
+  autofisher: 0
 --- !u!1 &1372670208295128379
 GameObject:
   m_ObjectHideFlags: 0
@@ -1026,6 +1141,9 @@ MonoBehaviour:
   COD: {fileID: 0}
   consecutive_wins: 0
   reel_in_finisher: 0
+  fish_per_second_actual: 0
+  fish_per_second_theoretical: 0
+  fish_per_second_1: 0
   distance: 0
   enabled_fishing: 0
   velocity: {x: 0, y: 0, z: 0}
@@ -1089,7 +1207,6 @@ MonoBehaviour:
   fish_all_spawned: 0
   resetting: 0
   water_already: 0
-  starter: 0
   spawning_fish: 0
   already_fishing: {fileID: 0}
   fish_spawner: {fileID: 0}
@@ -1117,6 +1234,7 @@ MonoBehaviour:
   direction_modified: {x: 0, y: 0, z: 0}
   camera_holder: {fileID: 0}
   cam: {fileID: 0}
+  autofisher: 0
 --- !u!1 &1893754047151413447
 GameObject:
   m_ObjectHideFlags: 0
@@ -1132,7 +1250,7 @@ GameObject:
   - component: {fileID: 162738533393665906}
   m_Layer: 16
   m_Name: pole top
-  m_TagString: fishing_rod
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1180,6 +1298,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -1202,6 +1322,7 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
@@ -1317,6 +1438,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -1338,6 +1461,7 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
@@ -1542,6 +1666,9 @@ MonoBehaviour:
   COD: {fileID: 0}
   consecutive_wins: 0
   reel_in_finisher: 0
+  fish_per_second_actual: 0
+  fish_per_second_theoretical: 0
+  fish_per_second_1: 0
   distance: 0
   enabled_fishing: 0
   velocity: {x: 0, y: 0, z: 0}
@@ -1605,7 +1732,6 @@ MonoBehaviour:
   fish_all_spawned: 0
   resetting: 0
   water_already: 0
-  starter: 0
   spawning_fish: 0
   already_fishing: {fileID: 0}
   fish_spawner: {fileID: 0}
@@ -1633,6 +1759,7 @@ MonoBehaviour:
   direction_modified: {x: 0, y: 0, z: 0}
   camera_holder: {fileID: 0}
   cam: {fileID: 0}
+  autofisher: 0
 --- !u!1 &3098563444325164765
 GameObject:
   m_ObjectHideFlags: 0
@@ -1695,6 +1822,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -1716,6 +1845,7 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
@@ -1817,6 +1947,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -1838,6 +1970,7 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
@@ -1933,6 +2066,9 @@ GameObject:
   - component: {fileID: 4571790155545624729}
   - component: {fileID: 6669188583312539678}
   - component: {fileID: 524056874711674526}
+  - component: {fileID: 1829919670636417948}
+  - component: {fileID: 1611677090801445431}
+  - component: {fileID: 6484671007818842428}
   m_Layer: 6
   m_Name: fishing_rod_1
   m_TagString: fishing_rod
@@ -1959,6 +2095,7 @@ Transform:
   - {fileID: 5917439552907764000}
   - {fileID: 4565934474298887431}
   - {fileID: 2005004962571502707}
+  - {fileID: 8925070929081306825}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!54 &4571790155545624728
@@ -2060,6 +2197,9 @@ MonoBehaviour:
   COD: {fileID: 0}
   consecutive_wins: 0
   reel_in_finisher: 0
+  fish_per_second_actual: 0
+  fish_per_second_theoretical: 0
+  fish_per_second_1: 0
   distance: 0
   enabled_fishing: 0
   velocity: {x: 0, y: 0, z: 0}
@@ -2123,7 +2263,6 @@ MonoBehaviour:
   fish_all_spawned: 0
   resetting: 0
   water_already: 0
-  starter: 0
   spawning_fish: 0
   already_fishing: {fileID: 0}
   fish_spawner: {fileID: 0}
@@ -2132,6 +2271,63 @@ MonoBehaviour:
   direction_modified: {x: 0, y: 0, z: 0}
   cam: {fileID: 0}
   fish_ever: 0
+--- !u!114 &1829919670636417948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3725368859737239547}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6670e7b5d0b45164eb31be8282a50a3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::item_price_holder
+  item_cost: 0
+  item_original_cost: 10
+  cost_percent: 0
+  buy_or_pickup: 1
+  Canvas: {fileID: 6974543344034629344}
+  cost_text: {fileID: 4930160272890874377}
+  image: {fileID: 7729395128428504867}
+--- !u!114 &1611677090801445431
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3725368859737239547}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 146a176068c4a6141ab0da5701395370, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::item_pickup
+  left_clicked: 0
+  touched: 0
+  self_item: {fileID: 11400000, guid: 308fe13e0b633b74b8fef99c03c92960, type: 2}
+  amount_of_items: 0
+  sell_value: 0
+--- !u!114 &6484671007818842428
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3725368859737239547}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afe7ca2d93608e0408d9c75e755cde3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::item_buying
+  left_clicked: 0
+  self: {fileID: 3725368859737239547}
+  self_item: {fileID: 11400000, guid: 308fe13e0b633b74b8fef99c03c92960, type: 2}
+  player: {fileID: 0}
+  wallet: {fileID: 0}
+  item_cost: 0
+  gamesettings: {fileID: 0}
+  shop: {fileID: 0}
+  group: 
 --- !u!1 &3928647605923234054
 GameObject:
   m_ObjectHideFlags: 0
@@ -2310,6 +2506,9 @@ MonoBehaviour:
   COD: {fileID: 0}
   consecutive_wins: 0
   reel_in_finisher: 0
+  fish_per_second_actual: 0
+  fish_per_second_theoretical: 0
+  fish_per_second_1: 0
   distance: 0
   enabled_fishing: 0
   velocity: {x: 0, y: 0, z: 0}
@@ -2373,7 +2572,6 @@ MonoBehaviour:
   fish_all_spawned: 0
   resetting: 0
   water_already: 0
-  starter: 0
   spawning_fish: 0
   already_fishing: {fileID: 0}
   fish_spawner: {fileID: 0}
@@ -2401,6 +2599,86 @@ MonoBehaviour:
   direction_modified: {x: 0, y: 0, z: 0}
   camera_holder: {fileID: 0}
   cam: {fileID: 0}
+  autofisher: 0
+--- !u!1 &3970833169413122973
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9201554014277484398}
+  - component: {fileID: 3187434102363108788}
+  - component: {fileID: 4930160272890874377}
+  m_Layer: 5
+  m_Name: cost_display_text
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &9201554014277484398
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3970833169413122973}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.38000003, y: 0.38000003, z: 0.38000003}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 8925070929081306825}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 1.36}
+  m_SizeDelta: {x: 20, y: 10}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &3187434102363108788
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3970833169413122973}
+  m_CullTransparentMesh: 1
+--- !u!114 &4930160272890874377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3970833169413122973}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 1
+    m_FontStyle: 0
+    m_BestFit: 1
+    m_MinSize: 0
+    m_MaxSize: 10
+    m_Alignment: 1
+    m_AlignByGeometry: 1
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 1234
 --- !u!1 &4068365118850721694
 GameObject:
   m_ObjectHideFlags: 0
@@ -2463,6 +2741,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -2484,6 +2764,7 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
@@ -2704,6 +2985,9 @@ MonoBehaviour:
   COD: {fileID: 0}
   consecutive_wins: 0
   reel_in_finisher: 0
+  fish_per_second_actual: 0
+  fish_per_second_theoretical: 0
+  fish_per_second_1: 0
   distance: 0
   enabled_fishing: 0
   velocity: {x: 0, y: 0, z: 0}
@@ -2767,7 +3051,6 @@ MonoBehaviour:
   fish_all_spawned: 0
   resetting: 0
   water_already: 0
-  starter: 0
   spawning_fish: 0
   already_fishing: {fileID: 0}
   fish_spawner: {fileID: 0}
@@ -2795,6 +3078,7 @@ MonoBehaviour:
   direction_modified: {x: 0, y: 0, z: 0}
   camera_holder: {fileID: 0}
   cam: {fileID: 0}
+  autofisher: 0
 --- !u!1 &4378975265815427878
 GameObject:
   m_ObjectHideFlags: 0
@@ -2857,6 +3141,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -2878,6 +3164,7 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
@@ -3082,6 +3369,9 @@ MonoBehaviour:
   COD: {fileID: 0}
   consecutive_wins: 0
   reel_in_finisher: 0
+  fish_per_second_actual: 0
+  fish_per_second_theoretical: 0
+  fish_per_second_1: 0
   distance: 0
   enabled_fishing: 0
   velocity: {x: 0, y: 0, z: 0}
@@ -3145,7 +3435,6 @@ MonoBehaviour:
   fish_all_spawned: 0
   resetting: 0
   water_already: 0
-  starter: 0
   spawning_fish: 0
   already_fishing: {fileID: 0}
   fish_spawner: {fileID: 0}
@@ -3173,6 +3462,7 @@ MonoBehaviour:
   direction_modified: {x: 0, y: 0, z: 0}
   camera_holder: {fileID: 0}
   cam: {fileID: 0}
+  autofisher: 0
 --- !u!1 &4838449060039462677
 GameObject:
   m_ObjectHideFlags: 0
@@ -3351,6 +3641,9 @@ MonoBehaviour:
   COD: {fileID: 0}
   consecutive_wins: 0
   reel_in_finisher: 0
+  fish_per_second_actual: 0
+  fish_per_second_theoretical: 0
+  fish_per_second_1: 0
   distance: 0
   enabled_fishing: 0
   velocity: {x: 0, y: 0, z: 0}
@@ -3414,7 +3707,6 @@ MonoBehaviour:
   fish_all_spawned: 0
   resetting: 0
   water_already: 0
-  starter: 0
   spawning_fish: 0
   already_fishing: {fileID: 0}
   fish_spawner: {fileID: 0}
@@ -3442,6 +3734,7 @@ MonoBehaviour:
   direction_modified: {x: 0, y: 0, z: 0}
   camera_holder: {fileID: 0}
   cam: {fileID: 0}
+  autofisher: 0
 --- !u!1 &5531610242977244245
 GameObject:
   m_ObjectHideFlags: 0
@@ -3504,6 +3797,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -3525,6 +3820,7 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
@@ -3613,6 +3909,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -3634,6 +3932,7 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
@@ -3866,6 +4165,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -3887,6 +4188,7 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
@@ -3975,6 +4277,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -3996,6 +4300,7 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
@@ -4122,6 +4427,81 @@ HingeJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!1 &7729395128428504867
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5907625466358277435}
+  - component: {fileID: 379679335864598380}
+  - component: {fileID: 1683983258227582452}
+  m_Layer: 5
+  m_Name: Image
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &5907625466358277435
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7729395128428504867}
+  m_LocalRotation: {x: -0.000000021073424, y: -0, z: -0.000000021073424, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -0}
+  m_LocalScale: {x: 0.19999999, y: 0.19999999, z: 0.19999999}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 8925070929081306825}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 6, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &379679335864598380
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7729395128428504867}
+  m_CullTransparentMesh: 1
+--- !u!114 &1683983258227582452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7729395128428504867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 8e27b32b442dc864381e78fa1bae27d4, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &7916950115483509728
 GameObject:
   m_ObjectHideFlags: 0
@@ -4176,6 +4556,8 @@ SkinnedMeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -4197,6 +4579,7 @@ SkinnedMeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
@@ -4333,6 +4716,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -4354,6 +4739,7 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
@@ -4641,6 +5027,9 @@ MonoBehaviour:
   COD: {fileID: 0}
   consecutive_wins: 0
   reel_in_finisher: 0
+  fish_per_second_actual: 0
+  fish_per_second_theoretical: 0
+  fish_per_second_1: 0
   distance: 0
   enabled_fishing: 0
   velocity: {x: 0, y: 0, z: 0}
@@ -4704,7 +5093,6 @@ MonoBehaviour:
   fish_all_spawned: 0
   resetting: 0
   water_already: 0
-  starter: 0
   spawning_fish: 0
   already_fishing: {fileID: 0}
   fish_spawner: {fileID: 0}
@@ -4732,6 +5120,7 @@ MonoBehaviour:
   direction_modified: {x: 0, y: 0, z: 0}
   camera_holder: {fileID: 0}
   cam: {fileID: 0}
+  autofisher: 0
 --- !u!1001 &3489188777216243246
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4800,6 +5189,14 @@ PrefabInstance:
       propertyPath: rod_animator
       value: 
       objectReference: {fileID: 4571790155545624729}
+    - target: {fileID: 3220851619442043366, guid: f98563a06440bbd4996432a7254b0c77, type: 3}
+      propertyPath: fish_quality_min
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3220851619442043366, guid: f98563a06440bbd4996432a7254b0c77, type: 3}
+      propertyPath: fish_quantity_min
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 4666394159460927992, guid: f98563a06440bbd4996432a7254b0c77, type: 3}
       propertyPath: bone
       value: 
