@@ -60,6 +60,9 @@ public class item_price_holder : MonoBehaviour
         {
             image.SetActive(false);
             cost_text.gameObject.SetActive(false);
+
+            this.gameObject.GetComponent<item_pickup>().enabled = false;
+            this.gameObject.GetComponent<item_buying>().enabled = false;
         }
 
     }

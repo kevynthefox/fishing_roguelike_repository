@@ -200,6 +200,7 @@ public class fishing_script : MonoBehaviour
             cam = Camera.main;
         }
 
+        rod_animator = fishing_rod.transform.parent.GetComponent<Animator>();
         
     }
 
