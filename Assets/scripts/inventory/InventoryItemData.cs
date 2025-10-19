@@ -60,6 +60,7 @@ public class InventoryItemData : ScriptableObject
 
     public int item_type; // 1 is regular items. 2 is buffs. 3 is equipment(like fishing rod). 4 is heirlooms.
     public bool in_potion;
+    public int equipped; //0 is not, 1 is in left, 2 is in right.
     //
 
     //toggling
