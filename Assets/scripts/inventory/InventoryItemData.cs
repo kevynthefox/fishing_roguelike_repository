@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -60,7 +61,7 @@ public class InventoryItemData : ScriptableObject
 
     public int item_type; // 1 is regular items. 2 is buffs. 3 is equipment(like fishing rod). 4 is heirlooms.
     public bool in_potion;
-    public int equipped; //0 is not, 1 is in left, 2 is in right.
+    
     //
 
     //toggling
@@ -76,6 +77,19 @@ public class InventoryItemData : ScriptableObject
     public bool been_Left_clicked_on;
     public bool been_middle_clicked_on;
 
-    
-    
+    [Header("equipment")]
+    public int equipped; //0 is not, 1 is in left, 2 is in right.
+
+    //public int hand_to_go_in; //0 is neither, 1 is left, 2 is right.
+
+    public Vector3 position;
+    public quaternion rotation;
+
+    public int hand_change; //0 hand change = neither, 1 is left, 2 is right, 3 is both.
+
+    public Vector3 left_hand_position;
+    public quaternion left_hand_rotation;
+
+    public Vector3 right_hand_position;
+    public Quaternion right_hand_rotation;
 }

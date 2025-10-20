@@ -359,7 +359,7 @@ MonoBehaviour:
   m_slotLabel: {fileID: 5749049378124201341}
   m_slotButton_1: {fileID: 7334621391472288814}
   m_slotButton_2: {fileID: 5012902582093348691}
-  primerForIn_potion: 0
+  item_internal: 0
 --- !u!1 &34620614208768593
 GameObject:
   m_ObjectHideFlags: 0
@@ -589,7 +589,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 4, y: -8.5}
-  m_SizeDelta: {x: 8, y: 17}
+  m_SizeDelta: {x: 0, y: 17}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4405760421147050992
 CanvasRenderer:
