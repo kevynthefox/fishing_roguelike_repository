@@ -9,8 +9,9 @@ using UnityEngine.UI;
 
 public class fishing_script : MonoBehaviour
 {
+    [Header("rod designation")]
     public bool autofisher;
-    
+    public int hand_rod_is_in; //0 is neither, 1 is left, 2 is right.
 
     [Header("fishing_script variables")]
     public bool string_on;
@@ -206,7 +207,17 @@ public class fishing_script : MonoBehaviour
 
     void Start()
     {
-        
+        if (fishing_rod.transform.parent != null)
+        {
+            if (fishing_rod.transform.parent.name == "hand_holder_L")
+            {
+                hand_rod_is_in = 1;
+            }
+            if (fishing_rod.transform.parent.name == "hand_holder_R")
+            {
+                hand_rod_is_in = 2;
+            }
+        }
 
         bone_master = GameObject.Find("Bone.002");
 
@@ -270,69 +281,143 @@ public class fishing_script : MonoBehaviour
         {
             if (rod_on == false)
             {
-                if (Input.GetMouseButtonDown(0) && autofisher == false)
+                if (hand_rod_is_in == 2)
                 {
-                    left_clicked_down = true;
-                }
-                else
-                {
-                    left_clicked_down = false;
-                }
-
-                if (Input.GetMouseButtonDown(1) && autofisher == false)
-                {
-                    right_clicked_down = true;
-                }
-                else
-                {
-                    right_clicked_down = false;
-                }
-
-                if (Input.GetMouseButton(0) && autofisher == false)
-                {
-                    left_clicked_hold = true;
-                }
-                else
-                {
-                    left_clicked_hold = false;
-                }
-
-                if (Input.GetMouseButton(1) && autofisher == false)
-                {
-                    right_clicked_hold = true;
-                }
-                else
-                {
-                    right_clicked_hold = false;
-                }
-
-                if (Input.GetMouseButtonUp(0) && autofisher == false)
-                {
-                    left_clicked_up = true;
-                }
-                else
-                {
-                    left_clicked_up = false;
-                }
-
-                if (Input.GetMouseButtonUp(1) && autofisher == false)
-                {
-                    right_clicked_up = true;
-                }
-                else
-                {
-                    right_clicked_up = false;
-                }
-                if (Input.GetKeyDown(KeyCode.E) && autofisher == false)
-                {
-                    enabled_fishing = !enabled_fishing;
-                    if (bobber_on == true)
+                    Debug.Log("hand_rod_is_in is 2");
+                    if (Input.GetMouseButtonDown(0) && autofisher == false)
                     {
-                        StartCoroutine(reset_animations());
+                        left_clicked_down = true;
                     }
-                    //Debug.Log("enabled fishing2: " + enabled_fishing);
-                    //GetComponent<Rigidbody>().isKinematic = !enabled_fishing;
+                    else
+                    {
+                        left_clicked_down = false;
+                    }
+
+                    if (Input.GetMouseButtonDown(1) && autofisher == false)
+                    {
+                        right_clicked_down = true;
+                    }
+                    else
+                    {
+                        right_clicked_down = false;
+                    }
+
+                    if (Input.GetMouseButton(0) && autofisher == false)
+                    {
+                        left_clicked_hold = true;
+                    }
+                    else
+                    {
+                        left_clicked_hold = false;
+                    }
+
+                    if (Input.GetMouseButton(1) && autofisher == false)
+                    {
+                        right_clicked_hold = true;
+                    }
+                    else
+                    {
+                        right_clicked_hold = false;
+                    }
+
+                    if (Input.GetMouseButtonUp(0) && autofisher == false)
+                    {
+                        left_clicked_up = true;
+                    }
+                    else
+                    {
+                        left_clicked_up = false;
+                    }
+
+                    if (Input.GetMouseButtonUp(1) && autofisher == false)
+                    {
+                        right_clicked_up = true;
+                    }
+                    else
+                    {
+                        right_clicked_up = false;
+                    }
+
+                    if (Input.GetKeyDown(KeyCode.E) && autofisher == false)
+                    {
+                        enabled_fishing = !enabled_fishing;
+                        if (bobber_on == true)
+                        {
+                            StartCoroutine(reset_animations());
+                        }
+                        //Debug.Log("enabled fishing2: " + enabled_fishing);
+                        //GetComponent<Rigidbody>().isKinematic = !enabled_fishing;
+                    }
                 }
+                if (hand_rod_is_in == 1)
+                {
+                    Debug.Log("hand_rod_is_in is 1");
+                    if (Input.GetKeyDown(KeyCode.Alpha1) && autofisher == false)
+                    {
+                        left_clicked_down = true;
+                    }
+                    else
+                    {
+                        left_clicked_down = false;
+                    }
+
+                    if (Input.GetKeyDown(KeyCode.Alpha2) && autofisher == false)
+                    {
+                        right_clicked_down = true;
+                    }
+                    else
+                    {
+                        right_clicked_down = false;
+                    }
+
+                    if (Input.GetKey(KeyCode.Alpha1) && autofisher == false)
+                    {
+                        left_clicked_hold = true;
+                    }
+                    else
+                    {
+                        left_clicked_hold = false;
+                    }
+
+                    if (Input.GetKey(KeyCode.Alpha2) && autofisher == false)
+                    {
+                        right_clicked_hold = true;
+                    }
+                    else
+                    {
+                        right_clicked_hold = false;
+                    }
+
+                    if (Input.GetKeyUp(KeyCode.Alpha1) && autofisher == false)
+                    {
+                        left_clicked_up = true;
+                    }
+                    else
+                    {
+                        left_clicked_up = false;
+                    }
+
+                    if (Input.GetKeyUp(KeyCode.Alpha2) && autofisher == false)
+                    {
+                        right_clicked_up = true;
+                    }
+                    else
+                    {
+                        right_clicked_up = false;
+                    }
+
+                    if (Input.GetKeyDown(KeyCode.Q) && autofisher == false)
+                    {
+                        enabled_fishing = !enabled_fishing;
+                        if (bobber_on == true)
+                        {
+                            StartCoroutine(reset_animations());
+                        }
+                        //Debug.Log("enabled fishing2: " + enabled_fishing);
+                        //GetComponent<Rigidbody>().isKinematic = !enabled_fishing;
+                    }
+                }
+                
 
                 if (enabled_fishing == true)
                 {

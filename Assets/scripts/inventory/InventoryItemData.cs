@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
 using Unity.VisualScripting;
+using UnityEditor.Animations;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Inventory Item Data")]
@@ -84,12 +85,15 @@ public class InventoryItemData : ScriptableObject
 
     public Vector3 position;
     public quaternion rotation;
+    public Vector3 scale;
 
-    public int hand_change; //0 hand change = neither, 1 is left, 2 is right, 3 is both.
+    public int hand_change; //0 hand change = neither, 1 is left, 2 is right, 3 is both, 4 is whichever hand it's in
 
     public Vector3 left_hand_position;
     public quaternion left_hand_rotation;
 
     public Vector3 right_hand_position;
     public Quaternion right_hand_rotation;
+
+    public AnimatorController animator;
 }

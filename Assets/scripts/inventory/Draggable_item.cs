@@ -93,14 +93,14 @@ public class Draggable_item : MonoBehaviour//, IBeginDragHandler, IDragHandler, 
                     if (InventoryController.current.left_hand_filled == false)
                     {
                         transform.parent = InventoryController.current.hands[0].transform;
-                        transform.localPosition = Vector3.zero;
+                        transform.localPosition = new Vector3(0, 50, 0);
                     }
                     else
                     {
                         if (InventoryController.current.right_hand_filled == false)
                         {
                             transform.parent = InventoryController.current.hands[1].transform;
-                            transform.localPosition = Vector3.zero;
+                            transform.localPosition = new Vector3(0, 50, 0);
                         }
                     }
                 }
@@ -108,6 +108,26 @@ public class Draggable_item : MonoBehaviour//, IBeginDragHandler, IDragHandler, 
             
             yield return new WaitForSeconds(0.1f);
         }
+    }
+
+    public IEnumerator swap_hand()
+    {
+        Debug.Log("hand gonna swap");
+        if (InventoryController.current.left_hand_filled == false)
+        {
+            transform.parent = InventoryController.current.hands[0].transform;
+            transform.localPosition = new Vector3(0, 50, 0);
+        }
+        else
+        {
+            if (InventoryController.current.right_hand_filled == false)
+            {
+                transform.parent = InventoryController.current.hands[1].transform;
+                transform.localPosition = new Vector3(0, 50, 0);
+            }
+        }
+        Debug.Log("hand swapped");
+        yield return new WaitForSeconds(0.1f);
     }
     #endregion
     #region item_dropping

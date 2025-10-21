@@ -53,7 +53,7 @@ public class Slot_mover : MonoBehaviour
             equipped_item_holder.transform.GetChild(0).transform.parent = parent_er.transform;
             parent_er.transform.GetChild(1).transform.localPosition = Vector3.zero;
             InventorySystem.current.Add(parent_er.transform.GetChild(1).GetComponentInChildren<Draggable_item>().self_inventory_item.data);
-
+            Destroy(parent_er.transform.GetChild(1).gameObject);
 
         }
         else
@@ -69,7 +69,14 @@ public class Slot_mover : MonoBehaviour
                     if (child.TryGetComponent<Draggable_item>(out Draggable_item dragg))
                     {
                         InventoryItem item = dragg.self_inventory_item;
-                        equipment_system.current.spawn_equipment(hand_to_go_in, dragg.self_inventory_item.data, item.data.position, item.data.rotation, item.data.hand_change, item.data.left_hand_position, item.data.left_hand_rotation, item.data.right_hand_position, item.data.right_hand_rotation);
+                        if (item.data.hand_change == 4)
+                        {
+                            equipment_system.current.spawn_equipment(hand_to_go_in, dragg.self_inventory_item.data, item.data.position, item.data.rotation, item.data.scale, hand_to_go_in, item.data.left_hand_position, item.data.left_hand_rotation, item.data.right_hand_position, item.data.right_hand_rotation);
+                        }
+                        else
+                        {
+                            equipment_system.current.spawn_equipment(hand_to_go_in, dragg.self_inventory_item.data, item.data.position, item.data.rotation, item.data.scale, item.data.hand_change, item.data.left_hand_position, item.data.left_hand_rotation, item.data.right_hand_position, item.data.right_hand_rotation);
+                        }
                         InventorySystem.current.Remove(item.data);
                     }
 
@@ -83,5 +90,11 @@ public class Slot_mover : MonoBehaviour
 
 
         
+    }
+
+    public void swap_hand()
+    {
+        Debug.Log("swap dem hands");
+        StartCoroutine(parent.transform.GetChild(1).GetComponent<Draggable_item>().swap_hand());
     }
 }

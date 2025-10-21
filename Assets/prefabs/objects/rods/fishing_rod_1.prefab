@@ -162,6 +162,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   autofisher: 0
+  hand: 0
   string_on: 1
   bobber_on: 0
   rod_on: 0
@@ -694,6 +695,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   autofisher: 0
+  hand: 0
   string_on: 1
   bobber_on: 0
   rod_on: 0
@@ -991,6 +993,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   autofisher: 0
+  hand: 0
   string_on: 1
   bobber_on: 0
   rod_on: 0
@@ -1516,6 +1519,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   autofisher: 0
+  hand: 0
   string_on: 1
   bobber_on: 0
   rod_on: 0
@@ -1995,6 +1999,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   autofisher: 0
+  hand: 0
   string_on: 0
   bobber_on: 0
   rod_on: 1
@@ -2304,6 +2309,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   autofisher: 0
+  hand: 0
   string_on: 1
   bobber_on: 0
   rod_on: 0
@@ -2783,6 +2789,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   autofisher: 0
+  hand: 0
   string_on: 1
   bobber_on: 0
   rod_on: 0
@@ -3167,6 +3174,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   autofisher: 0
+  hand: 0
   string_on: 1
   bobber_on: 0
   rod_on: 0
@@ -3439,6 +3447,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   autofisher: 0
+  hand: 0
   string_on: 1
   bobber_on: 0
   rod_on: 0
@@ -4825,6 +4834,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   autofisher: 0
+  hand: 0
   string_on: 1
   bobber_on: 0
   rod_on: 0
@@ -4999,14 +5009,6 @@ PrefabInstance:
       propertyPath: fishing_rod
       value: 
       objectReference: {fileID: 3725368859737239547}
-    - target: {fileID: 3220851619442043366, guid: f98563a06440bbd4996432a7254b0c77, type: 3}
-      propertyPath: fish_quality_min
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3220851619442043366, guid: f98563a06440bbd4996432a7254b0c77, type: 3}
-      propertyPath: fish_quantity_min
-      value: 0.5
-      objectReference: {fileID: 0}
     - target: {fileID: 4666394159460927992, guid: f98563a06440bbd4996432a7254b0c77, type: 3}
       propertyPath: bone
       value: 

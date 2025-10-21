@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f48e8ec3ead38684ba37ff79f3b270e7, type: 3}
-  m_Name: Fishing_rod
+  m_Name: debug_equipment
   m_EditorClassIdentifier: 
-  id: InventoryItem_Fishing_rod
-  displayName: Fishing_rod
-  icon: {fileID: 21300000, guid: 8fddedfa60a797145ae78d7e74948b30, type: 3}
-  prefab: {fileID: 3725368859737239547, guid: 0e7fef8cc0b81c549bf2fb3c74d13da8, type: 3}
+  id: InventoryItem_Debug_equipment
+  displayName: Debug_equipment
+  icon: {fileID: 21300000, guid: 93fdd0740e072eb448c0c6490f3f6796, type: 3}
+  prefab: {fileID: 5641539481016680486, guid: 2a5e5336a24d50543809fe7d856fe29f, type: 3}
   in_inventory: 0
   inventory: {fileID: 0}
   trigger_type: 3
@@ -44,22 +44,22 @@ MonoBehaviour:
   been_Left_clicked_on: 0
   been_middle_clicked_on: 0
   equipped: 0
-  position: {x: 1.805001, y: 4.137001, z: -0.9300007}
+  position: {x: 2, y: 2, z: 2}
   rotation:
     value:
       x: 0
       y: 0
       z: 0
       w: 1
-  scale: {x: 0.2445764, y: 0.2445764, z: 0.2445764}
+  scale: {x: 3, y: 0.1, z: 20}
   hand_change: 4
-  left_hand_position: {x: 1.805001, y: 4.137001, z: 0.9300007}
+  left_hand_position: {x: -3, y: 3, z: 4}
   left_hand_rotation:
     value:
       x: 0
-      y: 0
-      z: 0
-      w: 0
+      y: 0.009805336
+      z: 0.98053354
+      w: 0.19610672
   right_hand_position: {x: 1.805001, y: 4.137001, z: -0.9300007}
   right_hand_rotation: {x: 0, y: 0, z: 0, w: 0}
-  animator: {fileID: 9100000, guid: 4bf32a34297dfcd449a071b867d14cca, type: 2}
+  animator: {fileID: 9100000, guid: 10788d5d2547e904d91e2c36f3afb9c7, type: 2}

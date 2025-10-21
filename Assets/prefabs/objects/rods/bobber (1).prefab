@@ -69,6 +69,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -91,6 +93,7 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
@@ -141,6 +144,7 @@ MonoBehaviour:
   direction_modified: {x: 0, y: 0, z: 0}
   camera_holder: {fileID: 0}
   cam: {fileID: 0}
+  autofisher: 0
 --- !u!65 &1226322734185159758
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -214,6 +218,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   autofisher: 0
+  hand: 0
   string_on: 0
   bobber_on: 1
   rod_on: 0
@@ -230,6 +235,9 @@ MonoBehaviour:
   COD: {fileID: 0}
   consecutive_wins: 0
   reel_in_finisher: 0
+  fish_per_second_actual: 0
+  fish_per_second_theoretical: 0
+  fish_per_second_1: 0
   distance: 0
   enabled_fishing: 0
   velocity: {x: 0, y: 0, z: 0}
@@ -241,8 +249,8 @@ MonoBehaviour:
   bar_pos: 0.5
   fish_quantity_max: 2
   fish_quality_max: 2
-  fish_quantity_min: 1
-  fish_quality_min: 1
+  fish_quantity_min: 0.5
+  fish_quality_min: 0.5
   fish_quantity_buff_mult: 1
   fish_quality_buff_mult: 1
   fish_quantity_max_buff_mult: 1
@@ -293,7 +301,6 @@ MonoBehaviour:
   fish_all_spawned: 0
   resetting: 0
   water_already: 0
-  starter: 0
   spawning_fish: 0
   already_fishing: {fileID: 0}
   fish_spawner: {fileID: 0}
