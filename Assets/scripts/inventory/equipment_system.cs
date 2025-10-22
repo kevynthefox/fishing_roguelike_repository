@@ -61,7 +61,7 @@ public class equipment_system : MonoBehaviour
 
             if (item.animator != null)
             {
-                left_hand_animator.runtimeAnimatorController = item.animator;
+                right_hand_animator.runtimeAnimatorController = item.animator;
             }
         }
 
@@ -85,10 +85,10 @@ public class equipment_system : MonoBehaviour
             left_hand_holder.GetComponent<Rigidbody>().linearVelocity = Vector3.zero;
             
             left_hand.transform.localPosition = Vector3.zero;
-            left_hand.transform.localRotation = new Quaternion(0, 0, -90,0);
+            left_hand.transform.localEulerAngles = new Vector3(0, 0, -90);
 
             left_hand_holder.transform.localPosition = new Vector3(0, 2.9149f, 1.69847f);
-            left_hand_holder.transform.localRotation = new Quaternion(0, -90, 0, 0);
+            left_hand_holder.transform.localEulerAngles = new Vector3(0, -90, 0);
 
             Destroy(left_hand_equipment);
         }
@@ -101,10 +101,10 @@ public class equipment_system : MonoBehaviour
             
 
             right_hand.transform.localPosition = Vector3.zero;
-            right_hand.transform.localRotation = new Quaternion(0, 0, 30, 0);
+            right_hand.transform.localEulerAngles = new Vector3(0, 0, 30);
 
             right_hand_holder.transform.localPosition = new Vector3(0, 2.9149f, -1.69847f);
-            right_hand_holder.transform.localRotation = new Quaternion(0, -90, 0, 0);
+            right_hand_holder.transform.localEulerAngles = new Vector3(0, -90, 0);
 
             Destroy(right_hand_equipment);
         }
