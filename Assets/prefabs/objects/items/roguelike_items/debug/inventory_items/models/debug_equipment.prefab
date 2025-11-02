@@ -375,7 +375,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::item_buying
   left_clicked: 0
   self: {fileID: 5641539481016680486}
-  self_item: {fileID: 11400000, guid: 308fe13e0b633b74b8fef99c03c92960, type: 2}
+  self_item: {fileID: 11400000, guid: a98e58de69a959449ba7c3fa50cea679, type: 2}
   player: {fileID: 0}
   wallet: {fileID: 0}
   item_cost: 0
