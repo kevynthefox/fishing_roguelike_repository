@@ -43,4 +43,23 @@ MonoBehaviour:
   been_Right_clicked_on: 0
   been_Left_clicked_on: 0
   been_middle_clicked_on: 0
-  already_activated: 0
+  equipped: 0
+  position: {x: 0, y: 0, z: 0}
+  rotation:
+    value:
+      x: 0
+      y: 0
+      z: 0
+      w: 0
+  scale: {x: 0, y: 0, z: 0}
+  hand_change: 0
+  left_hand_position: {x: 0, y: 0, z: 0}
+  left_hand_rotation:
+    value:
+      x: 0
+      y: 0
+      z: 0
+      w: 0
+  right_hand_position: {x: 0, y: 0, z: 0}
+  right_hand_rotation: {x: 0, y: 0, z: 0, w: 0}
+  animator: {fileID: 0}
