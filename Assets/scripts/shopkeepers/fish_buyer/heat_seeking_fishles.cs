@@ -6,23 +6,40 @@ using UnityEngine.UIElements;
 public class heat_seeking_fishles : MonoBehaviour
 {
 
-    public GameObject home;
-    //public GameObject master;
+    
 
+    [Header("pathfinding")]
     public float flight_duration;
     public float speed;
-
-    public bool disable_water;
-
-    private GameObject water;
-
-    public float health = 1;
-
-
     public bool enemy;
-
+    public GameObject home;
     public List<GameObject> targets;
-
+    public Transform player;
+    public bool stationary;
+    
+    [Header("Health")]
+    public float health;
+    public Canvas Canvas;
+    public GameObject health_bar;
+    
+    [Header("states")]
+    public float sightRange, attackRange;
+    public bool playerInSightRange, playerInAttackRange;
+    
+    [Header("attacking")]
+    public GameObject gun;
+    public float timeBetweenAttacks;
+    bool alreadyAttacked;
+    
+    [Header("patrolling")]
+    public Vector3 walkPoint;
+    bool walkPointSet;
+    public float walkPointRange;
+    
+    [Header("sequencing")]//as in, preparing attacks
+    public GameObject wave_spawner;
+    public bool disable_water;
+    private GameObject water;
 
 
 
@@ -115,7 +132,11 @@ public class heat_seeking_fishles : MonoBehaviour
 
     }
 
+    #region  failsafe
 
+    
+
+    
     public IEnumerator failsafe_counter()
     {
         
@@ -139,6 +160,7 @@ public class heat_seeking_fishles : MonoBehaviour
         GetComponent<Rigidbody>().useGravity = true;
 
     }
+    #endregion
     /*private void OnCollisionEnter(Collision collision)
     {
         if (this.GetComponent<Collider>() != null)
