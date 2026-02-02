@@ -283,7 +283,7 @@ public class fishing_script : MonoBehaviour
             {
                 if (hand_rod_is_in == 2)
                 {
-                    Debug.Log("hand_rod_is_in is 2");
+                    //Debug.Log("hand_rod_is_in is 2");
                     if (Input.GetMouseButtonDown(0) && autofisher == false)
                     {
                         left_clicked_down = true;

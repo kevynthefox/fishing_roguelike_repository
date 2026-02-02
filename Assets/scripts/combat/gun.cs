@@ -101,7 +101,6 @@ public class gun : MonoBehaviour
         if (TimeManager.current.update == true)
         {
 
-
             if (targets != null)
             {
                 if (targets.Count >= 1)
