@@ -12,8 +12,10 @@ public class heat_seeking_fishles : MonoBehaviour
     public float flight_duration;
     public float speed;
     public bool enemy;
+    public bool ranged_fish;
     public GameObject home;
     public List<GameObject> targets;
+    public float distance;
     public Transform player;
     public bool stationary;
     
@@ -63,12 +65,58 @@ public class heat_seeking_fishles : MonoBehaviour
 
 
                 //makes the object move faster the further away it is from the other one
-                speed = Vector3.Distance(home.transform.position, transform.position);
+                //speed = Vector3.Distance(home.transform.position, transform.position);
 
                 //moves this object towards the other object, at this speed per second
-                transform.position = Vector3.MoveTowards(transform.position, home.transform.position, speed * Time.deltaTime);
+                if (ranged_fish == true)
+                {
+                    if (distance <= sightRange)
+                    {
+                        playerInSightRange = true;
+                        if (distance <= attackRange)
+                        {
+                            playerInAttackRange = true;
+                            
+                        }
+                        else
+                        {
+                            playerInAttackRange = false;
+                        }
+                    }
+                    else
+                    {
+                        playerInSightRange = false;
+                    }
+
+                    if (playerInSightRange == true)
+                    {
+                        if (playerInAttackRange == true)
+                        {
+                            if (!alreadyAttacked)
+                            {
+                                //attack code here
+                                gun.GetComponent<gun>().manual_fire = true;
+                                //
+
+                                alreadyAttacked = true;
+                                Invoke(nameof(ResetAttack), timeBetweenAttacks);
+                            }
+                        }
+                        else
+                        {
+                            transform.position = Vector3.MoveTowards(transform.position, home.transform.position,
+                                speed * Time.deltaTime);
+                        }
+                    }
+                }
+                else
+                {
+                    transform.position = Vector3.MoveTowards(transform.position, home.transform.position,
+                        speed * Time.deltaTime);
+                }
                 //transform.rotation = Quaternion.LookRotation(Vector3.RotateTowards(transform.position, home.transform.position, 0, 360));
                 transform.LookAt(home.transform); // you need to child the object to an empty gameobject so that the object maintains the rotation you want.
+                distance = Vector3.Distance(transform.position,home.transform.position);
             }
 
             if (home != null && enemy == false)
@@ -99,6 +147,10 @@ public class heat_seeking_fishles : MonoBehaviour
                 home = targets[random_target];
             }
 
+            if (ranged_fish == true)
+            { 
+                health_bar.GetComponent<Health_display>().health = health;
+            }
             if (health == 0)
             {
                 home = null;
@@ -110,6 +162,14 @@ public class heat_seeking_fishles : MonoBehaviour
         }
     }
 
+    private void ResetAttack()
+    {
+        if (TimeManager.current.update == true)
+        {
+            alreadyAttacked = false;
+        }
+    }
+    
     void OnTriggerEnter(Collider other)
     {
         if (other.isTrigger == true)

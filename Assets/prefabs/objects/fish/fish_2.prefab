@@ -95,6 +95,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &4664982497591543338
 GameObject:
@@ -146,13 +147,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc7f40741ce017a4192ba99840c04309, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  home: {fileID: 2679988056074713764, guid: c816e89edc5ff1445b97eb82aaa64866, type: 3}
   flight_duration: 50
-  speed: 0
-  disable_water: 0
-  health: 1
+  speed: 20
   enemy: 0
+  ranged_fish: 0
+  home: {fileID: 2679988056074713764, guid: c816e89edc5ff1445b97eb82aaa64866, type: 3}
   targets: []
+  distance: 0
+  player: {fileID: 0}
+  stationary: 0
+  health: 1
+  Canvas: {fileID: 0}
+  health_bar: {fileID: 0}
+  sightRange: 0
+  attackRange: 0
+  playerInSightRange: 0
+  playerInAttackRange: 0
+  gun: {fileID: 0}
+  timeBetweenAttacks: 0
+  walkPoint: {x: 0, y: 0, z: 0}
+  walkPointRange: 0
+  wave_spawner: {fileID: 0}
+  disable_water: 0
 --- !u!65 &3398146113869665000
 BoxCollider:
   m_ObjectHideFlags: 0

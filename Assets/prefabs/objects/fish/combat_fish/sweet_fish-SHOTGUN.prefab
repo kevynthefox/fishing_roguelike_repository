@@ -451,6 +451,9 @@ PrefabInstance:
       addedObject: {fileID: 228424063934717260}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 2e0c48f598180e648857bce8ac27de85, type: 3}
       insertIndex: -1
+      addedObject: {fileID: -4492724148728418735}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 2e0c48f598180e648857bce8ac27de85, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 8004817939067054083}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 2e0c48f598180e648857bce8ac27de85, type: 3}
       insertIndex: -1
@@ -477,7 +480,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1364305851731631267}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4eff1a9f3713f4945ab40784312cd943, type: 3}
   m_Name: 
@@ -502,6 +505,40 @@ MonoBehaviour:
   health_bar: {fileID: 3128494657258740014}
   gun: {fileID: 3860676638063647739}
   wave_spawner: {fileID: 0}
+--- !u!114 &-4492724148728418735
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1364305851731631267}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc7f40741ce017a4192ba99840c04309, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::heat_seeking_fishles
+  flight_duration: 0
+  speed: 10
+  enemy: 1
+  ranged_fish: 1
+  home: {fileID: 0}
+  targets: []
+  distance: 0
+  player: {fileID: 0}
+  stationary: 0
+  health: 100
+  Canvas: {fileID: 5185612295881840993}
+  health_bar: {fileID: 3128494657258740014}
+  sightRange: 2000
+  attackRange: 15
+  playerInSightRange: 0
+  playerInAttackRange: 0
+  gun: {fileID: 3860676638063647739}
+  timeBetweenAttacks: 1
+  walkPoint: {x: 0, y: 0, z: 0}
+  walkPointRange: 0
+  wave_spawner: {fileID: 0}
+  disable_water: 0
 --- !u!195 &8004817939067054083
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -661,6 +698,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 442721070149921396, guid: 9650c4ba9bf987a4ab142f0b14ddb145, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 886797355928538474, guid: 9650c4ba9bf987a4ab142f0b14ddb145, type: 3}
+      propertyPath: manual_fire
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 968006580222931150, guid: 9650c4ba9bf987a4ab142f0b14ddb145, type: 3}
