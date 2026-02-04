@@ -101,63 +101,62 @@ public class gun : MonoBehaviour
         if (TimeManager.current.update == true)
         {
 
-            if (targets != null)
+        
+            if (targets.Count >= 1)
             {
-                if (targets.Count >= 1)
+                if (targets[0] != null)
                 {
-                    if (targets[0] != null)
+                    distance = Vector3.Distance(targets[0].transform.position, this.transform.position) * distance_correction;
+                    if (types == Type.artillery)
                     {
-                        distance = Vector3.Distance(targets[0].transform.position, this.transform.position) * distance_correction;
-                        if (types == Type.artillery)
-                        {
-                            //x = (vi * cos(0)) *
-                            //transform.rotation = Quaternion.AngleAxis(player.transform.position.x / (distance/0), Vector3.down);
-                            Vector3 lookDir = transform.position - targets[0].position;
-                            float radians = Mathf.Atan2(lookDir.x, lookDir.z);
-                            float degrees = radians * Mathf.Rad2Deg;
+                        //x = (vi * cos(0)) *
+                        //transform.rotation = Quaternion.AngleAxis(player.transform.position.x / (distance/0), Vector3.down);
+                        Vector3 lookDir = transform.position - targets[0].position;
+                        float radians = Mathf.Atan2(lookDir.x, lookDir.z);
+                        float degrees = radians * Mathf.Rad2Deg;
 
-                            float str = Mathf.Min(movementStrength * Time.deltaTime, 1);
-                            Quaternion targetRotation = Quaternion.Euler(0, degrees, 0);
-                            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, str);
+                        float str = Mathf.Min(movementStrength * Time.deltaTime, 1);
+                        Quaternion targetRotation = Quaternion.Euler(0, degrees, 0);
+                        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, str);
 
 
-                            launch_angle =
+                        launch_angle =
 
-                                0.5f * MathF.Asin(
-                                    (9.81f * distance)
-                                    / (projectile.GetComponent<projectile_controller>().s_to_m * projectile.GetComponent<projectile_controller>().s_to_m)
-                                );
+                            0.5f * MathF.Asin(
+                                (9.81f * distance)
+                                / (projectile.GetComponent<projectile_controller>().s_to_m * projectile.GetComponent<projectile_controller>().s_to_m)
+                            );
 
-                            //barrel.transform.localRotation = new Quaternion(x,y + transform.localRotation.y,launch_angle, transform.rotation.w);
-                            /*Quaternion barrel_targetRotation = Quaternion.Euler(0,270,launch_angle * 100);
-                            barrel.transform.localRotation = Quaternion.Slerp(barrel.transform.localRotation, barrel_targetRotation, str);*/
-                            barrel.transform.localRotation = Quaternion.Euler(-180, 90, distance * launch_angle);
-                        }
-
-
-
-                        if (targets[0].TryGetComponent<heat_seeking_fishles>(out heat_seeking_fishles heat_seeking))
-                        {
-                            if (heat_seeking.health == 0)
-                            {
-                                Debug.Log("neutralized");
-                                targets.RemoveAt(0);
-                            }
-                        }
-                        if (targets[0].gameObject.TryGetComponent<behavior_for_ranged_fish>(out behavior_for_ranged_fish ranged_behavior))
-                        {
-                            if (ranged_behavior.gameObject.GetComponent<Health_display>().health == 0)
-                            {
-                                Debug.Log("neutralized");
-                                targets.RemoveAt(0);
-                            }
-                        }
+                        //barrel.transform.localRotation = new Quaternion(x,y + transform.localRotation.y,launch_angle, transform.rotation.w);
+                        /*Quaternion barrel_targetRotation = Quaternion.Euler(0,270,launch_angle * 100);
+                        barrel.transform.localRotation = Quaternion.Slerp(barrel.transform.localRotation, barrel_targetRotation, str);*/
+                        barrel.transform.localRotation = Quaternion.Euler(-180, 90, distance * launch_angle);
                     }
 
-                    //targets.RemoveAll(g => g == null); 
+
+
+                    if (targets[0].TryGetComponent<heat_seeking_fishles>(out heat_seeking_fishles heat_seeking))
+                    {
+                        if (heat_seeking.health == 0)
+                        {
+                            Debug.Log("neutralized");
+                            targets.RemoveAt(0);
+                        }
+                    }
+                    if (targets[0].gameObject.TryGetComponent<behavior_for_ranged_fish>(out behavior_for_ranged_fish ranged_behavior))
+                    {
+                        if (ranged_behavior.gameObject.GetComponent<Health_display>().health == 0)
+                        {
+                            Debug.Log("neutralized");
+                            targets.RemoveAt(0);
+                        }
+                    }
                 }
+
+                //targets.RemoveAll(g => g == null); 
             }
-            if (target == null)
+        
+            if (target == null) //replace with if !target ?
             {
                 var new_target = Instantiate(target_backup, Vector3.zero, Quaternion.identity);
                 target = new_target;
