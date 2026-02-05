@@ -92,6 +92,10 @@ public class gun : MonoBehaviour
         fish_bullet_pool.parent = bullet_pool.transform;
 
 
+    }
+
+    public void Start()
+    {
         StartCoroutine(fire_tracking());
         StartCoroutine(turret_fire());
     }
@@ -194,7 +198,6 @@ public class gun : MonoBehaviour
     private bool already_sent_starter_active;
     public IEnumerator turret_fire()
     {
-        Debug.Log(TimeManager.current.starter);
         while (TimeManager.current.starter == true)
         {
             if (Input.GetKey(KeyCode.T))

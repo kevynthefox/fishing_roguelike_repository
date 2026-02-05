@@ -4969,7 +4969,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1364305851731631267, guid: f3b4eb9ccc1385d41b9c04b45bca1225, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1847932000112150041, guid: f3b4eb9ccc1385d41b9c04b45bca1225, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5461,15 +5461,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 886797355928538474, guid: 9650c4ba9bf987a4ab142f0b14ddb145, type: 3}
       propertyPath: always_fire_at_targets
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 968006580222931150, guid: 9650c4ba9bf987a4ab142f0b14ddb145, type: 3}
       propertyPath: m_Name
       value: iceberg_590
       objectReference: {fileID: 0}
+    - target: {fileID: 968006580222931150, guid: 9650c4ba9bf987a4ab142f0b14ddb145, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1215119303606929767, guid: 9650c4ba9bf987a4ab142f0b14ddb145, type: 3}
       propertyPath: m_Radius
-      value: 10
+      value: 0.00001
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
