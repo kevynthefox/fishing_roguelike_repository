@@ -194,6 +194,7 @@ public class gun : MonoBehaviour
     private bool already_sent_starter_active;
     public IEnumerator turret_fire()
     {
+        Debug.Log(TimeManager.current.starter);
         while (TimeManager.current.starter == true)
         {
             if (Input.GetKey(KeyCode.T))
@@ -211,9 +212,10 @@ public class gun : MonoBehaviour
 
             if (always_fire_at_targets == true)
             {
+                Debug.Log("i am a turret and am gonna fire automatically");
                 if (targets.Count > 0)
                 {
-
+                    Debug.Log("i have a target to shoot at and will attempt to fire");
                     StartCoroutine(fire());
 
                 }
@@ -251,7 +253,7 @@ public class gun : MonoBehaviour
         spawn_point.GetPositionAndRotation(out Vector3 pos, out Quaternion rot);
         projectile.transform.SetPositionAndRotation(pos, rot);
         //Debug.Log(pos); Debug.Log(rot);
-        //Debug.Log("pew");
+        Debug.Log("pew");
 
         fps = frames.GetComponent<frame_display>().frameRate;
         if (fps <= 20)
@@ -268,6 +270,7 @@ public class gun : MonoBehaviour
             {
                 if (targets[0] != null)
                 {
+                    Debug.Log("target 0 was a thing, aiming then firing.");
                     fire_timer = 0;
                     transform.LookAt(targets[0]);
                     if (projectile.TryGetComponent(out projectile_controller proj))
