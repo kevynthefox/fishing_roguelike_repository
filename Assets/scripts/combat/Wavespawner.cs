@@ -275,7 +275,7 @@ public class Wavespawner : MonoBehaviour
         {
             float spawn_rand = UnityEngine.Random.Range(-encounter.spawn_radius, encounter.spawn_radius);
 
-            Vector3 spawn_position = new Vector3(spawn_rand, 0+Mathf.Abs(spawn_rand), 400 + spawn_rand);
+            Vector3 spawn_position = new Vector3(spawn_rand, 20+Mathf.Abs(spawn_rand), 400 + spawn_rand);
             var anenemy = Instantiate(enemy, spawn_position, quaternion.identity);
             if (anenemy.TryGetComponent<heat_seeking_fishles>(out heat_seeking_fishles fishle))
             {
