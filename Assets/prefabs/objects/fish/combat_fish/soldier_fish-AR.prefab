@@ -451,6 +451,9 @@ PrefabInstance:
       addedObject: {fileID: 6623597746958197877}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 2e0c48f598180e648857bce8ac27de85, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 8590381575098372173}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 2e0c48f598180e648857bce8ac27de85, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 6162094099502438753}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 2e0c48f598180e648857bce8ac27de85, type: 3}
       insertIndex: -1
@@ -482,7 +485,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6374367291067335618}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4eff1a9f3713f4945ab40784312cd943, type: 3}
   m_Name: 
@@ -507,6 +510,46 @@ MonoBehaviour:
   health_bar: {fileID: 714429575717916311}
   gun: {fileID: 0}
   wave_spawner: {fileID: 0}
+--- !u!114 &8590381575098372173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6374367291067335618}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc7f40741ce017a4192ba99840c04309, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::heat_seeking_fishles
+  flight_duration: 1000
+  speed: 10
+  enemy: 1
+  ranged_fish: 1
+  home: {fileID: 0}
+  targets: []
+  distance: 0
+  player: {fileID: 0}
+  stationary: 0
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 0
+  whatIsPlayer:
+    serializedVersion: 2
+    m_Bits: 0
+  health: 100
+  Canvas: {fileID: 1389576894925813264}
+  health_bar: {fileID: 714429575717916311}
+  sightRange: 30
+  attackRange: 25
+  playerInSightRange: 0
+  playerInAttackRange: 0
+  gun: {fileID: 654830468218191389}
+  timeBetweenAttacks: 0.001
+  walkPoint: {x: 0, y: 0, z: 0}
+  walkPointRange: 0
+  wave_spawner: {fileID: 0}
+  disable_water: 0
 --- !u!195 &6162094099502438753
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -514,7 +557,7 @@ NavMeshAgent:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6374367291067335618}
-  m_Enabled: 1
+  m_Enabled: 0
   m_AgentTypeID: -1372625422
   m_Radius: 4.4693446
   m_Speed: 100
@@ -786,6 +829,11 @@ PrefabInstance:
 --- !u!4 &170499601614185639 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7078419362930873123, guid: c2830e7d9715dc64aa0dfee0c6e950d1, type: 3}
+  m_PrefabInstance: {fileID: 6946279691966936964}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &654830468218191389 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7597652031625333145, guid: c2830e7d9715dc64aa0dfee0c6e950d1, type: 3}
   m_PrefabInstance: {fileID: 6946279691966936964}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8219329053393772618

@@ -2545,7 +2545,10 @@ MonoBehaviour:
   frag_pieces: []
   explosive: 0
   touched: 0
-  tags_to_ignore: []
+  tags_to_ignore:
+  - 
+  - 
+  - 
 --- !u!64 &894237452680289149
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -2645,7 +2648,10 @@ MonoBehaviour:
   frag_pieces: []
   explosive: 0
   touched: 0
-  tags_to_ignore: []
+  tags_to_ignore:
+  - 
+  - 
+  - 
 --- !u!64 &7983701640846241976
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -2745,7 +2751,10 @@ MonoBehaviour:
   frag_pieces: []
   explosive: 0
   touched: 0
-  tags_to_ignore: []
+  tags_to_ignore:
+  - 
+  - 
+  - 
 --- !u!64 &353069210850134300
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -2812,7 +2821,10 @@ MonoBehaviour:
   - {fileID: 4523394136149447964}
   explosive: 0
   touched: 0
-  tags_to_ignore: []
+  tags_to_ignore:
+  - 
+  - 
+  - 
 --- !u!54 &5441417967050728336
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2961,7 +2973,10 @@ MonoBehaviour:
   frag_pieces: []
   explosive: 0
   touched: 0
-  tags_to_ignore: []
+  tags_to_ignore:
+  - 
+  - 
+  - 
 --- !u!64 &8201925748073950796
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -3066,7 +3081,10 @@ MonoBehaviour:
   frag_pieces: []
   explosive: 0
   touched: 0
-  tags_to_ignore: []
+  tags_to_ignore:
+  - 
+  - 
+  - 
 --- !u!64 &4980291394546983692
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -3166,7 +3184,10 @@ MonoBehaviour:
   frag_pieces: []
   explosive: 0
   touched: 0
-  tags_to_ignore: []
+  tags_to_ignore:
+  - 
+  - 
+  - 
 --- !u!64 &129157368508589066
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -3266,7 +3287,10 @@ MonoBehaviour:
   frag_pieces: []
   explosive: 0
   touched: 0
-  tags_to_ignore: []
+  tags_to_ignore:
+  - 
+  - 
+  - 
 --- !u!64 &6456488569267115510
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -3366,7 +3390,10 @@ MonoBehaviour:
   frag_pieces: []
   explosive: 0
   touched: 0
-  tags_to_ignore: []
+  tags_to_ignore:
+  - 
+  - 
+  - 
 --- !u!64 &1196309811439912436
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -3466,7 +3493,10 @@ MonoBehaviour:
   frag_pieces: []
   explosive: 0
   touched: 0
-  tags_to_ignore: []
+  tags_to_ignore:
+  - 
+  - 
+  - 
 --- !u!64 &1049998987409410697
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -3566,7 +3596,10 @@ MonoBehaviour:
   frag_pieces: []
   explosive: 0
   touched: 0
-  tags_to_ignore: []
+  tags_to_ignore:
+  - 
+  - 
+  - 
 --- !u!64 &5068781689690175139
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -3666,7 +3699,10 @@ MonoBehaviour:
   frag_pieces: []
   explosive: 0
   touched: 0
-  tags_to_ignore: []
+  tags_to_ignore:
+  - 
+  - 
+  - 
 --- !u!64 &17655378909330027
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -3766,7 +3802,10 @@ MonoBehaviour:
   frag_pieces: []
   explosive: 0
   touched: 0
-  tags_to_ignore: []
+  tags_to_ignore:
+  - 
+  - 
+  - 
 --- !u!64 &8584520558196255325
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -3866,7 +3905,10 @@ MonoBehaviour:
   frag_pieces: []
   explosive: 0
   touched: 0
-  tags_to_ignore: []
+  tags_to_ignore:
+  - 
+  - 
+  - 
 --- !u!64 &9179690613431708295
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -3966,7 +4008,10 @@ MonoBehaviour:
   frag_pieces: []
   explosive: 0
   touched: 0
-  tags_to_ignore: []
+  tags_to_ignore:
+  - 
+  - 
+  - 
 --- !u!64 &435207286915389814
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -4066,7 +4111,10 @@ MonoBehaviour:
   frag_pieces: []
   explosive: 0
   touched: 0
-  tags_to_ignore: []
+  tags_to_ignore:
+  - 
+  - 
+  - 
 --- !u!64 &3389976066570618416
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -4166,7 +4214,10 @@ MonoBehaviour:
   frag_pieces: []
   explosive: 0
   touched: 0
-  tags_to_ignore: []
+  tags_to_ignore:
+  - 
+  - 
+  - 
 --- !u!64 &5862525381103990769
 MeshCollider:
   m_ObjectHideFlags: 0

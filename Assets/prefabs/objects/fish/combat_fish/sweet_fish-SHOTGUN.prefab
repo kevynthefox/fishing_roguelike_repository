@@ -518,7 +518,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::heat_seeking_fishles
   flight_duration: 1000
-  speed: 10
+  speed: 20
   enemy: 1
   ranged_fish: 1
   home: {fileID: 0}
@@ -526,6 +526,12 @@ MonoBehaviour:
   distance: 0
   player: {fileID: 0}
   stationary: 0
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 0
+  whatIsPlayer:
+    serializedVersion: 2
+    m_Bits: 0
   health: 100
   Canvas: {fileID: 5185612295881840993}
   health_bar: {fileID: 3128494657258740014}

@@ -373,6 +373,9 @@ PrefabInstance:
       addedObject: {fileID: 5070342448970539687}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 2e0c48f598180e648857bce8ac27de85, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 2024416060445609772}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 2e0c48f598180e648857bce8ac27de85, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 2147479242156544736}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 2e0c48f598180e648857bce8ac27de85, type: 3}
       insertIndex: -1
@@ -404,7 +407,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2008011811071630977}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4eff1a9f3713f4945ab40784312cd943, type: 3}
   m_Name: 
@@ -429,6 +432,46 @@ MonoBehaviour:
   health_bar: {fileID: 1854213256477254678}
   gun: {fileID: 7624208060440876708}
   wave_spawner: {fileID: 0}
+--- !u!114 &2024416060445609772
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2008011811071630977}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc7f40741ce017a4192ba99840c04309, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::heat_seeking_fishles
+  flight_duration: 1000
+  speed: 10
+  enemy: 1
+  ranged_fish: 1
+  home: {fileID: 0}
+  targets: []
+  distance: 0
+  player: {fileID: 0}
+  stationary: 0
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 0
+  whatIsPlayer:
+    serializedVersion: 2
+    m_Bits: 0
+  health: 100
+  Canvas: {fileID: 2438592143944818468}
+  health_bar: {fileID: 1854213256477254678}
+  sightRange: 30
+  attackRange: 15
+  playerInSightRange: 0
+  playerInAttackRange: 0
+  gun: {fileID: 7624208060440876708}
+  timeBetweenAttacks: 1
+  walkPoint: {x: 0, y: 0, z: 0}
+  walkPointRange: 0
+  wave_spawner: {fileID: 0}
+  disable_water: 0
 --- !u!195 &2147479242156544736
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -436,7 +479,7 @@ NavMeshAgent:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2008011811071630977}
-  m_Enabled: 1
+  m_Enabled: 0
   m_AgentTypeID: -1372625422
   m_Radius: 4.4693446
   m_Speed: 100

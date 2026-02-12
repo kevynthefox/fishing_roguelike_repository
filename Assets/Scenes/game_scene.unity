@@ -4969,7 +4969,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1364305851731631267, guid: f3b4eb9ccc1385d41b9c04b45bca1225, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1847932000112150041, guid: f3b4eb9ccc1385d41b9c04b45bca1225, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5335,7 +5335,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8f1df57d83441dc429c50bfc3e6af36e, type: 2}
   rod: {fileID: 333051264}
   encounter_enemies_alive: []
-  navmesh: {fileID: 662989575}
   dead_fish:
   - data: {fileID: 4664982497591543338, guid: 40f7a3039bb3d0a4ba3201ee603812cc, type: 3}
     stackSize: 3
@@ -13807,6 +13806,10 @@ PrefabInstance:
       propertyPath: hit_shower_holder
       value: 
       objectReference: {fileID: 696611715}
+    - target: {fileID: 2695148515555541475, guid: c0909263df6a80047b02e92c9d7c9c56, type: 3}
+      propertyPath: fish_ever
+      value: 1000
+      objectReference: {fileID: 0}
     - target: {fileID: 3663032606812450261, guid: c0909263df6a80047b02e92c9d7c9c56, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -14003,7 +14006,8 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1100793817}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4437666070883143045, guid: c0909263df6a80047b02e92c9d7c9c56, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

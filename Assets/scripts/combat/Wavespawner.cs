@@ -56,7 +56,7 @@ public class Wavespawner : MonoBehaviour
 
     public List<GameObject> encounter_enemies_alive;
 
-    public GameObject navmesh;
+    //public GameObject navmesh;
 
     public void Start()
     {
@@ -201,7 +201,7 @@ public class Wavespawner : MonoBehaviour
                 sell_guy.SetActive(false);
                 if (encounter_enemies_alive.Count > 0)
                 {
-                    navmesh.SetActive(true);
+                    //navmesh.SetActive(true);
                 }
 
                 if (fish_have_been_alive == true || encounter_enemies_alive.Count != 0)
@@ -215,7 +215,7 @@ public class Wavespawner : MonoBehaviour
             else
             {
                 sell_guy.SetActive(true);
-                navmesh.SetActive(false);
+                //navmesh.SetActive(false);
                 //Debug.Log("no more fish alive");
 
                 if (fish_have_been_alive == true)
@@ -275,7 +275,7 @@ public class Wavespawner : MonoBehaviour
         {
             float spawn_rand = UnityEngine.Random.Range(-encounter.spawn_radius, encounter.spawn_radius);
 
-            Vector3 spawn_position = new Vector3(spawn_rand, 0, 400 + spawn_rand);
+            Vector3 spawn_position = new Vector3(spawn_rand, 0+Mathf.Abs(spawn_rand), 400 + spawn_rand);
             var anenemy = Instantiate(enemy, spawn_position, quaternion.identity);
             if (anenemy.TryGetComponent<heat_seeking_fishles>(out heat_seeking_fishles fishle))
             {

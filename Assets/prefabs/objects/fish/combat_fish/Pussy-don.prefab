@@ -85,6 +85,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2045791952597143105}
   - component: {fileID: 7608528243777369650}
+  - component: {fileID: 5547131459047309593}
   - component: {fileID: 9034055287319704903}
   - component: {fileID: 560458145564230298}
   - component: {fileID: 4847772581415812696}
@@ -123,7 +124,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2709710254376059369}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4eff1a9f3713f4945ab40784312cd943, type: 3}
   m_Name: 
@@ -141,13 +142,53 @@ MonoBehaviour:
   walkPointRange: 5
   timeBetweenAttacks: 0.001
   sightRange: 20000
-  attackRange: 25
+  attackRange: 50
   playerInSightRange: 0
   playerInAttackRange: 0
   Canvas: {fileID: 3242680849146452734}
   health_bar: {fileID: 5981440530066855348}
   gun: {fileID: 8365505278705281083}
   wave_spawner: {fileID: 0}
+--- !u!114 &5547131459047309593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2709710254376059369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc7f40741ce017a4192ba99840c04309, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::heat_seeking_fishles
+  flight_duration: 10
+  speed: 12
+  enemy: 1
+  ranged_fish: 1
+  home: {fileID: 0}
+  targets: []
+  distance: 0
+  player: {fileID: 0}
+  stationary: 0
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 0
+  whatIsPlayer:
+    serializedVersion: 2
+    m_Bits: 0
+  health: 1000
+  Canvas: {fileID: 3242680849146452734}
+  health_bar: {fileID: 5981440530066855348}
+  sightRange: 2000
+  attackRange: 25
+  playerInSightRange: 0
+  playerInAttackRange: 0
+  gun: {fileID: 8365505278705281083}
+  timeBetweenAttacks: 0.001
+  walkPoint: {x: 0, y: 0, z: 0}
+  walkPointRange: 0
+  wave_spawner: {fileID: 0}
+  disable_water: 0
 --- !u!195 &9034055287319704903
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -155,7 +196,7 @@ NavMeshAgent:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2709710254376059369}
-  m_Enabled: 1
+  m_Enabled: 0
   m_AgentTypeID: -1372625422
   m_Radius: 15
   m_Speed: 100
@@ -344,8 +385,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15e203996cec2484cb79b2061a86beeb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
-  health_max: 100
+  health: 1000
+  health_max: 1000
   HealthBar: {fileID: 3283679747309322838}
   healthText: {fileID: 3623080399845474319}
   target: {fileID: 0}
@@ -601,19 +642,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8579028851942539391, guid: 9245677747cb8504cb8a144f91afd14b, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8579028851942539391, guid: 9245677747cb8504cb8a144f91afd14b, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8579028851942539391, guid: 9245677747cb8504cb8a144f91afd14b, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8579028851942539391, guid: 9245677747cb8504cb8a144f91afd14b, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8579028851942539391, guid: 9245677747cb8504cb8a144f91afd14b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
