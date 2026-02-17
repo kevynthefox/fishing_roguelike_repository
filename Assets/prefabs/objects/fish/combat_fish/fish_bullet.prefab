@@ -249,7 +249,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
-  speed: 100
+  speed: 25
   s_to_m: 0
   destroy_or_recycle: 1
   lifespan: 0.2
@@ -289,7 +289,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!4 &3427226432283918438 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: c0655658ee17a4a468a1488e7eb1c820, type: 3}

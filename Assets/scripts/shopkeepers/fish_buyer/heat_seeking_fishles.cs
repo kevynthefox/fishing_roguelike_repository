@@ -135,9 +135,11 @@ public class heat_seeking_fishles : MonoBehaviour
             { 
                 health_bar.GetComponent<Health_display>().health = health;
             }
-            if (health == 0)
+            if (health <= 0)
             {
                 home = null;
+                this.tag = "super_food_items";
+                Wavespawner.current.Remove_alive(this.gameObject);
             }
         }
         else
@@ -179,12 +181,16 @@ public class heat_seeking_fishles : MonoBehaviour
             GetComponent<Rigidbody>().linearVelocity = Vector3.zero;
 
         }
+
         if (other.gameObject.tag == "projectile")
         {
-            this.tag = "super_food_items";
-            Wavespawner.current.Remove_alive(this.gameObject);
-            home = null;
-            health = 0;
+            if (ranged_fish == false)
+            {
+                this.tag = "super_food_items";
+                Wavespawner.current.Remove_alive(this.gameObject);
+                home = null;
+                health = 0;
+            }
         }
 
     }
