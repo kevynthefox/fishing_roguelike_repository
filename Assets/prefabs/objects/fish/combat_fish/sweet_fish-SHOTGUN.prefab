@@ -448,9 +448,6 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 2e0c48f598180e648857bce8ac27de85, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 228424063934717260}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 2e0c48f598180e648857bce8ac27de85, type: 3}
-      insertIndex: -1
       addedObject: {fileID: -4492724148728418735}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 2e0c48f598180e648857bce8ac27de85, type: 3}
       insertIndex: -1
@@ -473,38 +470,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 2e0c48f598180e648857bce8ac27de85, type: 3}
   m_PrefabInstance: {fileID: 2175121111820165618}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &228424063934717260
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1364305851731631267}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4eff1a9f3713f4945ab40784312cd943, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  agent: {fileID: 8004817939067054083}
-  player: {fileID: 0}
-  whatIsGround:
-    serializedVersion: 2
-    m_Bits: 2048
-  whatIsPlayer:
-    serializedVersion: 2
-    m_Bits: 128
-  stationary: 0
-  walkPoint: {x: 0, y: 0, z: 0}
-  walkPointRange: 5
-  timeBetweenAttacks: 1
-  sightRange: 20000
-  attackRange: 15
-  playerInSightRange: 0
-  playerInAttackRange: 0
-  Canvas: {fileID: 5185612295881840993}
-  health_bar: {fileID: 3128494657258740014}
-  gun: {fileID: 3860676638063647739}
-  wave_spawner: {fileID: 0}
 --- !u!114 &-4492724148728418735
 MonoBehaviour:
   m_ObjectHideFlags: 0

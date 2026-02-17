@@ -252,7 +252,7 @@ MonoBehaviour:
   speed: 100
   s_to_m: 0
   destroy_or_recycle: 1
-  lifespan: 0.5
+  lifespan: 0.2
   frag_piece: 0
   is_frag_master: 0
   frag_master: {fileID: 0}

@@ -84,7 +84,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2045791952597143105}
-  - component: {fileID: 7608528243777369650}
   - component: {fileID: 5547131459047309593}
   - component: {fileID: 9034055287319704903}
   - component: {fileID: 560458145564230298}
@@ -117,38 +116,6 @@ Transform:
   - {fileID: 9174938644632466049}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
---- !u!114 &7608528243777369650
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2709710254376059369}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4eff1a9f3713f4945ab40784312cd943, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  agent: {fileID: 9034055287319704903}
-  player: {fileID: 0}
-  whatIsGround:
-    serializedVersion: 2
-    m_Bits: 2048
-  whatIsPlayer:
-    serializedVersion: 2
-    m_Bits: 128
-  stationary: 0
-  walkPoint: {x: 0, y: 0, z: 0}
-  walkPointRange: 5
-  timeBetweenAttacks: 0.001
-  sightRange: 20000
-  attackRange: 50
-  playerInSightRange: 0
-  playerInAttackRange: 0
-  Canvas: {fileID: 3242680849146452734}
-  health_bar: {fileID: 5981440530066855348}
-  gun: {fileID: 8365505278705281083}
-  wave_spawner: {fileID: 0}
 --- !u!114 &5547131459047309593
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -175,7 +142,7 @@ MonoBehaviour:
     m_Bits: 0
   whatIsPlayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   health: 1000
   Canvas: {fileID: 3242680849146452734}
   health_bar: {fileID: 5981440530066855348}

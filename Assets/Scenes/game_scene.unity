@@ -1968,10 +1968,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pussy-don
       objectReference: {fileID: 0}
-    - target: {fileID: 2709710254376059369, guid: caacd21819bc2f74b94a4d95dd444008, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2610,9 +2606,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: sweet_fish-AR
       objectReference: {fileID: 0}
+    - target: {fileID: 2390817223159379938, guid: 137f7eb256e48cc4ea981a48a8c131c6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3055185697661824344, guid: 137f7eb256e48cc4ea981a48a8c131c6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 10.4
+      value: 21.83
       objectReference: {fileID: 0}
     - target: {fileID: 3055185697661824344, guid: 137f7eb256e48cc4ea981a48a8c131c6, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2620,7 +2620,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3055185697661824344, guid: 137f7eb256e48cc4ea981a48a8c131c6, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 18.2
+      value: 22.82
       objectReference: {fileID: 0}
     - target: {fileID: 3055185697661824344, guid: 137f7eb256e48cc4ea981a48a8c131c6, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2650,12 +2650,23 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4349373120879812343, guid: 137f7eb256e48cc4ea981a48a8c131c6, type: 3}
-      propertyPath: agent
-      value: 
+    - target: {fileID: 5890202372935443805, guid: 137f7eb256e48cc4ea981a48a8c131c6, type: 3}
+      propertyPath: attackRange
+      value: 25
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 931657380361660267, guid: 137f7eb256e48cc4ea981a48a8c131c6, type: 3}
+    - target: {fileID: 5890202372935443805, guid: 137f7eb256e48cc4ea981a48a8c131c6, type: 3}
+      propertyPath: timeBetweenAttacks
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5890202372935443805, guid: 137f7eb256e48cc4ea981a48a8c131c6, type: 3}
+      propertyPath: whatIsPlayer.m_Bits
+      value: 128
+      objectReference: {fileID: 0}
+    - target: {fileID: 7750096774175692153, guid: 137f7eb256e48cc4ea981a48a8c131c6, type: 3}
+      propertyPath: fire_rate
+      value: 0.1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -5082,10 +5093,6 @@ PrefabInstance:
       propertyPath: whatIsPlayer.m_Bits
       value: 128
       objectReference: {fileID: 0}
-    - target: {fileID: 228424063934717260, guid: f3b4eb9ccc1385d41b9c04b45bca1225, type: 3}
-      propertyPath: agent
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 1364305851731631267, guid: f3b4eb9ccc1385d41b9c04b45bca1225, type: 3}
       propertyPath: m_Name
       value: sweet_fish-SHOTGUN
@@ -5136,6 +5143,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8004817939067054083, guid: f3b4eb9ccc1385d41b9c04b45bca1225, type: 3}
+    - {fileID: 0}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
