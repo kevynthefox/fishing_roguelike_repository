@@ -165,43 +165,7 @@ public class heat_seeking_fishles : MonoBehaviour
     }
     
     #region health
-    public void TakeDamage(float damage)
-    {
-        if (TimeManager.current.update == true)
-        {
-            health -= damage;
-            if (health_bar != null) health_bar.GetComponent<Health_display>().health -= health;
-
-            if (health <= 0) Invoke(nameof(DestroyEnemy), .5f);
-            if (health <= 60) this.gameObject.tag = "fish";
-        }
-    }
-
-    private void DestroyEnemy()
-    {
-        if (TimeManager.current.update == true)
-        {
-            home = null;
-            if (ranged_fish == true)
-            {
-                wave_spawner.GetComponent<Wavespawner>().encounter_enemies_alive.Remove(this.gameObject);
-                this.tag = "super_food_items";
-            }
-            else
-            {
-                wave_spawner.GetComponent<Wavespawner>().Remove_alive(this.gameObject); 
-                this.tag = "food_items";
-            }
-
-            //Destroy(gameObject); removed because you wanna be able to eat the corpses
-            
-            
-            
-            Debug.Log("enemy dead");
-
-        }
-    }
-
+    
     public void OnTriggerEnter(Collider other)
     {
         if (TimeManager.current.update == true)
@@ -220,6 +184,50 @@ public class heat_seeking_fishles : MonoBehaviour
             }
         }
     }
+    public void TakeDamage(float damage)
+    {
+        if (TimeManager.current.update == true)
+        {
+            health -= damage;
+            if (health_bar != null) health_bar.GetComponent<Health_display>().health -= health;
+
+            if (health <= 0)
+            {
+                Invoke(nameof(DestroyEnemy), .5f);
+                Debug.Log("i've been hit!");
+            }
+
+            if (health <= 60) this.gameObject.tag = "fish";
+        }
+    }
+
+    private void DestroyEnemy()
+    {
+        if (TimeManager.current.update == true)
+        {
+            home = null;
+            enemy = false;
+            if (ranged_fish == true)
+            {
+                //wave_spawner.GetComponent<Wavespawner>().encounter_enemies_alive.Remove(this.gameObject);
+                this.tag = "super_food_items";
+            }
+            else
+            {
+                //wave_spawner.GetComponent<Wavespawner>().Remove_alive(this.gameObject); 
+                this.tag = "food_items";
+            }
+
+            //Destroy(gameObject); removed because you wanna be able to eat the corpses
+            
+            
+            
+            Debug.Log("enemy dead");
+
+        }
+    }
+
+    
     #endregion
 
     #region  failsafe

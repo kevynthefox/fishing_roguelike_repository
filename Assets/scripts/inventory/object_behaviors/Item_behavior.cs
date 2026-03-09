@@ -324,7 +324,7 @@ public class Item_behavior : MonoBehaviour
             //Debug.Log("ability activated");
         }
         
-        Debug.Log("place in queue in queue: " + place_in_queue_in_queue);
+        //Debug.Log("place in queue in queue: " + place_in_queue_in_queue);
         if (place_in_queue_in_queue >= 0 && trigger_type == 3 && buff_activation == true)
         {
             triggered = true;

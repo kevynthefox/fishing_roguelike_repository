@@ -13941,7 +13941,7 @@ PrefabInstance:
       objectReference: {fileID: 696611715}
     - target: {fileID: 2695148515555541475, guid: c0909263df6a80047b02e92c9d7c9c56, type: 3}
       propertyPath: fish_ever
-      value: 1000
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3663032606812450261, guid: c0909263df6a80047b02e92c9d7c9c56, type: 3}
       propertyPath: m_LocalPosition.x
@@ -14526,6 +14526,10 @@ PrefabInstance:
     - target: {fileID: 1067785434208917104, guid: 63bc39a8edd582448b0d4ee18c23ffd6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9157819145430102901, guid: 63bc39a8edd582448b0d4ee18c23ffd6, type: 3}
+      propertyPath: m_Size.y
+      value: 1.05
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
