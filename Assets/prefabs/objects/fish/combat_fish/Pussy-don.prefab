@@ -356,7 +356,7 @@ MonoBehaviour:
   health_max: 1000
   HealthBar: {fileID: 3283679747309322838}
   healthText: {fileID: 3623080399845474319}
-  target: {fileID: 0}
+  target: {fileID: 2709710254376059369}
   respawn_point: {fileID: 0}
   death_system: {fileID: 0}
   dead: 0

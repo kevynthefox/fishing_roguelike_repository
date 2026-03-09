@@ -135,12 +135,7 @@ public class heat_seeking_fishles : MonoBehaviour
             { 
                 health_bar.GetComponent<Health_display>().health = health;
             }
-            if (health <= 0)
-            {
-                home = null;
-                this.tag = "super_food_items";
-                Wavespawner.current.Remove_alive(this.gameObject);
-            }
+            
         }
         else
         {
@@ -169,31 +164,63 @@ public class heat_seeking_fishles : MonoBehaviour
         }
     }
     
-    void OnTriggerEnter(Collider other)
+    #region health
+    public void TakeDamage(float damage)
     {
-        if (other.isTrigger == true)
+        if (TimeManager.current.update == true)
         {
-            //Debug.Log("this fish collided with: " + other.gameObject.name);
-        }
-        if (other.gameObject.tag == "npc")
-        {
-            //Debug.Log("triggering");
-            GetComponent<Rigidbody>().linearVelocity = Vector3.zero;
+            health -= damage;
+            if (health_bar != null) health_bar.GetComponent<Health_display>().health -= health;
 
+            if (health <= 0) Invoke(nameof(DestroyEnemy), .5f);
+            if (health <= 60) this.gameObject.tag = "fish";
         }
+    }
 
-        if (other.gameObject.tag == "projectile")
+    private void DestroyEnemy()
+    {
+        if (TimeManager.current.update == true)
         {
-            if (ranged_fish == false)
+            home = null;
+            if (ranged_fish == true)
             {
+                wave_spawner.GetComponent<Wavespawner>().encounter_enemies_alive.Remove(this.gameObject);
                 this.tag = "super_food_items";
-                Wavespawner.current.Remove_alive(this.gameObject);
-                home = null;
-                health = 0;
+            }
+            else
+            {
+                wave_spawner.GetComponent<Wavespawner>().Remove_alive(this.gameObject); 
+                this.tag = "food_items";
+            }
+
+            //Destroy(gameObject); removed because you wanna be able to eat the corpses
+            
+            
+            
+            Debug.Log("enemy dead");
+
+        }
+    }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        if (TimeManager.current.update == true)
+        {
+            if (other.isTrigger == true)
+            {
+                if (other.gameObject.tag == "fishing_rod" && other.gameObject.GetComponent<fishing_script>().blocking == false && other.gameObject.GetComponent<fishing_script>().attacking == true)
+                {
+                    TakeDamage(other.gameObject.GetComponent<fishing_script>().damage);
+                }
+
+                if (other.gameObject.tag == "projectile")
+                {
+                    TakeDamage(((int)other.gameObject.GetComponent<projectile_controller>().damage));
+                }
             }
         }
-
     }
+    #endregion
 
     #region  failsafe
 
