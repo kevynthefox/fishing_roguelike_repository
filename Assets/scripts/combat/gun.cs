@@ -98,6 +98,15 @@ public class gun : MonoBehaviour
     {
         StartCoroutine(fire_tracking());
         StartCoroutine(turret_fire());
+
+        if (transform.parent != null)
+        {
+            Debug.Log("i am being weilded");
+            if (transform.parent.TryGetComponent<heat_seeking_fishles>(out heat_seeking_fishles fishle))
+            {
+                this.gameObject.GetComponent<SphereCollider>().radius = fishle.attackRange;
+            }
+        }
     }
 
     private void Update()
