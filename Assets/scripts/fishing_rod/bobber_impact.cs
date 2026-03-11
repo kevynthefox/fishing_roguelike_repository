@@ -278,7 +278,7 @@ public class bobber_impact : MonoBehaviour
                 
                 var fish_object = Instantiate(fish[randomIndex], SpawnPosition_3, Quaternion.identity);
 
-                fish_object.GetComponent<heat_seeking_fishles>().home = GameObject.Find("sell guy");
+                fish_object.GetComponent<heat_seeking_fishles>().target = GameObject.Find("sell guy");
 
                 fish_counted += 1;
                 //wave_spawner.GetComponent<Wavespawner>().dead_fish.Add(fish_object.GetComponent<fish_variable_holder>().fish_type);

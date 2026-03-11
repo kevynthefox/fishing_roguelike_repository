@@ -1092,7 +1092,7 @@ public class fishing_script : MonoBehaviour
 
                         var fish_object = Instantiate(fish[randomIndex], SpawnPosition_3, Quaternion.identity);
 
-                        fish_object.GetComponent<heat_seeking_fishles>().home = GameObject.Find("sell guy");
+                        fish_object.GetComponent<heat_seeking_fishles>().target = GameObject.Find("sell guy");
 
                         fish_object.GetComponent<fish_variable_holder>().potentcy += fish_potency_buff_add; fish_object.GetComponent<fish_variable_holder>().potentcy *= fish_potency_buff_mult;
 

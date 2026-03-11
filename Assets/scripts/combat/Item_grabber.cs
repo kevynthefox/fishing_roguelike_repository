@@ -37,7 +37,7 @@ public class Item_grabber : MonoBehaviour
             if (collision.gameObject.tag == "fish")
             {
                 collision.gameObject.tag = "food_items";
-                //collision.gameObject.GetComponent<heat_seeking_fishles>().home = null;
+                //collision.gameObject.GetComponent<heat_seeking_fishles>().target = null;
                 Wavespawner.current.Remove_alive(collision.gameObject);
             }
 
@@ -49,7 +49,7 @@ public class Item_grabber : MonoBehaviour
                     int randomIndex = Random.Range(0, GetComponent<fishing_script>().fish.Length);
                     var fish_object = Instantiate(this.GetComponent<fishing_script>().fish[randomIndex], spawn_pos, Quaternion.identity);
                     collision.gameObject.GetComponent<COD>().size -= fish_object.GetComponent<fish_variable_holder>().fish_quality;
-                    fish_object.GetComponent<heat_seeking_fishles>().home = GameObject.Find("sell guy");
+                    fish_object.GetComponent<heat_seeking_fishles>().target = GameObject.Find("sell guy");
                 }
             }
         }

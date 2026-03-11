@@ -146,7 +146,7 @@ public class Wavespawner : MonoBehaviour
                     for (int i = 0; i < family_size; i++)
                     {
                         var fish_object = Instantiate(f.data, new Vector3(targets[random_target].transform.position.x + spawn_left_right, 0, targets[random_target].transform.position.z + spawn_forward_back), Quaternion.identity);
-                        fish_object.GetComponent<heat_seeking_fishles>().home = targets[random_target];
+                        fish_object.GetComponent<heat_seeking_fishles>().target = targets[random_target];
                         fish_object.GetComponent<heat_seeking_fishles>().disable_water = true;
                         fish_object.GetComponent<heat_seeking_fishles>().enemy = true;
 
@@ -279,7 +279,7 @@ public class Wavespawner : MonoBehaviour
             var anenemy = Instantiate(enemy, spawn_position, quaternion.identity);
             if (anenemy.TryGetComponent<heat_seeking_fishles>(out heat_seeking_fishles fishle))
             {
-                fishle.home = GameObject.Find("player");
+                fishle.target = GameObject.Find("player");
             }
 
             //was gonna do something here for the fish enemies(like mobster lobsters) but those shouldn't be affected by potency buffs because they're not a consequence of your fishing as directly
