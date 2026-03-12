@@ -195,6 +195,11 @@ public class heat_seeking_fishles : MonoBehaviour
         {
             _playerInSightRange = value;
             if (!playerInSightRange && !walkPointSet && ranged_fish) patroling();
+            if (!playerInSightRange)
+            {
+                targets.Remove(target);
+                target = null;
+            }
         }
     }
     
@@ -209,7 +214,7 @@ public class heat_seeking_fishles : MonoBehaviour
 
             floppy++;// * Time.deltaTime;
             
-            transform.rotation = new Quaternion(floppy,floppy,floppy,floppy);
+            transform.rotation/*.Set(69,floppy,floppy,floppy);*/ = new Quaternion(69,floppy,floppy,0);
             if (new_walkPoint_timer >= 8)
             {
                 yield break;
