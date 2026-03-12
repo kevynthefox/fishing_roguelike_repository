@@ -44,6 +44,7 @@ public class heat_seeking_fishles : MonoBehaviour
     public float walkPointRange;
     public Vector3 walkPointAnchor;
     public int new_walkPoint_timer;
+    public float floppy = 1;
     //public List<Vector3> walkPointBeen;
     
     [Header("sequencing")]//as in, preparing attacks
@@ -196,7 +197,7 @@ public class heat_seeking_fishles : MonoBehaviour
             if (!playerInSightRange && !walkPointSet && ranged_fish) patroling();
         }
     }
-    float floppy;
+    
     public IEnumerator patrol()
     {
         while (playerInSightRange == false)
@@ -206,7 +207,7 @@ public class heat_seeking_fishles : MonoBehaviour
 
 
 
-            floppy += Random.Range(1, 2);// * Time.deltaTime;
+            floppy++;// * Time.deltaTime;
             
             transform.rotation = new Quaternion(floppy,floppy,floppy,floppy);
             if (new_walkPoint_timer >= 8)
