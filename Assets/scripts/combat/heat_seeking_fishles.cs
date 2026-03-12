@@ -191,6 +191,11 @@ public class heat_seeking_fishles : MonoBehaviour
             alreadyAttacked = false;
         }
     }
+
+    #region patrolling
+
+    
+
     
     public bool _playerInSightRange
     {
@@ -217,7 +222,8 @@ public class heat_seeking_fishles : MonoBehaviour
 
 
             Quaternion floppy_rotation = new Quaternion(floppy.x, floppy.y, floppy.z, 0);
-            //transform.rotation = Quaternion.Lerp(transform.rotation,floppy_rotation, walkPoint_timer_limit);
+            float str = Mathf.Min(speed * Time.deltaTime, 1);
+            transform.rotation = Quaternion.Slerp(transform.rotation,floppy_rotation, str);
             //transform.rotation = new Quaternion(floppy.x * Time.deltaTime,floppy.y * Time.deltaTime,floppy.z * Time.deltaTime,0);
             if (new_walkPoint_timer >= walkPoint_timer_limit)
             {
@@ -267,13 +273,13 @@ public class heat_seeking_fishles : MonoBehaviour
                     StartCoroutine(patrol_timer());
                 }
 
-                //Vector3 distanceToWalkpoint = transform.position - walkPoint;
+                Vector3 distanceToWalkpoint = transform.position - walkPoint;
 
                 //walkpoint reached
-                //if (distanceToWalkpoint.magnitude < 1f)
-                //{
-                walkPointSet = false;
-                //}
+                if (distanceToWalkpoint.magnitude < 1f)
+                {
+                    walkPointSet = false;
+                }
             }
         }
     }
@@ -300,6 +306,7 @@ public class heat_seeking_fishles : MonoBehaviour
             }
         }
     }
+    #endregion
     
     #region health
     
