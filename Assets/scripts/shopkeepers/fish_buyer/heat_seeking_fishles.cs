@@ -196,19 +196,19 @@ public class heat_seeking_fishles : MonoBehaviour
             if (!playerInSightRange && !walkPointSet && ranged_fish) patroling();
         }
     }
-    //float floppy;
+    float floppy;
     public IEnumerator patrol()
     {
         while (playerInSightRange == false)
         {
             transform.position = Vector3.MoveTowards(transform.position, walkPoint,
                 (speed/10) * Time.deltaTime);
-            
 
+
+
+            floppy += Random.Range(1, 2);// * Time.deltaTime;
             
-            //floppy += Random.Range(-360, 360) * Time.deltaTime;
-            
-            //transform.rotation = new Quaternion(floppy,floppy,floppy,floppy);
+            transform.rotation = new Quaternion(floppy,floppy,floppy,floppy);
             if (new_walkPoint_timer >= 8)
             {
                 yield break;
@@ -246,39 +246,46 @@ public class heat_seeking_fishles : MonoBehaviour
     {
         if (TimeManager.current.update == true)
         {
-            if (!walkPointSet) SearchWalkPoint();
-
-            if (walkPointSet)
+            if (playerInSightRange == false)
             {
+                if (!walkPointSet) SearchWalkPoint();
 
-                StartCoroutine(patrol());
-                StartCoroutine(patrol_timer());
-            }
+                if (walkPointSet)
+                {
 
-            //Vector3 distanceToWalkpoint = transform.position - walkPoint;
+                    StartCoroutine(patrol());
+                    StartCoroutine(patrol_timer());
+                }
 
-            //walkpoint reached
-            //if (distanceToWalkpoint.magnitude < 1f)
-            //{
+                //Vector3 distanceToWalkpoint = transform.position - walkPoint;
+
+                //walkpoint reached
+                //if (distanceToWalkpoint.magnitude < 1f)
+                //{
                 walkPointSet = false;
-            //}
+                //}
+            }
         }
     }
     public void SearchWalkPoint()
     {
         if (TimeManager.current.update == true)
         {
-            //calculate random point in range
-            float randomZ = Random.Range(-walkPointRange, walkPointRange);
-            float randomx = Random.Range(-walkPointRange, walkPointRange);
-            float randomy = Random.Range(-walkPointRange, walkPointRange);
+            if (playerInSightRange == false)
+            {
+                //calculate random point in range
+                float randomZ = Random.Range(-walkPointRange, walkPointRange);
+                float randomx = Random.Range(-walkPointRange, walkPointRange);
+                float randomy = Random.Range(-walkPointRange, walkPointRange);
 
-            walkPoint = new Vector3(walkPointAnchor.x + randomx, walkPointAnchor.y + randomy, walkPointAnchor.z + randomZ);
+                walkPoint = new Vector3(walkPointAnchor.x + randomx, walkPointAnchor.y + randomy,
+                    walkPointAnchor.z + randomZ);
 
-            //if (Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround))
-            //{
+                //if (Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround))
+                //{
                 walkPointSet = true;
-            //}
+                //}
+            }
         }
     }
     
