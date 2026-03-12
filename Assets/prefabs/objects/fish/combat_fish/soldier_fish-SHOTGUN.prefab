@@ -434,6 +434,9 @@ MonoBehaviour:
   walkPointSet: 0
   walkPointRange: 10
   walkPointAnchor: {x: 0, y: 0, z: 0}
+  new_walkPoint_timer: 0
+  walkPoint_timer_limit: 8
+  floppy: {x: 0, y: 0, z: 0}
   wave_spawner: {fileID: 0}
   disable_water: 0
 --- !u!65 &213999452353802684

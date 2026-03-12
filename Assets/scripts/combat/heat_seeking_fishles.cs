@@ -43,8 +43,8 @@ public class heat_seeking_fishles : MonoBehaviour
     public bool walkPointSet;
     public float walkPointRange;
     public Vector3 walkPointAnchor;
-    public int new_walkPoint_timer;
-    public float floppy = 1;
+    public int new_walkPoint_timer,walkPoint_timer_limit;
+    public Vector3 floppy;
     //public List<Vector3> walkPointBeen;
     
     [Header("sequencing")]//as in, preparing attacks
@@ -57,10 +57,14 @@ public class heat_seeking_fishles : MonoBehaviour
     {
         walkPointAnchor = transform.position;
         patroling();
+        if (walkPoint_timer_limit == 0)
+        {
+            walkPoint_timer_limit = 99999;
+        }
     }
 
     private void OnDrawGizmosSelected()
-    {float floppy;
+    {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, attackRange);
         Gizmos.color = Color.yellow;
@@ -212,10 +216,10 @@ public class heat_seeking_fishles : MonoBehaviour
 
 
 
-            floppy++;// * Time.deltaTime;
-            
-            transform.rotation/*.Set(69,floppy,floppy,floppy);*/ = new Quaternion(69,floppy,floppy,0);
-            if (new_walkPoint_timer >= 8)
+            Quaternion floppy_rotation = new Quaternion(floppy.x, floppy.y, floppy.z, 0);
+            //transform.rotation = Quaternion.Lerp(transform.rotation,floppy_rotation, walkPoint_timer_limit);
+            //transform.rotation = new Quaternion(floppy.x * Time.deltaTime,floppy.y * Time.deltaTime,floppy.z * Time.deltaTime,0);
+            if (new_walkPoint_timer >= walkPoint_timer_limit)
             {
                 yield break;
                 
@@ -235,7 +239,7 @@ public class heat_seeking_fishles : MonoBehaviour
         {
             new_walkPoint_timer++;
 
-            if (new_walkPoint_timer >= 8)
+            if (new_walkPoint_timer >= walkPoint_timer_limit)
             {
                 new_walkPoint_timer = 0;
                 //walkPointBeen.Add(transform.position);
@@ -283,7 +287,9 @@ public class heat_seeking_fishles : MonoBehaviour
                 float randomZ = Random.Range(-walkPointRange, walkPointRange);
                 float randomx = Random.Range(-walkPointRange, walkPointRange);
                 float randomy = Random.Range(-walkPointRange, walkPointRange);
-
+                floppy.x = Random.Range(0, 360);
+                floppy.y = Random.Range(0, 360);
+                floppy.z = Random.Range(0, 360);
                 walkPoint = new Vector3(walkPointAnchor.x + randomx, walkPointAnchor.y + randomy,
                     walkPointAnchor.z + randomZ);
 
@@ -394,7 +400,7 @@ public class heat_seeking_fishles : MonoBehaviour
     {
         if (this.GetComponent<Collider>() != null)
         {
-            //Debug.Log("i exist and am touching something");
+           
 
             if (collision.gameObject.tag == "fishing_rod")
             {
