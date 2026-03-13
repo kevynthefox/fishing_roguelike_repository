@@ -45,6 +45,8 @@ public class heat_seeking_fishles : MonoBehaviour
     public Vector3 walkPointAnchor;
     public int new_walkPoint_timer,walkPoint_timer_limit;
     public Vector3 floppy;
+    public float walkPoint_Counter;
+    public Vector3 distanceToWalkpoint;
     //public List<Vector3> walkPointBeen;
     
     [Header("sequencing")]//as in, preparing attacks
@@ -211,22 +213,27 @@ public class heat_seeking_fishles : MonoBehaviour
             }
         }
     }
+
     
     public IEnumerator patrol()
     {
         while (playerInSightRange == false)
         {
+            distanceToWalkpoint = transform.position - walkPoint;
             transform.position = Vector3.MoveTowards(transform.position, walkPoint,
-                (speed/10) * Time.deltaTime);
+                ((speed *(1/distanceToWalkpoint.magnitude))/walkPoint_timer_limit ) * Time.deltaTime);
 
 
+            
 
             Quaternion floppy_rotation = new Quaternion(floppy.x, floppy.y, floppy.z, 0);
             float str = Mathf.Min(speed * Time.deltaTime, 1);
-            transform.rotation = Quaternion.Slerp(transform.rotation,floppy_rotation, str);
+            walkPoint_Counter  += Time.deltaTime;
+            transform.rotation = Quaternion.Slerp(transform.rotation,floppy_rotation,(walkPoint_Counter * (0.01f*Time.deltaTime)/(walkPoint_timer_limit * speed)));// = Quaternion.Slerp(transform.rotation,floppy_rotation, str);
             //transform.rotation = new Quaternion(floppy.x * Time.deltaTime,floppy.y * Time.deltaTime,floppy.z * Time.deltaTime,0);
             if (new_walkPoint_timer >= walkPoint_timer_limit)
             {
+                walkPoint_Counter = 0;
                 yield break;
                 
             }
@@ -247,6 +254,7 @@ public class heat_seeking_fishles : MonoBehaviour
 
             if (new_walkPoint_timer >= walkPoint_timer_limit)
             {
+                walkPoint_Counter = 0;
                 new_walkPoint_timer = 0;
                 //walkPointBeen.Add(transform.position);
                 patroling();
@@ -273,13 +281,13 @@ public class heat_seeking_fishles : MonoBehaviour
                     StartCoroutine(patrol_timer());
                 }
 
-                Vector3 distanceToWalkpoint = transform.position - walkPoint;
+                distanceToWalkpoint = transform.position - walkPoint;
 
                 //walkpoint reached
-                if (distanceToWalkpoint.magnitude < 1f)
-                {
+                //if (distanceToWalkpoint.magnitude < 1f)
+                //{
                     walkPointSet = false;
-                }
+                //}
             }
         }
     }

@@ -515,6 +515,8 @@ MonoBehaviour:
   new_walkPoint_timer: 0
   walkPoint_timer_limit: 8
   floppy: {x: 0, y: 0, z: 0}
+  walkPoint_Counter: 0
+  distanceToWalkpoint: {x: 0, y: 0, z: 0}
   wave_spawner: {fileID: 0}
   disable_water: 0
 --- !u!65 &8595765903029514203

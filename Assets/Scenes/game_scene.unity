@@ -763,10 +763,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4222342831602414864, guid: 2fbc76151f03c714bb5859b1b531df4d, type: 3}
-      propertyPath: m_UseGravity
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5998123915015117176, guid: 2fbc76151f03c714bb5859b1b531df4d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 63.367817
@@ -810,10 +806,6 @@ PrefabInstance:
     - target: {fileID: 6374367291067335618, guid: 2fbc76151f03c714bb5859b1b531df4d, type: 3}
       propertyPath: m_Name
       value: soldier_fish-AR
-      objectReference: {fileID: 0}
-    - target: {fileID: 8590381575098372173, guid: 2fbc76151f03c714bb5859b1b531df4d, type: 3}
-      propertyPath: whatIsGround.m_Bits
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
