@@ -239,6 +239,7 @@ public class heat_seeking_fishles : MonoBehaviour
             if (new_walkPoint_timer >= walkPoint_timer_limit)
             {
                 walkPoint_Counter = 0;
+                walkPointSet = false;
                 yield break;
                 
             }
@@ -262,6 +263,7 @@ public class heat_seeking_fishles : MonoBehaviour
                 walkPoint_Counter = 0;
                 new_walkPoint_timer = 0;
                 //walkPointBeen.Add(transform.position);
+                walkPointSet = false;
                 patroling();
                 yield break;
                 
