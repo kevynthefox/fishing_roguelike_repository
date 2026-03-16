@@ -46,7 +46,9 @@ public class heat_seeking_fishles : MonoBehaviour
     public int new_walkPoint_timer,walkPoint_timer_limit;
     public Vector3 floppy;
     public float walkPoint_Counter;
-    public Vector3 distanceToWalkpoint;
+    public Vector3 distanceToWalkpoint,distanceToWalkpoint_initial;
+    public float distanceToWalkpoint_magnitude,distanceToWalkpoint_magnitude_initial;
+    public float sped;
     //public List<Vector3> walkPointBeen;
     
     [Header("sequencing")]//as in, preparing attacks
@@ -75,12 +77,15 @@ public class heat_seeking_fishles : MonoBehaviour
         Gizmos.DrawSphere(walkPointAnchor, 1);
         Gizmos.color = Color.white;
         Gizmos.DrawWireCube(walkPointAnchor, new Vector3(walkPointRange,walkPointRange,walkPointRange));
+        Gizmos.color = Color.black;
+        Gizmos.DrawSphere(walkPoint,1);
+
         /*foreach (Vector3 been in walkPointBeen)
         {
             Gizmos.color = Color.black;
             Gizmos.DrawSphere(been, 1);
         }*/
-        
+
     }
     void Update()
     {
@@ -220,16 +225,16 @@ public class heat_seeking_fishles : MonoBehaviour
         while (playerInSightRange == false)
         {
             distanceToWalkpoint = transform.position - walkPoint;
-            transform.position = Vector3.MoveTowards(transform.position, walkPoint,
-                ((speed *(1/distanceToWalkpoint.magnitude))/walkPoint_timer_limit ) * Time.deltaTime);
-
-
+            distanceToWalkpoint_magnitude = distanceToWalkpoint.magnitude;
             
-
-            Quaternion floppy_rotation = new Quaternion(floppy.x, floppy.y, floppy.z, 0);
-            float str = Mathf.Min(speed * Time.deltaTime, 1);
             walkPoint_Counter  += Time.deltaTime;
-            transform.rotation = Quaternion.Slerp(transform.rotation,floppy_rotation,(walkPoint_Counter * (0.01f*Time.deltaTime)/(walkPoint_timer_limit * speed)));// = Quaternion.Slerp(transform.rotation,floppy_rotation, str);
+            sped =  (walkPoint_Counter/10) * ((distanceToWalkpoint_magnitude_initial * Time.deltaTime)/(walkPoint_timer_limit * speed));
+            Quaternion floppy_rotation = new Quaternion(floppy.x, floppy.y, floppy.z, 0);
+            
+            
+            
+            transform.position = Vector3.Slerp(transform.position, walkPoint, sped);
+            transform.rotation = Quaternion.Slerp(transform.rotation,floppy_rotation,sped/10);// = Quaternion.Slerp(transform.rotation,floppy_rotation, str);
             //transform.rotation = new Quaternion(floppy.x * Time.deltaTime,floppy.y * Time.deltaTime,floppy.z * Time.deltaTime,0);
             if (new_walkPoint_timer >= walkPoint_timer_limit)
             {
@@ -282,11 +287,15 @@ public class heat_seeking_fishles : MonoBehaviour
                 }
 
                 distanceToWalkpoint = transform.position - walkPoint;
+                distanceToWalkpoint_initial = distanceToWalkpoint;
+                distanceToWalkpoint_magnitude = distanceToWalkpoint.magnitude;
+                distanceToWalkpoint_magnitude_initial = distanceToWalkpoint_magnitude;
 
                 //walkpoint reached
                 //if (distanceToWalkpoint.magnitude < 1f)
                 //{
-                    walkPointSet = false;
+                    //walkPointSet = false;
+                    //SearchWalkPoint();
                 //}
             }
         }
