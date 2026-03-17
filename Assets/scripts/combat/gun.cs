@@ -101,7 +101,7 @@ public class gun : MonoBehaviour
 
         if (transform.parent != null)
         {
-            Debug.Log("i am being weilded");
+            //Debug.Log("i am being weilded");
             if (transform.parent.TryGetComponent<heat_seeking_fishles>(out heat_seeking_fishles fishle))
             {
                 this.gameObject.GetComponent<SphereCollider>().radius = fishle.attackRange;

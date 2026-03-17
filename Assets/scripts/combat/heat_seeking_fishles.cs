@@ -49,6 +49,7 @@ public class heat_seeking_fishles : MonoBehaviour
     public Vector3 distanceToWalkpoint,distanceToWalkpoint_initial;
     public float distanceToWalkpoint_magnitude,distanceToWalkpoint_magnitude_initial;
     public float sped;
+    public Rigidbody rb;
     //public List<Vector3> walkPointBeen;
     
     [Header("sequencing")]//as in, preparing attacks
@@ -222,38 +223,49 @@ public class heat_seeking_fishles : MonoBehaviour
     
     public IEnumerator patrol()
     {
+        //Debug.Log("patrol_moving");
+        //rb.linearVelocity = distanceToWalkpoint_initial;
+        
+        //Quaternion floppy_rotation = new Quaternion(floppy.x, floppy.y, floppy.z, 0);
+        //Vector3 flop = floppy - transform.rotation.eulerAngles;
+        
+        
+        Vector3 flop = floppy - transform.rotation.eulerAngles;
+        rb.linearVelocity = distanceToWalkpoint;//(distanceToWalkpoint_initial.x,distanceToWalkpoint_initial.y,distanceToWalkpoint_initial.z);
+        rb.angularVelocity = flop;
+        
+        /*
         while (playerInSightRange == false)
         {
-            distanceToWalkpoint = transform.position - walkPoint;
+            distanceToWalkpoint = walkPoint - transform.position;
             distanceToWalkpoint_magnitude = distanceToWalkpoint.magnitude;
             
             walkPoint_Counter  += Time.deltaTime;
             sped =  (walkPoint_Counter/10) * ((distanceToWalkpoint_magnitude_initial * Time.deltaTime)/(walkPoint_timer_limit * speed));
-            Quaternion floppy_rotation = new Quaternion(floppy.x, floppy.y, floppy.z, 0);
             
+            //Vector3 flop = floppy - transform.rotation.eulerAngles;
+            //rb.linearVelocity = distanceToWalkpoint;//(distanceToWalkpoint_initial.x,distanceToWalkpoint_initial.y,distanceToWalkpoint_initial.z);
+            //rb.angularVelocity = flop;
+            //Debug.Log("linear velocity: " + rb.linearVelocity);
+            //Debug.Log("distanceToWalkpoint_initial: " + distanceToWalkpoint_initial);
+            //rb.velocity.Set(distanceToWalkpoint.x,distanceToWalkpoint.y,distanceToWalkpoint.z);
             
+            //transform.position = Vector3.Slerp(transform.position, walkPoint, sped);
+            //transform.rotation = Quaternion.Slerp(transform.rotation,floppy_rotation,sped/10);// = Quaternion.Slerp(transform.rotation,floppy_rotation, str);
             
-            transform.position = Vector3.Slerp(transform.position, walkPoint, sped);
-            transform.rotation = Quaternion.Slerp(transform.rotation,floppy_rotation,sped/10);// = Quaternion.Slerp(transform.rotation,floppy_rotation, str);
             //transform.rotation = new Quaternion(floppy.x * Time.deltaTime,floppy.y * Time.deltaTime,floppy.z * Time.deltaTime,0);
-            if (new_walkPoint_timer >= walkPoint_timer_limit)
-            {
-                walkPoint_Counter = 0;
-                walkPointSet = false;
-                yield break;
-                
-            }
             
-            yield return new WaitForSeconds(0.01f*Time.deltaTime);
-        }
+            yield return new WaitForSeconds(1f);
+        }*/
 
-        
+        yield return null;
         
         
     }
 
     public IEnumerator patrol_timer()
     {
+        //Debug.Log("patrol_timing");
         while (playerInSightRange == false)
         {
             new_walkPoint_timer++;
@@ -264,6 +276,7 @@ public class heat_seeking_fishles : MonoBehaviour
                 new_walkPoint_timer = 0;
                 //walkPointBeen.Add(transform.position);
                 walkPointSet = false;
+                StopCoroutine(patrol());
                 patroling();
                 yield break;
                 
@@ -279,6 +292,7 @@ public class heat_seeking_fishles : MonoBehaviour
         {
             if (playerInSightRange == false)
             {
+                //Debug.Log("patroling");
                 if (!walkPointSet) SearchWalkPoint();
 
                 if (walkPointSet)
@@ -288,7 +302,7 @@ public class heat_seeking_fishles : MonoBehaviour
                     StartCoroutine(patrol_timer());
                 }
 
-                distanceToWalkpoint = transform.position - walkPoint;
+                distanceToWalkpoint = walkPoint - transform.position;
                 distanceToWalkpoint_initial = distanceToWalkpoint;
                 distanceToWalkpoint_magnitude = distanceToWalkpoint.magnitude;
                 distanceToWalkpoint_magnitude_initial = distanceToWalkpoint_magnitude;

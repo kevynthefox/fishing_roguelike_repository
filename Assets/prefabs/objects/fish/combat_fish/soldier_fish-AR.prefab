@@ -517,6 +517,11 @@ MonoBehaviour:
   floppy: {x: 0, y: 0, z: 0}
   walkPoint_Counter: 0
   distanceToWalkpoint: {x: 0, y: 0, z: 0}
+  distanceToWalkpoint_initial: {x: 0, y: 0, z: 0}
+  distanceToWalkpoint_magnitude: 0
+  distanceToWalkpoint_magnitude_initial: 0
+  sped: 0
+  rb: {fileID: 4222342831602414864}
   wave_spawner: {fileID: 0}
   disable_water: 0
 --- !u!65 &8595765903029514203
