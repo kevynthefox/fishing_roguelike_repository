@@ -223,20 +223,24 @@ public class heat_seeking_fishles : MonoBehaviour
             Debug.Log("triggering stuff when playerinsightrange changes");
             _playerInSightRange = value;
             
-            if (playerInSightRange)
+            if (_playerInSightRange == true)
             {
+                Debug.Log("stopping patrolling");
                 StopCoroutine(patrol());
                 StopCoroutine(patrol_timer());
                 walkPointSet = false;
+                walkPoint = Vector3.zero;
             }
             else
             {
                 targets.Remove(target);
                 target = null;  
                 Debug.Log("target removed");
+                
+                patroling();
             }
             
-            if (!playerInSightRange && !walkPointSet && ranged_fish) patroling();
+            //if (!_playerInSightRange && !walkPointSet && ranged_fish) patroling();
             
 
            
