@@ -31,7 +31,8 @@ public class heat_seeking_fishles : MonoBehaviour
     
     [Header("states")]
     public float sightRange, attackRange;
-    public bool playerInSightRange, playerInAttackRange;
+    public bool playerInAttackRange;
+    private bool _playerInSightRange;
     
     [Header("attacking")]
     public GameObject gun;
@@ -212,20 +213,20 @@ public class heat_seeking_fishles : MonoBehaviour
     
 
     
-    public bool _playerInSightRange
+    public bool playerInSightRange
     {
         
         get
         {
             Debug.Log("getting playerinsightrange");
-            return playerInSightRange;
+            return _playerInSightRange;
         }
         set
         {
             Debug.Log("triggering stuff when playerinsightrange changes");
-            _playerInSightRange = value;
+            playerInSightRange = value;
             
-            if (_playerInSightRange == true)
+            if (playerInSightRange == true)
             {
                 Debug.Log("stopping patrolling");
                 StopCoroutine(patrol());
