@@ -214,8 +214,10 @@ public class heat_seeking_fishles : MonoBehaviour
     
     public bool _playerInSightRange
     {
+        
         get
         {
+            Debug.Log("getting playerinsightrange");
             return playerInSightRange;
         }
         set
