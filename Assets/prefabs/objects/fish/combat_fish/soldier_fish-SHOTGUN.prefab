@@ -424,7 +424,7 @@ MonoBehaviour:
   health: 100
   Canvas: {fileID: 2438592143944818468}
   health_bar: {fileID: 1854213256477254678}
-  sightRange: 30
+  sightRange: 40
   attackRange: 15
   playerInSightRange: 0
   playerInAttackRange: 0

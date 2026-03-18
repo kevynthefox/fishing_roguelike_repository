@@ -94,6 +94,15 @@ public class heat_seeking_fishles : MonoBehaviour
         {
             this.GetComponent<Rigidbody>().isKinematic = false;
 
+
+            if (ranged_fish == true)
+            {
+                //Debug.Log("checking spheres");
+                playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
+                playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
+                //Debug.Log("spheres checked");
+            }
+
             if (target != null)
             {
 
@@ -106,9 +115,7 @@ public class heat_seeking_fishles : MonoBehaviour
                 //moves this object towards the other object, at this speed per second
                 if (ranged_fish == true)
                 {
-                    playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
-                    playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
-
+                    
                     //come back to this later
                     //if (!playerInSightRange && !playerInAttackRange) patroling();
                     
@@ -117,7 +124,7 @@ public class heat_seeking_fishles : MonoBehaviour
                         transform.position = Vector3.MoveTowards(transform.position, target.transform.position,
                             speed * Time.deltaTime);
                         
-                    };
+                    }
                     if (playerInSightRange && playerInAttackRange) AttackPlayer();
                 }
                 else
@@ -207,16 +214,33 @@ public class heat_seeking_fishles : MonoBehaviour
     
     public bool _playerInSightRange
     {
-        get => playerInSightRange;
+        get
+        {
+            return playerInSightRange;
+        }
         set
         {
+            Debug.Log("triggering stuff when playerinsightrange changes");
             _playerInSightRange = value;
-            if (!playerInSightRange && !walkPointSet && ranged_fish) patroling();
-            if (!playerInSightRange)
+            
+            if (playerInSightRange)
+            {
+                StopCoroutine(patrol());
+                StopCoroutine(patrol_timer());
+                walkPointSet = false;
+            }
+            else
             {
                 targets.Remove(target);
-                target = null;
+                target = null;  
+                Debug.Log("target removed");
             }
+            
+            if (!playerInSightRange && !walkPointSet && ranged_fish) patroling();
+            
+
+           
+            
         }
     }
 
@@ -226,15 +250,15 @@ public class heat_seeking_fishles : MonoBehaviour
         //Debug.Log("patrol_moving");
         //rb.linearVelocity = distanceToWalkpoint_initial;
         
-        //Quaternion floppy_rotation = new Quaternion(floppy.x, floppy.y, floppy.z, 0);
+        Quaternion floppy_rotation = new Quaternion(floppy.x, floppy.y, floppy.z, 0);
         //Vector3 flop = floppy - transform.rotation.eulerAngles;
         
         
-        Vector3 flop = floppy - transform.rotation.eulerAngles;
+        /*Vector3 flop = floppy - transform.rotation.eulerAngles;
         rb.linearVelocity = distanceToWalkpoint;//(distanceToWalkpoint_initial.x,distanceToWalkpoint_initial.y,distanceToWalkpoint_initial.z);
         rb.angularVelocity = flop;
+        */
         
-        /*
         while (playerInSightRange == false)
         {
             distanceToWalkpoint = walkPoint - transform.position;
@@ -250,15 +274,15 @@ public class heat_seeking_fishles : MonoBehaviour
             //Debug.Log("distanceToWalkpoint_initial: " + distanceToWalkpoint_initial);
             //rb.velocity.Set(distanceToWalkpoint.x,distanceToWalkpoint.y,distanceToWalkpoint.z);
             
-            //transform.position = Vector3.Slerp(transform.position, walkPoint, sped);
-            //transform.rotation = Quaternion.Slerp(transform.rotation,floppy_rotation,sped/10);// = Quaternion.Slerp(transform.rotation,floppy_rotation, str);
+            transform.position = Vector3.Slerp(transform.position, walkPoint, sped);
+            transform.rotation = Quaternion.Slerp(transform.rotation,floppy_rotation,sped/10);// = Quaternion.Slerp(transform.rotation,floppy_rotation, str);
             
             //transform.rotation = new Quaternion(floppy.x * Time.deltaTime,floppy.y * Time.deltaTime,floppy.z * Time.deltaTime,0);
             
-            yield return new WaitForSeconds(1f);
-        }*/
+            yield return new WaitForSeconds(0.01f);
+        }
 
-        yield return null;
+        //yield return null;
         
         
     }
@@ -290,53 +314,51 @@ public class heat_seeking_fishles : MonoBehaviour
     {
         if (TimeManager.current.update == true)
         {
-            if (playerInSightRange == false)
+        
+            //Debug.Log("patroling");
+            if (!walkPointSet) SearchWalkPoint();
+
+            if (walkPointSet)
             {
-                //Debug.Log("patroling");
-                if (!walkPointSet) SearchWalkPoint();
 
-                if (walkPointSet)
-                {
-
-                    StartCoroutine(patrol());
-                    StartCoroutine(patrol_timer());
-                }
-
-                distanceToWalkpoint = walkPoint - transform.position;
-                distanceToWalkpoint_initial = distanceToWalkpoint;
-                distanceToWalkpoint_magnitude = distanceToWalkpoint.magnitude;
-                distanceToWalkpoint_magnitude_initial = distanceToWalkpoint_magnitude;
-
-                //walkpoint reached
-                //if (distanceToWalkpoint.magnitude < 1f)
-                //{
-                    //walkPointSet = false;
-                    //SearchWalkPoint();
-                //}
+                StartCoroutine(patrol());
+                StartCoroutine(patrol_timer());
             }
+
+            distanceToWalkpoint = walkPoint - transform.position;
+            distanceToWalkpoint_initial = distanceToWalkpoint;
+            distanceToWalkpoint_magnitude = distanceToWalkpoint.magnitude;
+            distanceToWalkpoint_magnitude_initial = distanceToWalkpoint_magnitude;
+
+            //walkpoint reached
+            //if (distanceToWalkpoint.magnitude < 1f)
+            //{
+                //walkPointSet = false;
+                //SearchWalkPoint();
+            //}
+        
         }
     }
     public void SearchWalkPoint()
     {
         if (TimeManager.current.update == true)
         {
-            if (playerInSightRange == false)
-            {
-                //calculate random point in range
-                float randomZ = Random.Range(-walkPointRange, walkPointRange);
-                float randomx = Random.Range(-walkPointRange, walkPointRange);
-                float randomy = Random.Range(-walkPointRange, walkPointRange);
-                floppy.x = Random.Range(0, 360);
-                floppy.y = Random.Range(0, 360);
-                floppy.z = Random.Range(0, 360);
-                walkPoint = new Vector3(walkPointAnchor.x + randomx, walkPointAnchor.y + randomy,
-                    walkPointAnchor.z + randomZ);
+        
+            //calculate random point in range
+            float randomZ = Random.Range(-walkPointRange, walkPointRange);
+            float randomx = Random.Range(-walkPointRange, walkPointRange);
+            float randomy = Random.Range(-walkPointRange, walkPointRange);
+            floppy.x = Random.Range(0, 360);
+            floppy.y = Random.Range(0, 360);
+            floppy.z = Random.Range(0, 360);
+            walkPoint = new Vector3(walkPointAnchor.x + randomx, walkPointAnchor.y + randomy,
+                walkPointAnchor.z + randomZ);
 
-                //if (Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround))
-                //{
-                walkPointSet = true;
-                //}
-            }
+            //if (Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround))
+            //{
+            walkPointSet = true;
+            //}
+        
         }
     }
     #endregion
