@@ -364,6 +364,8 @@ public class gun : MonoBehaviour
                     if (targets.Contains(other.transform) == true)
                     {
                         targets.Remove(other.transform);
+                        target.transform.parent = this.transform;
+                        target.transform.localPosition = Vector3.zero;
                     }
                 }
                 else

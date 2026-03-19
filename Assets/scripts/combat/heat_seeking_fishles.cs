@@ -47,6 +47,7 @@ public class heat_seeking_fishles : MonoBehaviour
     public Vector3 walkPointAnchor;
     public int new_walkPoint_timer,walkPoint_timer_limit;
     public Vector3 floppy;
+    public float floppy_difference_magnitude;
     public float walkPoint_Counter;
     public Vector3 distanceToWalkpoint,distanceToWalkpoint_initial;
     public float distanceToWalkpoint_magnitude,distanceToWalkpoint_magnitude_initial;
@@ -219,17 +220,17 @@ public class heat_seeking_fishles : MonoBehaviour
         
         get
         {
-            Debug.Log("getting playerinsightrange");
+            //Debug.Log("getting playerinsightrange");
             return _playerInSightRange;
         }
         set
         {
-            Debug.Log("triggering stuff when playerinsightrange changes");
+            //Debug.Log("triggering stuff when playerinsightrange changes");
             _playerInSightRange = value;
             
             if (_playerInSightRange == true)
             {
-                Debug.Log("stopping patrolling");
+                //Debug.Log("stopping patrolling");
                 StopCoroutine(patrol());
                 StopCoroutine(patrol_timer());
                 walkPointSet = false;
@@ -240,7 +241,7 @@ public class heat_seeking_fishles : MonoBehaviour
             {
                 targets.Remove(target);
                 target = null;  
-                Debug.Log("target removed");
+                //Debug.Log("target removed");
                 
                 if (new_walkPoint_timer == -1) patroling();
             }
@@ -273,9 +274,11 @@ public class heat_seeking_fishles : MonoBehaviour
             distanceToWalkpoint = walkPoint - transform.position;
             distanceToWalkpoint_magnitude = distanceToWalkpoint.magnitude;
             
+            floppy_difference_magnitude = (floppy_rotation.eulerAngles - transform.rotation.eulerAngles).magnitude;
+            
             walkPoint_Counter  += 0.01f;
             //sped =  (walkPoint_Counter/10) * ((distanceToWalkpoint_magnitude_initial * Time.deltaTime)/(walkPoint_timer_limit * speed));
-            sped = ((1/(distanceToWalkpoint_magnitude / distanceToWalkpoint_magnitude_initial))/walkPoint_timer_limit) * 0.01f;
+            sped = ((1/((distanceToWalkpoint_magnitude+0.00001f) / distanceToWalkpoint_magnitude_initial))/walkPoint_timer_limit) * 0.01f;
             
             //Vector3 flop = floppy - transform.rotation.eulerAngles;
             //rb.linearVelocity = distanceToWalkpoint;//(distanceToWalkpoint_initial.x,distanceToWalkpoint_initial.y,distanceToWalkpoint_initial.z);
@@ -285,11 +288,19 @@ public class heat_seeking_fishles : MonoBehaviour
             //rb.velocity.Set(distanceToWalkpoint.x,distanceToWalkpoint.y,distanceToWalkpoint.z);
             
             transform.position = Vector3.Slerp(transform.position, walkPoint, sped);
-            transform.rotation = Quaternion.Slerp(transform.rotation,floppy_rotation,sped/walkPoint_timer_limit);// = Quaternion.Slerp(transform.rotation,floppy_rotation, str);
+            transform.rotation = Quaternion.Slerp(transform.rotation,floppy_rotation,sped/(walkPoint_timer_limit * floppy_difference_magnitude));// = Quaternion.Slerp(transform.rotation,floppy_rotation, str);
             
             //transform.rotation = new Quaternion(floppy.x * Time.deltaTime,floppy.y * Time.deltaTime,floppy.z * Time.deltaTime,0);
-            
-            yield return new WaitForSeconds(0.01f);
+
+            if (new_walkPoint_timer >= walkPoint_timer_limit)
+            {
+                yield break;
+            }
+            else
+            {
+                yield return new WaitForSeconds(0.01f);
+            }
+
         }
 
         //yield return null;
