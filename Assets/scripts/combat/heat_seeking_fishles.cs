@@ -274,7 +274,8 @@ public class heat_seeking_fishles : MonoBehaviour
             distanceToWalkpoint_magnitude = distanceToWalkpoint.magnitude;
             
             walkPoint_Counter  += 0.01f;
-            sped =  (walkPoint_Counter/10) * ((distanceToWalkpoint_magnitude_initial * Time.deltaTime)/(walkPoint_timer_limit * speed));
+            //sped =  (walkPoint_Counter/10) * ((distanceToWalkpoint_magnitude_initial * Time.deltaTime)/(walkPoint_timer_limit * speed));
+            sped = ((1/(distanceToWalkpoint_magnitude / distanceToWalkpoint_magnitude_initial))/walkPoint_timer_limit) * Time.deltaTime;
             
             //Vector3 flop = floppy - transform.rotation.eulerAngles;
             //rb.linearVelocity = distanceToWalkpoint;//(distanceToWalkpoint_initial.x,distanceToWalkpoint_initial.y,distanceToWalkpoint_initial.z);
@@ -360,8 +361,7 @@ public class heat_seeking_fishles : MonoBehaviour
             floppy.x = Random.Range(0, 360);
             floppy.y = Random.Range(0, 360);
             floppy.z = Random.Range(0, 360);
-            walkPoint = new Vector3(walkPointAnchor.x + randomx, walkPointAnchor.y + randomy,
-                walkPointAnchor.z + randomZ);
+            walkPoint = new Vector3(walkPointAnchor.x + randomx, walkPointAnchor.y + randomy, walkPointAnchor.z + randomZ);
 
             //if (Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround))
             //{
