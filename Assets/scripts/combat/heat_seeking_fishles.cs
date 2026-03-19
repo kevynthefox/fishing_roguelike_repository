@@ -284,7 +284,7 @@ public class heat_seeking_fishles : MonoBehaviour
             //rb.velocity.Set(distanceToWalkpoint.x,distanceToWalkpoint.y,distanceToWalkpoint.z);
             
             transform.position = Vector3.Slerp(transform.position, walkPoint, sped);
-            transform.rotation = Quaternion.Slerp(transform.rotation,floppy_rotation,sped);// = Quaternion.Slerp(transform.rotation,floppy_rotation, str);
+            transform.rotation = Quaternion.Slerp(transform.rotation,floppy_rotation,sped/walkPoint_timer_limit);// = Quaternion.Slerp(transform.rotation,floppy_rotation, str);
             
             //transform.rotation = new Quaternion(floppy.x * Time.deltaTime,floppy.y * Time.deltaTime,floppy.z * Time.deltaTime,0);
             
