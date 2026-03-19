@@ -275,7 +275,7 @@ public class heat_seeking_fishles : MonoBehaviour
             
             walkPoint_Counter  += 0.01f;
             //sped =  (walkPoint_Counter/10) * ((distanceToWalkpoint_magnitude_initial * Time.deltaTime)/(walkPoint_timer_limit * speed));
-            sped = ((1/(distanceToWalkpoint_magnitude / distanceToWalkpoint_magnitude_initial))/walkPoint_timer_limit) * Time.deltaTime;
+            sped = ((1/(distanceToWalkpoint_magnitude / distanceToWalkpoint_magnitude_initial))/walkPoint_timer_limit) * 0.01f;
             
             //Vector3 flop = floppy - transform.rotation.eulerAngles;
             //rb.linearVelocity = distanceToWalkpoint;//(distanceToWalkpoint_initial.x,distanceToWalkpoint_initial.y,distanceToWalkpoint_initial.z);
