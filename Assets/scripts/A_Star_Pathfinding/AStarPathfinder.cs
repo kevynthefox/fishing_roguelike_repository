@@ -97,6 +97,23 @@ public class AStarPathfinder : MonoBehaviour
         return null;  // No path found
     }
 
+/// <summary>
+/// this part had to be added manually due to "GetNode" as a method not existing on the website.
+/// here is what I believe they were trying to make
+/// </summary>
+
+    public PathNode GetNode(int x, int y)
+    {
+        if (x >= 0 && x < width && y >= 0 && y < height)
+        {
+            return grid[x, y];
+        }
+        else
+        {
+            return grid[0, 0];
+        }
+    }
+
     private float CalculateHeuristic(PathNode from, PathNode to)
     {
         // Octile distance for 8-directional movement
