@@ -19,6 +19,8 @@ namespace Octrees
             
             Gizmos.color = Color.green;
             Gizmos.DrawWireCube(ot.bounds.center,ot.bounds.size);
+            
+            ot.root.DrawNode();
         }
     }
 }
