@@ -64,12 +64,28 @@ namespace Octrees
         {
             Node nodeA = FindNode(a);
             Node nodeB = FindNode(b);
+
+            if (nodeA == null || nodeB == null) return;
             
             var edge = new Edge(nodeA, nodeB);
             if (edges.Add(edge))
             {
                 nodeA.edges.Add(edge);
                 nodeB.edges.Add(edge);
+            }
+        }
+        
+        public void DrawGraph()
+        {
+            Gizmos.color = Color.red; 
+            foreach (Edge edge in edges)
+            {
+                Gizmos.DrawLine(edge.a.octreeNode.bounds.center, edge.b.octreeNode.bounds.center);
+            }
+            
+            foreach (var node in nodes.Values)
+            {
+                Gizmos.DrawWireSphere(node.octreeNode.bounds.center, 0.2f);
             }
         }
 

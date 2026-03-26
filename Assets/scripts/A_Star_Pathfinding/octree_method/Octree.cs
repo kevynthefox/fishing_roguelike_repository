@@ -8,11 +8,13 @@ namespace Octrees
     {
         public OctreeNode root;
         public Bounds bounds;
+        public Graph graph;
+        List<OctreeNode> emptyLeaves = new();
 
-        private List<OctreeNode> emptyLeaves = new();
-
-        public Octree(GameObject[] worldObjects, float minNodeSize)
+        public Octree(GameObject[] worldObjects, float minNodeSize,Graph graph)
         {
+            this.graph = graph;
+            
             CalculateBounds(worldObjects);
             CreateTree(worldObjects, minNodeSize);
             GetEmptyLeaves(root);
@@ -20,8 +22,30 @@ namespace Octrees
 
         void GetEmptyLeaves(OctreeNode node)
         {
+            if (node.IsLeaf && node.objects.Count == 0)
+            {
+                emptyLeaves.Add(node);
+                graph.AddNode(node);
+                return;
+            }
+
+            if (node.children == null) return;
+
+            foreach (OctreeNode child in node.children)
+            {
+                GetEmptyLeaves(child);
+            }
             
+            for (int i = 0; i < node.children.Length; i++)
+            {
+                for (int j = i + 1; j < node.children.Length; j++)
+                {
+                    graph.AddEdge(node.children[i], node.children[j]);
+                }
+            }
         }
+
+        
 
         void CreateTree(GameObject[] worldObjects, float minNodeSize)
         {
