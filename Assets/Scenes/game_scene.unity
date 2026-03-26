@@ -846,8 +846,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Octrees.OctreeGenerator
   objects:
-  - {fileID: 1675343452}
-  - {fileID: 796425236}
   - {fileID: 1314702264}
   - {fileID: 228182184}
   minNodeSize: 1
@@ -6897,6 +6895,7 @@ GameObject:
   - component: {fileID: 1675343455}
   - component: {fileID: 1675343454}
   - component: {fileID: 1675343453}
+  - component: {fileID: 1675343457}
   m_Layer: 0
   m_Name: house 1
   m_TagString: Untagged
@@ -6997,6 +6996,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1725967393}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1675343457
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1675343452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd7f0c332c2d4801c92d7d22dabb4b34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Octrees.OctreeObject
 --- !u!1 &1694791632 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4654059932859092335, guid: c0909263df6a80047b02e92c9d7c9c56, type: 3}

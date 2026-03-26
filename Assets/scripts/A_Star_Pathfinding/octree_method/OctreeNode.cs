@@ -1,10 +1,11 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 //code from this tutorial: https://www.youtube.com/watch?v=gNmPmWR2vV4
 namespace Octrees
 {
-    public class OctreeNode : MonoBehaviour
+    public class OctreeNode
     {
         public List<OctreeObject> objects = new();
 
@@ -79,6 +80,17 @@ namespace Octrees
         {
             Gizmos.color = Color.green;
             Gizmos.DrawWireCube(bounds.center,bounds.size);
+            
+            foreach (OctreeObject obj in objects)
+            {
+                if (obj.Intersects(bounds))
+                {
+                    Gizmos.color = Color.red;
+                    
+                    Gizmos.DrawCube(bounds.center, bounds.size);
+                }
+            }
+            
             if (children != null)
             {
                 foreach (OctreeNode child in children)

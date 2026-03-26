@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 //code from this tutorial: https://www.youtube.com/watch?v=gNmPmWR2vV4
@@ -8,10 +9,18 @@ namespace Octrees
         public OctreeNode root;
         public Bounds bounds;
 
+        private List<OctreeNode> emptyLeaves = new();
+
         public Octree(GameObject[] worldObjects, float minNodeSize)
         {
             CalculateBounds(worldObjects);
             CreateTree(worldObjects, minNodeSize);
+            GetEmptyLeaves(root);
+        }
+
+        void GetEmptyLeaves(OctreeNode node)
+        {
+            
         }
 
         void CreateTree(GameObject[] worldObjects, float minNodeSize)
