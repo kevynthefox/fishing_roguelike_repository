@@ -52,6 +52,27 @@ namespace Octrees
         
         List<Node> pathList = new();
 
+        public void AddNode(OctreeNode octreeNode)
+        {
+            if (!nodes.ContainsKey(octreeNode))
+            {
+                nodes.Add(octreeNode,new Node(octreeNode));
+            }
+        }
+
+        public void AddEdge(OctreeNode a, OctreeNode b)
+        {
+            Node nodeA = FindNode(a);
+            Node nodeB = FindNode(b);
+            
+            var edge = new Edge(nodeA, nodeB);
+            if (edges.Add(edge))
+            {
+                nodeA.edges.Add(edge);
+                nodeB.edges.Add(edge);
+            }
+        }
+
         Node FindNode(OctreeNode octreeNode)
         {
             nodes.TryGetValue(octreeNode, out Node node);
