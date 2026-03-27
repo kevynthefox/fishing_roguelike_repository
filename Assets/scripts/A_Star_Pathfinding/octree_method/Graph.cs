@@ -96,8 +96,21 @@ namespace Octrees
                 foreach (Edge edge in current.edges)
                 {
                     Node neighbor = Equals(edge.a, current) ? edge.b : edge.a;
-
+                    //if we've visited this neighbor before, continue, if not: calculate the g score
                     if (closedSet.Contains(neighbor)) continue;
+                    
+                    //float tentative_gScore = current.g + (current.octreeNode.bounds.center - neighbor.octreeNode.bounds.center).sqrMagnitude; // cost is initial cost plus the cost to move to that neighbor.
+                    float tentative_gScore = current.g + Heuristic(current, neighbor);
+                    
+                    //if the tentative g score is less than the value assigned to the neighbor, or if it has never been in the open set, put it in there.
+                    if ((tentative_gScore < neighbor.g) || !openSet.Contains(neighbor))
+                    {
+                        neighbor.g = tentative_gScore;
+                        neighbor.h = Heuristic(neighbor, end);
+                        neighbor.f = neighbor.g + neighbor.h;
+                        neighbor.from = current;
+                        openSet.Add(neighbor);
+                    }
                 }
             }
         }
