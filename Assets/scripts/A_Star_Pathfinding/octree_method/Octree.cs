@@ -18,6 +18,22 @@ namespace Octrees
             CalculateBounds(worldObjects);
             CreateTree(worldObjects, minNodeSize);
             GetEmptyLeaves(root);
+            GetEdges();
+            Debug.Log(graph.edges.Count);
+        }
+
+        void GetEdges()
+        {
+            foreach (OctreeNode leaf in emptyLeaves)
+            {
+                foreach (OctreeNode otherleaf in emptyLeaves)
+                {
+                    if (leaf.bounds.Intersects(otherleaf.bounds))
+                    {
+                        graph.AddEdge(leaf, otherleaf);
+                    }
+                }
+            }
         }
 
         void GetEmptyLeaves(OctreeNode node)
@@ -64,7 +80,7 @@ namespace Octrees
                 bounds.Encapsulate(obj.GetComponent<Collider>().bounds);
             }
             
-            Vector3 size = Vector3.one * Mathf.Max(bounds.size.x, bounds.size.y,bounds.size.z) * 0.5f;
+            Vector3 size = Vector3.one * Mathf.Max(bounds.size.x, bounds.size.y,bounds.size.z) * 0.6f;
             bounds.SetMinMax(bounds.center - size, bounds.center + size);
         }
     }

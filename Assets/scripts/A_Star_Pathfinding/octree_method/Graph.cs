@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 //code from this tutorial: https://www.youtube.com/watch?v=gNmPmWR2vV4
@@ -52,6 +53,73 @@ namespace Octrees
         
         List<Node> pathList = new();
 
+        public bool AStar(OctreeNode startNode, OctreeNode endNode)
+        {
+            pathList.Clear();
+            Node start = FindNode(startNode);
+            Node end = FindNode(endNode);
+            
+            if (start == null || end == null)
+            {
+                Debug.LogError("Start or End node not found in the graph.");
+                return false;
+            }
+
+            SortedSet<Node> openSet = new(new NodeComparer()); //least expensive nodes to travel through will always be the first ones we get out.
+            HashSet<Node> closedSet = new();
+            int iterationCount = 0;
+
+            start.g = 0;
+            start.h = Heuristic(start, end);
+            start.f = start.g + start.h;
+            start.from = null;
+            openSet.Add(start);
+
+            while (openSet.Count > 0)
+            {
+                if (++iterationCount > maxIterations)
+                {
+                    Debug.LogError("A* exceeded maximum iterations");
+                    return false;
+                }
+
+                Node current = openSet.First();
+                openSet.Remove(current);
+
+                if (current.Equals(end))
+                {
+                    ReconstructPath(current);
+                    return true;
+                }
+                
+                closedSet.Add(current);
+                foreach (Edge edge in current.edges)
+                {
+                    Node neighbor = Equals(edge.a, current) ? edge.b : edge.a;
+
+                    if (closedSet.Contains(neighbor)) continue;
+                }
+            }
+        }
+        
+        float Heuristic(Node a, Node b) => (a.octreeNode.bounds.center - b.octreeNode.bounds.center).sqrMagnitude;
+
+        public class NodeComparer : IComparer<Node>
+        {
+            public int Compare(Node x, Node y)
+            {
+                if (x == null || y == null) return 0;
+
+                int compare = x.f.CompareTo(y.f); // f value represents total estimated cost of a path that passes through a given node.
+                if (compare == 0) //if 2 nodes have the same f value, fall back on id.
+                {
+                    return x.id.CompareTo(y.id);
+                }
+
+                return compare;
+            }
+        }
+        
         public void AddNode(OctreeNode octreeNode)
         {
             if (!nodes.ContainsKey(octreeNode))
