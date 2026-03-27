@@ -52,6 +52,22 @@ namespace Octrees
         public readonly HashSet<Edge> edges = new();
         
         List<Node> pathList = new();
+        
+        public int GetPathLength() => pathList.Count;
+
+        public OctreeNode GetPathNode(int index)
+        {
+            if (pathList == null) return null;
+
+            if (index < 0 || index >= pathList.Count)
+            {
+                Debug.LogError($"Index out of bounds. Path length: {pathList.Count}, Index: {index}");
+                return null;
+            }
+            return pathList[index].octreeNode;
+        }
+        
+        private int maxIterations = 1000;
 
         public bool AStar(OctreeNode startNode, OctreeNode endNode)
         {
@@ -113,6 +129,8 @@ namespace Octrees
                     }
                 }
             }
+            Debug.Log("No path found.");
+            return false;
         }
         
         float Heuristic(Node a, Node b) => (a.octreeNode.bounds.center - b.octreeNode.bounds.center).sqrMagnitude;
@@ -141,6 +159,17 @@ namespace Octrees
             }
         }
 
+        void ReconstructPath(Node current)
+        {
+            while (current != null)
+            {
+                pathList.Add(current);
+                current = current.from;
+            }
+            
+            pathList.Reverse();
+        }
+
         public void AddEdge(OctreeNode a, OctreeNode b)
         {
             Node nodeA = FindNode(a);
@@ -158,7 +187,7 @@ namespace Octrees
         
         public void DrawGraph()
         {
-            Gizmos.color = Color.red; 
+            /*Gizmos.color = Color.red; 
             foreach (Edge edge in edges)
             {
                 Gizmos.DrawLine(edge.a.octreeNode.bounds.center, edge.b.octreeNode.bounds.center);
@@ -167,7 +196,7 @@ namespace Octrees
             foreach (var node in nodes.Values)
             {
                 Gizmos.DrawWireSphere(node.octreeNode.bounds.center, 0.2f);
-            }
+            }*/
         }
 
         Node FindNode(OctreeNode octreeNode)
