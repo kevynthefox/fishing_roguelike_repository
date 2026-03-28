@@ -22,6 +22,26 @@ namespace Octrees
             Debug.Log(graph.edges.Count);
         }
 
+        public OctreeNode FindClosestNode(Vector3 position) => FindClosestNode(root, position);
+        
+        public OctreeNode FindClosestNode(OctreeNode node, Vector3 position)
+        {
+            OctreeNode found = null;
+            for (int i = 0; i < node.children.Length; i++)
+            {
+                if (node.children[i].bounds.Contains(position))
+                {
+                    if (node.children[i].IsLeaf)
+                    {
+                        found = node.children[i];
+                        break;
+                    }//if it's a leaf get out of here. if not, recursively look through the children
+                    found = FindClosestNode(node.children[i], position);
+                }
+            }
+            return found;
+        }
+
         void GetEdges()
         {
             foreach (OctreeNode leaf in emptyLeaves)

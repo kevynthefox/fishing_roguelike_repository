@@ -62,21 +62,7 @@ namespace Octrees
 
         OctreeNode GetClosestNode(Vector3 position)
         {
-            OctreeNode closestNode = null;
-            float closestDistanceSqr = Mathf.Infinity;
-
-            foreach (var nodePair in graph.nodes) // loop over and find if the current node is closer than the previous one.
-            {
-                OctreeNode node = nodePair.Key;
-                float distanceSqr = (node.bounds.center - position).sqrMagnitude;
-
-                if (distanceSqr < closestDistanceSqr)
-                {
-                    closestDistanceSqr = distanceSqr;
-                    closestNode = node;
-                }
-            }
-            return closestNode;
+            return octreeGenerator.ot.FindClosestNode(transform.position);
         }
 
         void GetRandomDestination()
