@@ -19,6 +19,9 @@ namespace Octrees
         public OctreeGenerator octreeGenerator;
         Graph graph;
 
+
+        public Transform target;
+
         void Start() //start because octree generator runs in awake, so by start it should have some waypoints created.
         {
             graph = octreeGenerator.waypoints;
@@ -33,6 +36,7 @@ namespace Octrees
             if (graph.GetPathLength() == 0 || currentWaypoint >= graph.GetPathLength())
             { //if path length is 0 or we've exceeded our waypoints, get a new random destination.
                 GetRandomDestination();
+                //GetTargetDestination();
                 return;
             }
 
@@ -57,10 +61,11 @@ namespace Octrees
             else //if we didn't do all of that, get another destination, but this is reduntant because it'll get picked up on the next frame anyway
             {
                 GetRandomDestination();
+                //GetTargetDestination();
             }
         }
 
-        OctreeNode GetClosestNode(Vector3 position)
+        OctreeNode GetClosestNode(Vector3 position) // this is used to get any world position you want
         {
             return octreeGenerator.ot.FindClosestNode(transform.position);
         }
@@ -71,10 +76,23 @@ namespace Octrees
             do //do while thing
             {
                 destinationNode = graph.nodes.ElementAt(Random.Range(0, graph.nodes.Count)).Key;
+                Debug.Log("destinationNode: " + destinationNode.id);
             } while (!graph.AStar(currentNode, destinationNode)); // this is the part that plots the path there.
             currentWaypoint = 0;
         }
 
+        void GetTargetDestination()
+        {
+            OctreeNode destinationNode;
+            do //do while thing
+            {
+                destinationNode = graph.nodes.ElementAt(GetClosestNode(target.position).id).Key;
+                //destinationNode = GetClosestNode(target.position);
+                Debug.Log("destinationNode: " + destinationNode);
+            } while (!graph.AStar(currentNode, destinationNode)); // this is the part that plots the path there.
+            currentWaypoint = 0;
+        }
+        
         void OnDrawGizmos()
         {
             if (graph == null || graph.GetPathLength() == 0) return; //if no path or length is 0, get out of here.

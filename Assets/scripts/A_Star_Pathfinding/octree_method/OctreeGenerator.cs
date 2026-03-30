@@ -24,32 +24,15 @@ namespace Octrees
             this.GetComponent<BoxCollider>().center = ot.bounds.center - this.transform.position;
             this.GetComponent<BoxCollider>().size = ot.bounds.size;
 
-            StartCoroutine(remake());
+            
         }
 
-        /*private void OnTriggerStay(Collider other)
+        private void OnTriggerStay(Collider other)
         {
-            if (!objects.Contains(other.gameObject))
-            {
-                objects[].(other.gameObject);
-            }
-        }*/
-
-        public IEnumerator remake()
-        {
-            while (TimeManager.current.update == true)
-            {
-
-                Array.Clear(objects, 0, objects.Length);
-
-                foreach (Collider inside in Physics.OverlapBox(this.GetComponent<BoxCollider>().center, this.GetComponent<BoxCollider>().size))
-                {
-                    objects.Append(inside.gameObject);
-                }
-                
-                yield return new WaitForSecondsRealtime(5f);
-            }
+            
         }
+
+        
 
         void OnDrawGizmos()
         {
