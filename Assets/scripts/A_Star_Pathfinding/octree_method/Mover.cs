@@ -8,9 +8,9 @@ namespace Octrees
 {
     public class Mover : MonoBehaviour
     {
-        float speed = 5f;
+        public float speed = 5f;
         float accuracy = 1f; //how close we have to get to a target waypoint.
-        float turnSpeed = 5f;
+        public float turnSpeed = 5f;
         
         int currentWaypoint;
         OctreeNode currentNode;
@@ -26,7 +26,8 @@ namespace Octrees
         {
             graph = octreeGenerator.waypoints;
             currentNode = GetClosestNode(transform.position);
-            GetRandomDestination(); // this one is for testing.
+            //GetRandomDestination(); // this one is for testing.
+            //GetTargetDestination();
         }
 
         void Update() //might wanna replace later
@@ -35,8 +36,8 @@ namespace Octrees
 
             if (graph.GetPathLength() == 0 || currentWaypoint >= graph.GetPathLength())
             { //if path length is 0 or we've exceeded our waypoints, get a new random destination.
-                GetRandomDestination();
-                //GetTargetDestination();
+                //GetRandomDestination();
+                GetTargetDestination();
                 return;
             }
 
@@ -60,8 +61,8 @@ namespace Octrees
             }
             else //if we didn't do all of that, get another destination, but this is reduntant because it'll get picked up on the next frame anyway
             {
-                GetRandomDestination();
-                //GetTargetDestination();
+                //GetRandomDestination();
+                GetTargetDestination();
             }
         }
 
@@ -88,7 +89,7 @@ namespace Octrees
             {
                 destinationNode = graph.nodes.ElementAt(GetClosestNode(target.position).id).Key;
                 //destinationNode = GetClosestNode(target.position);
-                Debug.Log("destinationNode: " + destinationNode);
+                Debug.Log("destinationNode: " + destinationNode.id);
             } while (!graph.AStar(currentNode, destinationNode)); // this is the part that plots the path there.
             currentWaypoint = 0;
         }
@@ -103,7 +104,7 @@ namespace Octrees
             Gizmos.color = Color.blue; //end node
             Gizmos.DrawWireSphere(graph.GetPathNode(graph.GetPathLength() -1).bounds.center,0.7f);
             
-            Gizmos.color = Color.green; //all of the connecting points between each of them.
+            Gizmos.color = Color.purple; //all of the connecting points between each of them.
             for (int i = 0; i < graph.GetPathLength(); i++)
             {
                 Gizmos.DrawWireSphere(graph.GetPathNode(i).bounds.center, 0.5f);
