@@ -498,6 +498,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 2e0c48f598180e648857bce8ac27de85, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5042535899570972749}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 2e0c48f598180e648857bce8ac27de85, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -6008031274594443904}
   m_SourcePrefab: {fileID: 100100000, guid: 2e0c48f598180e648857bce8ac27de85, type: 3}
 --- !u!1 &2390817223159379938 stripped
 GameObject:
@@ -520,7 +523,7 @@ MonoBehaviour:
   speed: 20
   enemy: 1
   ranged_fish: 1
-  home: {fileID: 0}
+  target: {fileID: 0}
   targets: []
   distance: 0
   player: {fileID: 0}
@@ -536,12 +539,25 @@ MonoBehaviour:
   health_bar: {fileID: 8861667845136227770}
   sightRange: 2000
   attackRange: 200
-  playerInSightRange: 0
   playerInAttackRange: 0
+  _playerInSightRange: 0
   gun: {fileID: 1917255046258029041}
   timeBetweenAttacks: 0.01
   walkPoint: {x: 0, y: 0, z: 0}
+  walkPointSet: 0
   walkPointRange: 0
+  walkPointAnchor: {x: 0, y: 0, z: 0}
+  new_walkPoint_timer: 0
+  walkPoint_timer_limit: 0
+  floppy: {x: 0, y: 0, z: 0}
+  floppy_difference_magnitude: 0
+  walkPoint_Counter: 0
+  distanceToWalkpoint: {x: 0, y: 0, z: 0}
+  distanceToWalkpoint_initial: {x: 0, y: 0, z: 0}
+  distanceToWalkpoint_magnitude: 0
+  distanceToWalkpoint_magnitude_initial: 0
+  sped: 0
+  rb: {fileID: 0}
   wave_spawner: {fileID: 0}
   disable_water: 0
 --- !u!65 &6110645638109456477
@@ -630,6 +646,25 @@ MonoBehaviour:
   fish_counted: 0
   fish_type: 0
   potentcy: 20
+--- !u!114 &-6008031274594443904
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2390817223159379938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c53657e503d7a4738b0a9fa634fc1b92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Boid
+  position: {x: 0, y: 0, z: 0}
+  forward: {x: 0, y: 0, z: 0}
+  avgFlockHeading: {x: 0, y: 0, z: 0}
+  avgAvoidanceHeading: {x: 0, y: 0, z: 0}
+  centreOfFlockmates: {x: 0, y: 0, z: 0}
+  numPerceivedFlockmates: 0
+  target: {fileID: 0}
 --- !u!4 &3055185697661824344 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 2e0c48f598180e648857bce8ac27de85, type: 3}

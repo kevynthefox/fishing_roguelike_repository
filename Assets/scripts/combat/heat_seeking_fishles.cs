@@ -132,8 +132,9 @@ public class heat_seeking_fishles : MonoBehaviour
                 }
                 else
                 {
-                    transform.position = Vector3.MoveTowards(transform.position, target.transform.position,
-                        speed * Time.deltaTime);
+                    //transform.position = Vector3.MoveTowards(transform.position, target.transform.position,
+                     //   speed * Time.deltaTime);
+                     
                 }
                 //transform.rotation = Quaternion.LookRotation(Vector3.RotateTowards(transform.position, target.transform.position, 0, 360));
                 transform.LookAt(target.transform); // you need to child the object to an empty gameobject so that the object maintains the rotation you want.
@@ -175,6 +176,7 @@ public class heat_seeking_fishles : MonoBehaviour
                 int random_target = UnityEngine.Random.Range(0, targets.Count);
 
                 if (targets.Count >=1) target = targets[random_target];
+                
             }
 
             if (ranged_fish == true)

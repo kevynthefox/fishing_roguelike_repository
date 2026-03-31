@@ -192,6 +192,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 54773ef125b10eb4aa22bbb8e142fcca, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7827209186751223715}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 54773ef125b10eb4aa22bbb8e142fcca, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 229372661959307328}
   m_SourcePrefab: {fileID: 100100000, guid: 54773ef125b10eb4aa22bbb8e142fcca, type: 3}
 --- !u!4 &4930969516365555412 stripped
 Transform:
@@ -313,3 +316,22 @@ MonoBehaviour:
   fish_counted: 0
   fish_type: 0
   potentcy: 10
+--- !u!114 &229372661959307328
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5703107486078205038}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c53657e503d7a4738b0a9fa634fc1b92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Boid
+  position: {x: 0, y: 0, z: 0}
+  forward: {x: 0, y: 0, z: 0}
+  avgFlockHeading: {x: 0, y: 0, z: 0}
+  avgAvoidanceHeading: {x: 0, y: 0, z: 0}
+  centreOfFlockmates: {x: 0, y: 0, z: 0}
+  numPerceivedFlockmates: 0
+  target: {fileID: 0}
