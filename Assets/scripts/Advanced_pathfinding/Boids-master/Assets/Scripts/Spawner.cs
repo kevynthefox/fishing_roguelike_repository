@@ -11,7 +11,6 @@ public class Spawner : MonoBehaviour {
     public int spawnCount = 10;
     public Color colour;
     public GizmoType showSpawnRegion;
-    public Transform targetTransform;
 
     void Awake () {
         for (int i = 0; i < spawnCount; i++) {
@@ -19,7 +18,6 @@ public class Spawner : MonoBehaviour {
             Boid boid = Instantiate (prefab);
             boid.transform.position = pos;
             boid.transform.forward = Random.insideUnitSphere;
-            boid.target = targetTransform;
 
             boid.SetColour (colour);
         }

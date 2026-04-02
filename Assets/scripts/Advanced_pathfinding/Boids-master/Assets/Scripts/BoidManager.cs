@@ -9,11 +9,12 @@ public class BoidManager : MonoBehaviour {
     public BoidSettings settings;
     public ComputeShader compute;
     Boid[] boids;
+    public Transform target;
 
     void Start () {
         boids = FindObjectsOfType<Boid> ();
         foreach (Boid b in boids) {
-            b.Initialize (settings, null);
+            b.Initialize (settings, target);
         }
 
     }
