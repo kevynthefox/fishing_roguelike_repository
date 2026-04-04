@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Spawner : MonoBehaviour {
 
@@ -20,6 +22,14 @@ public class Spawner : MonoBehaviour {
             boid.transform.forward = Random.insideUnitSphere;
 
             boid.SetColour (colour);
+        }
+    }
+
+    public void FixedUpdate()
+    {
+        if (Input.GetKeyDown(KeyCode.U))
+        {
+            Awake();
         }
     }
 

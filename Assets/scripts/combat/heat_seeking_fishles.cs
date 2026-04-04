@@ -16,7 +16,8 @@ public class heat_seeking_fishles : MonoBehaviour
     public float speed;
     public bool enemy;
     public bool ranged_fish;
-    public GameObject target;
+    [SerializeField]
+    private GameObject _target;
     public List<GameObject> targets;
     public float distance;
     public Transform player;
@@ -52,7 +53,7 @@ public class heat_seeking_fishles : MonoBehaviour
     public Vector3 distanceToWalkpoint,distanceToWalkpoint_initial;
     public float distanceToWalkpoint_magnitude,distanceToWalkpoint_magnitude_initial;
     public float sped;
-    public Rigidbody rb;
+    //public Rigidbody rb;
     //public List<Vector3> walkPointBeen;
     
     [Header("sequencing")]//as in, preparing attacks
@@ -64,7 +65,7 @@ public class heat_seeking_fishles : MonoBehaviour
     public void Start()
     {
         walkPointAnchor = transform.position;
-        patroling();
+        if (ranged_fish == true) patroling();
         if (walkPoint_timer_limit == 0)
         {
             walkPoint_timer_limit = 99999;
@@ -95,7 +96,7 @@ public class heat_seeking_fishles : MonoBehaviour
     {
         if (TimeManager.current.update == true)
         {
-            this.GetComponent<Rigidbody>().isKinematic = false;
+            //this.GetComponent<Rigidbody>().isKinematic = false;
 
 
             if (ranged_fish == true)
@@ -141,7 +142,8 @@ public class heat_seeking_fishles : MonoBehaviour
                 
             }
 
-            if (target != null && enemy == false)
+            //this probably isn't needed anymore as with the improved pathfinding you shouldn't need to worry about the fish failing to reach their targets.
+            /*if (target != null && enemy == false)
             {
                 StartCoroutine(failsafe_counter());
 
@@ -150,7 +152,7 @@ public class heat_seeking_fishles : MonoBehaviour
             if (target != null && enemy == true)
             {
                 StartCoroutine(failsafe_counter_2());
-            }
+            }*/
             
             
 
@@ -187,7 +189,7 @@ public class heat_seeking_fishles : MonoBehaviour
         }
         else
         {
-            this.GetComponent<Rigidbody>().isKinematic = true;
+            //this.GetComponent<Rigidbody>().isKinematic = true;
         }
     }
 
@@ -209,6 +211,20 @@ public class heat_seeking_fishles : MonoBehaviour
         if (TimeManager.current.update == true)
         {
             alreadyAttacked = false;
+        }
+    }
+
+    public GameObject target
+    {
+        get { return _target; }
+        set
+        {
+            _target = value;
+
+            if (TryGetComponent<Boid>(out Boid boid_))
+            {
+                boid_.target = _target.transform;
+            }
         }
     }
 
@@ -456,7 +472,7 @@ public class heat_seeking_fishles : MonoBehaviour
     
 
     
-    public IEnumerator failsafe_counter()
+    /*public IEnumerator failsafe_counter()
     {
         
         yield return new WaitForSeconds(1);
@@ -478,7 +494,7 @@ public class heat_seeking_fishles : MonoBehaviour
         //Debug.Log("failed the safe");
         GetComponent<Rigidbody>().useGravity = true;
 
-    }
+    }*/
     #endregion
     /*private void OnCollisionEnter(Collision collision)
     {

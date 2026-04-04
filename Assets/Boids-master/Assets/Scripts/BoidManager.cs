@@ -20,6 +20,12 @@ public class BoidManager : MonoBehaviour {
     }
 
     void Update () {
+        
+        if (Input.GetKeyDown(KeyCode.U))
+        {
+            Start();
+        }
+        
         if (boids != null) {
 
             int numBoids = boids.Length;

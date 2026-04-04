@@ -229,7 +229,7 @@ GameObject:
   - component: {fileID: 8704723891553741174}
   - component: {fileID: 1879775518599285414}
   - component: {fileID: 6334389570891349589}
-  - component: {fileID: -6632586931586862921}
+  - component: {fileID: 7129339006605082960}
   m_Layer: 0
   m_Name: fish_1
   m_TagString: fish
@@ -397,7 +397,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &-6632586931586862921
+--- !u!114 &7129339006605082960
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

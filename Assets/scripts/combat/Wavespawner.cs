@@ -16,8 +16,9 @@ public class Wavespawner : MonoBehaviour
     public bool stop_fishing;
     //public List<GameObject> fish_actual;
 
-    public float spawn_left_right;
-    public float spawn_forward_back;
+    //public float spawn_left_right;
+    //public float spawn_forward_back;
+    public Transform spawn_rad_dist;
     public int family_size;
     //public List<GameObject> dead_fish;
 
@@ -111,8 +112,8 @@ public class Wavespawner : MonoBehaviour
                 fish_quality = rod.GetComponent<fishing_script>().fish_quality;
             }
 
-            spawn_left_right = UnityEngine.Random.Range(-1000, 1001);
-            spawn_forward_back = UnityEngine.Random.Range(-2000, 2001);
+            //spawn_left_right = UnityEngine.Random.Range(-spawning_radius, spawning_radius + 1);
+            //spawn_forward_back = UnityEngine.Random.Range(-spawning_radius, spawning_radius + 1);
             family_size = UnityEngine.Random.Range(0, family_max);
 
             if (rod.GetComponent<fishing_script>().spawning_fish == true)
@@ -145,7 +146,7 @@ public class Wavespawner : MonoBehaviour
                     //fish_left += f.stackSize;
                     for (int i = 0; i < family_size; i++)
                     {
-                        var fish_object = Instantiate(f.data, new Vector3(targets[random_target].transform.position.x + spawn_left_right, 0, targets[random_target].transform.position.z + spawn_forward_back), Quaternion.identity);
+                        var fish_object = Instantiate(f.data, new Vector3(spawn_rad_dist.transform.position.x, 10, spawn_rad_dist.transform.position.z), Quaternion.identity);
                         fish_object.GetComponent<heat_seeking_fishles>().target = targets[random_target];
                         fish_object.GetComponent<heat_seeking_fishles>().disable_water = true;
                         fish_object.GetComponent<heat_seeking_fishles>().enemy = true;

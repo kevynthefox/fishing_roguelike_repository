@@ -548,7 +548,7 @@ MonoBehaviour:
   walkPointRange: 0
   walkPointAnchor: {x: 0, y: 0, z: 0}
   new_walkPoint_timer: 0
-  walkPoint_timer_limit: 0
+  walkPoint_timer_limit: 8
   floppy: {x: 0, y: 0, z: 0}
   floppy_difference_magnitude: 0
   walkPoint_Counter: 0

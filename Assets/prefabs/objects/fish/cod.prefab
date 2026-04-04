@@ -194,7 +194,7 @@ PrefabInstance:
       addedObject: {fileID: 7827209186751223715}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 54773ef125b10eb4aa22bbb8e142fcca, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 229372661959307328}
+      addedObject: {fileID: 7284336234707678063}
   m_SourcePrefab: {fileID: 100100000, guid: 54773ef125b10eb4aa22bbb8e142fcca, type: 3}
 --- !u!4 &4930969516365555412 stripped
 Transform:
@@ -316,7 +316,7 @@ MonoBehaviour:
   fish_counted: 0
   fish_type: 0
   potentcy: 10
---- !u!114 &229372661959307328
+--- !u!114 &7284336234707678063
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
