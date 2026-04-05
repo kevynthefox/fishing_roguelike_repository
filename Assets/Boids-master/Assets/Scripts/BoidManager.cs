@@ -11,7 +11,7 @@ public class BoidManager : MonoBehaviour {
     Boid[] boids;
     public Transform target;
 
-    void Start () {
+    public void Start () {
         boids = FindObjectsOfType<Boid> ();
         foreach (Boid b in boids) {
             b.Initialize (settings, target);

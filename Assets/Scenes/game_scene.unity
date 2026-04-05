@@ -510,7 +510,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3559297176007848096, guid: 4cde6ba5a87074e8a973d577574f33c1, type: 3}
       propertyPath: spawnCount
-      value: 300
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3559297176007848096, guid: 4cde6ba5a87074e8a973d577574f33c1, type: 3}
       propertyPath: spawnRadius
@@ -570,7 +570,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3559297176007848099, guid: 4cde6ba5a87074e8a973d577574f33c1, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1837,6 +1837,7 @@ Transform:
   m_Children:
   - {fileID: 874614210}
   - {fileID: 1312274980}
+  - {fileID: 1317688711}
   - {fileID: 5913072559272973708}
   - {fileID: 1502008304}
   - {fileID: 973853849}
@@ -2824,67 +2825,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7462083307550487122, guid: c0909263df6a80047b02e92c9d7c9c56, type: 3}
   m_PrefabInstance: {fileID: 5793751535755447267}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &1072093153
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1656146008233550367, guid: 40f7a3039bb3d0a4ba3201ee603812cc, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -29.59
-      objectReference: {fileID: 0}
-    - target: {fileID: 1656146008233550367, guid: 40f7a3039bb3d0a4ba3201ee603812cc, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 9.17
-      objectReference: {fileID: 0}
-    - target: {fileID: 1656146008233550367, guid: 40f7a3039bb3d0a4ba3201ee603812cc, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 18.86
-      objectReference: {fileID: 0}
-    - target: {fileID: 1656146008233550367, guid: 40f7a3039bb3d0a4ba3201ee603812cc, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1656146008233550367, guid: 40f7a3039bb3d0a4ba3201ee603812cc, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1656146008233550367, guid: 40f7a3039bb3d0a4ba3201ee603812cc, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1656146008233550367, guid: 40f7a3039bb3d0a4ba3201ee603812cc, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1656146008233550367, guid: 40f7a3039bb3d0a4ba3201ee603812cc, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1656146008233550367, guid: 40f7a3039bb3d0a4ba3201ee603812cc, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1656146008233550367, guid: 40f7a3039bb3d0a4ba3201ee603812cc, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4664982497591543338, guid: 40f7a3039bb3d0a4ba3201ee603812cc, type: 3}
-      propertyPath: m_Name
-      value: fish_2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4664982497591543338, guid: 40f7a3039bb3d0a4ba3201ee603812cc, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 40f7a3039bb3d0a4ba3201ee603812cc, type: 3}
 --- !u!1 &1079470859
 GameObject:
   m_ObjectHideFlags: 0
@@ -3539,6 +3479,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8f1df57d83441dc429c50bfc3e6af36e, type: 2}
   rod: {fileID: 333051264}
   encounter_enemies_alive: []
+  boid_spawner: {fileID: 1834033045}
+  boid_manager: {fileID: 2024831129}
   dead_fish:
   - data: {fileID: 4664982497591543338, guid: 40f7a3039bb3d0a4ba3201ee603812cc, type: 3}
     stackSize: 3
@@ -3569,14 +3511,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1317688710}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -3, y: 15.78, z: 6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 172423240}
   - {fileID: 2024831131}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 627793530}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1382412453
 PrefabInstance:
@@ -4365,6 +4307,11 @@ GameObject:
 Animator:
   m_CorrespondingSourceObject: {fileID: 8469746533389805107, guid: c0909263df6a80047b02e92c9d7c9c56, type: 3}
   m_PrefabInstance: {fileID: 5793751535755447267}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1834033045 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3559297176007848099, guid: 4cde6ba5a87074e8a973d577574f33c1, type: 3}
+  m_PrefabInstance: {fileID: 172423239}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1909706094
 GameObject:
@@ -5227,7 +5174,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4122852226063933632, guid: c0909263df6a80047b02e92c9d7c9c56, type: 3}
       propertyPath: m_UseGravity
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4142075244036363659, guid: c0909263df6a80047b02e92c9d7c9c56, type: 3}
       propertyPath: m_AnchorMax.x
@@ -5791,6 +5738,4 @@ SceneRoots:
   - {fileID: 1722015388}
   - {fileID: 110697048}
   - {fileID: 1626672057}
-  - {fileID: 1317688711}
   - {fileID: 1271034681}
-  - {fileID: 1072093153}

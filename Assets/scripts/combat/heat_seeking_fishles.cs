@@ -138,7 +138,8 @@ public class heat_seeking_fishles : MonoBehaviour
                      
                 }
                 //transform.rotation = Quaternion.LookRotation(Vector3.RotateTowards(transform.position, target.transform.position, 0, 360));
-                transform.LookAt(target.transform); // you need to child the object to an empty gameobject so that the object maintains the rotation you want.
+                //this \/ part isnt needed because the boid will do that now
+                //transform.LookAt(target.transform); // you need to child the object to an empty gameobject so that the object maintains the rotation you want.
                 
             }
 

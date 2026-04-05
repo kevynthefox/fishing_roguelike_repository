@@ -56,6 +56,10 @@ public class Wavespawner : MonoBehaviour
     public GameObject rod;
 
     public List<GameObject> encounter_enemies_alive;
+    
+    [Header("boids")]
+    public GameObject boid_spawner;
+    public GameObject boid_manager;
 
     //public GameObject navmesh;
 
@@ -254,6 +258,11 @@ public class Wavespawner : MonoBehaviour
                     {
                         spawning_time = false;
                         time_left = time_start;
+                        
+                        //this is when the spawning is done
+                        
+                        boid_spawner.GetComponent<Spawner>().Awake();
+                        boid_manager.GetComponent<BoidManager>().Start();
                     }
                     else
                     {
