@@ -190,6 +190,10 @@ public class fishing_script : MonoBehaviour
     public Camera cam;
 
     public int fish_ever;
+    
+    [Header("boids")]
+    public GameObject boid_spawner;
+    public GameObject boid_manager;
 
     public void Awake()
     {
@@ -1077,6 +1081,9 @@ public class fishing_script : MonoBehaviour
 
                         Wavespawner.current.fish_total += fish_counted;
                         Wavespawner.current.sources_of_fish.Remove(this.gameObject);
+                        
+                        boid_spawner.GetComponent<Spawner>().Awake();
+                        boid_manager.GetComponent<BoidManager>().Start();
                     }
                     else
                     {

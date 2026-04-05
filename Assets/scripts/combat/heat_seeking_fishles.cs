@@ -96,7 +96,6 @@ public class heat_seeking_fishles : MonoBehaviour
     {
         if (TimeManager.current.update == true)
         {
-            //this.GetComponent<Rigidbody>().isKinematic = false;
 
 
             if (ranged_fish == true)
@@ -112,16 +111,11 @@ public class heat_seeking_fishles : MonoBehaviour
 
 
 
-                //makes the object move faster the further away it is from the other one
-                //speed = Vector3.Distance(target.transform.position, transform.position);
-                distance = Vector3.Distance(transform.position,target.transform.position);
+                
 
                 //moves this object towards the other object, at this speed per second
                 if (ranged_fish == true)
                 {
-                    
-                    //come back to this later
-                    //if (!playerInSightRange && !playerInAttackRange) patroling();
                     
                     if (playerInSightRange && !playerInAttackRange)
                     {
@@ -131,29 +125,10 @@ public class heat_seeking_fishles : MonoBehaviour
                     }
                     if (playerInSightRange && playerInAttackRange) AttackPlayer();
                 }
-                else
-                {
-                    //transform.position = Vector3.MoveTowards(transform.position, target.transform.position,
-                     //   speed * Time.deltaTime);
-                     
-                }
-                //transform.rotation = Quaternion.LookRotation(Vector3.RotateTowards(transform.position, target.transform.position, 0, 360));
-                //this \/ part isnt needed because the boid will do that now
-                //transform.LookAt(target.transform); // you need to child the object to an empty gameobject so that the object maintains the rotation you want.
+                
                 
             }
 
-            //this probably isn't needed anymore as with the improved pathfinding you shouldn't need to worry about the fish failing to reach their targets.
-            /*if (target != null && enemy == false)
-            {
-                StartCoroutine(failsafe_counter());
-
-            }
-
-            if (target != null && enemy == true)
-            {
-                StartCoroutine(failsafe_counter_2());
-            }*/
             
             
 
@@ -432,7 +407,7 @@ public class heat_seeking_fishles : MonoBehaviour
             if (health <= 0)
             {
                 Invoke(nameof(DestroyEnemy), .5f);
-                Debug.Log("i've been hit!");
+                Debug.Log("i've been killed!");
             }
 
             if (health <= 60) this.gameObject.tag = "fish";
@@ -465,7 +440,14 @@ public class heat_seeking_fishles : MonoBehaviour
         }
     }
 
-    
+    private void OnDestroy()
+    {
+        if (TryGetComponent<Boid>(out Boid boid))
+        {
+            boid.enabled = false;
+        }
+    }
+
     #endregion
 
     #region  failsafe

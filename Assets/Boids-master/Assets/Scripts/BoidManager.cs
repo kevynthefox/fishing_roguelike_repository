@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BoidManager : MonoBehaviour {
@@ -8,13 +10,13 @@ public class BoidManager : MonoBehaviour {
 
     public BoidSettings settings;
     public ComputeShader compute;
-    Boid[] boids;
+    public Boid[] boids;
     public Transform target;
 
     public void Start () {
         boids = FindObjectsOfType<Boid> ();
         foreach (Boid b in boids) {
-            b.Initialize (settings, target);
+            b.Initialize (settings, b.target);
         }
 
     }
@@ -50,12 +52,21 @@ public class BoidManager : MonoBehaviour {
             boidBuffer.GetData (boidData);
 
             for (int i = 0; i < boids.Length; i++) {
-                boids[i].avgFlockHeading = boidData[i].flockHeading;
-                boids[i].centreOfFlockmates = boidData[i].flockCentre;
-                boids[i].avgAvoidanceHeading = boidData[i].avoidanceHeading;
-                boids[i].numPerceivedFlockmates = boidData[i].numFlockmates;
 
-                boids[i].UpdateBoid ();
+                if (boids[i] != null)
+                {
+
+                    boids[i].avgFlockHeading = boidData[i].flockHeading;
+                    boids[i].centreOfFlockmates = boidData[i].flockCentre;
+                    boids[i].avgAvoidanceHeading = boidData[i].avoidanceHeading;
+                    boids[i].numPerceivedFlockmates = boidData[i].numFlockmates;
+
+                    boids[i].UpdateBoid();
+                }
+                else
+                {
+                    boids.Free();
+                }
             }
 
             boidBuffer.Release ();

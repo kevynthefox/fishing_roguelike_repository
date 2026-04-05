@@ -878,7 +878,10 @@ public class Item_behavior : MonoBehaviour
 
     public void Untrigger(string buff_name)
     {
-        effect_manager_queue[place_in_queue].GetComponent<effect_manager>().removeVisualBuffs(buff_name);
+        if (effect_manager_queue.Count > 0)
+        {
+            effect_manager_queue[place_in_queue].GetComponent<effect_manager>().removeVisualBuffs(buff_name);
+        }
     }
 
     public void spawn_obj(int object_to_spawn)
