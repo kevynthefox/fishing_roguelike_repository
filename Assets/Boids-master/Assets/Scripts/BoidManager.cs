@@ -65,13 +65,16 @@ public class BoidManager : MonoBehaviour {
                 }
                 else
                 {
-                    boids.Free();
+                    //boids[i].;
+                    Start();
                 }
             }
 
             boidBuffer.Release ();
         }
     }
+
+    public GameObject[] beepis;
 
     public struct BoidData {
         public Vector3 position;

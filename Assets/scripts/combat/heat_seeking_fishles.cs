@@ -70,6 +70,11 @@ public class heat_seeking_fishles : MonoBehaviour
         {
             walkPoint_timer_limit = 99999;
         }
+
+        if (enemy == false)
+        {
+            StartCoroutine(failsafe_counter_2());
+        }
     }
 
     private void OnDrawGizmosSelected()
@@ -455,7 +460,7 @@ public class heat_seeking_fishles : MonoBehaviour
     
 
     
-    /*public IEnumerator failsafe_counter()
+    public IEnumerator failsafe_counter()
     {
         
         yield return new WaitForSeconds(1);
@@ -469,15 +474,36 @@ public class heat_seeking_fishles : MonoBehaviour
         if (flight_duration != 0)
         {
             yield return new WaitForSeconds(flight_duration);
+            
+            GetComponent<Rigidbody>().useGravity = true;
+            this.GetComponent<Boid>().enabled = false;
+
+            StartCoroutine(failsafe_movement());
+            
+            yield return new WaitForSeconds(flight_duration);
+            GetComponent<BoxCollider>().isTrigger = true; //hopefully this will make it so that after double the time has passed, if the fish has still not reached the seller, turn off its physical collider and let it go through the floor and shish.
         }
         else
         {
             StopCoroutine(failsafe_counter_2());
         }
         //Debug.Log("failed the safe");
-        GetComponent<Rigidbody>().useGravity = true;
+        
 
-    }*/
+    }
+
+    public IEnumerator failsafe_movement()
+    {
+        while (TimeManager.current.update == true)
+        {
+            yield return new WaitForSeconds(0.1f);
+            
+            transform.position = Vector3.MoveTowards(transform.position, target.transform.position,
+                speed * Time.deltaTime);
+            
+            
+        }
+    }
     #endregion
     /*private void OnCollisionEnter(Collision collision)
     {

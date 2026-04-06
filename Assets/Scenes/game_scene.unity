@@ -4687,7 +4687,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settings: {fileID: 11400000, guid: fd4bc51c395304add92e7ac263cc6d3f, type: 2}
   compute: {fileID: 7200000, guid: c51b961c8b9d746f1a2f242fa7bf1a31, type: 3}
+  boids: []
   target: {fileID: 0}
+  beepis: []
 --- !u!4 &2024831131
 Transform:
   m_ObjectHideFlags: 0
@@ -5211,6 +5213,10 @@ PrefabInstance:
       propertyPath: fish_spawner
       value: 
       objectReference: {fileID: 710590388}
+    - target: {fileID: 4538520630227841205, guid: c0909263df6a80047b02e92c9d7c9c56, type: 3}
+      propertyPath: fish_quantity_max
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 5394381651198684195, guid: c0909263df6a80047b02e92c9d7c9c56, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
