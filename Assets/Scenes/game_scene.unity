@@ -1902,6 +1902,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7a8bfe2b30d8b8a448624a28444a5701, type: 3}
+--- !u!1 &664521443 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1283862524491756992, guid: c0909263df6a80047b02e92c9d7c9c56, type: 3}
+  m_PrefabInstance: {fileID: 5793751535755447267}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &681956274
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5215,7 +5220,7 @@ PrefabInstance:
       objectReference: {fileID: 710590388}
     - target: {fileID: 4538520630227841205, guid: c0909263df6a80047b02e92c9d7c9c56, type: 3}
       propertyPath: fish_quantity_max
-      value: 200
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 5394381651198684195, guid: c0909263df6a80047b02e92c9d7c9c56, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -5255,7 +5260,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3663032606812450261, guid: c0909263df6a80047b02e92c9d7c9c56, type: 3}
       insertIndex: -1
       addedObject: {fileID: 912625096}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1283862524491756992, guid: c0909263df6a80047b02e92c9d7c9c56, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6755177564722067856}
   m_SourcePrefab: {fileID: 100100000, guid: c0909263df6a80047b02e92c9d7c9c56, type: 3}
 --- !u!1 &5793751535755447268 stripped
 GameObject:
@@ -5433,12 +5441,20 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 997754469613679209, guid: c0909263df6a80047b02e92c9d7c9c56, type: 3}
   m_PrefabInstance: {fileID: 5793751535755447267}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 664521443}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f9dfa5b682dcd46bda6128250e975f58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!81 &6755177564722067856
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 664521443}
+  m_Enabled: 1
 --- !u!114 &6851357538516608399
 MonoBehaviour:
   m_ObjectHideFlags: 0

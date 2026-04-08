@@ -480,7 +480,7 @@ public class heat_seeking_fishles : MonoBehaviour
 
             StartCoroutine(failsafe_movement());
             
-            yield return new WaitForSeconds(flight_duration);
+            yield return new WaitForSeconds(flight_duration * 10);
             GetComponent<BoxCollider>().isTrigger = true; //hopefully this will make it so that after double the time has passed, if the fish has still not reached the seller, turn off its physical collider and let it go through the floor and shish.
         }
         else

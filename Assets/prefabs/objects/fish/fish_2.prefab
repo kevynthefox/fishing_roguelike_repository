@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 40887434424217281}
   - component: {fileID: 6090530746133108906}
   - component: {fileID: 6509740147119166529}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: fish_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -112,6 +112,8 @@ GameObject:
   - component: {fileID: 5809637204881220974}
   - component: {fileID: -5246057508119059190}
   - component: {fileID: -7622520359868190515}
+  - component: {fileID: -5777112740248032250}
+  - component: {fileID: -2679290536872758943}
   m_Layer: 0
   m_Name: fish_2
   m_TagString: fish
@@ -148,7 +150,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc7f40741ce017a4192ba99840c04309, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flight_duration: 50
+  flight_duration: 15
   speed: 20
   enemy: 0
   ranged_fish: 0
@@ -293,6 +295,116 @@ MonoBehaviour:
   centreOfFlockmates: {x: 0, y: 0, z: 0}
   numPerceivedFlockmates: 0
   target: {fileID: 0}
+--- !u!82 &-5777112740248032250
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4664982497591543338}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 8300000, guid: 93ca2a8f031b6670098535017ac4a76f, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &-2679290536872758943
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4664982497591543338}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9659bbbb6d5fcf7a98ac2d3c89510d58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::play_audio_on_collision
+  audioSource: {fileID: -5777112740248032250}
 --- !u!1001 &1391571875984358746
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -368,6 +480,10 @@ PrefabInstance:
     - target: {fileID: 7507711421559024191, guid: 54b723083ef8f6a4f9c347185d9a6d91, type: 3}
       propertyPath: m_Name
       value: effect_manager
+      objectReference: {fileID: 0}
+    - target: {fileID: 7507711421559024191, guid: 54b723083ef8f6a4f9c347185d9a6d91, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
