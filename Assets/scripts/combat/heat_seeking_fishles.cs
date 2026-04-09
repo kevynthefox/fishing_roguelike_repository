@@ -20,6 +20,8 @@ public class heat_seeking_fishles : MonoBehaviour
     private GameObject _target;
     public List<GameObject> targets;
     public float distance;
+    public Vector3 direction_to_target;
+    public Vector3 current_direction;
     public Transform player;
     public bool stationary;
     
@@ -102,6 +104,7 @@ public class heat_seeking_fishles : MonoBehaviour
         if (TimeManager.current.update == true)
         {
 
+            distance = Vector3.Distance(transform.position, target.transform.position);
 
             if (ranged_fish == true)
             {
@@ -204,7 +207,15 @@ public class heat_seeking_fishles : MonoBehaviour
 
             if (TryGetComponent<Boid>(out Boid boid_))
             {
-                boid_.target = _target.transform;
+                if (target == null)
+                {
+                    boid_.target = null;
+                }
+                else
+                {
+                    
+                    boid_.target = _target.transform;
+                }
             }
         }
     }
@@ -411,7 +422,7 @@ public class heat_seeking_fishles : MonoBehaviour
 
             if (health <= 0)
             {
-                Invoke(nameof(DestroyEnemy), .5f);
+                DestroyEnemy();
                 Debug.Log("i've been killed!");
             }
 
@@ -419,30 +430,37 @@ public class heat_seeking_fishles : MonoBehaviour
         }
     }
 
-    private void DestroyEnemy()
+    public void DestroyEnemy()
     {
-        if (TimeManager.current.update == true)
+    
+        enemy = false;
+        targets.Clear();
+        target = null;
+        if (TryGetComponent<Boid>(out Boid boid))
         {
-            target = null;
-            enemy = false;
-            if (ranged_fish == true)
-            {
-                //wave_spawner.GetComponent<Wavespawner>().encounter_enemies_alive.Remove(this.gameObject);
-                this.tag = "super_food_items";
-            }
-            else
-            {
-                //wave_spawner.GetComponent<Wavespawner>().Remove_alive(this.gameObject); 
-                this.tag = "food_items";
-            }
-
-            //Destroy(gameObject); removed because you wanna be able to eat the corpses
-            
-            
-            
-            Debug.Log("enemy dead");
-
+            boid.dead = true;
         }
+
+        this.GetComponent<Rigidbody>().useGravity = true;
+        
+        if (ranged_fish == true)
+        {
+            //wave_spawner.GetComponent<Wavespawner>().encounter_enemies_alive.Remove(this.gameObject);
+            this.tag = "super_food_items";
+        }
+        else
+        {
+            //wave_spawner.GetComponent<Wavespawner>().Remove_alive(this.gameObject); 
+            this.tag = "food_items";
+        }
+
+        //Destroy(gameObject); removed because you wanna be able to eat the corpses
+        
+        
+        
+        Debug.Log("enemy dead");
+
+    
     }
 
     private void OnDestroy()
@@ -501,6 +519,20 @@ public class heat_seeking_fishles : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position, target.transform.position,
                 speed * Time.deltaTime);
             
+            
+        }
+    }
+
+    public IEnumerator failsafe_enemy_ascend()
+    {
+        while (TimeManager.current.update == true)
+        {
+            yield return new WaitForSeconds(30f);
+
+            if ((distance >= 200) && direction )
+            {
+                
+            }
             
         }
     }
