@@ -104,7 +104,7 @@ public class heat_seeking_fishles : MonoBehaviour
         if (TimeManager.current.update == true)
         {
 
-            distance = Vector3.Distance(transform.position, target.transform.position);
+            
 
             if (ranged_fish == true)
             {
@@ -116,7 +116,7 @@ public class heat_seeking_fishles : MonoBehaviour
 
             if (target != null)
             {
-
+                distance = Vector3.Distance(transform.position, target.transform.position);
 
 
                 
@@ -443,16 +443,18 @@ public class heat_seeking_fishles : MonoBehaviour
 
         this.GetComponent<Rigidbody>().useGravity = true;
         
+        this.gameObject.tag = "food_items";
+        /*
         if (ranged_fish == true)
         {
             //wave_spawner.GetComponent<Wavespawner>().encounter_enemies_alive.Remove(this.gameObject);
-            this.tag = "super_food_items";
+            this.gameObject.tag = "super_food_items";
         }
         else
         {
             //wave_spawner.GetComponent<Wavespawner>().Remove_alive(this.gameObject); 
-            this.tag = "food_items";
-        }
+            this.gameObject.tag = "food_items";
+        }*/
 
         //Destroy(gameObject); removed because you wanna be able to eat the corpses
         
@@ -529,7 +531,7 @@ public class heat_seeking_fishles : MonoBehaviour
         {
             yield return new WaitForSeconds(30f);
 
-            if ((distance >= 200) && direction )
+            if ((distance >= 200) && (direction_to_target != current_direction ) )
             {
                 
             }
