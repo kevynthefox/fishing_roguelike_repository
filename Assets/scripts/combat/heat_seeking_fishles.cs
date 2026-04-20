@@ -75,7 +75,11 @@ public class heat_seeking_fishles : MonoBehaviour
 
         if (enemy == false)
         {
-            StartCoroutine(failsafe_counter_2());
+            StartCoroutine(failsafe_counter_2()); //this one turns off the boid pathfinding and goes back to simpler pathfinding. this is for fished up fish as they dont need as advanced pathfinding
+        }
+        if (enemy == true)
+        {
+            StartCoroutine(failsafe_enemy_ascend()); //this one turns off the boid pathfinding and then turns it back on after a while. this is for enemies as they have a bad habit of ascending into the sky endlessly
         }
     }
 
@@ -401,15 +405,29 @@ public class heat_seeking_fishles : MonoBehaviour
         {
             if (other.isTrigger == true)
             {
-                if (other.gameObject.tag == "fishing_rod" && other.gameObject.GetComponent<fishing_script>().blocking == false && other.gameObject.GetComponent<fishing_script>().attacking == true)
+                
+
+                if (other.TryGetComponent<fishing_script>(out fishing_script fishing_))
+                {
+                    if (other.CompareTag("fishing_rod") && fishing_.blocking == false && fishing_.attacking == true)
+                    {
+                        TakeDamage(fishing_.damage);
+                    }
+
+                    
+                }
+                if (other.CompareTag("projectile"))
+                {
+                    TakeDamage(other.gameObject.GetComponent<projectile_controller>().damage);
+                }
+                /*if (other.gameObject.tag == "fishing_rod" && other.gameObject.GetComponent<fishing_script>().blocking == false && other.gameObject.GetComponent<fishing_script>().attacking == true)
                 {
                     TakeDamage(other.gameObject.GetComponent<fishing_script>().damage);
                 }
-
                 if (other.gameObject.tag == "projectile")
                 {
                     TakeDamage(((int)other.gameObject.GetComponent<projectile_controller>().damage));
-                }
+                }*/
             }
         }
     }
@@ -533,7 +551,9 @@ public class heat_seeking_fishles : MonoBehaviour
 
             if ((distance >= 200) && (direction_to_target != current_direction ) )
             {
-                
+                this.GetComponent<Boid>().dead = true;
+                yield return new WaitForSeconds(30f);
+                this.GetComponent<Boid>().dead = false;
             }
             
         }
