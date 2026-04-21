@@ -704,9 +704,11 @@ MonoBehaviour:
   speed: 0
   enemy: 1
   ranged_fish: 1
-  target: {fileID: 0}
+  _target: {fileID: 0}
   targets: []
   distance: 0
+  direction_to_target: {x: 0, y: 0, z: 0}
+  current_direction: {x: 0, y: 0, z: 0}
   player: {fileID: 0}
   stationary: 1
   whatIsGround:
@@ -738,7 +740,7 @@ MonoBehaviour:
   distanceToWalkpoint_magnitude: 0
   distanceToWalkpoint_magnitude_initial: 0
   sped: 0
-  rb: {fileID: 0}
+  patrol_point: {fileID: 1325089195106308928, guid: fddf758cb30717418b1319d140c1d81c, type: 3}
   wave_spawner: {fileID: 0}
   disable_water: 0
 --- !u!195 &4229464560409893025
@@ -868,6 +870,7 @@ MonoBehaviour:
   centreOfFlockmates: {x: 0, y: 0, z: 0}
   numPerceivedFlockmates: 0
   target: {fileID: 0}
+  dead: 0
 --- !u!1001 &7068271986291962808
 PrefabInstance:
   m_ObjectHideFlags: 0

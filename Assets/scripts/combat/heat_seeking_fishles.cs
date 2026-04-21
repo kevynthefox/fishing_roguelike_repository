@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -55,6 +56,7 @@ public class heat_seeking_fishles : MonoBehaviour
     public Vector3 distanceToWalkpoint,distanceToWalkpoint_initial;
     public float distanceToWalkpoint_magnitude,distanceToWalkpoint_magnitude_initial;
     public float sped;
+    public GameObject patrol_point;
     //public Rigidbody rb;
     //public List<Vector3> walkPointBeen;
     
@@ -76,10 +78,6 @@ public class heat_seeking_fishles : MonoBehaviour
         if (enemy == false)
         {
             StartCoroutine(failsafe_counter_2()); //this one turns off the boid pathfinding and goes back to simpler pathfinding. this is for fished up fish as they dont need as advanced pathfinding
-        }
-        if (enemy == true)
-        {
-            StartCoroutine(failsafe_enemy_ascend()); //this one turns off the boid pathfinding and then turns it back on after a while. this is for enemies as they have a bad habit of ascending into the sky endlessly
         }
     }
 
@@ -128,17 +126,30 @@ public class heat_seeking_fishles : MonoBehaviour
                 //moves this object towards the other object, at this speed per second
                 if (ranged_fish == true)
                 {
-                    
-                    if (playerInSightRange && !playerInAttackRange)
+                    if (TryGetComponent<Boid>(out Boid boid_))
                     {
-                        transform.position = Vector3.MoveTowards(transform.position, target.transform.position,
-                            speed * Time.deltaTime);
-                        
+                        if (playerInSightRange == false)
+                        {
+                            boid_.dead = true;
+                        }
+
+                        if (playerInSightRange && !playerInAttackRange)
+                        {
+                            boid_.dead = false;
+
+                        }
+
+                        if (playerInSightRange && playerInAttackRange)
+                        {
+                            boid_.dead = true; //turns off the pathfinding
+                            this.GetComponent<Rigidbody>().linearVelocity = Vector3.zero; //this makes it so they don't bounce off of something and start floating away
+                            this.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
+                            AttackPlayer();
+                        }
                     }
-                    if (playerInSightRange && playerInAttackRange) AttackPlayer();
                 }
-                
-                
+
+
             }
 
             
@@ -388,6 +399,9 @@ public class heat_seeking_fishles : MonoBehaviour
             floppy.z = Random.Range(0, 360);
             walkPoint = new Vector3(walkPointAnchor.x + randomx, walkPointAnchor.y + randomy, walkPointAnchor.z + randomZ);
 
+            var point = Instantiate(patrol_point, walkPoint, quaternion.identity);
+            point.transform.localScale = new Vector3(0.001f, 0.001f, 0.001f);
+            targets[0] = point;
             //if (Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround))
             //{
             walkPointSet = true;
@@ -438,13 +452,14 @@ public class heat_seeking_fishles : MonoBehaviour
             health -= damage;
             if (health_bar != null) health_bar.GetComponent<Health_display>().health -= health;
 
+            if (health <= 60 && health >= 1) this.gameObject.tag = "fish";
             if (health <= 0)
             {
                 DestroyEnemy();
                 Debug.Log("i've been killed!");
             }
 
-            if (health <= 60) this.gameObject.tag = "fish";
+            
         }
     }
 
@@ -461,18 +476,20 @@ public class heat_seeking_fishles : MonoBehaviour
 
         this.GetComponent<Rigidbody>().useGravity = true;
         
-        this.gameObject.tag = "food_items";
-        /*
+        //this.GetComponent<GameObject>().tag = "food_items";
+        
         if (ranged_fish == true)
         {
-            //wave_spawner.GetComponent<Wavespawner>().encounter_enemies_alive.Remove(this.gameObject);
-            this.gameObject.tag = "super_food_items";
+            
+            Wavespawner.current.encounter_enemies_alive.Remove(this.gameObject);
+            tag = "super_food_items";
         }
         else
         {
-            //wave_spawner.GetComponent<Wavespawner>().Remove_alive(this.gameObject); 
-            this.gameObject.tag = "food_items";
-        }*/
+            Wavespawner.current.Remove_alive(this.gameObject);
+            tag = "food_items";
+            //this.gameObject.tag = "food_items";
+        }
 
         //Destroy(gameObject); removed because you wanna be able to eat the corpses
         
@@ -543,21 +560,7 @@ public class heat_seeking_fishles : MonoBehaviour
         }
     }
 
-    public IEnumerator failsafe_enemy_ascend()
-    {
-        while (TimeManager.current.update == true)
-        {
-            yield return new WaitForSeconds(30f);
-
-            if ((distance >= 200) && (direction_to_target != current_direction ) )
-            {
-                this.GetComponent<Boid>().dead = true;
-                yield return new WaitForSeconds(30f);
-                this.GetComponent<Boid>().dead = false;
-            }
-            
-        }
-    }
+    
     #endregion
     /*private void OnCollisionEnter(Collision collision)
     {
