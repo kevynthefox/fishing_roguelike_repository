@@ -259,13 +259,22 @@ public class heat_seeking_fishles : MonoBehaviour
                 StopCoroutine(patrol());
                 StopCoroutine(patrol_timer());
                 walkPointSet = false;
+                if (targets[0].CompareTag("patrol") == true)
+                {
+                    Destroy(targets[0]);
+                    targets.RemoveAt(0);
+                    target = null;
+                }
                 walkPoint = Vector3.zero;
                 new_walkPoint_timer = -1;
             }
             else
             {
-                targets.Remove(target);
-                target = null;  
+                if (targets[0].CompareTag("patrol") == false)
+                {
+                    targets.Remove(target);
+                    target = null;  
+                }
                 //Debug.Log("target removed");
                 
                 if (new_walkPoint_timer == -1) patroling();
@@ -346,6 +355,12 @@ public class heat_seeking_fishles : MonoBehaviour
                 new_walkPoint_timer = 0;
                 //walkPointBeen.Add(transform.position);
                 walkPointSet = false;
+                if (targets[0].CompareTag("patrol") == true)
+                {
+                    Destroy(targets[0]);
+                    targets.RemoveAt(0);
+                    target = null;
+                }
                 StopCoroutine(patrol());
                 patroling();
                 yield break;
@@ -401,7 +416,7 @@ public class heat_seeking_fishles : MonoBehaviour
 
             var point = Instantiate(patrol_point, walkPoint, quaternion.identity);
             point.transform.localScale = new Vector3(0.001f, 0.001f, 0.001f);
-            targets[0] = point;
+            targets.Add(point);
             //if (Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround))
             //{
             walkPointSet = true;

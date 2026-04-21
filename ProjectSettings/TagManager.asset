@@ -23,6 +23,7 @@ TagManager:
   - gun
   - simple_fishing_rod
   - utility_items
+  - patrol
   layers:
   - Default
   - TransparentFX
