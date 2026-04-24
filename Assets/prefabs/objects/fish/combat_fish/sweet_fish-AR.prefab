@@ -545,6 +545,9 @@ MonoBehaviour:
   _playerInSightRange: 0
   gun: {fileID: 1917255046258029041}
   timeBetweenAttacks: 0.01
+  target_mask:
+    serializedVersion: 2
+    m_Bits: 128
   walkPoint: {x: 0, y: 0, z: 0}
   walkPointSet: 0
   walkPointRange: 0

@@ -43,6 +43,7 @@ public class heat_seeking_fishles : MonoBehaviour
     public GameObject gun;
     public float timeBetweenAttacks;
     bool alreadyAttacked;
+    public LayerMask target_mask;
     
     [Header("patrolling")]
     public Vector3 walkPoint;
@@ -93,6 +94,8 @@ public class heat_seeking_fishles : MonoBehaviour
         Gizmos.DrawWireCube(walkPointAnchor, new Vector3(walkPointRange,walkPointRange,walkPointRange));
         Gizmos.color = Color.black;
         Gizmos.DrawSphere(walkPoint,1);
+        Gizmos.color = Color.orange;
+        Gizmos.DrawRay(transform.position, Vector3.forward);
 
         /*foreach (Vector3 been in walkPointBeen)
         {
@@ -141,10 +144,22 @@ public class heat_seeking_fishles : MonoBehaviour
 
                         if (playerInSightRange && playerInAttackRange)
                         {
-                            boid_.dead = true; //turns off the pathfinding
-                            this.GetComponent<Rigidbody>().linearVelocity = Vector3.zero; //this makes it so they don't bounce off of something and start floating away
-                            this.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
-                            AttackPlayer();
+                            
+                            /*Vector3 towards = Vector3.RotateTowards(this.transform.position,target.transform.position,10f,10f);
+                            transform.rotation.Set(towards.x,towards.y,towards.z,0); */
+                            
+                            if (IsHeadingForCollision_with_target())
+                            {
+                                boid_.dead = true; //turns off the pathfinding
+                                this.GetComponent<Rigidbody>().linearVelocity = Vector3.zero; //this makes it so they don't bounce off of something and start floating away
+                                this.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
+                                AttackPlayer();
+                                
+                            }
+                            else
+                            {
+                                boid_.dead = false;
+                            }
                         }
                     }
                 }
@@ -189,6 +204,17 @@ public class heat_seeking_fishles : MonoBehaviour
         else
         {
             //this.GetComponent<Rigidbody>().isKinematic = true;
+        }
+    }
+    
+    bool IsHeadingForCollision_with_target () {
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, Vector3.forward, out hit, sightRange, target_mask)) {
+            return true;
+        } 
+        else 
+        {
+            return false; 
         }
     }
 

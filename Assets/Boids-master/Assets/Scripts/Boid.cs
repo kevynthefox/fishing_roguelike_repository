@@ -104,8 +104,11 @@ public class Boid : MonoBehaviour {
         RaycastHit hit;
         if (Physics.SphereCast (position, settings.boundsRadius, forward, out hit, settings.collisionAvoidDst, settings.obstacleMask)) {
             return true;
-        } else { }
-        return false;
+        } 
+        else 
+        {
+            return false;
+        }
     }
 
     Vector3 ObstacleRays () {
