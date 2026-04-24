@@ -94,8 +94,6 @@ public class heat_seeking_fishles : MonoBehaviour
         Gizmos.DrawWireCube(walkPointAnchor, new Vector3(walkPointRange,walkPointRange,walkPointRange));
         Gizmos.color = Color.black;
         Gizmos.DrawSphere(walkPoint,1);
-        Gizmos.color = Color.orange;
-        Gizmos.DrawRay(transform.position, Vector3.forward);
 
         /*foreach (Vector3 been in walkPointBeen)
         {
@@ -157,8 +155,8 @@ public class heat_seeking_fishles : MonoBehaviour
                                 
                             }
                             else
-                            {
-                                boid_.dead = false;
+                            { Debug.Log("enabling boid");
+                                //boid_.dead = false;
                             }
                         }
                     }
@@ -210,10 +208,14 @@ public class heat_seeking_fishles : MonoBehaviour
     bool IsHeadingForCollision_with_target () {
         RaycastHit hit;
         if (Physics.Raycast(transform.position, Vector3.forward, out hit, sightRange, target_mask)) {
+            Debug.Log("hit a player with ray");
+            Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
             return true;
         } 
         else 
         {
+            Debug.Log("did not hit a player with ray");
+            Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * sightRange, Color.white); 
             return false; 
         }
     }
