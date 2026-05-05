@@ -4136,6 +4136,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3751839930876068197, guid: c0909263df6a80047b02e92c9d7c9c56, type: 3}
+      propertyPath: invincibility
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4122852226063933632, guid: c0909263df6a80047b02e92c9d7c9c56, type: 3}
       propertyPath: m_UseGravity
       value: 1

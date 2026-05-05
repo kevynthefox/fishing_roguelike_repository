@@ -80,6 +80,7 @@ public class heat_seeking_fishles : MonoBehaviour
         {
             StartCoroutine(failsafe_counter_2()); //this one turns off the boid pathfinding and goes back to simpler pathfinding. this is for fished up fish as they dont need as advanced pathfinding
         }
+        
     }
 
     private void OnDrawGizmosSelected()
@@ -209,13 +210,13 @@ public class heat_seeking_fishles : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(transform.position, Vector3.forward, out hit, sightRange, target_mask)) {
             Debug.Log("hit a player with ray");
-            Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
+            Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.green);
             return true;
         } 
         else 
         {
             Debug.Log("did not hit a player with ray");
-            Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * sightRange, Color.white); 
+            Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * sightRange, Color.red); 
             return false; 
         }
     }
